@@ -40,7 +40,6 @@ public class WebSetup {
 
 
     public void setUpPage() {
-        // TODO Auto-generated method stub
 
     }
 }
