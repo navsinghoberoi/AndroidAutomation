@@ -13,6 +13,7 @@ public class LandingPage extends BasePage {
 	By gplus_button = By.className("android.widget.ImageView");
 	By gplus_account_button = By.className("android.widget.LinearLayout");
 	By facebook_button = By.className("android.widget.ImageView");
+	By skip_to_login_button = By.id("ob.skip_button");
 
 	public void clickSignIn() {
 		waitForClickabilityOf(signIn_button);
@@ -33,6 +34,12 @@ public class LandingPage extends BasePage {
 	public void clickFacebook() {
 		waitForVisibilityOf(facebook_button);
 		driver.findElements(facebook_button).get(2).click();
+	}
+
+
+	public void clickSkipToLogin() {
+		waitForVisibilityOf(skip_to_login_button);
+		driver.findElement(skip_to_login_button).click();
 	}
 
 

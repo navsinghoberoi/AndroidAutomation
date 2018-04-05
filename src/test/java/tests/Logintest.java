@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import pages.*;
 
-public class BookingTest extends Setup {
+public class Logintest extends Setup {
 
     private LandingPage landingPage;
     private LoginPage loginPage;
@@ -90,7 +90,7 @@ public class BookingTest extends Setup {
 */
 
     @Test (priority=1)
-    public void signIn() throws InterruptedException
+    public void testSignIn() throws InterruptedException
     {
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();

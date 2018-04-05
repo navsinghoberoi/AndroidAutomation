@@ -9,7 +9,7 @@ public class HomePage extends BasePage {
 		super(driver);
 	}
 
-
+	By search_button = By.id("booking.search_bar");
 	By findMyShuttl_button = By.id(app_package_name + "booking.find_my_shuttl_button");
 	By fromLocation_button = By.id(app_package_name + "booking.from_input");
 	By toLocation_button = By.id(app_package_name + "booking.to_input");
@@ -19,10 +19,10 @@ public class HomePage extends BasePage {
 	By clickGetFreeRide = By.xpath("//android.widget.CheckedTextView[@text='Get Free Rides']");
 
 
-	public String getFindMyShuttlText() {
-		waitForVisibilityOf(findMyShuttl_button);
-		String FindMyShuttlText =  driver.findElement(findMyShuttl_button).getText();
-		return FindMyShuttlText;
+	public String getHeaderText() {
+		waitForVisibilityOf(search_button);
+		String HeaderText =  driver.findElement(search_button).getText();
+		return HeaderText;
 	}
 
 	public void clickFromLocation() {

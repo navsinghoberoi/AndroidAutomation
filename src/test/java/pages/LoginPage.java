@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
-	By mobileNumber_button = By.id(app_package_name + "reg_number");
+	By mobileNumber_button = By.id(app_package_name + "login.phone_input");
 	By referralCode_button = By.id(app_package_name + "reg_referral");
 	By getOtp_button = By.className("android.widget.Button");
 	By enterOtp_button = By.id(app_package_name + "verify_reg_otp");
-	By proceed_button = By.className("android.widget.Button");
+	By verify_button = By.id("login.verify_button");
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -30,9 +30,9 @@ public class LoginPage extends BasePage {
 		driver.findElement(enterOtp_button).sendKeys(otp);
 	}
 	
-	public void clickProceed() {
-		waitForVisibilityOf(proceed_button);
-		driver.findElement(proceed_button).click();
+	public void clickVerify() {
+		waitForVisibilityOf(verify_button);
+		driver.findElement(verify_button).click();
 		
 	}
 	
