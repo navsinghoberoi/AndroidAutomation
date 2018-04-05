@@ -20,16 +20,17 @@ public class Setup {
 
     protected void prepareAndroidForAppium() throws MalformedURLException {
         File appDir = new File("/Users/nitish/Downloads");
-        File app = new File(appDir, "Ola.apk");
+        File app = new File(appDir, "app-qa-3.0.0-qa.apk");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("device","Android");
 
         //mandatory capabilities
         capabilities.setCapability("deviceName","Android");
+        capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability("platformName","Android");
-        capabilities.setCapability("noReset", true );
+        capabilities.setCapability("noReset", false );
         capabilities.setCapability("fullReset", false);
-        capabilities.setCapability("launchApp", "com.olacabs.customer");
+        capabilities.setCapability("launchApp", "app.goplus.in.myapplication.qa");
 
 
         //other caps
