@@ -1,5 +1,6 @@
 package tests;
 
+import common.Commons;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -24,6 +25,7 @@ public class HomepageTest extends Setup {
     private SmsPage smsPage;
     private GetFreeRide getFreeRide;
     private OtpPage otpPage;
+    private Commons commons;
 
     @BeforeClass
     public void setUp() throws Exception {
@@ -44,6 +46,7 @@ public class HomepageTest extends Setup {
         smsPage = new SmsPage(driver);
         getFreeRide = new GetFreeRide(driver);
         otpPage = new OtpPage(driver);
+        commons = new Commons(driver);
 
     }
 
@@ -57,6 +60,7 @@ public class HomepageTest extends Setup {
 
     @Test(priority = 1)
     public void testHomeCards() throws Exception {
+        commons.goToHomepage();
 
     }
 

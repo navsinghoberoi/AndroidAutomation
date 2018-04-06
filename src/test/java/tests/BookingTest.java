@@ -47,7 +47,7 @@ public class BookingTest extends Setup {
         getFreeRide = new GetFreeRide(driver);
         otpPage = new OtpPage(driver);
         commons = new Commons(driver);
-        commons.goToHomepage();
+
 
     }
 
@@ -55,7 +55,7 @@ public class BookingTest extends Setup {
     @AfterClass
     public void tearDown() throws Exception {
         Thread.sleep(5000);
-        System.out.println("Test cases completed");
+        System.out.println("Test cases  completed");
         driver.quit();
     }
 /*
@@ -93,6 +93,7 @@ public class BookingTest extends Setup {
 
     @Test(priority = 1)
     public void signIn() throws InterruptedException {
+        commons.goToHomepage();
         homePage.clickBuddy();
         Thread.sleep(10000);
     }
