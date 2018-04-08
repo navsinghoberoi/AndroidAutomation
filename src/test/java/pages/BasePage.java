@@ -94,4 +94,5 @@ public class BasePage extends Setup {
     ((AndroidDriver<WebElement>) driver).sendKeyEvent(67);
     }
     }
+
 }

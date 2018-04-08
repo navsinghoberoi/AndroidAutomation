@@ -4,7 +4,8 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
+import java.util.*;
+import java.io.FileInputStream;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -16,11 +17,31 @@ import java.net.URL;
 
 
 public class Setup {
-    public AndroidDriver driver;
 
-    protected void prepareAndroidForAppium() throws MalformedURLException {
-        File appDir = new File("/Users/nitish/Downloads");
-        File app = new File(appDir, "app-qa-3.0.0-qa.apk");
+    public AndroidDriver driver;
+/*    public String filePath = "/Users/navpreetsingh/Downloads";
+    public String fileName =  "app-release-3.6.1.apk";
+    public String appActivity = "app.goplus.in.myapplication";*/
+
+        // Method to load properties file
+      protected Properties loadPropertyFile() throws Exception
+    {
+        FileInputStream fileInput = new FileInputStream(new File("src/Resources/data.properties"));
+        Properties prop = new Properties();
+        prop.load(fileInput);
+        return prop;
+    }
+
+   protected void getValueFromPPFile(String key) throws Exception {
+        loadPropertyFile().getProperty(key);
+    }
+
+    protected void prepareAndroidForAppium() throws Exception {
+
+        Properties prop= loadPropertyFile();
+        File appDir = new File(loadPropertyFile().getProperty("filePath"));
+     //   File appDir = new File(getValueFromPPFile("filePath"));
+        File app = new File(appDir, loadPropertyFile().getProperty("fileName"));
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("device","Android");
 
@@ -30,7 +51,7 @@ public class Setup {
         capabilities.setCapability("platformName","Android");
         capabilities.setCapability("noReset", false );
         capabilities.setCapability("fullReset", false);
-        capabilities.setCapability("launchApp", "app.goplus.in.myapplication.qa");
+        capabilities.setCapability("launchApp", loadPropertyFile().getProperty("appActivity"));
 
 
         //other caps

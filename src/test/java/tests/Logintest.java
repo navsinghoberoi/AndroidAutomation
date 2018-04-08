@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 
 import pages.*;
 
+import java.util.Properties;
+
 public class Logintest extends Setup {
 
     private LandingPage landingPage;
@@ -27,6 +29,8 @@ public class Logintest extends Setup {
     private SmsPage smsPage;
     private GetFreeRide getFreeRide;
     private OtpPage otpPage;
+/*    private String OTP = "2344";
+    private String phoneNumber = "9599201240";*/
 
     @BeforeClass
     public void setUp() throws Exception {
@@ -47,7 +51,6 @@ public class Logintest extends Setup {
         smsPage = new SmsPage(driver);
         getFreeRide = new GetFreeRide(driver);
         otpPage = new OtpPage(driver);
-
     }
 
 
@@ -89,17 +92,17 @@ public class Logintest extends Setup {
 
 */
 
-    @Test (priority=1)
-    public void testSignIn() throws InterruptedException
+    @Test
+    public void testSignIn() throws Exception
     {
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         //Thread.sleep(2000);
-        loginPage.enterMobileNumber("9555814581");
+        loginPage.enterMobileNumber(loadPropertyFile().getProperty("phoneNumber"));
         //loginPage.clickGetOtp();
         //loginPage.enterOtp("1111");
         loginPage.clickVerify();
-        otpPage.enterOtp("1111");
+        otpPage.enterOtp(loadPropertyFile().getProperty("OTP"));
         String Text = new HomePage(driver).getHeaderText();
         Assert.assertEquals(Text, "Search for a route");
     }
