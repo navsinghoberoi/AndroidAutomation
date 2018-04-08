@@ -19,9 +19,6 @@ import java.net.URL;
 public class Setup {
 
     public AndroidDriver driver;
-/*    public String filePath = "/Users/navpreetsingh/Downloads";
-    public String fileName =  "app-release-3.6.1.apk";
-    public String appActivity = "app.goplus.in.myapplication";*/
 
         // Method to load properties file
       protected Properties loadPropertyFile() throws Exception
@@ -32,9 +29,9 @@ public class Setup {
         return prop;
     }
 
-   protected void getValueFromPPFile(String key) throws Exception {
+  /* protected void getValueFromPPFile(String key) throws Exception {
         loadPropertyFile().getProperty(key);
-    }
+    }*/
 
     protected void prepareAndroidForAppium() throws Exception {
 
