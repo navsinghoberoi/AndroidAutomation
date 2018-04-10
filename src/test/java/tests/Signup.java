@@ -43,13 +43,14 @@ public class Signup extends Setup {
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
 
-        loginPage.enterMobileNumber(loadPropertyFile().getProperty("phoneNumber"));
+        loginPage.enterMobileNumber(getValueFromPPFile("phoneNumber"));
         loginPage.clickVerify();
         loginPage.continueButtonClick();
 
-        otpPage.enterOtp(loadPropertyFile().getProperty("OTP"));
+        otpPage.enterOtp(getValueFromPPFile("OTP"));
 
-        personalDetails.enterUserName(loadPropertyFile().getProperty("userName") + " " + System.currentTimeMillis());
+          personalDetails.enterUserName(getValueFromPPFile("userName") + " " + System.currentTimeMillis());
+
         personalDetails.selectGenderFemale();
         personalDetails.personalDetailSubmit();
 
@@ -57,11 +58,11 @@ public class Signup extends Setup {
      // Assert.assertEquals(homeText, "Where Do You Live");
         homeAddress.selectHomeLocationClick();
         homeAddress.searchBarClick();
-        homeAddress.enterHomeAddress(loadPropertyFile().getProperty("homeAddress"));
+        homeAddress.enterHomeAddress(getValueFromPPFile("homeAddress"));
         homeAddress.selectHomeAddress();   // Adding homeAddress by searching address
         homeAddress.useThisPlaceAddressText();
         homeAddress.selectLocationClick();
-        homeAddress.flatNumSet(loadPropertyFile().getProperty("flatNum"));
+        homeAddress.flatNumSet(getValueFromPPFile("flatNum"));
         driver.hideKeyboard();
         homeAddress.homeAddressSubmit();
 

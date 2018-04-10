@@ -29,16 +29,16 @@ public class Setup {
         return prop;
     }
 
-  /* protected void getValueFromPPFile(String key) throws Exception {
-        loadPropertyFile().getProperty(key);
-    }*/
+   protected String getValueFromPPFile(String key) throws Exception {
+        String fileName = loadPropertyFile().getProperty(key);
+        return fileName;
+    }
 
     protected void prepareAndroidForAppium() throws Exception {
 
         Properties prop= loadPropertyFile();
-        File appDir = new File(loadPropertyFile().getProperty("filePath"));
-     //   File appDir = new File(getValueFromPPFile("filePath"));
-        File app = new File(appDir, loadPropertyFile().getProperty("fileName"));
+        File appDir = new File(getValueFromPPFile("filePath"));
+        File app = new File(appDir, getValueFromPPFile("fileName"));
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("device","Android");
 
@@ -48,8 +48,7 @@ public class Setup {
         capabilities.setCapability("platformName","Android");
         capabilities.setCapability("noReset", true );
         capabilities.setCapability("fullReset", false);
-        capabilities.setCapability("launchApp", loadPropertyFile().getProperty("appActivity"));
-
+        capabilities.setCapability("launchApp", getValueFromPPFile("appActivity"));
 
         //other caps
         capabilities.setCapability("app", app.getAbsolutePath());

@@ -98,11 +98,12 @@ public class Logintest extends Setup {
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         //Thread.sleep(2000);
-        loginPage.enterMobileNumber(loadPropertyFile().getProperty("phoneNumber"));
+        loginPage.enterMobileNumber(getValueFromPPFile("phoneNumber"));
         //loginPage.clickGetOtp();
         //loginPage.enterOtp("1111");
         loginPage.clickVerify();
-        otpPage.enterOtp(loadPropertyFile().getProperty("OTP"));
+        otpPage.enterOtp(getValueFromPPFile("OTP"));
+
         String Text = homePage.getHeaderText();
         Assert.assertEquals(Text, "Search for a route");
     }
