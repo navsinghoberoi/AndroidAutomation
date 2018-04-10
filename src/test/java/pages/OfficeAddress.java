@@ -7,12 +7,13 @@ public class OfficeAddress extends BasePage {
 
     By whereDoYouWorkText = By.id("frag_usr_reg2.title");
     By selectOfficeLocation = By.id("frag_usr_reg2.location_input");
-    By searchBar = By.id("search_bar");
-    By enterAddress = By.id("edit_text");
-    By selectAddress = By.id("place_autocomplete_prediction_secondary_text[1]");
-    By useThisPlaceAddress = By.id("place_address");
-    By changeLocation = By.id("cancel_button");
-    By selectLocation = By.id("confirm_button");
+    By searchBar = By.id(app_package_name_android_gms + "search_bar");
+    By enterAddress = By.id(app_package_name_android_gms + "edit_text");
+    By selectAddress = By.id(app_package_name_android_gms + "place_autocomplete_prediction_secondary_text");
+    By selectThisLocation = By.id(app_package_name_android_gms + "select_marker_location");
+    By useThisPlaceAddress = By.id(app_package_name_android_gms + "place_address");
+    By changeLocation = By.id(app_package_name_android_gms + "cancel_button");
+    By selectLocation = By.id(app_package_name_android_gms + "confirm_button");
     By submit = By.id("frag_usr_reg2.action_done");
 
 
@@ -60,12 +61,18 @@ public class OfficeAddress extends BasePage {
         return address;
     }
 
+    public void selectThisLocationClick()
+    {
+        waitForVisibilityOf(selectThisLocation);
+        driver.findElement(selectThisLocation).click();
+    }
+
 
     public String useThisPlaceAddressText()
     {
         waitForVisibilityOf(useThisPlaceAddress);
         String address =  driver.findElement(useThisPlaceAddress).getText();
-        System.out.println("Address written on the use this place popup = " +address);
+        System.out.println("Address written on the use this place popup for office address = " +address);
         return address;
 
     }

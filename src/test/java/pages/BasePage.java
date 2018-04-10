@@ -16,6 +16,7 @@ public class BasePage extends Setup {
 
     public WebDriver driver;
     String app_package_name = "app.goplus.in.myapplication.qa:id/";
+    String app_package_name_android_gms = "com.google.android.gms:id/";
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

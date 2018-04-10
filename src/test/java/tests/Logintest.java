@@ -103,7 +103,7 @@ public class Logintest extends Setup {
         //loginPage.enterOtp("1111");
         loginPage.clickVerify();
         otpPage.enterOtp(loadPropertyFile().getProperty("OTP"));
-        String Text = new HomePage(driver).getHeaderText();
+        String Text = homePage.getHeaderText();
         Assert.assertEquals(Text, "Search for a route");
     }
 

@@ -46,7 +46,7 @@ public class Setup {
         capabilities.setCapability("deviceName","Android");
         capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability("platformName","Android");
-        capabilities.setCapability("noReset", false );
+        capabilities.setCapability("noReset", true );
         capabilities.setCapability("fullReset", false);
         capabilities.setCapability("launchApp", loadPropertyFile().getProperty("appActivity"));
 

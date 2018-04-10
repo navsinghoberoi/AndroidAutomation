@@ -9,6 +9,7 @@ public class LoginPage extends BasePage {
 	By getOtp_button = By.className("android.widget.Button");
 	By enterOtp_button = By.id("verify_reg_otp");
 	By verify_button = By.id("login.verify_button");
+	By continueButton = By.id("button1");
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -35,5 +36,12 @@ public class LoginPage extends BasePage {
 		driver.findElement(verify_button).click();
 		
 	}
-	
+
+	public void continueButtonClick()
+	{
+		waitForVisibilityOf(continueButton);
+		driver.findElement(continueButton).click();
+	}
+
+
 }

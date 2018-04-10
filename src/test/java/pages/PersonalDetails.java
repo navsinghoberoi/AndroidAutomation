@@ -84,7 +84,7 @@ public class PersonalDetails extends BasePage {
     }
 
 
-    public void PersonalDetailSubmit()
+    public void personalDetailSubmit()
     {
         waitForVisibilityOf(personalDetailsSubmit);
         driver.findElement(personalDetailsSubmit).click();
