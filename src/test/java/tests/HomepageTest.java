@@ -1,5 +1,6 @@
 package tests;
 
+import common.Commons;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -24,14 +25,15 @@ public class HomepageTest extends Setup {
     private SmsPage smsPage;
     private GetFreeRide getFreeRide;
     private OtpPage otpPage;
+    private Commons commons;
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium();
+        prepareAndroidForAppium(true);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
-        selectLocationPage= new SelectLocationPage(driver);
+        selectLocationPage = new SelectLocationPage(driver);
         slotsPage = new SlotsPage(driver);
         slotsSelectedPage = new SlotsSelectedPage(driver);
         shuttlEnRoutePage = new ShuttlEnRoutePage(driver);
@@ -44,6 +46,7 @@ public class HomepageTest extends Setup {
         smsPage = new SmsPage(driver);
         getFreeRide = new GetFreeRide(driver);
         otpPage = new OtpPage(driver);
+        commons = new Commons(driver);
 
     }
 
@@ -55,9 +58,9 @@ public class HomepageTest extends Setup {
         driver.quit();
     }
 
-    @Test (priority=1)
-    public void testHomeCards() throws Exception
-    {
+    @Test(priority = 1)
+    public void testHomeCards() throws Exception {
+        commons.goToHomepage();
 
     }
 

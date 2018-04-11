@@ -10,6 +10,7 @@ public class HomePage extends BasePage {
 	}
 
 	By search_button = By.id("booking.search_bar");
+	By buddy_button = By.id("buddy");
 	By findMyShuttl_button = By.id(app_package_name + "booking.find_my_shuttl_button");
 	By fromLocation_button = By.id(app_package_name + "booking.from_input");
 	By toLocation_button = By.id(app_package_name + "booking.to_input");
@@ -77,6 +78,17 @@ public class HomePage extends BasePage {
 	}
 
 
+	public boolean checkBuddyButton() {
+		if (checkIfElementPresent(buddy_button))
+		return true;
+		else
+			return false;
+
+	}
+
+	public void clickBuddy() {
+		checkIfElementPresent(buddy_button,10);
+	}
 
 }
 

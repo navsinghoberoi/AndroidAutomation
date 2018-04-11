@@ -20,7 +20,7 @@ public class Setup {
 
     public AndroidDriver driver;
 
-        // Method to load properties file
+
       protected Properties loadPropertyFile() throws Exception
     {
         FileInputStream fileInput = new FileInputStream(new File("src/Resources/data.properties"));
@@ -34,25 +34,24 @@ public class Setup {
         return fileName;
     }
 
-    protected void prepareAndroidForAppium() throws Exception {
+    protected void prepareAndroidForAppium(boolean reset) throws Exception {
 
         Properties prop= loadPropertyFile();
         File appDir = new File(getValueFromPPFile("filePath"));
         File app = new File(appDir, getValueFromPPFile("fileName"));
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("device","Android");
+        capabilities.setCapability("device", "Android");
 
         //mandatory capabilities
-        capabilities.setCapability("deviceName","Android");
+        capabilities.setCapability("deviceName", "Android");
         capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability("platformName","Android");
-        capabilities.setCapability("noReset", true );
+        capabilities.setCapability("noReset", reset );
         capabilities.setCapability("fullReset", false);
         capabilities.setCapability("launchApp", getValueFromPPFile("appActivity"));
-
         //other caps
         capabilities.setCapability("app", app.getAbsolutePath());
-        driver =  new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
 

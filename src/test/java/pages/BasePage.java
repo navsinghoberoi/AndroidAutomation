@@ -14,9 +14,11 @@ import java.util.HashMap;
 
 public class BasePage extends Setup {
 
+
     public WebDriver driver;
     String app_package_name = "app.goplus.in.myapplication.qa:id/";
     String app_package_name_android_gms = "com.google.android.gms:id/";
+    private static final int DEFAULT_FIND_ELEMENT_TIMEOUT = 60;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -96,4 +98,38 @@ public class BasePage extends Setup {
     }
     }
 
+
+    public WebElement getElementWhenVisible(By locater, long...waitSeconds)
+    {
+        assert waitSeconds.length <= 1;
+        long seconds = waitSeconds.length > 0 ? waitSeconds[0] : DEFAULT_FIND_ELEMENT_TIMEOUT;
+
+        WebElement element = null;
+        WebDriverWait wait  = new WebDriverWait(driver, seconds);
+        element = wait.until(ExpectedConditions.visibilityOfElementLocated(locater));
+        return element;
+    }
+
+    public WebElement getElementWhenClickable(By locator, long...waitSeconds)
+    {
+        assert waitSeconds.length <= 1;
+        long seconds = waitSeconds.length > 0 ? waitSeconds[0] : DEFAULT_FIND_ELEMENT_TIMEOUT;
+
+        WebElement element = null;
+        WebDriverWait wait  = new WebDriverWait(driver, seconds);
+        element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        return element;
+    }
+
+    public boolean checkIfElementPresent(By locator, long... waitSeconds)
+    {
+        try{
+            getElementWhenVisible(locator, waitSeconds);
+            return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
+    }
 }

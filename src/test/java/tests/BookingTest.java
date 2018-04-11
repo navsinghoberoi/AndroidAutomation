@@ -1,13 +1,11 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pages.*;
+import common.*;
 
 public class BookingTest extends Setup {
 
@@ -27,14 +25,15 @@ public class BookingTest extends Setup {
     private SmsPage smsPage;
     private GetFreeRide getFreeRide;
     private OtpPage otpPage;
+    private Commons commons;
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium();
+        prepareAndroidForAppium(true);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
-        selectLocationPage= new SelectLocationPage(driver);
+        selectLocationPage = new SelectLocationPage(driver);
         slotsPage = new SlotsPage(driver);
         slotsSelectedPage = new SlotsSelectedPage(driver);
         shuttlEnRoutePage = new ShuttlEnRoutePage(driver);
@@ -47,6 +46,8 @@ public class BookingTest extends Setup {
         smsPage = new SmsPage(driver);
         getFreeRide = new GetFreeRide(driver);
         otpPage = new OtpPage(driver);
+        commons = new Commons(driver);
+
 
     }
 
@@ -54,7 +55,7 @@ public class BookingTest extends Setup {
     @AfterClass
     public void tearDown() throws Exception {
         Thread.sleep(5000);
-        System.out.println("Test cases completed");
+        System.out.println("Test cases  completed");
         driver.quit();
     }
 /*
@@ -89,19 +90,12 @@ public class BookingTest extends Setup {
 
 */
 
-    @Test (priority=1)
-    public void signIn() throws InterruptedException
-    {
-        Thread.sleep(5000);
-        landingPage.clickSkipToLogin();
-        //Thread.sleep(2000);
-        loginPage.enterMobileNumber("9555814581");
-        //loginPage.clickGetOtp();
-        //loginPage.enterOtp("1111");
-        loginPage.clickVerify();
-        otpPage.enterOtp("1111");
-        String Text = new HomePage(driver).getHeaderText();
-        Assert.assertEquals(Text, "Search for a route");
+
+    @Test(priority = 1)
+    public void signIn() throws InterruptedException {
+        commons.goToHomepage();
+        homePage.clickBuddy();
+        Thread.sleep(10000);
     }
 
 

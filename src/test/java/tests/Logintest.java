@@ -34,11 +34,11 @@ public class Logintest extends Setup {
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium();
+        prepareAndroidForAppium(false);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
-        selectLocationPage= new SelectLocationPage(driver);
+        selectLocationPage = new SelectLocationPage(driver);
         slotsPage = new SlotsPage(driver);
         slotsSelectedPage = new SlotsSelectedPage(driver);
         shuttlEnRoutePage = new ShuttlEnRoutePage(driver);
@@ -92,9 +92,9 @@ public class Logintest extends Setup {
 
 */
 
-    @Test
-    public void testSignIn() throws Exception
-    {
+
+    @Test(priority = 1)
+    public void testSignIn() throws InterruptedException {
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         //Thread.sleep(2000);
