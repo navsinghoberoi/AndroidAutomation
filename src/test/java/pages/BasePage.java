@@ -16,7 +16,8 @@ public class BasePage extends Setup {
 
 
     public WebDriver driver;
-    String app_package_name = "app.goplus.in.myapplication:id/";
+    String app_package_name = "app.goplus.in.myapplication.qa:id/";
+    String app_package_name_android_gms = "com.google.android.gms:id/";
     private static final int DEFAULT_FIND_ELEMENT_TIMEOUT = 60;
 
     public BasePage(WebDriver driver) {
@@ -96,6 +97,7 @@ public class BasePage extends Setup {
     ((AndroidDriver<WebElement>) driver).sendKeyEvent(67);
     }
     }
+
 
     public WebElement getElementWhenVisible(By locater, long...waitSeconds)
     {

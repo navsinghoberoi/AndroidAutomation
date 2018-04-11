@@ -4,7 +4,8 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
+import java.util.*;
+import java.io.FileInputStream;
 import java.util.concurrent.TimeUnit;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -16,23 +17,38 @@ import java.net.URL;
 
 
 public class Setup {
+
     public AndroidDriver driver;
 
-    protected void prepareAndroidForAppium(boolean reset) throws MalformedURLException {
-        File appDir = new File("/Users/nitish/Downloads");
-        File app = new File(appDir, "app-release-3.6.0.apk");
+
+      protected Properties loadPropertyFile() throws Exception
+    {
+        FileInputStream fileInput = new FileInputStream(new File("src/Resources/data.properties"));
+        Properties prop = new Properties();
+        prop.load(fileInput);
+        return prop;
+    }
+
+   protected String getValueFromPPFile(String key) throws Exception {
+        String fileName = loadPropertyFile().getProperty(key);
+        return fileName;
+    }
+
+    protected void prepareAndroidForAppium(boolean reset) throws Exception {
+
+        Properties prop= loadPropertyFile();
+        File appDir = new File(getValueFromPPFile("filePath"));
+        File app = new File(appDir, getValueFromPPFile("fileName"));
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("device", "Android");
 
         //mandatory capabilities
         capabilities.setCapability("deviceName", "Android");
         capabilities.setCapability("autoGrantPermissions", true);
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("noReset", reset);
+        capabilities.setCapability("platformName","Android");
+        capabilities.setCapability("noReset", reset );
         capabilities.setCapability("fullReset", false);
-        capabilities.setCapability("launchApp", "app.goplus.in.myapplication");
-
-
+        capabilities.setCapability("launchApp", getValueFromPPFile("appActivity"));
         //other caps
         capabilities.setCapability("app", app.getAbsolutePath());
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
