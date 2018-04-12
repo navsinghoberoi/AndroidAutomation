@@ -10,7 +10,7 @@ import common.*;
 public class ProfileTest extends Setup {
 
 
-    private HomePage homePage;
+    private HomePage  homePage;
     private Commons commons;
     private MenuPage menuPage;
     private ProfilePage profilePage;
