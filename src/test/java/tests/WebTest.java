@@ -7,7 +7,7 @@ import pages.*;
 
 // PENDING -- Need to add code for deleting the user at the end
 
-public class Webtest extends Setup {
+public class WebTest extends Setup {
 
     private LandingPage landingPage;
     private LoginPage loginPage;
