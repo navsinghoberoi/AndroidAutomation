@@ -49,7 +49,6 @@ public class Setup {
         capabilities.setCapability("noReset", noreset );
         capabilities.setCapability("fullReset", false);
         capabilities.setCapability("launchApp", getValueFromPPFile("appActivity"));
-        //other caps
         capabilities.setCapability("app", app.getAbsolutePath());
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
