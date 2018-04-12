@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomeAddress extends BasePage {
+public class HomeAddressPage extends BasePage {
 
     By whereDoYouLiveText = By.id("frag_usr_reg2.title");
     By selectHomeLocation = By.id("frag_usr_reg2.location_input");
@@ -18,7 +18,7 @@ public class HomeAddress extends BasePage {
     By submit = By.id("frag_usr_reg2.action_next");
 
 
-    public HomeAddress(WebDriver driver)  {
+    public HomeAddressPage(WebDriver driver)  {
         super(driver);
     }
 

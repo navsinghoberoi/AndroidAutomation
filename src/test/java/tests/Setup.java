@@ -34,7 +34,7 @@ public class Setup {
         return fileName;
     }
 
-    protected void prepareAndroidForAppium(boolean reset) throws Exception {
+    protected void prepareAndroidForAppium(boolean noreset) throws Exception {
 
         Properties prop= loadPropertyFile();
         File appDir = new File(getValueFromPPFile("filePath"));
@@ -46,7 +46,7 @@ public class Setup {
         capabilities.setCapability("deviceName", "Android");
         capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability("platformName","Android");
-        capabilities.setCapability("noReset", reset );
+        capabilities.setCapability("noReset", noreset );
         capabilities.setCapability("fullReset", false);
         capabilities.setCapability("launchApp", getValueFromPPFile("appActivity"));
         //other caps

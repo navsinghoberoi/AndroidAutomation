@@ -6,24 +6,24 @@ import pages.*;
 
 // PENDING -- Need to add code for deleting the user at the end
 
-public class Signup extends Setup {
+public class SignupTest extends Setup {
 
     private LandingPage landingPage;
     private LoginPage loginPage;
-    private PersonalDetails personalDetails;
-    private HomeAddress homeAddress;
-    private OfficeAddress officeAddress;
+    private PersonalDetailsPage personalDetails;
+    private HomeAddressPage homeAddressPage;
+    private OfficeAddressPage officeAddressPage;
     private OtpPage otpPage;
     private HomePage homepage;
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium();
+        prepareAndroidForAppium(true);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
-        personalDetails = new PersonalDetails(driver);
-        homeAddress = new HomeAddress(driver);
-        officeAddress = new OfficeAddress(driver);
+        personalDetails = new PersonalDetailsPage(driver);
+        homeAddressPage = new HomeAddressPage(driver);
+        officeAddressPage = new OfficeAddressPage(driver);
         otpPage = new OtpPage(driver);
         homepage = new HomePage(driver);
     }
@@ -38,7 +38,7 @@ public class Signup extends Setup {
 
 
     @Test
-    public void userSignUp() throws Exception
+    public void verifyUserSignUp() throws Exception
     {
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
@@ -54,24 +54,24 @@ public class Signup extends Setup {
         personalDetails.selectGenderFemale();
         personalDetails.personalDetailSubmit();
 
-        String homeText = homeAddress.whereDoYouLiveText();
+        String homeText = homeAddressPage.whereDoYouLiveText();
      // Assert.assertEquals(homeText, "Where Do You Live");
-        homeAddress.selectHomeLocationClick();
-        homeAddress.searchBarClick();
-        homeAddress.enterHomeAddress(getValueFromPPFile("homeAddress"));
-        homeAddress.selectHomeAddress();   // Adding homeAddress by searching address
-        homeAddress.useThisPlaceAddressText();
-        homeAddress.selectLocationClick();
-        homeAddress.flatNumSet(getValueFromPPFile("flatNum"));
+        homeAddressPage.selectHomeLocationClick();
+        homeAddressPage.searchBarClick();
+        homeAddressPage.enterHomeAddress(getValueFromPPFile("homeAddress"));
+        homeAddressPage.selectHomeAddress();   // Adding homeAddressPage by searching address
+        homeAddressPage.useThisPlaceAddressText();
+        homeAddressPage.selectLocationClick();
+        homeAddressPage.flatNumSet(getValueFromPPFile("flatNum"));
         driver.hideKeyboard();
-        homeAddress.homeAddressSubmit();
+        homeAddressPage.homeAddressSubmit();
 
-        officeAddress.whereDoYouWorkText();
-        officeAddress.selectOfficeLocationClick();
-        officeAddress.selectThisLocationClick();  // Adding officeAddress by using Select this location feature
-        officeAddress.useThisPlaceAddressText();
-        officeAddress.selectLocationClick();
-        officeAddress.officeAddressSubmit();
+        officeAddressPage.whereDoYouWorkText();
+        officeAddressPage.selectOfficeLocationClick();
+        officeAddressPage.selectThisLocationClick();  // Adding officeAddressPage by using Select this location feature
+        officeAddressPage.useThisPlaceAddressText();
+        officeAddressPage.selectLocationClick();
+        officeAddressPage.officeAddressSubmit();
 
         String Text = homepage.getHeaderText();
         Assert.assertEquals(Text, "Search for a route");

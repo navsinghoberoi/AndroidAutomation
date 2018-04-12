@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PersonalDetails extends BasePage {
+public class PersonalDetailsPage extends BasePage {
 
     By userName = By.id("frag_usr_reg1.name_input");
     By genderFemale = By.id("frag_usr_reg1.gender_female");
@@ -17,7 +17,7 @@ public class PersonalDetails extends BasePage {
 
 
 
-    public PersonalDetails(WebDriver driver)  {
+    public PersonalDetailsPage(WebDriver driver)  {
         super(driver);
     }
 
