@@ -29,7 +29,7 @@ public class BookingTest extends Setup {
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium(true);
+        createAndroidSession(true);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);

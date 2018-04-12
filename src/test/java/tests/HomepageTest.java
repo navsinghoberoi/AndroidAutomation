@@ -1,7 +1,6 @@
 package tests;
 
 import common.Commons;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -29,7 +28,7 @@ public class HomepageTest extends Setup {
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium(true);
+        createAndroidSession(true);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);

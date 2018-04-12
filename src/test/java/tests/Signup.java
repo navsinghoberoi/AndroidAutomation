@@ -18,7 +18,7 @@ public class Signup extends Setup {
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium();
+        createAndroidSession(true);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         personalDetails = new PersonalDetails(driver);
@@ -63,7 +63,7 @@ public class Signup extends Setup {
         homeAddress.useThisPlaceAddressText();
         homeAddress.selectLocationClick();
         homeAddress.flatNumSet(getValueFromPPFile("flatNum"));
-        driver.hideKeyboard();
+        //driver.hideKeyboard();
         homeAddress.homeAddressSubmit();
 
         officeAddress.whereDoYouWorkText();

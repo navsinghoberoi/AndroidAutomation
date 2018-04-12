@@ -17,7 +17,7 @@ public class ProfileTest extends Setup {
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium(true);
+        createAndroidSession(true);
         homePage = new HomePage(driver);
         commons = new Commons(driver);
         menuPage = new MenuPage(driver);
