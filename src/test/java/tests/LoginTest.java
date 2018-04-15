@@ -1,17 +1,13 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pages.*;
 
-import java.util.Properties;
-
-public class Logintest extends Setup {
+public class LoginTest extends Setup {
 
     private LandingPage landingPage;
     private LoginPage loginPage;
@@ -94,11 +90,12 @@ public class Logintest extends Setup {
 
 
     @Test(priority = 1)
-    public void testSignIn() throws InterruptedException {
+    public void testSignIn() throws Exception {
+
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         //Thread.sleep(2000);
-        loginPage.enterMobileNumber(getValueFromPPFile("phoneNumber"));
+        loginPage.enterMobileNumber(getValueFromPPFile("newUserPhoneNumber"));
         //loginPage.clickGetOtp();
         //loginPage.enterOtp("1111");
         loginPage.clickVerify();

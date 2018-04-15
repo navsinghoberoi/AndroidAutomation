@@ -16,81 +16,80 @@ public class PersonalDetailsPage extends BasePage {
     By personalDetailsSubmit = By.id("frag_usr_reg1.action");
 
 
-
-    public PersonalDetailsPage(WebDriver driver)  {
+    public PersonalDetailsPage(WebDriver driver) {
         super(driver);
     }
 
 
-    public void enterUserName(String name)
-    {
+    public void enterUserName(String name) {
         waitForVisibilityOf(userName);
         driver.findElement(userName).sendKeys(name);
     }
 
 
-    public void selectGenderFemale()
-    {
+    public void selectGenderFemale() {
         waitForVisibilityOf(genderFemale);
         driver.findElement(genderFemale).click();
 
     }
 
 
-    public void selectGenderMale()
-    {
+    public void selectGenderMale() {
         waitForVisibilityOf(genderMale);
         driver.findElement(genderMale).click();
 
     }
 
 
-    public void selectGenderOther()
-    {
+    public void selectGenderOther() {
         waitForVisibilityOf(genderOthers);
         driver.findElement(genderOthers).click();
 
     }
 
+    public void selectGender(String gender) {
+        if (gender.equals("F")) {
+            selectGenderFemale();
+        } else if (gender.equals("M")) {
+            selectGenderMale();
+        } else if (gender.equals("O")){
+            selectGenderOther();
+        }
 
-    public void referralCodeClick()
-    {
+    }
+
+
+    public void referralCodeClick() {
         waitForVisibilityOf(haveReferralCode);
         driver.findElement(haveReferralCode).click();
     }
 
 
-    public void referralCodeEnter(String referralCode)
-    {
+    public void referralCodeEnter(String referralCode) {
         waitForVisibilityOf(enterReferralCode);
         driver.findElement(enterReferralCode).sendKeys(referralCode);
     }
 
 
-    public void referralCodeSubmit()
-    {
+    public void referralCodeSubmit() {
 
         waitForVisibilityOf(submitReferralCode);
         driver.findElement(submitReferralCode).click();
     }
 
 
-    public String referralCodeInvalidText()
-    {
+    public String referralCodeInvalidText() {
         waitForVisibilityOf(invalidReferralCodeError);
         String invalidCouponText = driver.findElement(invalidReferralCodeError).getText();
-        System.out.println("Text for invalid referral code = " +invalidCouponText);
+        System.out.println("Text for invalid referral code = " + invalidCouponText);
         return invalidCouponText;
     }
 
 
-    public void personalDetailSubmit()
-    {
+    public void personalDetailSubmit() {
         waitForVisibilityOf(personalDetailsSubmit);
         driver.findElement(personalDetailsSubmit).click();
     }
-
-
 
 
 }
