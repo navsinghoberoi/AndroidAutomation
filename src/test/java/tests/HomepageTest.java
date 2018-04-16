@@ -2,9 +2,7 @@ package tests;
 
 import common.Commons;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.*;
 
 public class HomepageTest extends Setup {
@@ -27,9 +25,10 @@ public class HomepageTest extends Setup {
     private OtpPage otpPage;
     private Commons commons;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() throws Exception {
-        prepareAndroidForAppium(true);
+//      prepareAndroidForAppium(true);
+        prepareAndroidForAppium(false);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
@@ -51,16 +50,33 @@ public class HomepageTest extends Setup {
     }
 
 
-    @AfterClass
+    @AfterMethod
     public void tearDown() throws Exception {
-        Thread.sleep(5000);
-        System.out.println("Test cases completed");
+        Thread.sleep(2000);
+        System.out.println("Test case completed");
         driver.quit();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, enabled = false)
     public void testHomeCards() throws Exception {
+        prepareAndroidForAppium(true);
         commons.goToHomepage();
+
+    }
+
+    @Test(priority = 3, enabled = true)
+    public void testHomePageOldUser() throws Exception {
+        commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        boolean result = homePage.checkSearchBar();
+        Assert.assertEquals(result, true, "test case failed");
+        driver.quit();
+    }
+
+    @Test(priority = 2, enabled = true)
+    public void testHomePageNewUserWithoutBooking() throws Exception {
+        commons.enterUserPhoneNumberOTP("userWithoutBookingPhoneNumber", "userWithoutBookingOTP");
+        boolean result = homePage.checkSearchBar();
+        Assert.assertEquals(result, false, "test case failed");
 
     }
 

@@ -55,7 +55,6 @@ public class Commons extends BasePage {
     }
 
 
-
     public void enterPersonalDetailsNewUser() throws Exception {
         personalDetails.enterUserName(getValueFromPPFile("userName") + " " + System.currentTimeMillis());
         personalDetails.selectGender(getValueFromPPFile("gender"));
@@ -84,5 +83,6 @@ public class Commons extends BasePage {
         officeAddressPage.selectLocationClick();
         officeAddressPage.officeAddressSubmit();
     }
+
 
 }

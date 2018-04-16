@@ -9,51 +9,51 @@ public class HomePage extends BasePage {
 		super(driver);
 	}
 
-	By search_button = By.id("booking.search_bar");
-	By buddy_button = By.id("buddy");
-	By findMyShuttl_button = By.id(app_package_name + "booking.find_my_shuttl_button");
-	By fromLocation_button = By.id(app_package_name + "booking.from_input");
-	By toLocation_button = By.id(app_package_name + "booking.to_input");
-	By locationSwap_button = By.id(app_package_name + "booking.to_from_switch");
-	By menu_button = By.className("android.widget.ImageButton");
+	By searchBar = By.id("booking.search_bar");
+	By buddyButton = By.id("buddy");
+	By findRoutebutton = By.id("cfts.button");
+	By fromLocationButton = By.id("cfts.from");
+	By toLocationButton = By.id("cfts.to");
+	By locationSwapButton = By.id("cfts.swap");
+	By menuButton = By.className("android.widget.ImageButton");
 	By wallet_button = By.id(app_package_name + "design_menu_item_text");
 	By clickGetFreeRide = By.xpath("//android.widget.CheckedTextView[@text='Get Free Rides']");
 
 
 	public String getHeaderText() {
-		waitForVisibilityOf(search_button);
-		String HeaderText =  driver.findElement(search_button).getText();
+		waitForVisibilityOf(searchBar);
+		String HeaderText =  driver.findElement(searchBar).getText();
 		return HeaderText;
 	}
 
 	public void clickFromLocation() {
-		waitForClickabilityOf(fromLocation_button);
-		driver.findElement(fromLocation_button).click();
+		waitForClickabilityOf(fromLocationButton);
+		driver.findElement(fromLocationButton).click();
 	}
 
 	public String getFromLocationText() {
-		waitForClickabilityOf(fromLocation_button);
-		return driver.findElement(fromLocation_button).getText();
+		waitForClickabilityOf(fromLocationButton);
+		return driver.findElement(fromLocationButton).getText();
 	}
 
 	public String getToLocationText() {
-		waitForClickabilityOf(toLocation_button);
-		return driver.findElement(toLocation_button).getText();
+		waitForClickabilityOf(toLocationButton);
+		return driver.findElement(toLocationButton).getText();
 	}
 
 	public void clickToLocation() {
-		waitForClickabilityOf(toLocation_button);
-		driver.findElement(toLocation_button).click();
+		waitForClickabilityOf(toLocationButton);
+		driver.findElement(toLocationButton).click();
 	}
 
 	public void clickFindMyShuttl() {
-		waitForClickabilityOf(findMyShuttl_button);
-		driver.findElement(findMyShuttl_button).click();
+		waitForClickabilityOf(findRoutebutton);
+		driver.findElement(findRoutebutton).click();
 	}
 
 	public void clickMenu() {
-		waitForClickabilityOf(menu_button);
-		driver.findElement(menu_button).click();
+		waitForClickabilityOf(menuButton);
+		driver.findElement(menuButton).click();
 	}
 
 	public void clickWallet() {
@@ -62,8 +62,8 @@ public class HomePage extends BasePage {
 	}
 
 	public void clickLocationSwap() {
-		waitForClickabilityOf(locationSwap_button);
-		driver.findElement(locationSwap_button).click();
+		waitForClickabilityOf(locationSwapButton);
+		driver.findElement(locationSwapButton).click();
 	}
 
 	public void clickGetFreeRide() {
@@ -79,7 +79,7 @@ public class HomePage extends BasePage {
 
 
 	public boolean checkBuddyButton() {
-		if (checkIfElementPresent(buddy_button))
+		if (checkIfElementPresent(buddyButton))
 		return true;
 		else
 			return false;
@@ -87,8 +87,23 @@ public class HomePage extends BasePage {
 	}
 
 	public void clickBuddy() {
-		checkIfElementPresent(buddy_button,10);
+		checkIfElementPresent(buddyButton,10);
 	}
+
+
+	public boolean checkSearchBar()
+	{
+		if(checkIfElementPresent(searchBar,10) == true){
+			System.out.println("Search bar is displayed i.e. old user");
+			return true;}
+		else{
+			System.out.println("Search bar is not displayed i.e. new user");
+			return false;
+		}
+	}
+
+
+
 
 }
 
