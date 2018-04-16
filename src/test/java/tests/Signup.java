@@ -5,7 +5,7 @@ import pages.*;
 
 // PENDING -- Need to add code for deleting the user at the end
 
-public class Signup extends Setup {
+public class SignupTest extends Setup {
 
     private LandingPage landingPage;
     private LoginPage loginPage;

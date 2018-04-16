@@ -11,9 +11,9 @@ public class WebTest extends Setup {
 
     private LandingPage landingPage;
     private LoginPage loginPage;
-    private PersonalDetails personalDetails;
-    private HomeAddress homeAddress;
-    private OfficeAddress officeAddress;
+    private PersonalDetailsPage personalDetails;
+    private HomeAddressPage homeAddress;
+    private OfficeAddressPage officeAddress;
     private OtpPage otpPage;
     private HomePage homepage;
 

@@ -9,7 +9,7 @@ import pages.*;
 
 import java.util.Properties;
 
-public class Logintest extends Setup {
+public class LoginTest extends Setup {
 
     private LandingPage landingPage;
     private LoginPage loginPage;

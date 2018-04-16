@@ -20,7 +20,7 @@ public class SignupTest extends Setup {
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium(false);
+        createAndroidSession(false);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         personalDetails = new PersonalDetailsPage(driver);
