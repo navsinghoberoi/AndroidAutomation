@@ -44,8 +44,8 @@ public class Setup {
         //mandatory capabilities
         capabilities.setCapability("deviceName", "Android");
         capabilities.setCapability("autoGrantPermissions", true);
-        capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("noReset", noreset);
+        capabilities.setCapability("platformName","Android");
+        capabilities.setCapability("noReset", noreset );
         capabilities.setCapability("fullReset", false);
         capabilities.setCapability("launchApp", getValueFromPPFile("androidAppActivity"));
         capabilities.setCapability("app", app.getAbsolutePath());

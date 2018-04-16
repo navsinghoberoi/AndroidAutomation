@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 
 import pages.*;
 
+import java.util.Properties;
+
 public class Logintest extends Setup {
 
     private LandingPage landingPage;
@@ -94,7 +96,7 @@ public class Logintest extends Setup {
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         //Thread.sleep(2000);
-        loginPage.enterMobileNumber(getValueFromPPFile("phoneNumber"));
+        loginPage.enterMobileNumber(getValueFromPPFile("newUserPhoneNumber"));
         //loginPage.clickGetOtp();
         //loginPage.enterOtp("1111");
         loginPage.clickVerify();

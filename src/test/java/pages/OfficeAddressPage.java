@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class OfficeAddress extends BasePage {
+public class OfficeAddressPage extends BasePage {
 
     By whereDoYouWorkText = By.id("frag_usr_reg2.title");
     By selectOfficeLocation = By.id("frag_usr_reg2.location_input");
@@ -17,7 +17,7 @@ public class OfficeAddress extends BasePage {
     By submit = By.id("frag_usr_reg2.action_done");
 
 
-    public OfficeAddress(WebDriver driver)  {
+    public OfficeAddressPage(WebDriver driver)  {
         super(driver);
     }
 
