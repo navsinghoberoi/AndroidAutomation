@@ -23,25 +23,39 @@ public class LoginPage extends BasePage {
 	public void clickGetOtp() {
 		waitForVisibilityOf(getOtp_button);
 		driver.findElement(getOtp_button).click();
-		
+
 	}
-	
+
 	public void enterOtp(String otp) {
 		waitForVisibilityOf(enterOtp_button);
 		driver.findElement(enterOtp_button).sendKeys(otp);
 	}
-	
+
 	public void clickVerify() {
 		waitForVisibilityOf(verify_button);
 		driver.findElement(verify_button).click();
-		
+
 	}
 
-	public void continueButtonClick()
+	/*public void continueButtonClick()
 	{
 		waitForVisibilityOf(continueButton);
 		driver.findElement(continueButton).click();
-	}
+	}*/
+
+
+    public void continueButtonClick()
+    {
+        {
+            if(checkIfElementPresent(continueButton,10) == true){
+                waitForVisibilityOf(continueButton);
+                driver.findElement(continueButton).click();}
+            else{
+                System.out.println("Continue button is not displayed , skip continue button");
+            }
+        }
+    }
+
 
 
 }

@@ -38,18 +38,12 @@ public class SignupTest extends Setup {
     }
 
 
-
     @Test(priority = 1)
-    public void verifyUserSignUp() throws Exception
-    {
-        commons.enterUserPhoneNumberOTP("newUserPhoneNumber","OTP");
-
+    public void verifyUserSignUp() throws Exception {
+        commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
         commons.enterPersonalDetailsNewUser();
-
         commons.enterHomeAddressDetailsNewUser();
-
         commons.enterOfficeAddressDetailsNewUser();
-
         String Text = homepage.getHeaderText();
         Assert.assertEquals(Text, "Search for a route");
         System.out.println("User has signed up successfully");
