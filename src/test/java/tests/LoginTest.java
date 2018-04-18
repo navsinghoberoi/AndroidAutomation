@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 
 import pages.*;
 
+import java.util.Properties;
+
 public class LoginTest extends Setup {
 
     private LandingPage landingPage;
@@ -30,7 +32,7 @@ public class LoginTest extends Setup {
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium(false);
+        createAndroidSession(false);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
@@ -91,7 +93,6 @@ public class LoginTest extends Setup {
 
     @Test(priority = 1)
     public void testSignIn() throws Exception {
-
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         //Thread.sleep(2000);

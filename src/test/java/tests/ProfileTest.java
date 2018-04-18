@@ -10,14 +10,14 @@ import common.*;
 public class ProfileTest extends Setup {
 
 
-    private HomePage homePage;
+    private HomePage  homePage;
     private Commons commons;
     private MenuPage menuPage;
     private ProfilePage profilePage;
 
     @BeforeClass
     public void setUp() throws Exception {
-        prepareAndroidForAppium(true);
+        createAndroidSession(true);
         homePage = new HomePage(driver);
         commons = new Commons(driver);
         menuPage = new MenuPage(driver);
