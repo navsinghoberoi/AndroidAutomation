@@ -32,7 +32,7 @@ public class HomepageTest extends Setup {
     @BeforeMethod
     public void setUp() throws Exception {
 
-        prepareAndroidForAppium(false);
+        createAndroidSession(false);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
@@ -63,9 +63,8 @@ public class HomepageTest extends Setup {
 
     @Test(priority = 1, enabled = false)
     public void testHomeCards() throws Exception {
-        prepareAndroidForAppium(true);
+        createAndroidSession(true);
         commons.goToHomepage();
-
     }
 
     @Test(priority = 3, enabled = true)
