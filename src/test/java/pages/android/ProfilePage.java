@@ -1,7 +1,9 @@
 package pages.android;
 
+import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class ProfilePage extends BasePage {
 
@@ -28,6 +30,7 @@ public class ProfilePage extends BasePage {
 	public String getProfileImage(){
 		waitForVisibilityOf(profileImageField);
 		String profileSRC =  driver.findElement(profileImageField).getText();
+		scrollDown();
 		return profileSRC;
 	}
 
@@ -107,6 +110,20 @@ public class ProfilePage extends BasePage {
 		else
 			return false;
 
+	}
+
+
+	public void scrollDown()
+	{
+
+		String scrollViewContainer_finder = "new UiSelector().resourceIdMatches(\".*id/profile_name\")";
+		System.out.println("I am here");
+		String neededElement_finder = "new UiSelector().resourceIdMatches(\".*id/profile_home_edit_text\")";
+		System.out.println("I am here");System.out.println("I am here");
+
+		WebElement abc = driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(" + scrollViewContainer_finder + ")" +
+				".scrollIntoView(" + neededElement_finder + ")"));
+		System.out.println("I am here");
 	}
 
 
