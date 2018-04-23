@@ -1,9 +1,15 @@
-package tests;
+package tests.android;
 
-import common.Commons;
+import common.android.Commons;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import pages.*;
+import pages.android.HomeAddressPage;
+import pages.android.HomePage;
+import pages.android.LandingPage;
+import pages.android.LoginPage;
+import pages.android.OfficeAddressPage;
+import pages.android.OtpPage;
+import pages.android.PersonalDetailsPage;
 
 // PENDING -- Need to add code for deleting the user at the end
 
