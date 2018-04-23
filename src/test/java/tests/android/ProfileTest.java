@@ -1,16 +1,18 @@
-package tests;
+package tests.android;
 
+import common.android.Commons;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.*;
-import common.*;
+import pages.android.HomePage;
+import pages.android.MenuPage;
+import pages.android.ProfilePage;
 
 public class ProfileTest extends Setup {
 
 
-    private HomePage  homePage;
+    private HomePage homePage;
     private Commons commons;
     private MenuPage menuPage;
     private ProfilePage profilePage;

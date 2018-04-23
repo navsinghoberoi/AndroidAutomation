@@ -1,11 +1,26 @@
-package tests;
+package tests.android;
 
+import common.android.Commons;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import pages.*;
-import common.*;
+import pages.android.CouponsPage;
+import pages.android.GetFreeRide;
+import pages.android.HomePage;
+import pages.android.LandingPage;
+import pages.android.LoginPage;
+import pages.android.OtpPage;
+import pages.android.PaytmPage;
+import pages.android.PostBooking;
+import pages.android.SelectLocationPage;
+import pages.android.ShuttlEnRoutePage;
+import pages.android.ShuttlWalletCheckoutPage;
+import pages.android.ShuttlWalletDetailsPage;
+import pages.android.SlotsPage;
+import pages.android.SlotsSelectedPage;
+import pages.android.SmsPage;
+import pages.android.WalletPage;
 
 public class BookingTest extends Setup {
 
