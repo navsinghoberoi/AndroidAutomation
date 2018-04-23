@@ -84,4 +84,18 @@ public class Commons extends BasePage {
     }
 
 
+    public void clickSearchBar()
+    {
+       homePage.clickSearchBar();
+    }
+
+    public void closeSearchPopup()
+    {
+        homePage.closeSearchPopup();
+    }
+
+
+
+
+
 }

@@ -128,7 +128,7 @@ public class BookingTest extends Setup {
         homePage.clickFindMyShuttl();
         Thread.sleep(10000);
         slotsPage.clickSlot();
-        slotsSelectedPage.clickBook();
+        slotsSelectedPage.clickCtaOnSlotsPage();
         Thread.sleep(10000);
         String Success = shuttlEnRoutePage.getBookingConfirmationPopupText();
         Assert.assertEquals(Success, "Booking Confirmed");
@@ -149,7 +149,7 @@ public class BookingTest extends Setup {
         Thread.sleep(5000);
         slotsPage.clickRoute();
         slotsPage.clickSlot1(1);
-        slotsPage.clickBook();
+        slotsPage.clickCtaOnSlotsPage();
         slotsPage.confirmBookingPopup();
         Thread.sleep(3000);
         driver.navigate().back();
@@ -160,7 +160,7 @@ public class BookingTest extends Setup {
         postBooking.clickArrow();
         postBooking.clickReschedule();
         slotsPage.clickSlot1(2);
-        slotsPage.clickBook();
+        slotsPage.clickCtaOnSlotsPage();
         slotsPage.confirmBookingPopup();
         Thread.sleep(3000);
         driver.navigate().back();

@@ -78,7 +78,6 @@ public class HomepageTest extends Setup {
     public void testHomeCards() throws Exception {
         createAndroidSession(true);
         commons.goToHomepage();
-
     }
 
     @Test(priority = 3, enabled = true)
