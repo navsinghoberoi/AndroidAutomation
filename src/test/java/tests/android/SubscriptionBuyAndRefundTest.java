@@ -1,15 +1,15 @@
-package tests;
+package tests.android;
 
-import common.Commons;
+import common.android.Commons;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.*;
+import pages.android.*;
 
 // Need to add Shuttl credits before running this test
 
-public class BuySubscriptionTest extends Setup {
+public class SubscriptionBuyAndRefundTest extends Setup {
     private LandingPage landingPage;
     private LoginPage loginPage;
     private PersonalDetailsPage personalDetails;
@@ -58,7 +58,7 @@ public class BuySubscriptionTest extends Setup {
     @Test(priority = 1)
     public void verifySubscriptionBuy() throws Exception {
         commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
-        homepage.clickSearchBar();
+        commons.clickSearchBar();
         homepage.clickFromLocation();
         selectLocationPage.selectSearchLocation(getValueFromPPFile("homeAddress"), 0);
         homepage.clickToLocation();
@@ -79,7 +79,7 @@ public class BuySubscriptionTest extends Setup {
     public void verifySubscriptionRefund() {
 
         slotsPage.clickBackButton();
-        homepage.closeSearchPopup();
+        commons.closeSearchPopup();
         homepage.clickMenu();
         homepage.openMyPass(0); // User will be redirected to Pass details page directly (from version 36000+)
         passDetailsPage.getRidesValidityData(0, 1);
