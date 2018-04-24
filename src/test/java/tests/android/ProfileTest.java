@@ -11,8 +11,9 @@ import common.android.*;
 
 public class ProfileTest extends Setup {
 
-    private HomePage  homePage;
-    private Commons common;
+
+    private HomePage homePage;
+    private Commons commons;
     private MenuPage menuPage;
     private ProfilePage profilePage;
     private PersonalDetailsPage personalDetailsPage ;
@@ -27,7 +28,7 @@ public class ProfileTest extends Setup {
             createAndroidSession(true);
             androidDriver = (AndroidDriver) driver ;
 
-            common = new Commons(driver);
+            commons = new Commons(driver);
 //            common.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
 //            common.enterPersonalDetailsNewUser();
 //            common.enterHomeAddressDetailsNewUser();

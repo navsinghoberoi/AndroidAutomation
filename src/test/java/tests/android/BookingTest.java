@@ -1,11 +1,26 @@
-package tests;
+package tests.android;
 
+import common.android.Commons;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import pages.*;
-import common.*;
+import pages.android.CouponsPage;
+import pages.android.GetFreeRide;
+import pages.android.HomePage;
+import pages.android.LandingPage;
+import pages.android.LoginPage;
+import pages.android.OtpPage;
+import pages.android.PaytmPage;
+import pages.android.PostBooking;
+import pages.android.SelectLocationPage;
+import pages.android.ShuttlEnRoutePage;
+import pages.android.ShuttlWalletCheckoutPage;
+import pages.android.ShuttlWalletDetailsPage;
+import pages.android.SlotsPage;
+import pages.android.SlotsSelectedPage;
+import pages.android.SmsPage;
+import pages.android.WalletPage;
 
 public class BookingTest extends Setup {
 
@@ -113,7 +128,7 @@ public class BookingTest extends Setup {
         homePage.clickFindMyShuttl();
         Thread.sleep(10000);
         slotsPage.clickSlot();
-        slotsSelectedPage.clickBook();
+        slotsSelectedPage.clickCtaOnSlotsPage();
         Thread.sleep(10000);
         String Success = shuttlEnRoutePage.getBookingConfirmationPopupText();
         Assert.assertEquals(Success, "Booking Confirmed");
@@ -134,7 +149,7 @@ public class BookingTest extends Setup {
         Thread.sleep(5000);
         slotsPage.clickRoute();
         slotsPage.clickSlot1(1);
-        slotsPage.clickBook();
+        slotsPage.clickCtaOnSlotsPage();
         slotsPage.confirmBookingPopup();
         Thread.sleep(3000);
         driver.navigate().back();
@@ -145,7 +160,7 @@ public class BookingTest extends Setup {
         postBooking.clickArrow();
         postBooking.clickReschedule();
         slotsPage.clickSlot1(2);
-        slotsPage.clickBook();
+        slotsPage.clickCtaOnSlotsPage();
         slotsPage.confirmBookingPopup();
         Thread.sleep(3000);
         driver.navigate().back();

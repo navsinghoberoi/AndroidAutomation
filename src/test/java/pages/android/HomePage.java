@@ -1,4 +1,4 @@
-package pages;
+package pages.android;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +18,8 @@ public class HomePage extends BasePage {
 	By menuButton = By.className("android.widget.ImageButton");
 	By wallet_button = By.id(app_package_name + "design_menu_item_text");
 	By clickGetFreeRide = By.xpath("//android.widget.CheckedTextView[@text='Get Free Rides']");
-
+	By closeSearchPopup = By.id("hso.close_icon");
+	By myPass = By.id("design_menu_item_text");
 
 	public String getHeaderText() {
 		waitForVisibilityOf(searchBar);
@@ -100,6 +101,30 @@ public class HomePage extends BasePage {
 			System.out.println("Search bar is not displayed i.e. new user");
 			return false;
 		}
+	}
+
+	public void clickSearchBar()
+	{
+		if(checkIfElementPresent(searchBar,10) == true){
+			System.out.println("Search bar is displayed, need to open search bar");
+			waitForClickabilityOf(searchBar);
+			driver.findElement(searchBar).click();
+			}
+		else{
+			System.out.println("Search bar is not displayed");
+		}
+	}
+
+	public void closeSearchPopup()
+	{
+		waitForClickabilityOf(closeSearchPopup);
+		driver.findElement(closeSearchPopup).click();
+	}
+
+	public void openMyPass(int index)     // index will be the menuitem number to be opened
+	{
+		waitForClickabilityOf(myPass);
+		driver.findElements(myPass).get(index).click();
 	}
 
 

@@ -1,12 +1,11 @@
-package common;
+package common.android;
 
 import org.openqa.selenium.WebDriver;
-import pages.*;
-import io.appium.java_client.android.AndroidDriver;
-import tests.Setup;
+import pages.android.*;
+import pages.android.*;
+import tests.android.Setup;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 public class Commons extends BasePage {
 
@@ -83,6 +82,20 @@ public class Commons extends BasePage {
         officeAddressPage.selectLocationClick();
         officeAddressPage.officeAddressSubmit();
     }
+
+
+    public void clickSearchBar()
+    {
+       homePage.clickSearchBar();
+    }
+
+    public void closeSearchPopup()
+    {
+        homePage.closeSearchPopup();
+    }
+
+
+
 
 
 }

@@ -1,21 +1,15 @@
-package tests;
+package tests.web;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.*;
+import pages.android.LandingPage;
 
 // PENDING -- Need to add code for deleting the user at the end
 
 public class WebTest extends Setup {
 
     private LandingPage landingPage;
-    private LoginPage loginPage;
-    private PersonalDetailsPage personalDetails;
-    private HomeAddressPage homeAddress;
-    private OfficeAddressPage officeAddress;
-    private OtpPage otpPage;
-    private HomePage homepage;
 
     @BeforeClass
     public void setUp() throws Exception {

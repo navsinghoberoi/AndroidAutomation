@@ -1,13 +1,13 @@
-package pages;
+package pages.android;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class SelectLocationPage extends BasePage {
-	
-	By searchLocation_button = By.id(app_package_name + "search_src_text");
+
+	By searchLocation_button = By.id("sr_search_input");
  	By yourLocation_button = By.id(app_package_name + "linear_layout_your_location");	
- 	By searchResult_button = By.id(app_package_name + "location_name_tv");
+ 	By searchResult_button = By.id("sr_li_name");
  	
  	
 	public SelectLocationPage(WebDriver driver) {
@@ -23,5 +23,10 @@ public class SelectLocationPage extends BasePage {
 		Thread.sleep(5000);
 		driver.findElements(searchResult_button).get(index).click();
 	}
+
+
+
+
+
 
 }

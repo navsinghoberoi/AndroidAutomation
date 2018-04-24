@@ -1,13 +1,26 @@
-package tests;
+package tests.android;
 
-import common.Commons;
+import common.android.Commons;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import pages.*;
+import pages.android.CouponsPage;
+import pages.android.GetFreeRide;
+import pages.android.HomePage;
+import pages.android.LandingPage;
+import pages.android.LoginPage;
+import pages.android.OtpPage;
+import pages.android.PaytmPage;
+import pages.android.PostBooking;
+import pages.android.SelectLocationPage;
+import pages.android.ShuttlEnRoutePage;
+import pages.android.ShuttlWalletCheckoutPage;
+import pages.android.ShuttlWalletDetailsPage;
+import pages.android.SlotsPage;
+import pages.android.SlotsSelectedPage;
+import pages.android.SmsPage;
+import pages.android.WalletPage;
 
 public class HomepageTest extends Setup {
 
@@ -32,7 +45,7 @@ public class HomepageTest extends Setup {
     @BeforeMethod
     public void setUp() throws Exception {
 
-        prepareAndroidForAppium(false);
+        createAndroidSession(false);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
@@ -63,9 +76,8 @@ public class HomepageTest extends Setup {
 
     @Test(priority = 1, enabled = false)
     public void testHomeCards() throws Exception {
-        prepareAndroidForAppium(true);
+        createAndroidSession(true);
         commons.goToHomepage();
-
     }
 
     @Test(priority = 3, enabled = true)
