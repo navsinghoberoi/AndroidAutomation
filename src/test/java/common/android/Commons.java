@@ -1,9 +1,8 @@
 package common.android;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.android.*;
-import pages.android.*;
-import tests.android.Setup;
 
 import java.net.MalformedURLException;
 
@@ -54,18 +53,24 @@ public class Commons extends BasePage {
     }
 
 
-    public void enterPersonalDetailsNewUser() throws Exception {
+    public void enterUserDetails() throws Exception {
         personalDetails.enterUserName(getValueFromPPFile("userName") + " " + System.currentTimeMillis());
         personalDetails.selectGender(getValueFromPPFile("gender"));
+        personalDetails.personalDetailSubmit();
+    }
+
+    public void enterPersonalDetailsNewUser(String userName, String gender) throws Exception {
+        personalDetails.enterUserName(getValueFromPPFile(userName));
+        personalDetails.selectGender(getValueFromPPFile(gender));
         personalDetails.personalDetailSubmit();
 
     }
 
-    public void enterHomeAddressDetailsNewUser() throws Exception {
+    public void enterHomeAddressDetailsNewUser(String homeAddress) throws Exception {
         String homeText = homeAddressPage.whereDoYouLiveText();
         homeAddressPage.selectHomeLocationClick();
         homeAddressPage.searchBarClick();
-        homeAddressPage.enterHomeAddress(getValueFromPPFile("homeAddress"));
+        homeAddressPage.enterHomeAddress(getValueFromPPFile(homeAddress));
         homeAddressPage.selectHomeAddress();   // Adding homeAddressPage by searching address
         homeAddressPage.useThisPlaceAddressText();
         homeAddressPage.selectLocationClick();
@@ -84,18 +89,30 @@ public class Commons extends BasePage {
     }
 
 
-    public void clickSearchBar()
-    {
-       homePage.clickSearchBar();
+    public void signUp(String userPhoneNumber, String otp,
+                       String gender, String userName, String homeAddress) throws Exception {
+
+        enterUserPhoneNumberOTP(userPhoneNumber, otp);
+        enterPersonalDetailsNewUser(userName, gender);
+        enterHomeAddressDetailsNewUser(homeAddress);
+        enterOfficeAddressDetailsNewUser();
+        System.out.println("User has signed up successfully");
+
     }
 
-    public void closeSearchPopup()
-    {
+
+    public void clickSearchBar() {
+        homePage.clickSearchBar();
+    }
+
+    public void closeSearchPopup() {
         homePage.closeSearchPopup();
     }
 
 
-
+    public void clearTextField(By fieldLocator) {
+        driver.findElement(fieldLocator).clear();
+    }
 
 
 }
