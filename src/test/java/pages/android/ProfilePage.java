@@ -75,6 +75,7 @@ public class ProfilePage extends BasePage {
     public String getHomeLeaveTime() {
         waitForVisibilityOf(homeLeaveTime);
         String leaveTime = driver.findElement(homeLeaveTime).getText();
+        System.out.println("Home Leave Time : " + leaveTime);
         return leaveTime;
     }
 
@@ -101,10 +102,13 @@ public class ProfilePage extends BasePage {
 
 
     public boolean checkEditButton() {
-        if (checkIfElementPresent(edit_button)) {
+
+        if (checkIfElementPresent(edit_button))
+        {
             driver.findElement(edit_button).click();
             return true;
-        } else
+        }
+        else
             return false;
 
     }

@@ -4,6 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.android.*;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class Commons extends BasePage {
@@ -40,9 +44,9 @@ public class Commons extends BasePage {
 
 
     /* This method lets user login by specifying phonenumber and OTP*/
-    public void enterUserPhoneNumberOTP(String phoneNumber, String otp) throws Exception {
-        String userPhoneNumber = getValueFromPPFile(phoneNumber);
-        String userOTP = getValueFromPPFile(otp);
+    public void enterUserPhoneNumberOTP(String phoneNumberKey, String otpKey) throws Exception {
+        String userPhoneNumber = getValueFromPPFile(phoneNumberKey);
+        String userOTP = getValueFromPPFile(otpKey);
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         loginPage.enterMobileNumber(userPhoneNumber);
@@ -53,24 +57,18 @@ public class Commons extends BasePage {
     }
 
 
-    public void enterUserDetails() throws Exception {
-        personalDetails.enterUserName(getValueFromPPFile("userName") + " " + System.currentTimeMillis());
-        personalDetails.selectGender(getValueFromPPFile("gender"));
-        personalDetails.personalDetailSubmit();
-    }
-
-    public void enterPersonalDetailsNewUser(String userName, String gender) throws Exception {
-        personalDetails.enterUserName(getValueFromPPFile(userName));
-        personalDetails.selectGender(getValueFromPPFile(gender));
-        personalDetails.personalDetailSubmit();
+    public void enterUserDetails(String userNameKey, String genderKey) throws Exception {
+        personalDetails.enterUserNameAtSignUp(getValueFromPPFile(userNameKey));
+        personalDetails.selectGender(getValueFromPPFile(genderKey));
+        personalDetails.personalDetailSubmitAtSignup();
 
     }
 
-    public void enterHomeAddressDetailsNewUser(String homeAddress) throws Exception {
+    public void enterHomeAddressDetailsNewUser(String homeAddressKey) throws Exception {
         String homeText = homeAddressPage.whereDoYouLiveText();
         homeAddressPage.selectHomeLocationClick();
         homeAddressPage.searchBarClick();
-        homeAddressPage.enterHomeAddress(getValueFromPPFile(homeAddress));
+        homeAddressPage.enterHomeAddress(getValueFromPPFile(homeAddressKey));
         homeAddressPage.selectHomeAddress();   // Adding homeAddressPage by searching address
         homeAddressPage.useThisPlaceAddressText();
         homeAddressPage.selectLocationClick();
@@ -89,16 +87,17 @@ public class Commons extends BasePage {
     }
 
 
-    public void signUp(String userPhoneNumber, String otp,
-                       String gender, String userName, String homeAddress) throws Exception {
+    public void signUp(String userPhoneNumberKey, String otpKey,
+                       String genderKey, String userNameKey, String homeAddressKey) throws Exception {
 
-        enterUserPhoneNumberOTP(userPhoneNumber, otp);
-        enterPersonalDetailsNewUser(userName, gender);
-        enterHomeAddressDetailsNewUser(homeAddress);
+        enterUserPhoneNumberOTP(userPhoneNumberKey, otpKey);
+        enterUserDetails(userNameKey, genderKey);
+        enterHomeAddressDetailsNewUser(homeAddressKey);
         enterOfficeAddressDetailsNewUser();
         System.out.println("User has signed up successfully");
 
     }
+
 
 
     public void clickSearchBar() {
@@ -114,5 +113,41 @@ public class Commons extends BasePage {
         driver.findElement(fieldLocator).clear();
     }
 
+
+
+    // ------------------------     CREATE TEXT FILE      -------------------------
+
+    public void enterLineInTextFile(String filePath, String line) throws IOException {
+
+
+
+        BufferedWriter out = createTextFile(filePath);
+        out.write(line);
+        out.newLine();
+        out.flush();
+        out.close();
+
+    }
+
+
+    public BufferedWriter createTextFile(String filePath) throws IOException {
+
+        FileWriter fstream;
+        File file = new File(filePath);
+        if(!file.exists())
+        {
+            fstream = new FileWriter(filePath);
+            BufferedWriter out = new BufferedWriter(fstream);
+            return out;
+
+        }
+        else
+        {
+            fstream = new FileWriter(filePath,true);
+            BufferedWriter out = new BufferedWriter(fstream);
+            return out;
+        }
+
+    }
 
 }
