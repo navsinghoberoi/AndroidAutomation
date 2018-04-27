@@ -25,11 +25,7 @@ public class ProfileTest extends Setup {
         menuPage = new MenuPage(driver);
         profilePage = new ProfilePage(driver);
 
-
-
-
     }
-
 
     @AfterClass
     public void tearDown() throws Exception {

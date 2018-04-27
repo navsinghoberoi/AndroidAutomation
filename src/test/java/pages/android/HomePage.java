@@ -53,8 +53,11 @@ public class HomePage extends BasePage {
 	}
 
 	public void clickMenu() {
+
 		waitForClickabilityOf(menuButton);
+		//System.out.println("I am not done yet and waiting for click operation");
 		driver.findElement(menuButton).click();
+		//System.out.println("I am clicked ");
 	}
 
 	public void clickWallet() {
