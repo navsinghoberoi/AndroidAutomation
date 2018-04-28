@@ -18,12 +18,14 @@ import java.util.Date;
 public class NewUserProfileTest extends Setup {
 
 
-    private HomePage homePage;
     private Commons common;
     private MenuPage menuPage;
     private ProfilePage profilePage;
     private AndroidDriver androidDriver;
     private PersonalDetailsPage personalDetailsPage;
+
+    private String userFinalGender, userFinalOfficeLeaveTime, userFinalHomeLeaveTime, userFinalBirthdate
+            , userFinalPersonalEmail, userFinalCorporateEmail, userFinalName;
 
 
     @BeforeClass
@@ -37,14 +39,7 @@ public class NewUserProfileTest extends Setup {
                       "homeAddress");
 
 
-        common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                , "Profile Test Run Date : "
-                                           + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()));
-
-        common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                , "phoneNumber = " + "+91" + getValueFromPPFile("newUserPhoneNumber") );
-
-        homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver);
         homePage.clickMenu();
 
         menuPage = new MenuPage(driver);
@@ -113,7 +108,7 @@ public class NewUserProfileTest extends Setup {
         String defaultHomeAddress = profilePage.getHomeAddress();
         if (defaultHomeAddress.contains(getValueFromPPFile("homeAddress")))
             corrrectAddress = true;
-        Assert.assertEquals(corrrectAddress, true);
+        Assert.assertTrue(corrrectAddress);
     }
 
 
@@ -133,7 +128,7 @@ public class NewUserProfileTest extends Setup {
         String defaulOfficeAddress = profilePage.getOfficeAddress();
         if (defaulOfficeAddress.length() == 0)
             officeAddressIsEmpty = true;
-        Assert.assertEquals(officeAddressIsEmpty, false);
+        Assert.assertFalse(officeAddressIsEmpty);
     }
 
 
@@ -161,39 +156,28 @@ public class NewUserProfileTest extends Setup {
     // -------------------     TEST CASES TO CHECK FIELD VALIDATIONS AND EDIT USER DETAILS    --------------------
 
 
-
     @Test(priority = 20)
     public void verifyGenderByChangingValue() throws Exception {
 
 
         // Choose opposite gender to that of written in properties file .
-        if (getValueFromPPFile("gender").equalsIgnoreCase("F"))
-        {
+        if (getValueFromPPFile("gender").equalsIgnoreCase("F")) {
             personalDetailsPage.selectGenderMaleAtProfile();
-            common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                    , "latestGender = Male");
-        }
-        else if (getValueFromPPFile("gender").equalsIgnoreCase("M"))
-        {
+            userFinalGender = "Male";
+        } else if (getValueFromPPFile("gender").equalsIgnoreCase("M")) {
             personalDetailsPage.selectGenderFemaleAtProfile();
-            common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                    , "latestGender = Female");
-
-        }
-        else
-        {
-            personalDetailsPage.selectGenderFemaleAtProfile();
-            common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                    , "latestGender = Female");
+            userFinalGender = "Female";
+        } else {
+            personalDetailsPage.selectGenderOtherAtProfile();
+            userFinalGender = "Other";
         }
 
 
     }
 
 
-
     @Test(priority = 21, dataProvider = "enterDifferentEmail")
-    public void verifyPersonalEmailValidation(String personalEmail, String expected) throws IOException {
+    public void verifyPersonalEmailValidation(String personalEmail, String expected) {
         personalDetailsPage.clearPersonalEmailField();
         personalDetailsPage.enterPersonalEmail(personalEmail);
         androidDriver.hideKeyboard();
@@ -201,8 +185,8 @@ public class NewUserProfileTest extends Setup {
         // No Error Message Expected means Entered Value will be correct . 
         // Therefore writing it into text file for Old User Profile comparison in next step  . 
         if (expected.equalsIgnoreCase(""))
-            common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                    , "latestPersonalEmail = " + personalEmail);
+                userFinalPersonalEmail = personalEmail;
+
         String errorPersonalEmailMessage = personalDetailsPage.getPersonalEmailErrorMessage();
         Assert.assertEquals(errorPersonalEmailMessage, expected);
 
@@ -218,51 +202,49 @@ public class NewUserProfileTest extends Setup {
         // No Error Message Expected means Entered Value will be correct . 
         // Therefore writing it into text file for Old User Profile comparison in next step  . 
         if (expected.equalsIgnoreCase(""))
-            common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                    , "latestName = " + name);
+            userFinalName = name;
+
         String nameErrorMessage = personalDetailsPage.getNameErrorMessage();
         Assert.assertEquals(nameErrorMessage, expected);
     }
 
 
     @Test(priority = 23)
-    public void verifyBirthDayField() throws IOException {
+    public void verifyBirthDayField() {
         androidDriver.scrollTo("Birthday");
 
         // Current date will be selected as birth date .
         personalDetailsPage.enterBirthDay();
         String selectedBirthDate = profilePage.getBirthday();
-        common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                , "latestBirthdayDate = " + selectedBirthDate);
+        userFinalBirthdate = selectedBirthDate;
 
         // If date is selected succcessfully then birth date field will not be empty
-        Assert.assertFalse(selectedBirthDate.length() == 0);
+        Assert.assertNotEquals(0, selectedBirthDate.length());
 
     }
 
 
     @Test(priority = 24)
-    public void verifyHomeLeavingTime() throws IOException {
+    public void verifyHomeLeavingTime() {
         androidDriver.scrollTo("Home Address");
         personalDetailsPage.enterHomeLeaveTime();
         String selectedHomeLeaveTime = profilePage.getHomeLeaveTime();
-        common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                , "latestHomeLeaveTime = " + selectedHomeLeaveTime);
+        userFinalHomeLeaveTime = selectedHomeLeaveTime;
+
         // If time is selected succcessfully then time field will not be empty
-        Assert.assertFalse(selectedHomeLeaveTime.length() == 0);
+        Assert.assertNotEquals(0, selectedHomeLeaveTime.length());
     }
 
 
     @Test(priority = 25)
-    public void verifyOfficeLeavingTime() throws IOException {
+    public void verifyOfficeLeavingTime() {
         androidDriver.scrollTo("Office Address");
         personalDetailsPage.enterOfficeLeaveTime();
         String selectedOfficeLeaveTime = profilePage.getOfficeLeaveTime();
-        common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                , "latestOfficeLeaveTime = " + selectedOfficeLeaveTime);
+        userFinalOfficeLeaveTime = selectedOfficeLeaveTime;
 
         // If time is selected succcessfully then time field will not be empty
-        Assert.assertFalse(selectedOfficeLeaveTime.length() == 0);
+        Assert.assertNotEquals(0, selectedOfficeLeaveTime.length());
 
     }
 
@@ -285,12 +267,12 @@ public class NewUserProfileTest extends Setup {
 
 
     @Test(priority = 27, dataProvider = "enterDifferentEmail")
-    public void verifyCorporateEmailValidation(String corporateEmail, String expected) throws IOException {
+    public void verifyCorporateEmailValidation(String corporateEmail, String expected) {
         personalDetailsPage.clearCorporateEmailField();
         personalDetailsPage.enterCorporateEmail(corporateEmail);
         if (expected.equalsIgnoreCase(""))
-            common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                    , "latestCorporateEmail = " + corporateEmail);
+            userFinalCorporateEmail = corporateEmail;
+
         String errorEmailMessage = personalDetailsPage.getCorporateEmailErrorMessage();
         if (errorEmailMessage.length() == 0)
             personalDetailsPage.clickOkButtonToAcceptTheBox();
@@ -353,12 +335,50 @@ public class NewUserProfileTest extends Setup {
 
 
     @AfterClass
-    public void tearDown() throws IOException {
-        common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                , " ------------------    PROFILE TESTS ENDED    ------------------ ");
-        common.enterLineInTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
-                , "");
-        personalDetailsPage.personalDetailSubmitAtProfile();
+    public void tearDown() throws Exception {
+
+        String savedProfileConfirmationText = personalDetailsPage.personalDetailSubmitAtProfile();
+
+
+        // If Profile is Saved Succcessfully then only write values in text file
+        if (savedProfileConfirmationText.equalsIgnoreCase("Profile Updated Successfully")) {
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , "Profile Test Run Date : "
+                                         + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()));
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , "phoneNumber = " + "+91" + getValueFromPPFile("newUserPhoneNumber"));
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , userFinalGender);
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , userFinalPersonalEmail);
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , "latestName = " + userFinalName);
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , "latestBirthdayDate = " + userFinalBirthdate);
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , "latestHomeLeaveTime = " + userFinalHomeLeaveTime);
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , "latestOfficeLeaveTime = " + userFinalOfficeLeaveTime);
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , "latestCorporateEmail = " + userFinalCorporateEmail);
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , " ------------------    PROFILE TESTS ENDED    ------------------ ");
+
+            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+                    , "");
+        }
+
+
         System.out.println("New User Profile Test cases completed");
         driver.quit();
     }

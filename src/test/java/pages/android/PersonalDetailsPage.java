@@ -29,7 +29,7 @@ public class PersonalDetailsPage extends BasePage {
     By genderMaleProfile = By.id("radioButtonMale");
     By genderFemaleProfile = By.id("radioButtonFemale");
     By genderOtherProfile = By.id("profile.gender_other");
-
+    By textAfterSavingProfile = By.id("message");
 
 
     public PersonalDetailsPage(WebDriver driver) {
@@ -55,8 +55,7 @@ public class PersonalDetailsPage extends BasePage {
 
     public String verifyCorporateEmailNewWindow() {
         waitForVisibilityOf(addCorporateEmailFieldInNewWindow);
-        String corporateFieldText = driver.findElement(addCorporateEmailFieldInNewWindow).getText();
-        return corporateFieldText;
+        return driver.findElement(addCorporateEmailFieldInNewWindow).getText();
 
     }
 
@@ -127,7 +126,6 @@ public class PersonalDetailsPage extends BasePage {
     }
 
 
-
     public void selectGenderFemaleAtProfile() {
         waitForVisibilityOf(genderFemaleProfile);
         driver.findElement(genderFemaleProfile).click();
@@ -149,7 +147,6 @@ public class PersonalDetailsPage extends BasePage {
     }
 
 
-
     public void selectGender(String gender) {
         if (gender.equals("F")) {
             selectGenderFemale();
@@ -168,16 +165,21 @@ public class PersonalDetailsPage extends BasePage {
     }
 
 
-    public void personalDetailSubmitAtProfile() {
+    public String personalDetailSubmitAtProfile() {
 
+        String savingProfileText = null;
         try {
             waitForVisibilityOf(personalDetailsSubmitAtProfile);
             driver.findElement(personalDetailsSubmitAtProfile).click();
-        }
-        catch (Exception e)
-        {
+
+            waitForVisibilityOf(textAfterSavingProfile);
+            savingProfileText = driver.findElement(textAfterSavingProfile).getText();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return savingProfileText;
 
     }
 
@@ -189,12 +191,10 @@ public class PersonalDetailsPage extends BasePage {
 
         try {
             waitForVisibilityOf(nameErrorMessageField);
-            String errorMessage = driver.findElement(nameErrorMessageField).getText();
-            return errorMessage;
+            return driver.findElement(nameErrorMessageField).getText();
         } catch (Exception e) {
             // If error message is not found that means there is no error message occurred in System .
-            String errorMessage = "";
-            return errorMessage;
+            return "";
         }
 
 
@@ -205,12 +205,10 @@ public class PersonalDetailsPage extends BasePage {
 
         try {
             waitForVisibilityOf(personalEmailErrorMessageField);
-            String errorMessage = driver.findElement(personalEmailErrorMessageField).getText();
-            return errorMessage;
+            return driver.findElement(personalEmailErrorMessageField).getText();
         } catch (Exception e) {
             // If error message is not found that means there is no error message occurred in System .
-            String errorMessage = "";
-            return errorMessage;
+            return "";
         }
     }
 
@@ -218,12 +216,10 @@ public class PersonalDetailsPage extends BasePage {
     public String getCorporateEmailErrorMessage() {
         try {
             waitForVisibilityOf(corporateEmailErrorMessageField);
-            String errorMessage = driver.findElement(corporateEmailErrorMessageField).getText();
-            return errorMessage;
+            return driver.findElement(corporateEmailErrorMessageField).getText();
         } catch (Exception e) {
             // If error message is not found that means there is no error message occurred in System .
-            String errorMessage = "";
-            return errorMessage;
+            return "";
         }
     }
 
@@ -231,19 +227,15 @@ public class PersonalDetailsPage extends BasePage {
     public String getCorporateEmailPartnerErrorMessage() {
         try {
             waitForVisibilityOf(partnerErrorMessageInCorporateEmail);
-            String errorMessage = driver.findElement(partnerErrorMessageInCorporateEmail).getText();
-            return errorMessage;
+            return driver.findElement(partnerErrorMessageInCorporateEmail).getText();
         } catch (Exception e) {
             // If error message is not found that means there is no error message occurred in System .
-            String errorMessage = "";
-            return errorMessage;
+            return "";
         }
     }
 
 
-
-    public void clickOkButtonToAcceptTheBox()
-    {
+    public void clickOkButtonToAcceptTheBox() {
         waitForClickabilityOf(okButton);
         driver.findElement(okButton).click();
     }
@@ -253,7 +245,6 @@ public class PersonalDetailsPage extends BasePage {
         waitForClickabilityOf(backButton);
         driver.findElement(backButton).click();
     }
-
 
 
     // -------------------------    CLEAR FIELDS FUNCTIONS     ------------------------
@@ -270,7 +261,6 @@ public class PersonalDetailsPage extends BasePage {
     public void clearCorporateEmailField() {
         driver.findElement(enterCorporateEmailField).clear();
     }
-
 
 
 }

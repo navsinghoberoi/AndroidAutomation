@@ -1,5 +1,6 @@
 package common.android;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.android.*;
@@ -9,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 
 public class Commons extends BasePage {
 
@@ -117,37 +119,32 @@ public class Commons extends BasePage {
 
     // ------------------------     CREATE TEXT FILE      -------------------------
 
-    public void enterLineInTextFile(String filePath, String line) throws IOException {
 
 
-
-        BufferedWriter out = createTextFile(filePath);
-        out.write(line);
-        out.newLine();
-        out.flush();
-        out.close();
-
+    public void writeTextFile(String filePath , String lineText) throws IOException {
+        File f = new File(filePath);
+        FileUtils.write(f,lineText,true);
     }
 
+    
 
-    public BufferedWriter createTextFile(String filePath) throws IOException {
+    public void readTextFile(String textFilePath)
+    {
+        try {
 
-        FileWriter fstream;
-        File file = new File(filePath);
-        if(!file.exists())
-        {
-            fstream = new FileWriter(filePath);
-            BufferedWriter out = new BufferedWriter(fstream);
-            return out;
+            File f = new File(textFilePath);
 
+            System.out.println("Reading files using Apache IO:");
+
+            List<String> lines = FileUtils.readLines(f, "UTF-8");
+
+            for (String line : lines) {
+                System.out.println(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        else
-        {
-            fstream = new FileWriter(filePath,true);
-            BufferedWriter out = new BufferedWriter(fstream);
-            return out;
-        }
-
     }
 
 }
