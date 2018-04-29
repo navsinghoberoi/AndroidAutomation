@@ -1,6 +1,7 @@
 package tests.android;
 
 import common.android.Commons;
+import common.android.Constants;
 import io.appium.java_client.android.AndroidDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -11,7 +12,6 @@ import pages.android.HomePage;
 import pages.android.MenuPage;
 import pages.android.PersonalDetailsPage;
 import pages.android.ProfilePage;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -19,13 +19,14 @@ public class NewUserProfileTest extends Setup {
 
 
     private Commons common;
-    private MenuPage menuPage;
     private ProfilePage profilePage;
     private AndroidDriver androidDriver;
     private PersonalDetailsPage personalDetailsPage;
 
-    private String userFinalGender, userFinalOfficeLeaveTime, userFinalHomeLeaveTime, userFinalBirthdate
-            , userFinalPersonalEmail, userFinalCorporateEmail, userFinalName;
+    private String userFinalGender, userFinalOfficeLeaveTime, userFinalHomeLeaveTime
+            , userFinalBirthdate, userFinalPersonalEmail, userFinalCorporateEmail, userFinalName;
+
+    private boolean profileSaved = false;
 
 
     @BeforeClass
@@ -42,7 +43,7 @@ public class NewUserProfileTest extends Setup {
         HomePage homePage = new HomePage(driver);
         homePage.clickMenu();
 
-        menuPage = new MenuPage(driver);
+        MenuPage menuPage = new MenuPage(driver);
         menuPage.clickProfile();
 
         profilePage = new ProfilePage(driver);
@@ -185,7 +186,7 @@ public class NewUserProfileTest extends Setup {
         // No Error Message Expected means Entered Value will be correct . 
         // Therefore writing it into text file for Old User Profile comparison in next step  . 
         if (expected.equalsIgnoreCase(""))
-                userFinalPersonalEmail = personalEmail;
+            userFinalPersonalEmail = personalEmail;
 
         String errorPersonalEmailMessage = personalDetailsPage.getPersonalEmailErrorMessage();
         Assert.assertEquals(errorPersonalEmailMessage, expected);
@@ -194,7 +195,7 @@ public class NewUserProfileTest extends Setup {
 
 
     @Test(priority = 22, dataProvider = "enterDifferentName")
-    public void verifyNameValidation(String name, String expected) throws IOException {
+    public void verifyNameValidation(String name, String expected) {
         personalDetailsPage.clearNameField();
         personalDetailsPage.enterUserNameAtProfile(name);
         androidDriver.hideKeyboard();
@@ -281,6 +282,18 @@ public class NewUserProfileTest extends Setup {
     }
 
 
+    @Test(priority = 28)
+    public void verifyProfileSubmit() {
+        String savedProfileConfirmationText = personalDetailsPage.personalDetailSubmitAtProfile();
+        if (savedProfileConfirmationText.equalsIgnoreCase("Profile Updated Successfully")) {
+            profileSaved = true;
+        }
+
+        Assert.assertEquals(savedProfileConfirmationText, "Profile Updated Successfully");
+
+    }
+
+
     // -----------------------------       ALL DATA PROVIDER FUNCTIONS        -----------------------------
 
 
@@ -337,47 +350,44 @@ public class NewUserProfileTest extends Setup {
     @AfterClass
     public void tearDown() throws Exception {
 
-        String savedProfileConfirmationText = personalDetailsPage.personalDetailSubmitAtProfile();
 
+        // If Profile is Saved Succcessfully (profileSaved must be true) then only write values in text file
+        if (profileSaved) {
 
-        // If Profile is Saved Succcessfully then only write values in text file
-        if (savedProfileConfirmationText.equalsIgnoreCase("Profile Updated Successfully")) {
-
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , "Profile Test Run Date : "
                                          + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()));
 
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , "phoneNumber = " + "+91" + getValueFromPPFile("newUserPhoneNumber"));
 
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , userFinalGender);
 
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , userFinalPersonalEmail);
 
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , "latestName = " + userFinalName);
 
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , "latestBirthdayDate = " + userFinalBirthdate);
 
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , "latestHomeLeaveTime = " + userFinalHomeLeaveTime);
 
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , "latestOfficeLeaveTime = " + userFinalOfficeLeaveTime);
 
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , "latestCorporateEmail = " + userFinalCorporateEmail);
 
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , " ------------------    PROFILE TESTS ENDED    ------------------ ");
 
-            common.writeTextFile("/Users/mac/uiautomation/src/Resources/FinalProfileData.txt"
+            common.writeTextFile(Constants.finalProfileDataTextFile
                     , "");
         }
-
 
         System.out.println("New User Profile Test cases completed");
         driver.quit();

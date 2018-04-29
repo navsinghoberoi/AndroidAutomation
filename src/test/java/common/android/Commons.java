@@ -1,14 +1,13 @@
 package common.android;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.LineIterator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.android.*;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.util.List;
 
@@ -126,25 +125,25 @@ public class Commons extends BasePage {
         FileUtils.write(f,lineText,true);
     }
 
-    
 
-    public void readTextFile(String textFilePath)
+
+    public List<String> readTextFileFromEnd(String filePath , int startLine , int endLine)
     {
+
+        List<String> lines = null;
         try {
 
-            File f = new File(textFilePath);
+            LineIterator it = IOUtils.lineIterator(
+                    new BufferedReader(new FileReader(filePath)));
 
-            System.out.println("Reading files using Apache IO:");
-
-            List<String> lines = FileUtils.readLines(f, "UTF-8");
-
-            for (String line : lines) {
-                System.out.println(line);
-            }
+            for (int i = startLine ; i < endLine ; i++)
+                lines.add(it.next());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return lines ;
     }
 
 }
