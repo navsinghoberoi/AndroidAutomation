@@ -50,7 +50,7 @@ public class ReferNEarnTest extends Setup {
         referNEarnPage.getaction_InfoClick();
         String TncHeaderText = referNEarnPage.getTNCHeaderText();
         Assert.assertEquals(TncHeaderText, "Terms and Conditions", "Terms and Condition text din't match = Terms and Condition");
-        referNEarnPage.backButtonClick();
+        referNEarnPage.clickBackButton();
         String ReferAndEarnHeaderText = referNEarnPage.getRNETitleText();
         Assert.assertEquals(ReferAndEarnHeaderText, "Refer & Earn", "The header text din't match = Refer and Earn");
     }
@@ -66,7 +66,7 @@ public class ReferNEarnTest extends Setup {
         referNEarnPage.getreferal_earningClick();
         String YourEarning = referNEarnPage.getYourEarningTitle();
         Assert.assertEquals(YourEarning, "Your Earnings", "The header text din't match = Your Earning");
-        referNEarnPage.backButtonClick();
+        referNEarnPage.clickBackButton();
         String ReferAndEarnHeaderText = referNEarnPage.getRNETitleText();
         Assert.assertEquals(ReferAndEarnHeaderText, "Refer & Earn", "The header text din't match = Refer and Earn");
     }
@@ -86,7 +86,7 @@ public class ReferNEarnTest extends Setup {
         referNEarnPage.getWhatsappIconClick();
         String WhatsappShare = referNEarnPage.getWhatsappTitle();
         Assert.assertEquals(WhatsappShare, "Send to…");
-        referNEarnPage.backButtonClick();
+        referNEarnPage.clickBackButton();
     }
 
     @Test(priority = 8)
@@ -106,7 +106,7 @@ public class ReferNEarnTest extends Setup {
 //        String FbTitleTextVerify = referNEarnPage.getFBTitleText();
 //        Assert.assertEquals(FbTitleTextVerify,"Send Separately");
 //        referNEarnPage.fbSendbuttonClick();
-//        referNEarnPage.backButtonClick();
+//        referNEarnPage.clickBackButton();
   //      }
     @AfterClass
     public void tearDown() throws Exception {
