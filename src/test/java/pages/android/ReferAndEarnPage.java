@@ -7,24 +7,25 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class ReferNEarnPage extends BasePage {
+public class ReferAndEarnPage extends BasePage {
 
-    public ReferNEarnPage(WebDriver driver) {
+    public ReferAndEarnPage(WebDriver driver) {
         super(driver);
     }
 
     By hamburger_icon = By.className("android.widget.ImageButton");
-    By referNEarnDsiplayText = By.xpath(("//android.widget.CheckedTextView[@text='Refer & Earn']"));
-    By action_Info = By.id("action_info");
+    By referAndEarnDsiplayText = By.xpath(("//android.widget.CheckedTextView[@text='Refer & Earn']"));
+    By actionInfo = By.id("action_info");
     By headerTNCText = By.xpath(("//android.widget.TextView[@text='Terms and Conditions']"));
-    By BackButton = By.xpath("//android.widget.ImageButton[@index=0]");
-    By referal_earning = By.xpath("//android.widget.TextView[@text='Your total referral earnings']");
+    By backButton = By.xpath("//android.widget.ImageButton[@index=0]");
+    By referalEarning = By.xpath("//android.widget.TextView[@text='Your total referral earnings']");
     By yourEarningTitle = By.xpath("//android.widget.TextView[@text='Your Earnings']");
-    By referal_code = By.id("refer.refer_id_value");
-    By referNEarnTitle = By.xpath("//android.widget.TextView[@text='Refer & Earn']");
+    By referalCode = By.id("refer.refer_id_value");
+    By referAndEarnTitle = By.xpath("//android.widget.TextView[@text='Refer & Earn']");
     By whatsappIcon = By.xpath("//android.widget.ImageView[@index=0]");
     By whatsappTitleText = By.xpath("//android.widget.TextView[@text='Send to…']");
-    By whatappScreen = By.xpath("//android.widget.TextView[@text='Munish']");
+    By WhatsappFirstElementClick = By.xpath("//android.widget.RelativeLayout[@index=2]");
+    By whatappScreen = By.xpath("//android.widget.TextView[@text='Frequently contacted']");
     By WhatsappSend = By.xpath("//android.widget.ImageButton[@index=1]");
     By WhatsappSendButton = By.xpath("//android.widget.ImageButton[@index=3]");
     By facebookIcon = By.xpath("//android.widget.LinearLayout[@index=1]");
@@ -53,10 +54,10 @@ public class ReferNEarnPage extends BasePage {
 //        }
 //    }
 
-            public String getreferNEarnDsiplayText() {
-            waitForVisibilityOf(referNEarnDsiplayText);
-            String FindMyReferNEarnText= driver.findElement(referNEarnDsiplayText).getText();
-            return FindMyReferNEarnText;
+            public String getReferAndEarnDsiplayText() {
+            waitForVisibilityOf(referAndEarnDsiplayText);
+            String FindMyReferAndEarnText= driver.findElement(referAndEarnDsiplayText).getText();
+            return FindMyReferAndEarnText;
 //        List<WebElement> FindMyReferNEarnText = driver.findElements(referNEarnDsiplayText);
 //        String[] ReferText = new String[FindMyReferNEarnText.size()];
 //        int i = 0;
@@ -72,34 +73,34 @@ public class ReferNEarnPage extends BasePage {
 //        }
 
     }
-    public void getreferNEarnDsiplayTextClick()
+    public void getReferAndEarnDsiplayTextClick()
     {
-        waitForClickabilityOf(referNEarnDsiplayText);
-        driver.findElement(referNEarnDsiplayText).click();
+        waitForClickabilityOf(referAndEarnDsiplayText);
+        driver.findElement(referAndEarnDsiplayText).click();
     }
     public String getRNETitleText(){
-        waitForVisibilityOf(referNEarnTitle);
-        String FindreferNEarnTitleText= driver.findElement(referNEarnTitle).getText();
-        return FindreferNEarnTitleText;
+        waitForVisibilityOf(referAndEarnTitle);
+        String FindReferAndEarnTitleText= driver.findElement(referAndEarnTitle).getText();
+        return FindReferAndEarnTitleText;
     }
-    public void getaction_InfoClick()
+    public void getActionInfoClick()
     {
-        waitForClickabilityOf(action_Info);
-        driver.findElement(action_Info).click();
+        waitForClickabilityOf(actionInfo);
+        driver.findElement(actionInfo).click();
     }
     public String getTNCHeaderText() {
         waitForVisibilityOf(headerTNCText);
         String FindHeaderTNCTextValue =  driver.findElement(headerTNCText).getText();
         return FindHeaderTNCTextValue;
     }
-    public void backButtonClick(){
-        waitForClickabilityOf(BackButton);
-        driver.findElement(BackButton).click();
+    public void clickBackButton(){
+        waitForClickabilityOf(backButton);
+        driver.findElement(backButton).click();
     }
-    public void getreferal_earningClick()
+    public void getReferalEarningClick()
     {
-        waitForClickabilityOf(referal_earning);
-        driver.findElement(referal_earning).click();
+        waitForClickabilityOf(referalEarning);
+        driver.findElement(referalEarning).click();
     }
     public String getYourEarningTitle(){
         waitForVisibilityOf(yourEarningTitle);
@@ -123,10 +124,10 @@ public class ReferNEarnPage extends BasePage {
 //        return FindtermsAndConditionText;
 //    }
 
-    public String getreferal_code()
+    public String getReferalCode()
     {
-        waitForVisibilityOf(referal_code);
-        String FindMyReferal_Code= driver.findElement(referal_code).getText();
+        waitForVisibilityOf(referalCode);
+        String FindMyReferal_Code= driver.findElement(referalCode).getText();
         return FindMyReferal_Code;
     }
     public void getWhatsappIconClick(){
@@ -141,9 +142,13 @@ public class ReferNEarnPage extends BasePage {
         waitForClickabilityOf(whatappScreen);
         driver.findElement(whatappScreen).click();
     }
+    public void getWhatsappFirstContactClick(){
+        waitForClickabilityOf(WhatsappFirstElementClick);
+        driver.findElement(WhatsappFirstElementClick).click();
+    }
     public String getWhatsappScreenText(){
-        String FindMyWhatsAppContactTitle = driver.findElement(whatappScreen).getText();
-        return FindMyWhatsAppContactTitle;
+        String FindMyWhatsappContactTitle = driver.findElement(whatappScreen).getText();
+        return FindMyWhatsappContactTitle;
     }
     public void whatsAppButtonClick(){
         waitForVisibilityOf(WhatsappSendButton);
@@ -161,7 +166,7 @@ public class ReferNEarnPage extends BasePage {
         String FindFBTitleText = driver.findElement(facebookTitleText).getText();
         return FindFBTitleText;
     }
-    public void fbSendbuttonClick(){
+    public void fbSendButtonClick(){
         waitForClickabilityOf(facebookSendButton);
         driver.findElement(facebookSendButton).click();
     }
