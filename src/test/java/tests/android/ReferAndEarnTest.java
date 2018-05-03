@@ -10,11 +10,7 @@ import pages.android.*;
 public class ReferAndEarnTest extends Setup {
 
     private HomePage homePage;
-    //private LandingPage landingPage;
-    private LoginPage loginPage;
-    private OtpPage otpPage;
     private Commons commons;
-    private MenuPage menuPage;
     private ReferAndEarnPage referAndEarnPage;
 
     @BeforeClass
@@ -89,24 +85,15 @@ public class ReferAndEarnTest extends Setup {
     @Test(priority = 8)
     public void verifyWhatsappSendButton() {
         referAndEarnPage.getWhatsappIconClick();
-//      referAndEarnPage.getWhatsAppScreen();
         String WhatsAppContactTextDetail = referAndEarnPage.getWhatsappScreenText();
         Assert.assertEquals(WhatsAppContactTextDetail, "Frequently contacted");
         referAndEarnPage.getWhatsappFirstContactClick();
         referAndEarnPage.getWhatappSendButton();
         referAndEarnPage.whatsAppButtonClick();
-       //driver.pressKeyCode(AndroidKeyCode.BACK);
 
     }
 
-//    @Test(priority = 9)
-//    public void verifyFBShareFeature(){
-//        referNEarnPage.getFBIconClick();
-//        String FbTitleTextVerify = referNEarnPage.getFBTitleText();
-//        Assert.assertEquals(FbTitleTextVerify,"Send Separately");
-//        referNEarnPage.fbSendbuttonClick();
-//        referNEarnPage.clickBackButton();
-  //      }
+
 
     @AfterClass
     public void tearDown() throws Exception {

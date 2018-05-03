@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
-public class GetFreeRide extends BasePage {
-	public GetFreeRide(WebDriver driver) {
+public class GetFreeRidePage extends BasePage {
+	public GetFreeRidePage(WebDriver driver) {
 		super(driver);
 		// TODO Auto-generated constructor stub
 	}

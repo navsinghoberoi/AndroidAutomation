@@ -3,7 +3,7 @@ package pages.android;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MyWallets extends BasePage {
+public class MyWalletsPage extends BasePage {
 
 
 
@@ -26,7 +26,7 @@ public class MyWallets extends BasePage {
     By mobikwikWalletConnect = By.xpath(("(//*[@id= 'item_wallet.connect'])[2]"));
 
 
-    public MyWallets(WebDriver driver)  {
+    public MyWalletsPage(WebDriver driver)  {
         super(driver);
     }
 
