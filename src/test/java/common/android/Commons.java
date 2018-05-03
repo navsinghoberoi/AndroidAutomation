@@ -52,8 +52,8 @@ public class Commons extends BasePage {
         landingPage.clickSkipToLogin();
         loginPage.enterMobileNumber(userPhoneNumber);
         loginPage.clickVerify();
-        loginPage.continueButtonClick();
         otpPage.enterOtp(userOTP);
+
 
     }
 
