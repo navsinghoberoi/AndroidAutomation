@@ -1,12 +1,19 @@
 package tests.android;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.android.*;
+import pages.android.BasePage;
+import pages.android.CouponsPage;
+import pages.android.HomePage;
+import pages.android.MenuPage;
 
 
 public class CouponsPageTest extends Setup {
+
+    final static Logger logger = Logger.getLogger(CouponsPageTest.class);
+
 
     private CouponsPage couponsPage;
     private HomePage homePage;
@@ -20,7 +27,9 @@ public class CouponsPageTest extends Setup {
         couponsPage = new CouponsPage(driver);
         homePage = new HomePage(driver);
         menuPage = new MenuPage(driver);
-        basePage=new BasePage(driver);
+        basePage = new BasePage(driver);
+        homePage.clickMenu();
+        menuPage.clickCoupon();
 
     }
 
@@ -29,15 +38,19 @@ public class CouponsPageTest extends Setup {
 
     public void testAddCoupon() throws Exception {
 
-
-        homePage.clickMenu();
-        menuPage.clickCoupon();
         couponsPage.clickCouponCodeArea();
         couponsPage.enterCouponCode("validcouponcode");
-        AndroidDriver androidDriver= (AndroidDriver) driver;
+        AndroidDriver androidDriver = (AndroidDriver) driver;
         androidDriver.hideKeyboard();
         couponsPage.clickSaveButton();
 
+        if (couponsPage.checkAddedCouponMessage()) {
+            logger.info("Added coupon message displayed");
+        } else
+            logger.info("Added coupon message Not displayed");
+        String text = couponsPage.getAddCouponConfirmationPopupText();
+        logger.info(text);
+        driver.navigate().back();
 
     }
 
@@ -45,18 +58,9 @@ public class CouponsPageTest extends Setup {
 
     public void testSavedCoupon() throws InterruptedException {
 
-
-        if (couponsPage.checkAddedCouponMessage()) {
-            System.out.println("Added coupon message displayed");
-            String text=couponsPage.getAddCouponConfirmationPopupText();
-            System.out.println(text);
-            driver.navigate().back();
-            couponsPage.clickSavedCouponsArea();
-            couponsPage.clickOnSavedCoupon();
-            couponsPage.clickDismissButton();
-
-        } else
-            System.out.println("Added coupon message Not displayed");
+        couponsPage.clickSavedCouponsArea();
+        couponsPage.clickOnSavedCoupon();
+        couponsPage.clickDismissButton();
 
 
     }
@@ -66,21 +70,23 @@ public class CouponsPageTest extends Setup {
     public void invalidCouponTest() throws Exception {
         couponsPage.clickEnterCouponCodeArea();
         couponsPage.enterCouponCode("random");
-        AndroidDriver androidDriver=(AndroidDriver)driver;
+        AndroidDriver androidDriver = (AndroidDriver) driver;
         androidDriver.hideKeyboard();
-        System.out.println(couponsPage.getAddCouponConfirmationPopupText());
-        System.out.println(couponsPage.getFindMyEnterCouponText());
+        couponsPage.clickSaveButton();
+        logger.info(couponsPage.getAddCouponConfirmationPopupText());
+        logger.info(couponsPage.getFindMyEnterCouponText());
+
 
     }
 
     @Test(priority = 4)
 
-    public void termsOfServiceTest()
-    {
+    public void termsOfServiceTest() {
         couponsPage.clickEnterCouponCodeArea();
         couponsPage.clickTermOfService();
-    }
+        //logger.info(couponsPage.checkTermsOfServiceOpen());
 
+    }
 
 
 }

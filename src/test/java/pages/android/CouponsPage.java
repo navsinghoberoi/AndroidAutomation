@@ -15,7 +15,7 @@ public class CouponsPage extends BasePage {
     By enter_coupon_area = By.xpath("//android.widget.TextView[@text='ENTER COUPON']");
     By saved_coupon_area = By.xpath("//android.widget.TextView[@text='SAVED COUPONS']");
     By saved_coupons_name = By.id(app_package_name+"layout_container");
-    By terms_of_service = By.xpath("//android.widget.TextView[]@text='By continuing, I agree to Shuttl's \n" + "User Agreement and Terms of Service'");
+    By terms_of_service = By.id(app_package_name+"enter_promo.tnc");
    // By enter_coupon_text = By.id(app_package_name + "enter_promo.text");
     By save_coupon_button = By.id(app_package_name + "enter_promo.apply_layout");
     By enable_coupon_code_area = By.id(app_package_name + "enter_promo.edit_text");
@@ -23,6 +23,7 @@ public class CouponsPage extends BasePage {
     By fromToIcon = By.id(app_package_name + "from_to");
     By dismiss_button = By.xpath("//android.widget.Button[@text='DISMISS']");
     By wrong_coupon_popup=By.id(app_package_name+"message");
+    By terms_and_conditions=By.xpath("//android.widget.TextView[@text='Terms and Conditions' and @index='1']");
 
 
 
@@ -109,6 +110,13 @@ public class CouponsPage extends BasePage {
     public String getWrongCouponPopup()
     {
         return driver.findElement(wrong_coupon_popup).getText();
+
+    }
+
+    public boolean checkTermsOfServiceOpen()
+    {
+        waitForVisibilityOf(terms_and_conditions);
+        return driver.findElement(terms_and_conditions).isDisplayed();
 
     }
 
