@@ -15,7 +15,7 @@ import pages.android.ProfilePage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class NewUserProfileTest extends Setup {
+public class ProfileTest extends Setup {
 
 
     private Commons common;
