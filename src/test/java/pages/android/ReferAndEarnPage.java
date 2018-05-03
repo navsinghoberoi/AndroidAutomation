@@ -1,11 +1,8 @@
 package pages.android;
 
-import io.appium.java_client.MobileElement;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class ReferAndEarnPage extends BasePage {
 
@@ -36,41 +33,10 @@ public class ReferAndEarnPage extends BasePage {
     By startReferingButton = By.xpath("//android.widget.TextView[@text='START REFERRING']");
 
 
-    //    public void gethamburger_iconClick()
-//    {
-//
-//        //    System.out.println("I am here");
-//
-//        if(checkIfElementPresent(hamburger_icon,10) == true)
-//        {
-//            System.out.println("I am here_1");
-//            waitForClickabilityOf(hamburger_icon);
-//            driver.findElement(hamburger_icon).click();
-//            System.out.println("I am here_2");
-//        }
-//        else
-//        {
-//            System.out.println("Script failed");
-//        }
-//    }
-
-            public String getReferAndEarnDsiplayText() {
-            waitForVisibilityOf(referAndEarnDsiplayText);
-            String FindMyReferAndEarnText= driver.findElement(referAndEarnDsiplayText).getText();
-            return FindMyReferAndEarnText;
-//        List<WebElement> FindMyReferNEarnText = driver.findElements(referNEarnDsiplayText);
-//        String[] ReferText = new String[FindMyReferNEarnText.size()];
-//        int i = 0;
-//        for (WebElement element : FindMyReferNEarnText) {
-//            ReferText[i] = element.getText();
-//            i++;
-//            for (String t : ReferText)
-//                if (driver.getTitle().equals("Refer & Earn")) {
-//                    System.out.println("passed");
-//                } else {
-//                    System.out.println("failed");
-//                }
-//        }
+    public String getReferAndEarnDsiplayText() {
+        waitForVisibilityOf(referAndEarnDsiplayText);
+        String FindMyReferAndEarnText= driver.findElement(referAndEarnDsiplayText).getText();
+        return FindMyReferAndEarnText;
 
     }
     public void getReferAndEarnDsiplayTextClick()
@@ -116,14 +82,6 @@ public class ReferAndEarnPage extends BasePage {
         String FindReferingText = driver.findElement(startReferingButton).getText();
         return FindReferingText;
     }
-
-//    public String gettermsAndCondition()
-//    {
-//        waitForVisibilityOf(termsAndCondition);
-//        String FindtermsAndConditionText =  driver.findElement(termsAndCondition).getText();
-//        return FindtermsAndConditionText;
-//    }
-
     public String getReferalCode()
     {
         waitForVisibilityOf(referalCode);

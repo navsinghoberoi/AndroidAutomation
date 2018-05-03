@@ -10,7 +10,6 @@ import pages.android.*;
 public class ReferAndEarnTest extends Setup {
 
     private HomePage homePage;
-    //private LandingPage landingPage;
     private LoginPage loginPage;
     private OtpPage otpPage;
     private Commons commons;
@@ -22,7 +21,8 @@ public class ReferAndEarnTest extends Setup {
         createAndroidSession(false);
         commons = new Commons(driver);
         commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
-        Thread.sleep(10000L);
+
+        //Thread.sleep(10000L);
         homePage = new HomePage(driver);
         homePage.clickMenu();
         referAndEarnPage = new ReferAndEarnPage(driver);
@@ -89,24 +89,13 @@ public class ReferAndEarnTest extends Setup {
     @Test(priority = 8)
     public void verifyWhatsappSendButton() {
         referAndEarnPage.getWhatsappIconClick();
-//      referAndEarnPage.getWhatsAppScreen();
         String WhatsAppContactTextDetail = referAndEarnPage.getWhatsappScreenText();
         Assert.assertEquals(WhatsAppContactTextDetail, "Frequently contacted");
         referAndEarnPage.getWhatsappFirstContactClick();
         referAndEarnPage.getWhatappSendButton();
         referAndEarnPage.whatsAppButtonClick();
-       //driver.pressKeyCode(AndroidKeyCode.BACK);
 
     }
-
-//    @Test(priority = 9)
-//    public void verifyFBShareFeature(){
-//        referNEarnPage.getFBIconClick();
-//        String FbTitleTextVerify = referNEarnPage.getFBTitleText();
-//        Assert.assertEquals(FbTitleTextVerify,"Send Separately");
-//        referNEarnPage.fbSendbuttonClick();
-//        referNEarnPage.clickBackButton();
-  //      }
 
     @AfterClass
     public void tearDown() throws Exception {
