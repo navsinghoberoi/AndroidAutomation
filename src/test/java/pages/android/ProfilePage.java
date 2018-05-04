@@ -52,6 +52,7 @@ public class ProfilePage extends BasePage {
 
 
     public String getEmail() {
+        scrollToText("Email Address");
         waitForVisibilityOf(emailField);
         String email = driver.findElement(emailField).getText();
         return email;
@@ -59,6 +60,7 @@ public class ProfilePage extends BasePage {
 
 
     public String getBirthday() {
+        scrollToText("Birthday");
         waitForVisibilityOf(birthdayField);
         String userBirthday = driver.findElement(birthdayField).getText();
         return userBirthday;
@@ -66,6 +68,7 @@ public class ProfilePage extends BasePage {
 
 
     public String getHomeAddress() {
+        scrollToText("Home Address");
         waitForVisibilityOf(homeAddressField);
         String address = driver.findElement(homeAddressField).getText();
         return address;
@@ -75,12 +78,12 @@ public class ProfilePage extends BasePage {
     public String getHomeLeaveTime() {
         waitForVisibilityOf(homeLeaveTime);
         String leaveTime = driver.findElement(homeLeaveTime).getText();
-        System.out.println("Home Leave Time : " + leaveTime);
         return leaveTime;
     }
 
 
     public String getOfficeAddress() {
+        scrollToText("Office Address");
         waitForVisibilityOf(officeAddress);
         String address = driver.findElement(officeAddress).getText();
         return address;
@@ -95,9 +98,19 @@ public class ProfilePage extends BasePage {
 
 
     public String getCorporateEmail() {
-        waitForVisibilityOf(corporateEmail);
-        String corpoEmail = driver.findElement(corporateEmail).getText();
+
+        String corpoEmail = null;
+        try {
+            scrollToText("CORPORATE ACCOUNT");
+            waitForVisibilityOf(corporateEmail);
+            corpoEmail = driver.findElement(corporateEmail).getText();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return corpoEmail;
+
     }
 
 
@@ -105,7 +118,10 @@ public class ProfilePage extends BasePage {
 
         if (checkIfElementPresent(edit_button))
         {
+
             driver.findElement(edit_button).click();
+            // Go to Top of the page .
+            scrollToText("CONNECT FACEBOOK");
             return true;
         }
         else

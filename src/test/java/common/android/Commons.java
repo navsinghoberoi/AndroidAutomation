@@ -7,7 +7,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.android.*;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 
@@ -29,7 +32,7 @@ public class Commons extends BasePage {
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         //Thread.sleep(2000);
-        loginPage.enterMobileNumber("9555814581");
+        loginPage.enterMobileNumber("5556667033");
         //loginPage.clickGetOtp();
         //loginPage.enterOtp("1111");
         loginPage.clickVerify();
@@ -52,6 +55,18 @@ public class Commons extends BasePage {
         landingPage.clickSkipToLogin();
         loginPage.enterMobileNumber(userPhoneNumber);
         loginPage.clickVerify();
+
+        /*
+        If device is already registered then alert comes during signup with below text .
+        "Our welcome offer is not valid on this device as it has already been registered from a different number."
+        If Device is new then no alert will come . Therefore no need to throw an exception .
+         */
+
+        try {
+            landingPage.registeredDeviceAlertAcceptAtSignup();
+        } catch (Exception e) {
+        }
+
         otpPage.enterOtp(userOTP);
 
 
