@@ -68,12 +68,13 @@ public class CouponsPageTest extends Setup {
     @Test(priority = 3)
 
     public void invalidCouponTest() throws Exception {
+        logger.info("ashu");
         couponsPage.clickEnterCouponCodeArea();
         couponsPage.enterCouponCode("random");
         AndroidDriver androidDriver = (AndroidDriver) driver;
         androidDriver.hideKeyboard();
         couponsPage.clickSaveButton();
-        logger.info(couponsPage.getAddCouponConfirmationPopupText());
+        logger.info(couponsPage.getWrongCouponPopup());
         logger.info(couponsPage.getFindMyEnterCouponText());
 
 

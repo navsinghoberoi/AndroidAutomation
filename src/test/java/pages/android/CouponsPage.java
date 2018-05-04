@@ -109,6 +109,7 @@ public class CouponsPage extends BasePage {
 
     public String getWrongCouponPopup()
     {
+        waitForVisibilityOf(wrong_coupon_popup);
         return driver.findElement(wrong_coupon_popup).getText();
 
     }
