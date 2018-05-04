@@ -45,14 +45,18 @@ public class Setup {
         capabilities.setCapability("deviceName","Samsung Galaxy S8 Plus GoogleAPI Emulator");
         capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability("platformName","Android");
+
         capabilities.setCapability("platformVersion","8.0.0");
+
         capabilities.setCapability("noReset", noreset );
         capabilities.setCapability("fullReset", false);
         capabilities.setCapability("launchApp", getValueFromPPFile("androidAppActivity"));
         capabilities.setCapability("app", app.getAbsolutePath());
         //capabilities.setCapability("app", "sauce-storage:app-qa-3.6.0-qa.apk");
+
         driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
         //driver = new AndroidDriver(new URL("http://nitishtest1991:11a0fed8-8611-471c-9f17-541f3bd68617@ondemand.saucelabs.com:80/wd/hub"), capabilities);
+
     }
 
 

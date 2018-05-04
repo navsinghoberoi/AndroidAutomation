@@ -3,10 +3,10 @@ package pages.android;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PostBooking extends BasePage {
+public class PostBookingPage extends BasePage {
 
 
-	public PostBooking(WebDriver driver) {
+	public PostBookingPage(WebDriver driver) {
 		super(driver);
 	}
 

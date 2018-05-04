@@ -5,15 +5,31 @@ import org.openqa.selenium.WebDriver;
 
 public class PersonalDetailsPage extends BasePage {
 
-    By userName = By.id("frag_usr_reg1.name_input");
+    By userNameAtProfile = By.id("edit_profile_name");
+    By userNameWhileSignUp = By.id("frag_usr_reg1.name_input");
     By genderFemale = By.id("frag_usr_reg1.gender_female");
     By genderMale = By.id("frag_usr_reg1.gender_male");
     By genderOthers = By.id("frag_usr_reg1.gender_other");
-    By haveReferralCode = By.id("frag_usr_reg1.have_referral_code");
-    By enterReferralCode = By.id("ref_code.input");
-    By submitReferralCode = By.id("ref_code.submit");
-    By invalidReferralCodeError = By.id("textinput_error");
-    By personalDetailsSubmit = By.id("frag_usr_reg1.action");
+    By personalDetailsSubmitAtSignup = By.id("frag_usr_reg1.action");
+    By personalDetailsSubmitAtProfile = By.id("action_edit_profile");
+    By nameErrorMessageField = By.id("textinput_error");
+    By personalEmailField = By.id("edit_profile_email");
+    By personalEmailErrorMessageField = By.id("textinput_error");
+    By corporateEmailErrorMessageField = By.id("connected_account_validation_error_tv");
+    By corporateEmailField = By.id("profile_connected_account_tv");
+    By enterCorporateEmailField = By.id("connected_accounts_auto_ct");
+    By birthdayField = By.id("edit_profile_birthday");
+    By homeLeaveTime = By.id("profile_home_time_user");
+    By officeLeaveTime = By.id("profile_office_edit_time");
+    By okButton = By.id("button1");
+    By submitCorporateEmail = By.id("add_account_btn");
+    By partnerErrorMessageInCorporateEmail = By.id("snackbar_text");
+    By backButton = By.className("android.widget.ImageButton");
+    By addCorporateEmailFieldInNewWindow = By.id("email_float_label");
+    By genderMaleProfile = By.id("radioButtonMale");
+    By genderFemaleProfile = By.id("radioButtonFemale");
+    By genderOtherProfile = By.id("profile.gender_other");
+    By textAfterSavingProfile = By.id("message");
 
 
     public PersonalDetailsPage(WebDriver driver) {
@@ -21,9 +37,71 @@ public class PersonalDetailsPage extends BasePage {
     }
 
 
-    public void enterUserName(String name) {
-        waitForVisibilityOf(userName);
-        driver.findElement(userName).sendKeys(name);
+    public void enterBirthDay() {
+
+        waitForClickabilityOf(birthdayField);
+        driver.findElement(birthdayField).click();
+
+        clickOkButtonToAcceptTheBox();
+
+    }
+
+
+    public void goToActualCorporateEmail() {
+        waitForClickabilityOf(corporateEmailField);
+        driver.findElement(corporateEmailField).click();
+    }
+
+
+    public String verifyCorporateEmailNewWindow() {
+        waitForVisibilityOf(addCorporateEmailFieldInNewWindow);
+        return driver.findElement(addCorporateEmailFieldInNewWindow).getText();
+
+    }
+
+
+    public void enterOfficeLeaveTime() {
+        waitForClickabilityOf(officeLeaveTime);
+        driver.findElement(officeLeaveTime).click();
+
+        clickOkButtonToAcceptTheBox();
+    }
+
+
+    public void enterHomeLeaveTime() {
+        waitForClickabilityOf(homeLeaveTime);
+        driver.findElement(homeLeaveTime).click();
+
+        clickOkButtonToAcceptTheBox();
+    }
+
+
+    public void enterUserNameAtSignUp(String name) {
+        waitForVisibilityOf(userNameWhileSignUp);
+        driver.findElement(userNameWhileSignUp).sendKeys(name);
+
+    }
+
+
+    public void enterUserNameAtProfile(String name) {
+        waitForVisibilityOf(userNameAtProfile);
+        driver.findElement(userNameAtProfile).sendKeys(name);
+
+    }
+
+    public void enterCorporateEmail(String corporateEmail) {
+        waitForVisibilityOf(enterCorporateEmailField);
+        driver.findElement(enterCorporateEmailField).sendKeys(corporateEmail);
+
+        waitForClickabilityOf(submitCorporateEmail);
+        driver.findElement(submitCorporateEmail).click();
+
+    }
+
+
+    public void enterPersonalEmail(String personalEmail) {
+        waitForVisibilityOf(personalEmailField);
+        driver.findElement(personalEmailField).sendKeys(personalEmail);
     }
 
 
@@ -47,48 +125,141 @@ public class PersonalDetailsPage extends BasePage {
 
     }
 
+
+    public void selectGenderFemaleAtProfile() {
+        waitForVisibilityOf(genderFemaleProfile);
+        driver.findElement(genderFemaleProfile).click();
+
+    }
+
+
+    public void selectGenderMaleAtProfile() {
+        waitForVisibilityOf(genderMaleProfile);
+        driver.findElement(genderMaleProfile).click();
+
+    }
+
+
+    public void selectGenderOtherAtProfile() {
+        waitForVisibilityOf(genderOtherProfile);
+        driver.findElement(genderOtherProfile).click();
+
+    }
+
+
     public void selectGender(String gender) {
         if (gender.equals("F")) {
             selectGenderFemale();
         } else if (gender.equals("M")) {
             selectGenderMale();
-        } else if (gender.equals("O")){
+        } else if (gender.equals("O")) {
             selectGenderOther();
         }
 
     }
 
 
-    public void referralCodeClick() {
-        waitForVisibilityOf(haveReferralCode);
-        driver.findElement(haveReferralCode).click();
+    public void personalDetailSubmitAtSignup() {
+        waitForVisibilityOf(personalDetailsSubmitAtSignup);
+        driver.findElement(personalDetailsSubmitAtSignup).click();
     }
 
 
-    public void referralCodeEnter(String referralCode) {
-        waitForVisibilityOf(enterReferralCode);
-        driver.findElement(enterReferralCode).sendKeys(referralCode);
+    public String personalDetailSubmitAtProfile() {
+
+        String savingProfileText = null;
+        try {
+            waitForVisibilityOf(personalDetailsSubmitAtProfile);
+            driver.findElement(personalDetailsSubmitAtProfile).click();
+
+            waitForVisibilityOf(textAfterSavingProfile);
+            savingProfileText = driver.findElement(textAfterSavingProfile).getText();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return savingProfileText;
+
     }
 
 
-    public void referralCodeSubmit() {
+    // -------------------------    ERROR MESSAGES FIELDS FUNCTIONS     ------------------------
 
-        waitForVisibilityOf(submitReferralCode);
-        driver.findElement(submitReferralCode).click();
+
+    public String getNameErrorMessage() {
+
+        try {
+            waitForVisibilityOf(nameErrorMessageField);
+            return driver.findElement(nameErrorMessageField).getText();
+        } catch (Exception e) {
+            // If error message is not found that means there is no error message occurred in System .
+            return "";
+        }
+
+
     }
 
 
-    public String referralCodeInvalidText() {
-        waitForVisibilityOf(invalidReferralCodeError);
-        String invalidCouponText = driver.findElement(invalidReferralCodeError).getText();
-        System.out.println("Text for invalid referral code = " + invalidCouponText);
-        return invalidCouponText;
+    public String getPersonalEmailErrorMessage() {
+
+        try {
+            waitForVisibilityOf(personalEmailErrorMessageField);
+            return driver.findElement(personalEmailErrorMessageField).getText();
+        } catch (Exception e) {
+            // If error message is not found that means there is no error message occurred in System .
+            return "";
+        }
     }
 
 
-    public void personalDetailSubmit() {
-        waitForVisibilityOf(personalDetailsSubmit);
-        driver.findElement(personalDetailsSubmit).click();
+    public String getCorporateEmailErrorMessage() {
+        try {
+            waitForVisibilityOf(corporateEmailErrorMessageField);
+            return driver.findElement(corporateEmailErrorMessageField).getText();
+        } catch (Exception e) {
+            // If error message is not found that means there is no error message occurred in System .
+            return "";
+        }
+    }
+
+
+    public String getCorporateEmailPartnerErrorMessage() {
+        try {
+            waitForVisibilityOf(partnerErrorMessageInCorporateEmail);
+            return driver.findElement(partnerErrorMessageInCorporateEmail).getText();
+        } catch (Exception e) {
+            // If error message is not found that means there is no error message occurred in System .
+            return "";
+        }
+    }
+
+
+    public void clickOkButtonToAcceptTheBox() {
+        waitForClickabilityOf(okButton);
+        driver.findElement(okButton).click();
+    }
+
+
+    public void goBack() {
+        waitForClickabilityOf(backButton);
+        driver.findElement(backButton).click();
+    }
+
+
+    // -------------------------    CLEAR FIELDS FUNCTIONS     ------------------------
+
+
+    public void clearNameField() {
+        driver.findElement(userNameAtProfile).clear();
+    }
+
+    public void clearPersonalEmailField() {
+        driver.findElement(personalEmailField).clear();
+    }
+
+    public void clearCorporateEmailField() {
+        driver.findElement(enterCorporateEmailField).clear();
     }
 
 

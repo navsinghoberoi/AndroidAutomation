@@ -53,6 +53,7 @@ public class HomePage extends BasePage {
 	}
 
 	public void clickMenu() {
+
 		waitForClickabilityOf(menuButton);
 		driver.findElement(menuButton).click();
 	}
