@@ -38,16 +38,16 @@ public class PersonalDetailsPage extends BasePage {
 
 
     public void enterBirthDay() {
-
+        scrollToText("Birthday");
         waitForClickabilityOf(birthdayField);
         driver.findElement(birthdayField).click();
-
         clickOkButtonToAcceptTheBox();
 
     }
 
 
     public void goToActualCorporateEmail() {
+        scrollToText("CORPORATE ACCOUNT");
         waitForClickabilityOf(corporateEmailField);
         driver.findElement(corporateEmailField).click();
     }
@@ -61,6 +61,7 @@ public class PersonalDetailsPage extends BasePage {
 
 
     public void enterOfficeLeaveTime() {
+        scrollToText("Time you leave from office");
         waitForClickabilityOf(officeLeaveTime);
         driver.findElement(officeLeaveTime).click();
 
@@ -69,6 +70,7 @@ public class PersonalDetailsPage extends BasePage {
 
 
     public void enterHomeLeaveTime() {
+        scrollToText("Time you leave from home");
         waitForClickabilityOf(homeLeaveTime);
         driver.findElement(homeLeaveTime).click();
 
@@ -86,6 +88,7 @@ public class PersonalDetailsPage extends BasePage {
     public void enterUserNameAtProfile(String name) {
         waitForVisibilityOf(userNameAtProfile);
         driver.findElement(userNameAtProfile).sendKeys(name);
+        hideKeyboard();
 
     }
 
@@ -102,6 +105,7 @@ public class PersonalDetailsPage extends BasePage {
     public void enterPersonalEmail(String personalEmail) {
         waitForVisibilityOf(personalEmailField);
         driver.findElement(personalEmailField).sendKeys(personalEmail);
+        hideKeyboard();
     }
 
 
@@ -167,7 +171,7 @@ public class PersonalDetailsPage extends BasePage {
 
     public String personalDetailSubmitAtProfile() {
 
-        String savingProfileText = null;
+        String savingProfileText = "";
         try {
             waitForVisibilityOf(personalDetailsSubmitAtProfile);
             driver.findElement(personalDetailsSubmitAtProfile).click();

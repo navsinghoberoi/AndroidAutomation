@@ -14,6 +14,7 @@ public class LandingPage extends BasePage {
 	By gplus_account_button = By.className("android.widget.LinearLayout");
 	By facebook_button = By.className("android.widget.ImageView");
 	By skip_to_login_button = By.id("ob.skip_button");
+	By continueButtonAtDeviceRegisterAlert = By.id("button1");
 
 	public void clickSignIn() {
 		waitForClickabilityOf(signIn_button);
@@ -42,6 +43,12 @@ public class LandingPage extends BasePage {
 		driver.findElement(skip_to_login_button).click();
 	}
 
+
+	public void registeredDeviceAlertAcceptAtSignup()
+	{
+		waitForClickabilityOf(continueButtonAtDeviceRegisterAlert);
+		driver.findElement(continueButtonAtDeviceRegisterAlert).click();
+	}
 
 
 	//        //Perform tap
