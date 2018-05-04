@@ -49,19 +49,25 @@ public class MenuPage extends BasePage {
         driver.findElements(menu_tray).get(5).click();
     }
 
-    public void clickSafetyFeatures() {
+    public void clickNotification()
+    {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(6).click();
     }
 
-    public void clickExploreRoutes() {
+    public void clickSafetyFeatures() {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(7).click();
     }
 
-    public void clickHelp() {
+    public void clickExploreRoutes() {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(8).click();
+    }
+
+    public void clickHelp() {
+        waitForClickabilityOf(menu_tray);
+        driver.findElements(menu_tray).get(9).click();
     }
 
 }
