@@ -9,11 +9,6 @@ public class LoginPanelPage extends B2bSetup {
     private By password = By.id("pwd");
     private By submitLogin = By.id("loginBtn");
 
-    public LoginPanelPage(WebDriver driver) {
-        super();
-        this.driver = driver;
-    }
-
     public void typeUsername(String user_name)
 
     {

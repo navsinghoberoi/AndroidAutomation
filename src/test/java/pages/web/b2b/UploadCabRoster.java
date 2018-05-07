@@ -16,10 +16,6 @@ public class UploadCabRoster extends B2bSetup {
     private By ignorerec = By.xpath(".//*[@id='cabRecommendations']/div[2]");
     private By yestoignore = By.xpath(".//*[@id='ignore-recommendation-modal']/div/div/div[3]/button[2]");
 
-    public UploadCabRoster(WebDriver driver)
-    {
-        this.driver= driver;
-    }
     public void gotoEmployeesPlus()
     {
         WebElement element = driver.findElement(employeesPlus);

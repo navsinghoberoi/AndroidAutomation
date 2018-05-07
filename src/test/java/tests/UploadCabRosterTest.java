@@ -18,7 +18,7 @@ public class UploadCabRosterTest extends B2bSetup{
      //   WebDriver driver = LoginPanelPageTest.driver;
 
 
-        UploadCabRoster upload = new UploadCabRoster(driver);
+        UploadCabRoster upload = new UploadCabRoster();
 
         waitForVisibilityOf(upload.getEmployeesPlus());
 
@@ -29,8 +29,8 @@ public class UploadCabRosterTest extends B2bSetup{
         upload.clickOnAddCabRoster();
         waitForVisibilityOf(upload.getClickOnSelectFile());
         upload.setClickOnSelectFile();
-        waitForVisibilityOf(upload.getUploadRoster());
-        upload.uploadRoster("/Users/admin/Downloads/escort jai (2).xlsx");
+       // waitForVisibilityOf(upload.getUploadRoster());
+        upload.uploadRoster("/Users/admin/Downloads/Phase2_escort.xlsx");
         waitForVisibilityOf(upload.getShowdetails());
         upload.showDetails();
         waitForVisibilityOf(upload.getIgnorerec());
