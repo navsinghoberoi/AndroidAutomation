@@ -1,36 +1,26 @@
 package pages.web.b2b;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPanelPage extends B2bSetup {
 
-    private By username = By.id("user-name");
-    private By password = By.id("pwd");
+    private By userName = By.id("user-name");
+    private By passWord = By.id("pwd");
     private By submitLogin = By.id("loginBtn");
 
     public void typeUsername(String user_name)
 
     {
-        driver.findElement(username).sendKeys(user_name);
+        driver.findElement(userName).sendKeys(user_name);
     }
 
     public void typePassword(String pass) {
-        driver.findElement(password).sendKeys(pass);
+        driver.findElement(passWord).sendKeys(pass);
     }
 
-    public void pressLoginButton() {
+    public void click() {
         driver.findElement(submitLogin).click();
     }
-       /* public void launchBrowser()
-        {
-            System.setProperty("webdriver.chrome.driver", "/Users/admin/Desktop/chrome/chromedriver");
-            driver = new ChromeDriver();
-            BasePage basePage=new BasePage(driver);
-            Dimension d = new Dimension(1424, 768);
-            driver.manage().window().setSize(d);
-            driver.get("https://qa-sso.goplus.in/login?targetUrl=http://qab2bui.goplus.in/home.html");
-        }*/
 
     public WebDriver getDriver() {
         return driver;
@@ -40,20 +30,20 @@ public class LoginPanelPage extends B2bSetup {
         this.driver = driver;
     }
 
-    public By getUsername() {
-        return username;
+    public By getUserName() {
+        return userName;
     }
 
-    public void setUsername(By username) {
-        this.username = username;
+    public void setUserName(By userName) {
+        this.userName = userName;
     }
 
-    public By getPassword() {
-        return password;
+    public By getPassWord() {
+        return passWord;
     }
 
-    public void setPassword(By password) {
-        this.password = password;
+    public void setPassWord(By passWord) {
+        this.passWord = passWord;
     }
 
     public By getSubmitLogin() {

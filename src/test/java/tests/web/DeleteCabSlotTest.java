@@ -1,27 +1,36 @@
 package tests.web;
-
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.web.b2b.B2bSetup;
-import pages.web.b2b.ViewCabTrips;
+import pages.web.b2b.ViewCabTripsPage;
 import tests.LoginPanelPageTest;
+import java.net.MalformedURLException;
 
-public class DeleteCabSlotTest extends B2bSetup {
+    public class DeleteCabSlotTest extends B2bSetup {
+    private LoginPanelPageTest loginPageTest = new LoginPanelPageTest();
 
     @Test
-    public void deleteCabSlotTest()
-    {
-        LoginPanelPageTest loginpagetest = new LoginPanelPageTest();
-        loginpagetest.verifyValidLogin();
+    public void deleteCabSlotTest() throws MalformedURLException, InterruptedException {
+        loginPageTest.verifyValidLogin();
+        ViewCabTripsPage deleteTrip = new ViewCabTripsPage();
+        waitForVisibilityOf(deleteTrip.getEmployeesPlus());
+        deleteTrip.clickOnEmployeePlus();
 
-        ViewCabTrips deletetrip = new ViewCabTrips();
-        waitForVisibilityOf(deletetrip.getEmployeesPlus());
-        deletetrip.clickOnEmployeePlus();
-        waitForVisibilityOf(deletetrip.getViewCabTrips());
-        deletetrip.clickOnViewCabTrips();
-        waitForVisibilityOf(deletetrip.getDeleteTrip());
-        deletetrip.deleteTrip();
-        waitForVisibilityOf(deletetrip.getDeleteWarning());
-        deletetrip.deleteWarningAccepted();
+        waitForVisibilityOf(deleteTrip.getViewCabTrips());
+        deleteTrip.clickOnViewCabTrips();
+
+        waitForVisibilityOf(deleteTrip.getViewSlotTime());
+        String slotTime = deleteTrip.getSlotTime();
+
+        waitForVisibilityOf(deleteTrip.getDeleteTrip());
+        deleteTrip.deleteTrip();
+
+        waitForVisibilityOf(deleteTrip.getDeleteWarning());
+        deleteTrip.deleteWarningAccepted();
+
+        Thread.sleep(2000);
+        waitForVisibilityOf(deleteTrip.getViewSlotTime());
+        Assert.assertNotEquals(slotTime,deleteTrip.getSlotTime());
 
     }
 }

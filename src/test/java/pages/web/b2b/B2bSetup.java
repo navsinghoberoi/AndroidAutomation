@@ -23,6 +23,6 @@ public class B2bSetup {
      {
             WebDriverWait wait = new WebDriverWait(driver, 30);
            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-       }
+     }
 
 }
