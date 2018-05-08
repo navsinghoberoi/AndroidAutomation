@@ -62,27 +62,16 @@ public class BookingFromSubscriptionTest extends Setup {
     @Test
     public void verifyCreateBookingFromSubscription() throws Exception {
         commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
-        commons.buySubscriptionViaShuttlCredits("homeAddress","officeAddress",0,0,0);
+        commons.buySubscriptionViaShuttlCredits("homeAddress", "officeAddress", 0, 0, 0);
         slotsPage.clickSlot(0);
         slotsPage.clickCtaOnSlotsPage();
-        String actualText =   bookingCompletePage.getBookingConfirmPopupTitle();
-        System.out.println("Text after creating a booking = "+actualText);
+        String actualText = bookingCompletePage.getBookingConfirmPopupTitle();
+        System.out.println("Text after creating a booking = " + actualText);
         bookingCompletePage.clickBookingConfirmPopupCTA();
-        Assert.assertEquals(actualText,"Ride Confirmed");
+        Assert.assertEquals(actualText, "Ride Confirmed");
         homepage.clickMenu();
-
-        commons.refundSubscription(0,0,1,1,0);
-
-        /*homepage.openMyPass(0); // User will be redirected to Pass details page directly (from version 36000+)
-        passDetailsPage.getRidesValidityData(0, 1);
-        passDetailsPage.deletePass(1);
-        refundPassPage.clickDiscontinuePassButton(0);
-        String refundPassText = refundPassPage.clickPassRefundSuccessfulCTA();
-        System.out.println(refundPassText);*/
-
+        commons.refundSubscription(0, 0, 1, 1, 0);
     }
-
-
 
 
 }
