@@ -20,6 +20,15 @@ public class Commons extends BasePage {
     private HomeAddressPage homeAddressPage = new HomeAddressPage(driver);
     private OfficeAddressPage officeAddressPage = new OfficeAddressPage(driver);
     private PersonalDetailsPage personalDetails = new PersonalDetailsPage(driver);
+    private SelectLocationPage selectLocationPage = new SelectLocationPage(driver);
+    private SlotsPage slotsPage = new SlotsPage(driver);
+    private ExplorePassesPage explorePassesPage = new ExplorePassesPage(driver);
+    private ChooseBenefitsPage chooseBenefitsPage = new ChooseBenefitsPage(driver);
+    private ReviewRoutePage reviewRoutePage = new ReviewRoutePage(driver);
+    private PassCompletePaymentPage passCompletePaymentPage = new PassCompletePaymentPage(driver);
+    private PassDetailsPage passDetailsPage = new PassDetailsPage(driver);
+    private RefundPassPage refundPassPage = new RefundPassPage(driver);
+
 
     public void login() throws InterruptedException {
         Thread.sleep(5000);
@@ -93,6 +102,39 @@ public class Commons extends BasePage {
     {
         homePage.closeSearchPopup();
     }
+
+
+    public void buySubscriptionViaShuttlCredits(String homeAddress, String officeAddress, int slotIndex, int optionIndex,int menuItemIndex) throws Exception
+    {
+        clickSearchBar();
+        homePage.clickFromLocation();
+        selectLocationPage.selectSearchLocation(getValueFromPPFile(homeAddress), 0);
+        homePage.clickToLocation();
+        selectLocationPage.selectSearchLocation(getValueFromPPFile(officeAddress), 0);
+        homePage.clickFindMyShuttl();
+        slotsPage.selectOptionFromContinueCTA(slotIndex, optionIndex);
+        explorePassesPage.openPass(menuItemIndex);
+        chooseBenefitsPage.submitPassBenefitsDetails();
+        reviewRoutePage.submitReviewRouteDetails();
+        passCompletePaymentPage.getPassCompletepageInfo();
+        passCompletePaymentPage.clickPayNowButton();
+        passCompletePaymentPage.clickPassPurchaseSuccessfulCTA();
+    }
+
+    public void refundSubscription(int menuItemIndex,int ridesIndex,int validityIndex, int reasonForPassDelete,int refundPassValueIndex)
+    {
+        homePage.openMyPass(menuItemIndex); // User will be redirected to Pass details page directly (from version 36000+)
+        passDetailsPage.getRidesValidityData(ridesIndex, validityIndex);
+        passDetailsPage.deletePass(reasonForPassDelete);
+        refundPassPage.clickDiscontinuePassButton(refundPassValueIndex);
+        String refundPassText = refundPassPage.clickPassRefundSuccessfulCTA();
+        System.out.println(refundPassText);
+    }
+
+
+
+
+
 
 
 
