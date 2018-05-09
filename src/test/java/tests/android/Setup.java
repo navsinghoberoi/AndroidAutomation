@@ -46,7 +46,7 @@ public class Setup {
         capabilities.setCapability("deviceName","Android");
         capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability("platformName","Android");
-      //  capabilities.setCapability("platformVersion","7.0");
+        capabilities.setCapability("platformVersion","8.0");
         capabilities.setCapability("noReset", noreset );
         capabilities.setCapability("fullReset", false);
         capabilities.setCapability("launchApp", getValueFromPPFile("androidAppActivity"));

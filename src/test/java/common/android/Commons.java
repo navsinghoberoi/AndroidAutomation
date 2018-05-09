@@ -1,11 +1,18 @@
 package common.android;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.LineIterator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.android.*;
-import pages.android.*;
-import tests.android.Setup;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 
 public class Commons extends BasePage {
 
@@ -34,7 +41,7 @@ public class Commons extends BasePage {
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         //Thread.sleep(2000);
-        loginPage.enterMobileNumber("9555814581");
+        loginPage.enterMobileNumber("5556667033");
         //loginPage.clickGetOtp();
         //loginPage.enterOtp("1111");
         loginPage.clickVerify();
@@ -50,31 +57,43 @@ public class Commons extends BasePage {
 
 
     /* This method lets user login by specifying phonenumber and OTP*/
-    public void enterUserPhoneNumberOTP(String phoneNumber, String otp) throws Exception {
-        String userPhoneNumber = getValueFromPPFile(phoneNumber);
-        String userOTP = getValueFromPPFile(otp);
+    public void enterUserPhoneNumberOTP(String phoneNumberKey, String otpKey) throws Exception {
+        String userPhoneNumber = getValueFromPPFile(phoneNumberKey);
+        String userOTP = getValueFromPPFile(otpKey);
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         loginPage.enterMobileNumber(userPhoneNumber);
         loginPage.clickVerify();
-        loginPage.continueButtonClick();
+
+        /*
+        If device is already registered then alert comes during signup with below text .
+        "Our welcome offer is not valid on this device as it has already been registered from a different number."
+        If Device is new then no alert will come . Therefore no need to throw an exception .
+         */
+
+        try {
+            landingPage.registeredDeviceAlertAcceptAtSignup();
+        } catch (Exception e) {
+        }
+
         otpPage.enterOtp(userOTP);
 
-    }
-
-
-    public void enterPersonalDetailsNewUser() throws Exception {
-        personalDetails.enterUserName(getValueFromPPFile("userName") + " " + System.currentTimeMillis());
-        personalDetails.selectGender(getValueFromPPFile("gender"));
-        personalDetails.personalDetailSubmit();
 
     }
 
-    public void enterHomeAddressDetailsNewUser() throws Exception {
+
+    public void enterUserDetails(String userNameKey, String genderKey) throws Exception {
+        personalDetails.enterUserNameAtSignUp(getValueFromPPFile(userNameKey));
+        personalDetails.selectGender(getValueFromPPFile(genderKey));
+        personalDetails.personalDetailSubmitAtSignup();
+
+    }
+
+    public void enterHomeAddressDetailsNewUser(String homeAddressKey) throws Exception {
         String homeText = homeAddressPage.whereDoYouLiveText();
         homeAddressPage.selectHomeLocationClick();
         homeAddressPage.searchBarClick();
-        homeAddressPage.enterHomeAddress(getValueFromPPFile("homeAddress"));
+        homeAddressPage.enterHomeAddress(getValueFromPPFile(homeAddressKey));
         homeAddressPage.selectHomeAddress();   // Adding homeAddressPage by searching address
         homeAddressPage.useThisPlaceAddressText();
         homeAddressPage.selectLocationClick();
@@ -93,13 +112,24 @@ public class Commons extends BasePage {
     }
 
 
-    public void clickSearchBar()
-    {
-       homePage.clickSearchBar();
+    public void signUp(String userPhoneNumberKey, String otpKey,
+                       String genderKey, String userNameKey, String homeAddressKey) throws Exception {
+
+        enterUserPhoneNumberOTP(userPhoneNumberKey, otpKey);
+        enterUserDetails(userNameKey, genderKey);
+        enterHomeAddressDetailsNewUser(homeAddressKey);
+        enterOfficeAddressDetailsNewUser();
+        System.out.println("User has signed up successfully");
+
     }
 
-    public void closeSearchPopup()
-    {
+
+
+    public void clickSearchBar() {
+        homePage.clickSearchBar();
+    }
+
+    public void closeSearchPopup() {
         homePage.closeSearchPopup();
     }
 
@@ -133,11 +163,40 @@ public class Commons extends BasePage {
 
 
 
+    public void clearTextField(By fieldLocator) {
+        driver.findElement(fieldLocator).clear();
+    }
 
 
 
+    // ------------------------     CREATE TEXT FILE      -------------------------
 
 
 
+    public void writeTextFile(String filePath , String lineText) throws IOException {
+        File f = new File(filePath);
+        FileUtils.write(f,lineText,true);
+    }
+
+
+
+    public List<String> readTextFileFromEnd(String filePath , int startLine , int endLine)
+    {
+
+        List<String> lines = null;
+        try {
+
+            LineIterator it = IOUtils.lineIterator(
+                    new BufferedReader(new FileReader(filePath)));
+
+            for (int i = startLine ; i < endLine ; i++)
+                lines.add(it.next());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return lines ;
+    }
 
 }
