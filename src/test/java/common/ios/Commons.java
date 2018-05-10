@@ -1,8 +1,8 @@
-package commons.iOS;
+package common.ios;
 
 import org.openqa.selenium.WebDriver;
-import pages.iOS.BasePage;
-import pages.iOS.SignUpLoginPage;
+import pages.ios.BasePage;
+import pages.ios.SignUpLoginPage;
 
 public class Commons extends BasePage {
 
@@ -34,8 +34,9 @@ public class Commons extends BasePage {
     }
 
 
+    public static class Constants
+    {
 
-
-
-
+        static final String dataPropertiesFilePath = "src/Resources/data.properties";
+    }
 }

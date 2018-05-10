@@ -1,12 +1,13 @@
-package pages.iOS;
+package pages.ios;
 
-import commons.iOS.SetUp;
+import common.ios.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import tests.ios.Setup;
 
-public class BasePage extends SetUp {
+public class BasePage extends Setup {
 
 
     By allownotifications = By.xpath("//XCUIElementTypeButton[@name=\"Allow\"]\n");

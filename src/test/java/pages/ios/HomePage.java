@@ -1,4 +1,4 @@
-package pages.iOS;
+package pages.ios;
 
 public class HomePage
 {

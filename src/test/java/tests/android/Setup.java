@@ -62,7 +62,7 @@ public class Setup {
         File app = new File(appDir, getValueFromPPFile("iosFileName"));
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("platformName", "ios");
         capabilities.setCapability("platformVersion", "8.2");
         capabilities.setCapability("deviceName", "iPhone 5s");
         capabilities.setCapability("app", app.getAbsolutePath());
