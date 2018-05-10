@@ -14,6 +14,7 @@ public class HelpPage extends BasePage{
     //inside FAQS
     By what_is_subscription=By.xpath("//android.widget.LinearLayout[@index='0']");
     By what_is_auto_booking_sub=By.xpath("//android.widget.LinearLayout[@index='1']");
+    By text_what_is_auto_booking_sub=By.id(app_package_name+"fa.answer");
     By what_is_pay_per_ride=By.xpath("//android.widget.LinearLayout[@index='2']");
     By one_way_two_way=By.xpath("//android.widget.LinearLayout[@index='3']");
     By eat_inside_shuttl=By.xpath("//android.widget.LinearLayout[@index='4']");
@@ -23,10 +24,15 @@ public class HelpPage extends BasePage{
     By call_us_button=By.id(app_package_name+"faq.need_help");
     //------------
     By call_customer_care_NCR=By.xpath("//android.widget.LinearLayout[@index='1']");
+    By number_NCR=By.className("android.widget.EditText");
     By call_customer_care_kolkata=By.xpath("//android.widget.LinearLayout[@index='2']");
+    By number_kolkata=By.className("android.widget.EditText");
     By email_us=By.xpath("//android.widget.LinearLayout[@index='3']");
+    By gmail_to=By.className("android.widget.MultiAutoCompleteTextView");
     By we_are_hiring=By.xpath("//android.widget.LinearLayout[@index='4']");
+    By open_positions=By.xpath("//android.view.View[@index='0']");
     By terms_and_conditions=By.id(app_package_name+"terms_conditions");
+    By title_terms_and_conditions=By.className("android.widget.TextView");
 
 
     public void clickFAQS()
@@ -121,5 +127,41 @@ public class HelpPage extends BasePage{
     {
         waitForClickabilityOf(call_us_button);
         driver.findElement(call_us_button).click();
+    }
+
+    public String getNumberOfNCR()
+    {
+        waitForVisibilityOf(number_NCR);
+        return driver.findElement(number_NCR).getText();
+    }
+
+    public String getNumberOfKolkata()
+    {
+        waitForVisibilityOf(number_kolkata);
+        return driver.findElement(number_kolkata).getText();
+    }
+
+    public String getToOfEmailUs()
+    {
+        waitForVisibilityOf(gmail_to);
+        return driver.findElement(gmail_to).getText();
+    }
+
+    public boolean openPositions()
+    {
+        waitForVisibilityOf(open_positions);
+        return driver.findElement(open_positions).isDisplayed();
+    }
+
+    public String titleDisplayedOfTermsAndConditions()
+    {
+        waitForVisibilityOf(title_terms_and_conditions);
+        return driver.findElement(title_terms_and_conditions).getText();
+    }
+
+    public int textOfWhatIsAutoBookingSub()
+    {
+        String text=driver.findElement(text_what_is_auto_booking_sub).getText();
+        return text.length();
     }
 }

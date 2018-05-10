@@ -23,7 +23,7 @@ public class CouponsPage extends BasePage {
     By fromToIcon = By.id(app_package_name + "from_to");
     By dismiss_button = By.xpath("//android.widget.Button[@text='DISMISS']");
     By wrong_coupon_popup=By.id(app_package_name+"message");
-    By terms_and_conditions=By.xpath("//android.widget.TextView[@text='Terms and Conditions' and @index='1']");
+    By title_terms_and_conditions=By.className("android.widget.TextView");
 
 
 
@@ -114,10 +114,10 @@ public class CouponsPage extends BasePage {
 
     }
 
-    public boolean checkTermsOfServiceOpen()
+    public String getTermsOfServiceTitle()
     {
-        waitForVisibilityOf(terms_and_conditions);
-        return driver.findElement(terms_and_conditions).isDisplayed();
+        waitForVisibilityOf(title_terms_and_conditions);
+        return driver.findElement(title_terms_and_conditions).getText();
 
     }
 

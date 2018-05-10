@@ -2,6 +2,7 @@ package tests.android;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.android.BasePage;
@@ -43,11 +44,7 @@ public class CouponsPageTest extends Setup {
         AndroidDriver androidDriver = (AndroidDriver) driver;
         androidDriver.hideKeyboard();
         couponsPage.clickSaveButton();
-
-        if (couponsPage.checkAddedCouponMessage()) {
-            logger.info("Added coupon message displayed");
-        } else
-            logger.info("Added coupon message Not displayed");
+        Assert.assertEquals(couponsPage.checkAddedCouponMessage(),true);
         String text = couponsPage.getAddCouponConfirmationPopupText();
         logger.info(text);
         driver.navigate().back();
@@ -62,21 +59,18 @@ public class CouponsPageTest extends Setup {
         couponsPage.clickOnSavedCoupon();
         couponsPage.clickDismissButton();
 
-
     }
 
     @Test(priority = 3)
 
     public void invalidCouponTest() throws Exception {
-        logger.info("ashu");
         couponsPage.clickEnterCouponCodeArea();
         couponsPage.enterCouponCode("random");
         AndroidDriver androidDriver = (AndroidDriver) driver;
         androidDriver.hideKeyboard();
         couponsPage.clickSaveButton();
-        logger.info(couponsPage.getWrongCouponPopup());
+        Assert.assertEquals(couponsPage.getWrongCouponPopup(),"SORRY CAN'T PROCESS. TO KNOW MORE GOTO HTTP://COMPLIANCE.SHUTTL.COM/");
         logger.info(couponsPage.getFindMyEnterCouponText());
-
 
     }
 
@@ -85,7 +79,7 @@ public class CouponsPageTest extends Setup {
     public void termsOfServiceTest() {
         couponsPage.clickEnterCouponCodeArea();
         couponsPage.clickTermOfService();
-        //logger.info(couponsPage.checkTermsOfServiceOpen());
+        Assert.assertEquals(couponsPage.getTermsOfServiceTitle(),"Terms and Conditions");
 
     }
 
