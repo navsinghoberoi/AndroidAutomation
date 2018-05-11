@@ -1,21 +1,22 @@
-package tests;
+package tests.web;
 
 import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.web.b2b.*;
+import tests.web.LoginPanelPageTest;
 
 import java.net.MalformedURLException;
 
 public class UploadCabRosterPageTest extends B2bSetup {
 
-    private LoginPanelPageTest loginpagetest = new LoginPanelPageTest();
+    private LoginPanelPageTest loginPageTest = new LoginPanelPageTest();
 
     @Test
     public void uploadRoster() throws InterruptedException, MalformedURLException
 
     {
-        loginpagetest.verifyValidLogin();
+        loginPageTest.verifyValidLogin();
 
         UploadCabRosterPage upload = new UploadCabRosterPage();
 

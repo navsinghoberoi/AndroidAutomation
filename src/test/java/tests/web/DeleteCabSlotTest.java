@@ -3,7 +3,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.web.b2b.B2bSetup;
 import pages.web.b2b.ViewCabTripsPage;
-import tests.LoginPanelPageTest;
+
 import java.net.MalformedURLException;
 
     public class DeleteCabSlotTest extends B2bSetup {

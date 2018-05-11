@@ -1,4 +1,4 @@
-package tests;
+package tests.web;
 import org.testng.annotations.Test;
 import pages.web.b2b.B2bSetup;
 import pages.web.b2b.LoginPanelPage;
