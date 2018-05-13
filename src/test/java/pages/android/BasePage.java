@@ -39,7 +39,7 @@ public class BasePage extends Setup {
     protected void scrollToText(String targetScrollText) {
 
         androidDriver = (AndroidDriver) driver;
-        androidDriver.scrollTo(targetScrollText);
+        //androidDriver.scrollTo(targetScrollText);
     }
 
 
@@ -109,9 +109,9 @@ public class BasePage extends Setup {
         String text = we.getText();
         System.out.println(text);
         int maxChars = text.length();
-        for (int i = maxChars; i >= 0; i--) {
-            ((AndroidDriver<WebElement>) driver).sendKeyEvent(67);
-        }
+//        for (int i = maxChars; i >= 0; i--) {
+//            ((AndroidDriver<WebElement>) driver).sendKeyEvent(67);
+//        }
     }
 
 

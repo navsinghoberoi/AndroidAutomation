@@ -1,8 +1,7 @@
 package pages.ios;
 
-import common.ios.*;
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import tests.ios.Setup;
@@ -13,9 +12,11 @@ public class BasePage extends Setup {
     By allownotifications = By.xpath("//XCUIElementTypeButton[@name=\"Allow\"]\n");
     By dontAllownotifications = By.xpath("//XCUIElementTypeButton[@name=\"Don’t Allow\"]\n");
 
-    public WebDriver driver;
+    String keyBoardReturnButton = "Return";
 
-    public BasePage(WebDriver driver)
+    public IOSDriver driver;
+
+    public BasePage(IOSDriver driver)
     {
         this.driver = driver;
     }
@@ -41,5 +42,10 @@ public class BasePage extends Setup {
     public void dontAllowAppNotifications() {
         waitForVisibilityOf(dontAllownotifications);
         driver.findElement(dontAllownotifications).click();
+    }
+
+
+    public void hideKeyboard() {
+        driver.findElementByAccessibilityId(keyBoardReturnButton).click();
     }
 }

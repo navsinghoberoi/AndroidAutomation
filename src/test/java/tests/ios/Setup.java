@@ -29,6 +29,8 @@ public class Setup {
         }
 
 
+        // noResert = True : Currrent Session
+        // noResert = False : New Session
         public void createIosSession(boolean noReset) {
 
 

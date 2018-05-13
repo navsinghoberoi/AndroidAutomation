@@ -1,93 +1,121 @@
 package pages.ios;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import io.appium.java_client.ios.IOSDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SignUpLoginPage extends BasePage {
 
-    By skipToLogin = By.xpath("//XCUIElementTypeButton[@name=\"SKIP TO LOGIN \"]\n");
-    By mobileNumberAtSignUpLogin = By.xpath("//XCUIElementTypeApplication[@name=\"Shuttl QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField/XCUIElementTypeTextField\n");
-    By verifyButton = By.xpath("//XCUIElementTypeButton[@name=\"VERIFY\"]\n");
-    By continueAtAlert = By.xpath("//XCUIElementTypeButton[@name=\"Continue\"]\n");
-    By otp = By.xpath("//XCUIElementTypeApplication[@name=\"Shuttl QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther\n");
-    By userNameAtSignUp = By.xpath("//XCUIElementTypeApplication[@name=\"Shuttl QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeTextField/XCUIElementTypeTextField\n");
-    By femaleGenderAtSignUp = By.xpath("//XCUIElementTypeImage[@name=\"gender_inActive0\"]\n");
-    By maleGenderAtSignUp = By.xpath("//XCUIElementTypeImage[@name=\"gender_inActive1\"]\n");
-    By otherGenderAtSignUp = By.xpath("//XCUIElementTypeImage[@name=\"gender_inActive2\"]\n");
-    By haveAReferralCodeAtSignUp = By.xpath("//XCUIElementTypeButton[@name=\"HAVE A REFERRAL CODE?\"]\n");
-    By enterReferralCodeField = By.xpath("//XCUIElementTypeApplication[@name=\"Shuttl QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField/XCUIElementTypeTextField\n");
-    By referralCodeApplyButton = By.xpath("//XCUIElementTypeButton[@name=\"APPLY\"]\n");
-    By continueArrow = By.xpath("//XCUIElementTypeButton[@name=\"continueArrow\"]\n");
-    By selectHomeAddressAtSignUp = By.xpath("//XCUIElementTypeApplication[@name=\"Shuttl QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeTextField/XCUIElementTypeTextField\n");
-    By searchIconForAddress = By.xpath("//XCUIElementTypeButton[@name=\"Search\"]\n");
-    By searchFieldForAddress = By.xpath("//XCUIElementTypeSearchField[@name=\"Search\"])[2]");
-    By firstsearchResultForAddress = By.xpath("//XCUIElementTypeApplication[@name=\"Shuttl QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]\n");
-    By finalsearchResultForAddress = By.xpath("//XCUIElementTypeApplication[@name=\"Shuttl QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTable/XCUIElementTypeCell[1]\n");
-    By flatNumber = By.xpath("//XCUIElementTypeApplication[@name=\"Shuttl QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeTextField/XCUIElementTypeTextField\n");
-    By selectOfficeAddressAtSignUp = By.xpath("//XCUIElementTypeApplication[@name=\"Shuttl QA\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeTextField/XCUIElementTypeTextField\n");
-    By finalSubmitAllDetails = By.xpath("//XCUIElementTypeButton[@name=\"DONE\"]\n");
+
+    // ----------    USING STRING CLASS   ----------
 
 
+    // ByIosNsPredicate
+    String userNameAtSignUp = "type == \"XCUIElementTypeTextField\" AND value == \"Enter your name\"";
+    String enterReferralCodeField = "type == \"XCUIElementTypeTextField\" AND value == \"Referral/Coupon Code\"";
+    String homeAddressAtSignup = "type == \"XCUIElementTypeTextField\" AND value == \"Select Home Location\"";
+    String searchResultsForAddress = "type == \"XCUIElementTypeCell\"";
+    String flatNumber = "type == \"XCUIElementTypeTextField\" AND value == \"Flat / House No.\"";
+    String officeAddressAtSignup = "type == \"XCUIElementTypeTextField\" AND value == \"Select Office Location\"";
 
-    public SignUpLoginPage(WebDriver driver) {
+
+    // ByXpath
+    String otp = "//XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther";
+    String searchFieldForAddress = "(//XCUIElementTypeSearchField[@name=\"Search\"])[1]";
+
+    // ByAccessibilityId
+    String skipToLogin = "SKIP TO LOGIN   ";
+    String verifyButtonClick = "VERIFY";
+    String continueAtAlert = "Continue";
+    String femaleGenderAtSignUp = "gender_inActive0";
+    String maleGenderAtSignUp = "gender_inActive1";
+    String otherGenderAtSignUp = "gender_inActive2";
+    String haveAReferralCodeAtSignUp = "HAVE A REFERRAL CODE?";
+    String referralCodeApplyButton = "APPLY";
+    String continueArrow = "continueArrow";
+    String searchIcon = "Search";
+    String finalSubmitAllDetails = "DONE";
+
+
+    // ByClassName
+    String mobileNumberAtSignupLogin = "XCUIElementTypeTextField";
+
+
+    public SignUpLoginPage(IOSDriver driver) {
+
         super(driver);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
+
 
     // --------------------------    INDIVIDUAL FIELD FUNCTIONS    -------------------------------
 
     public void clickSkipToLogin() {
-        waitForClickabilityOf(skipToLogin);
-        driver.findElement(skipToLogin).click();
+        WebElement skipToLoginButton = driver.findElementByAccessibilityId(skipToLogin);
+        //waitForClickabilityOf();
+        skipToLoginButton.click();
     }
 
 
     public void enterMobileNumber(String userPhoneNumber) throws Exception {
-        waitForVisibilityOf(mobileNumberAtSignUpLogin);
-        driver.findElement(mobileNumberAtSignUpLogin).sendKeys(getValueFromPPFile(userPhoneNumber));
+        WebElement mobileNumber = driver.findElementByClassName(mobileNumberAtSignupLogin);
+        //waitForVisibilityOf();
+        mobileNumber.sendKeys(getValueFromPPFile(userPhoneNumber));
     }
 
 
     public void clickVerify() {
-        waitForClickabilityOf(verifyButton);
-        driver.findElement(verifyButton).click();
+        WebElement verifyButton = driver.findElementByAccessibilityId(verifyButtonClick);
+        //waitForClickabilityOf();
+        verifyButton.click();
+        acceptContinuePopup();
     }
 
 
-    public void acceptContinuepopup() {
+    public void acceptContinuePopup() {
 
         // If Device is already registered with us then System throws a popup  .
         try {
-            waitForClickabilityOf(continueAtAlert);
-            driver.findElement(continueAtAlert).click();
+            WebElement continueAlert = driver.findElementByAccessibilityId(continueAtAlert);
+            //waitForClickabilityOf();
+            continueAlert.click();
         } catch (Exception e) {
         }
 
     }
 
 
-    public void enterOtp(String userOTP) {
-        waitForVisibilityOf(otp);
-        driver.findElement(otp).sendKeys(userOTP);
+    public void enterOtp(String userOTP) throws Exception {
+        WebElement otpField = driver.findElementByXPath(otp);
+        //waitForVisibilityOf();
+        otpField.sendKeys(getValueFromPPFile("OTP"));
     }
 
 
     public void enterUserNameAtSignUp(String userNameKey) throws Exception {
-        waitForVisibilityOf(userNameAtSignUp);
-        driver.findElement(userNameAtSignUp).sendKeys(getValueFromPPFile(userNameKey));
+        WebElement userName = driver.findElementByIosNsPredicate(userNameAtSignUp);
+        //waitForVisibilityOf();
+        userName.sendKeys(getValueFromPPFile(userNameKey));
+        hideKeyboard();
     }
 
 
-    public void selectGender(String genderKey) {
+    public void selectGender(String genderKey) throws Exception {
 
-        if (genderKey.equalsIgnoreCase("F")) {
-            waitForVisibilityOf(femaleGenderAtSignUp);
-            driver.findElement(femaleGenderAtSignUp).click();
-        } else if (genderKey.equalsIgnoreCase("M")) {
-            waitForVisibilityOf(maleGenderAtSignUp);
-            driver.findElement(maleGenderAtSignUp).click();
-        } else if (genderKey.equalsIgnoreCase("O")) {
-            waitForVisibilityOf(otherGenderAtSignUp);
-            driver.findElement(otherGenderAtSignUp).click();
+        if (getValueFromPPFile(genderKey).equalsIgnoreCase("F")) {
+            WebElement gender = driver.findElementByAccessibilityId(femaleGenderAtSignUp);
+            //waitForVisibilityOf(gender);
+            gender.click();
+        } else if (getValueFromPPFile(genderKey).equalsIgnoreCase("M")) {
+            WebElement gender = driver.findElementByAccessibilityId(maleGenderAtSignUp);
+            //waitForVisibilityOf(gender);
+            gender.click();
+        } else if (getValueFromPPFile(genderKey).equalsIgnoreCase("O")) {
+            WebElement gender = driver.findElementByAccessibilityId(otherGenderAtSignUp);
+            //waitForVisibilityOf(gender);
+            gender.click();
         } else
             System.out.println("Invalid Gender Key");
 
@@ -96,88 +124,122 @@ public class SignUpLoginPage extends BasePage {
 
 
     public void enterReferralCode(String referralCode) throws Exception {
-        if (!referralCode.equalsIgnoreCase("")) {
-            waitForClickabilityOf(haveAReferralCodeAtSignUp);
-            driver.findElement(haveAReferralCodeAtSignUp).click();
+        if (!getValueFromPPFile(referralCode).equalsIgnoreCase("")) {
+            WebElement haveReferCode = driver.findElementByAccessibilityId(haveAReferralCodeAtSignUp);
+            //waitForClickabilityOf(haveReferCode);
+            haveReferCode.click();
 
-            waitForVisibilityOf(enterReferralCodeField);
-            driver.findElement(enterReferralCodeField).sendKeys(getValueFromPPFile(referralCode));
+            WebElement referCodeTextField = driver.findElementByAccessibilityId(enterReferralCodeField);
+            //waitForVisibilityOf(referCodeTextField);
+            referCodeTextField.sendKeys(getValueFromPPFile(referralCode));
+            hideKeyboard();
 
-            waitForVisibilityOf(referralCodeApplyButton);
-            driver.findElement(referralCodeApplyButton).click();
-        }
+            WebElement referCodeApply = driver.findElementByAccessibilityId(referralCodeApplyButton);
+            //waitForVisibilityOf(referCodeApply);
+            referCodeApply.click();
+        } else
+            System.out.println("No Referral Code For This Signup");
 
     }
 
 
     public void continueToNextStep() {
-        waitForClickabilityOf(continueArrow);
-        driver.findElement(continueArrow).click();
+        WebElement continueButton = driver.findElementByAccessibilityId(continueArrow);
+        //waitForClickabilityOf(continueButton);
+        continueButton.click();
     }
 
 
     public void clickToEnterHomeAddress() {
-        waitForClickabilityOf(selectHomeAddressAtSignUp);
-        driver.findElement(selectHomeAddressAtSignUp).click();
+        WebElement homeAddressTextField = driver.findElementByIosNsPredicate(homeAddressAtSignup);
+        //waitForClickabilityOf(homeAddressTextField);
+        homeAddressTextField.click();
+        try {
+            allowAppNotifications();
+        } catch (Exception e) {
+        }
 
     }
 
 
     public void searchAddress(String addressKey) throws Exception {
-        waitForVisibilityOf(searchIconForAddress);
-        driver.findElement(searchIconForAddress).click();
+        WebElement searchIconAtLeft = driver.findElementByAccessibilityId(searchIcon);
+        //waitForVisibilityOf(search);
+        searchIconAtLeft.click();
 
-        waitForVisibilityOf(searchFieldForAddress);
-        driver.findElement(searchFieldForAddress).sendKeys(getValueFromPPFile(addressKey));
 
-        waitForVisibilityOf(firstsearchResultForAddress);
-        driver.findElement(firstsearchResultForAddress).click();
+        WebElement searchTextField = driver.findElementByAccessibilityId(searchIcon);
+        searchTextField.click();
+
+
+        searchTextField = driver.findElementByXPath(searchFieldForAddress);
+        //waitForVisibilityOf(search);
+        searchTextField.sendKeys(getValueFromPPFile(addressKey));
+
+
+        List<WebElement> firstSearchResult = driver.findElementsByIosNsPredicate(searchResultsForAddress);
+        //waitForVisibilityOf(search);
+        // Choose the first location
+        firstSearchResult.get(0).click();
 
     }
 
 
     public void chooseFinalPlaceAddress() {
-        waitForVisibilityOf(finalsearchResultForAddress);
-        driver.findElement(finalsearchResultForAddress).click();
+        List<WebElement> firstSearchResult = driver.findElementsByIosNsPredicate(searchResultsForAddress);
+        //waitForVisibilityOf(search);
+        // Choose the first location
+        firstSearchResult.get(0).click();
     }
 
 
     public void enterFlatNumber(String flatNumberKey) throws Exception {
-        waitForVisibilityOf(flatNumber);
-        driver.findElement(flatNumber).sendKeys(getValueFromPPFile(flatNumberKey));
+        WebElement flatNumberAtSignup = driver.findElementByIosNsPredicate(flatNumber);
+        //waitForVisibilityOf(flatNumberAtSignup);
+        flatNumberAtSignup.sendKeys(getValueFromPPFile(flatNumberKey));
+        hideKeyboard();
     }
 
 
-    public void clickToEnterofficeAddress() {
-        waitForClickabilityOf(selectOfficeAddressAtSignUp);
-        driver.findElement(selectOfficeAddressAtSignUp).click();
+    public void clickToEnterOfficeAddress() {
+        WebElement officeAddress = driver.findElementByIosNsPredicate(officeAddressAtSignup);
+        //waitForClickabilityOf(officeAddress);
+        officeAddress.click();
 
     }
 
 
     public void submitAllDetails() {
-        waitForVisibilityOf(finalSubmitAllDetails);
-        driver.findElement(finalSubmitAllDetails).click();
+        WebElement submitDetails = driver.findElementByAccessibilityId(finalSubmitAllDetails);
+        //waitForVisibilityOf(submitDetails);
+        submitDetails.click();
+        try {
+            allowAppNotifications();
+            System.out.println("Clicked");
+        } catch (Exception e) {
+        }
+        
+
     }
 
 
     // --------------------------    INTEGRATED FUNCTIONS USING INDIVIDUAL FIELD FUNCTIONS   -------------------------------
 
 
-    /* This method lets user login by specifying phonenumber and OTP*/
+    /* This method lets user login String specifying phonenumber and OTP*/
     public void enterUserPhoneNumberOTP(String phoneNumberKey, String otpKey) throws Exception {
         clickSkipToLogin();
-        enterMobileNumber(getValueFromPPFile(phoneNumberKey));
+        enterMobileNumber(phoneNumberKey);
         clickVerify();
-        acceptContinuepopup();
+        acceptContinuePopup();
         enterOtp(getValueFromPPFile(otpKey));
 
 
     }
 
     public void enterUserDetails(String userNameKey, String genderKey, String referralCodeKey) throws Exception {
-        enterUserNameAtSignUp(getValueFromPPFile(userNameKey));
-        selectGender(getValueFromPPFile(genderKey));
+        enterUserNameAtSignUp(userNameKey);
+        selectGender(genderKey);
         enterReferralCode(referralCodeKey);
         continueToNextStep();
 
@@ -186,16 +248,16 @@ public class SignUpLoginPage extends BasePage {
     public void enterHomeAddressDetailsNewUser(String homeAddressKey, String flatNumber) throws Exception {
         clickToEnterHomeAddress();
         searchAddress(homeAddressKey);
-        // Adding homeAddressPage by searching address
+        // Adding homeAddressPage String searching address
         chooseFinalPlaceAddress();
         enterFlatNumber(flatNumber);
         continueToNextStep();
     }
 
     public void enterOfficeAddressDetailsNewUser(String officeAddressKey) throws Exception {
-        clickToEnterofficeAddress();
+        clickToEnterOfficeAddress();
         searchAddress(officeAddressKey);
-        chooseFinalPlaceAddress();  // Adding officeAddressPage by using Select this location feature
+        chooseFinalPlaceAddress();  // Adding officeAddressPage String using Select this location feature
         submitAllDetails();
     }
 
