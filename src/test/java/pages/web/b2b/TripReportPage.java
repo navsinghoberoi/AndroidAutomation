@@ -13,6 +13,7 @@ public class TripReportPage extends B2bSetup {
    private By getReport = By.xpath(".//*[@id='getReport']");
    private By visibilityOfDownloadReport = By.xpath("//a[@class='reportLinkBtn']");
    private By cabReportTab = By.xpath("//a[@data-type='cab']");
+   private By bookings = By.xpath(".//*[@value='BOOKINGS']");
 
 
     public void goTOReportTab()
@@ -43,6 +44,13 @@ public class TripReportPage extends B2bSetup {
     {
         WebElement element = driver.findElement(trips);
         element.click();
+    }
+    public void selectBookings()
+    {
+        WebElement element = driver.findElement(bookings);
+        element.click();
+        boolean text = driver.findElement(bookings).isDisplayed();
+        System.out.print(text);
     }
 
     public void getReport()
@@ -101,6 +109,14 @@ public class TripReportPage extends B2bSetup {
 
     public void setTrips(By trips) {
         this.trips = trips;
+    }
+
+    public By getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(By bookings) {
+        this.bookings = bookings;
     }
 
     public By getGetReport() {
