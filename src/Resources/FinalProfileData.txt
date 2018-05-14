@@ -1,0 +1,59 @@
+Profile Test Run Date : 28-04-2018 02:44:58
+latestPersonalEmail = test@shuttl.com
+latestName = Correct Name
+latestBirthdayDate = 27 Apr 2018
+latestHomeLeaveTime = 2:45 AM
+latestOfficeLeaveTime = 2:45 AM
+latestCorporateEmail = test@shuttl.com
+ ------------------    PROFILE TESTS ENDED    ------------------ 
+Profile Test Run Date : 28-04-2018 03:03:12
+latestPersonalEmail = test@shuttl.com
+latestName = Test Correct Name
+latestBirthdayDate = 27 Apr 2018
+latestHomeLeaveTime = 3:03 AM
+latestOfficeLeaveTime = 3:03 AM
+latestCorporateEmail = test@shuttl.com
+ ------------------    PROFILE TESTS ENDED    ------------------ 
+Profile Test Run Date : 28-04-2018 03:21:08
+phoneNumber = +919999996644
+latestGender = Male
+latestPersonalEmail = test@shuttl.com
+latestName = Test Correct Name
+latestBirthdayDate = 27 Apr 2018
+latestHomeLeaveTime = 3:21 AM
+latestOfficeLeaveTime = 3:21 AM
+latestCorporateEmail = test@shuttl.com
+ ------------------    PROFILE TESTS ENDED    ------------------ 
+
+Profile Test Run Date : 28-04-2018 03:32:56
+phoneNumber = +919999996640
+latestGender = Male
+latestPersonalEmail = test@shuttl.com
+latestName = Test Correct Name
+latestBirthdayDate = 27 Apr 2018
+latestHomeLeaveTime = 3:33 AM
+latestOfficeLeaveTime = 3:33 AM
+latestCorporateEmail = test@shuttl.com
+ ------------------    PROFILE TESTS ENDED    ------------------ 
+
+Profile Test Run Date : 28-04-2018 03:38:21
+phoneNumber = +919999976543
+latestGender = Male
+latestPersonalEmail = test@shuttl.com
+latestName = Test Correct Name
+latestBirthdayDate = 27 Apr 2018
+latestHomeLeaveTime = 3:38 AM
+latestOfficeLeaveTime = 3:38 AM
+latestCorporateEmail = test@shuttl.com
+ ------------------    PROFILE TESTS ENDED    ------------------ 
+
+Profile Test Run Date : 28-04-2018 03:47:47
+phoneNumber = +919999976541
+latestGender = Male
+latestPersonalEmail = test@shuttl.com
+latestName = Test Correct Name
+latestBirthdayDate = 27 Apr 2018
+latestHomeLeaveTime = 3:47 AM
+latestOfficeLeaveTime = 3:47 AM
+ ------------------    PROFILE TESTS ENDED    ------------------ 
+
