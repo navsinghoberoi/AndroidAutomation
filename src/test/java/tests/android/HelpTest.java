@@ -33,16 +33,29 @@ public class HelpTest extends Setup{
     public void testFAQS()
     {
         helpPage.clickFAQS();
-       // helpPage.clickWhatIsSubscription();
         helpPage.clickWhatIsAutoBookingSub();
-        Assert.assertEquals(helpPage.textOfWhatIsAutoBookingSub(),0);
-       /* helpPage.clickWhatIsPayPerRide();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickWhatIsAutoBookingSub();
+        helpPage.clickWhatIsPayPerRide();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickWhatIsPayPerRide();
+        helpPage.clickOneWayTwoWay();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
         helpPage.clickOneWayTwoWay();
         helpPage.clickEatInsideShuttl();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickEatInsideShuttl();
+        helpPage.clickWhatIsShuttlServiceAndShuttl();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
         helpPage.clickWhatIsShuttlServiceAndShuttl();
         helpPage.clickWhatIsShuttlService();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickWhatIsShuttlService();
         helpPage.clickNotGettingShuttlCredits();
-        helpPage.clickCallUsButton();*/
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickNotGettingShuttlCredits();
+        helpPage.clickCallUsButton();
+
     }
 
     @Test(priority = 1)

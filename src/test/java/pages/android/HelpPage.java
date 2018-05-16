@@ -14,7 +14,7 @@ public class HelpPage extends BasePage{
     //inside FAQS
     By what_is_subscription=By.xpath("//android.widget.LinearLayout[@index='0']");
     By what_is_auto_booking_sub=By.xpath("//android.widget.LinearLayout[@index='1']");
-    By text_what_is_auto_booking_sub=By.id(app_package_name+"fa.answer");
+    By text_inside_questions=By.id(app_package_name+"fa.answer");
     By what_is_pay_per_ride=By.xpath("//android.widget.LinearLayout[@index='2']");
     By one_way_two_way=By.xpath("//android.widget.LinearLayout[@index='3']");
     By eat_inside_shuttl=By.xpath("//android.widget.LinearLayout[@index='4']");
@@ -159,9 +159,10 @@ public class HelpPage extends BasePage{
         return driver.findElement(title_terms_and_conditions).getText();
     }
 
-    public int textOfWhatIsAutoBookingSub()
+    public int textInsideQuestions()
     {
-        String text=driver.findElement(text_what_is_auto_booking_sub).getText();
+        String text=driver.findElement(text_inside_questions).getText();
         return text.length();
     }
+
 }

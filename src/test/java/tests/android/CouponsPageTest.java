@@ -57,6 +57,7 @@ public class CouponsPageTest extends Setup {
 
         couponsPage.clickSavedCouponsArea();
         couponsPage.clickOnSavedCoupon();
+        Assert.assertEquals(couponsPage.offerDetailVisibility(),true);
         couponsPage.clickDismissButton();
 
     }

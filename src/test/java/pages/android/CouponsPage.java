@@ -24,6 +24,9 @@ public class CouponsPage extends BasePage {
     By dismiss_button = By.xpath("//android.widget.Button[@text='DISMISS']");
     By wrong_coupon_popup=By.id(app_package_name+"message");
     By title_terms_and_conditions=By.className("android.widget.TextView");
+    By offer_details=By.id(app_package_name+"alertTitle");
+    By expiry_date=By.id(app_package_name+"expiry_tv");
+
 
 
 
@@ -120,6 +123,22 @@ public class CouponsPage extends BasePage {
         return driver.findElement(title_terms_and_conditions).getText();
 
     }
+
+    public boolean offerDetailVisibility()
+    {
+        waitForVisibilityOf(offer_details);
+        return driver.findElement(offer_details).isDisplayed();
+    }
+
+    public String getExpiryDate()
+    {
+        waitForVisibilityOf(expiry_date);
+        String expiry =driver.findElement(expiry_date).getText();
+        return expiry;
+    }
+
+
+
 
    /* public void waitForVisibility()
     {
