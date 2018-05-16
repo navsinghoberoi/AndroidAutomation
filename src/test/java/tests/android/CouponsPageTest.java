@@ -40,7 +40,7 @@ public class CouponsPageTest extends Setup {
     public void testAddCoupon() throws Exception {
 
         couponsPage.clickCouponCodeArea();
-        couponsPage.enterCouponCode("validcouponcode");
+        couponsPage.enterCouponCode("couponcode");
         AndroidDriver androidDriver = (AndroidDriver) driver;
         androidDriver.hideKeyboard();
         couponsPage.clickSaveButton();

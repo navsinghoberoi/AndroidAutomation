@@ -12,6 +12,7 @@ import pages.android.HomePage;
 import pages.android.MenuPage;
 import pages.android.PersonalDetailsPage;
 import pages.android.ProfilePage;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,7 +21,6 @@ public class ProfileTest extends Setup {
 
     private Commons common;
     private ProfilePage profilePage;
-    private AndroidDriver androidDriver;
     private PersonalDetailsPage personalDetailsPage;
 
     private String userFinalGender, userFinalOfficeLeaveTime, userFinalHomeLeaveTime
@@ -33,8 +33,9 @@ public class ProfileTest extends Setup {
     public void setUp() throws Exception {
 
         createAndroidSession(false);
-        androidDriver = (AndroidDriver) driver;
         common = new Commons(driver);
+
+
         common.signUp("newUserPhoneNumber", "OTP",
                       "gender", "userName",
                       "homeAddress");
@@ -96,7 +97,6 @@ public class ProfileTest extends Setup {
 
     @Test(priority = 6)
     public void verifyNewUserDefaultBirthday() {
-        androidDriver.scrollTo("Birthday");
         String defaultBirthDate = profilePage.getBirthday();
         Assert.assertEquals(defaultBirthDate, "");
     }
@@ -104,7 +104,6 @@ public class ProfileTest extends Setup {
 
     @Test(priority = 7)
     public void verifyNewUserDefaultHomeAddress() throws Exception {
-        androidDriver.scrollTo("YOUR PLACES");
         boolean corrrectAddress = false;
         String defaultHomeAddress = profilePage.getHomeAddress();
         if (defaultHomeAddress.contains(getValueFromPPFile("homeAddress")))
@@ -122,8 +121,6 @@ public class ProfileTest extends Setup {
 
     @Test(priority = 9)
     public void verifyNewUserDefaultOfficeAddress() {
-        androidDriver.scrollTo("Office Address");
-
         // Just Checking if Office Address field is empty or not  . It is not supposed to be empty  as per System.
         boolean officeAddressIsEmpty = false;
         String defaulOfficeAddress = profilePage.getOfficeAddress();
@@ -142,14 +139,9 @@ public class ProfileTest extends Setup {
 
     @Test(priority = 11)
     public void verifyNewUserDefaultCorporateEmail() {
-        androidDriver.scrollTo("CORPORATE ACCOUNT");
         String defaultCorporateEmail = profilePage.getCorporateEmail();
-
-        // Go to Top of the Profile Page .
-        androidDriver.scrollTo("CONNECT FACEBOOK");
         // Click Edit button to open profile into edit mode . (Will be needed in next test case)
         profilePage.checkEditButton();
-
         Assert.assertEquals(defaultCorporateEmail, "Add corporate email");
     }
 
@@ -159,7 +151,6 @@ public class ProfileTest extends Setup {
 
     @Test(priority = 20)
     public void verifyGenderByChangingValue() throws Exception {
-
 
         // Choose opposite gender to that of written in properties file .
         if (getValueFromPPFile("gender").equalsIgnoreCase("F")) {
@@ -181,10 +172,9 @@ public class ProfileTest extends Setup {
     public void verifyPersonalEmailValidation(String personalEmail, String expected) {
         personalDetailsPage.clearPersonalEmailField();
         personalDetailsPage.enterPersonalEmail(personalEmail);
-        androidDriver.hideKeyboard();
 
-        // No Error Message Expected means Entered Value will be correct . 
-        // Therefore writing it into text file for Old User Profile comparison in next step  . 
+        // No Error Message Expected means Entered Value will be correct .
+        // Therefore writing it into text file for Old User Profile comparison in next step  .
         if (expected.equalsIgnoreCase(""))
             userFinalPersonalEmail = personalEmail;
 
@@ -198,10 +188,9 @@ public class ProfileTest extends Setup {
     public void verifyNameValidation(String name, String expected) {
         personalDetailsPage.clearNameField();
         personalDetailsPage.enterUserNameAtProfile(name);
-        androidDriver.hideKeyboard();
 
-        // No Error Message Expected means Entered Value will be correct . 
-        // Therefore writing it into text file for Old User Profile comparison in next step  . 
+        // No Error Message Expected means Entered Value will be correct .
+        // Therefore writing it into text file for Old User Profile comparison in next step  .
         if (expected.equalsIgnoreCase(""))
             userFinalName = name;
 
@@ -212,8 +201,6 @@ public class ProfileTest extends Setup {
 
     @Test(priority = 23)
     public void verifyBirthDayField() {
-        androidDriver.scrollTo("Birthday");
-
         // Current date will be selected as birth date .
         personalDetailsPage.enterBirthDay();
         String selectedBirthDate = profilePage.getBirthday();
@@ -227,7 +214,6 @@ public class ProfileTest extends Setup {
 
     @Test(priority = 24)
     public void verifyHomeLeavingTime() {
-        androidDriver.scrollTo("Home Address");
         personalDetailsPage.enterHomeLeaveTime();
         String selectedHomeLeaveTime = profilePage.getHomeLeaveTime();
         userFinalHomeLeaveTime = selectedHomeLeaveTime;
@@ -239,7 +225,6 @@ public class ProfileTest extends Setup {
 
     @Test(priority = 25)
     public void verifyOfficeLeavingTime() {
-        androidDriver.scrollTo("Office Address");
         personalDetailsPage.enterOfficeLeaveTime();
         String selectedOfficeLeaveTime = profilePage.getOfficeLeaveTime();
         userFinalOfficeLeaveTime = selectedOfficeLeaveTime;
@@ -260,7 +245,6 @@ public class ProfileTest extends Setup {
 
     @Test(priority = 26)
     public void verifyCorporateEmailWindow() {
-        androidDriver.scrollTo("CORPORATE ACCOUNT");
         personalDetailsPage.goToActualCorporateEmail();
         String corporateEmailField = personalDetailsPage.verifyCorporateEmailNewWindow();
         Assert.assertEquals(corporateEmailField, "Add corporate email");
@@ -271,12 +255,13 @@ public class ProfileTest extends Setup {
     public void verifyCorporateEmailValidation(String corporateEmail, String expected) {
         personalDetailsPage.clearCorporateEmailField();
         personalDetailsPage.enterCorporateEmail(corporateEmail);
-        if (expected.equalsIgnoreCase(""))
-            userFinalCorporateEmail = corporateEmail;
 
         String errorEmailMessage = personalDetailsPage.getCorporateEmailErrorMessage();
-        if (errorEmailMessage.length() == 0)
+
+        if (errorEmailMessage.equalsIgnoreCase("")) {
+            userFinalCorporateEmail = corporateEmail;
             personalDetailsPage.clickOkButtonToAcceptTheBox();
+        }
 
         Assert.assertEquals(errorEmailMessage, expected);
     }
