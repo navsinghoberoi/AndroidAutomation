@@ -29,64 +29,109 @@ public class HelpTest extends Setup{
     }
 
 
-    @Test(priority = 0)
-    public void testFAQS()
+    @Test
+    public void testWhatIsAutoBookingSubContent()
     {
         helpPage.clickFAQS();
         helpPage.clickWhatIsAutoBookingSub();
         Assert.assertNotSame(helpPage.textInsideQuestions(),0);
         helpPage.clickWhatIsAutoBookingSub();
-        helpPage.clickWhatIsPayPerRide();
-        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
-        helpPage.clickWhatIsPayPerRide();
-        helpPage.clickOneWayTwoWay();
-        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
-        helpPage.clickOneWayTwoWay();
-        helpPage.clickEatInsideShuttl();
-        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
-        helpPage.clickEatInsideShuttl();
-        helpPage.clickWhatIsShuttlServiceAndShuttl();
-        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
-        helpPage.clickWhatIsShuttlServiceAndShuttl();
-        helpPage.clickWhatIsShuttlService();
-        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
-        helpPage.clickWhatIsShuttlService();
-        helpPage.clickNotGettingShuttlCredits();
-        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
-        helpPage.clickNotGettingShuttlCredits();
-        helpPage.clickCallUsButton();
 
     }
 
-    @Test(priority = 1)
+    @Test
+    public void testWhatIsPayPerRideContent()
+    {
+        helpPage.clickFAQS();
+        helpPage.clickWhatIsPayPerRide();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickWhatIsPayPerRide();
+    }
+
+
+    @Test
+    public void testOneWayTwoWayContent()
+    {
+        helpPage.clickFAQS();
+        helpPage.clickOneWayTwoWay();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickOneWayTwoWay();
+    }
+
+    @Test
+    public void testEatInsideShuttlContent()
+    {
+        helpPage.clickFAQS();
+        helpPage.clickEatInsideShuttl();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickEatInsideShuttl();
+    }
+
+    @Test
+    public void testWhatIsShuttlServiceAndShuttlContent()
+    {
+        helpPage.clickFAQS();
+        helpPage.clickWhatIsShuttlServiceAndShuttl();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickWhatIsShuttlServiceAndShuttl();
+    }
+
+    @Test
+    public void testWhatIsShuttlServiceContent()
+    {
+        helpPage.clickFAQS();
+        helpPage.clickWhatIsShuttlService();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickWhatIsShuttlService();
+    }
+
+    @Test
+    public void testNotGettingShuttlCredits()
+    {
+        helpPage.clickFAQS();
+        helpPage.clickNotGettingShuttlCredits();
+        Assert.assertNotSame(helpPage.textInsideQuestions(),0);
+        helpPage.clickNotGettingShuttlCredits();
+    }
+
+    @Test
+    public void testCallUsButton()
+    {
+        helpPage.clickFAQS();
+        helpPage.clickCallUsButton();
+        Assert.assertEquals(helpPage.getNumberOfNCR(),"01204760000");
+    }
+
+
+    @Test
     public void testCallCustomerCareNCR()
     {
         helpPage.clickCallCustomerCareNCR();
         Assert.assertEquals(helpPage.getNumberOfNCR(),"01204760000");
     }
 
-    @Test(priority = 2)
+    @Test
     public void testCallCustomerCareKolkata()
     {
         helpPage.clickCallCustomerCareKolkata();
         Assert.assertEquals(helpPage.getNumberOfKolkata(),"01204760080");
     }
 
-    @Test(priority = 3)
+    @Test
     public void testEmailUS()
     {
         helpPage.clickEmailUs();
         Assert.assertEquals(helpPage.getToOfEmailUs(),"<support@shuttlemails.com>, ");
     }
 
-    @Test(priority = 4)
+    @Test
     public void testWeAreHiring()
     {
         helpPage.clickweAreHiring();
         Assert.assertEquals(helpPage.openPositions(),true);
     }
 
-    @Test(priority = 5)
+    @Test
     public void testTermsAndConditions()
     {
         helpPage.clickTermsAndConditions();
