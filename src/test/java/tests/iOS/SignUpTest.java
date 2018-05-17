@@ -2,6 +2,7 @@ package tests.ios;
 
 import common.ios.Commons;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.ios.HomePage;
@@ -34,6 +35,15 @@ public class SignUpTest extends Setup {
         Assert.assertEquals(findRouteButtonText,"FIND A ROUTE");
 
 
+    }
+
+
+
+    @AfterClass
+    public void tearDown()
+    {
+        System.out.println("All The Test Cases are completed");
+        driver.quit();
     }
 }
 
