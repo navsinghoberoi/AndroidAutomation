@@ -95,33 +95,29 @@ public class HelpTest extends Setup{
     }
 
     @Test
-    public void testCallUsButton()
-    {
+    public void testCallUsButton() throws Exception {
         helpPage.clickFAQS();
         helpPage.clickCallUsButton();
-        Assert.assertEquals(helpPage.getNumberOfNCR(),"01204760000");
+        Assert.assertEquals(helpPage.getNumberOfNCR(),getValueFromPPFile("customerCareNCR"));
     }
 
 
     @Test
-    public void testCallCustomerCareNCR()
-    {
+    public void testCallCustomerCareNCR() throws Exception {
         helpPage.clickCallCustomerCareNCR();
-        Assert.assertEquals(helpPage.getNumberOfNCR(),"01204760000");
+        Assert.assertEquals(helpPage.getNumberOfNCR(),getValueFromPPFile("customerCareNCR"));
     }
 
     @Test
-    public void testCallCustomerCareKolkata()
-    {
+    public void testCallCustomerCareKolkata() throws Exception {
         helpPage.clickCallCustomerCareKolkata();
-        Assert.assertEquals(helpPage.getNumberOfKolkata(),"01204760080");
+        Assert.assertEquals(helpPage.getNumberOfKolkata(),getValueFromPPFile("customerCareKolkata"));
     }
 
     @Test
-    public void testEmailUS()
-    {
+    public void testEmailUS() throws Exception {
         helpPage.clickEmailUs();
-        Assert.assertEquals(helpPage.getToOfEmailUs(),"<support@shuttlemails.com>, ");
+        Assert.assertEquals(helpPage.getToOfEmailUs(),getValueFromPPFile("emailUs"));
     }
 
     @Test

@@ -23,8 +23,8 @@ public class CouponsPage extends BasePage {
     By fromToIcon = By.id(app_package_name + "from_to");
     By dismiss_button = By.xpath("//android.widget.Button[@text='DISMISS']");
     By wrong_coupon_popup=By.id(app_package_name+"message");
-    By title_terms_and_conditions=By.className("android.widget.TextView");
-    By offer_details=By.id(app_package_name+"alertTitle");
+    By title_terms_and_conditions=By.xpath("//android.widget.TextView[@text='Terms and Conditions'");
+    By offer_details=By.xpath("//android.widget.TextView[@text='Offer Details']");
     By expiry_date=By.id(app_package_name+"expiry_tv");
 
 

@@ -39,15 +39,24 @@ public class CouponsPageTest extends Setup {
 
     public void testAddCoupon() throws Exception {
 
+        boolean addedCouponMessage;
         couponsPage.clickCouponCodeArea();
         couponsPage.enterCouponCode("couponcode");
         AndroidDriver androidDriver = (AndroidDriver) driver;
         androidDriver.hideKeyboard();
         couponsPage.clickSaveButton();
-        Assert.assertEquals(couponsPage.checkAddedCouponMessage(),true);
-        String text = couponsPage.getAddCouponConfirmationPopupText();
-        logger.info(text);
-        driver.navigate().back();
+
+        try {
+            addedCouponMessage = couponsPage.checkAddedCouponMessage();
+            String text = couponsPage.getAddCouponConfirmationPopupText();
+            logger.info(text);
+            driver.navigate().back();
+        }
+        catch (Exception e)
+        {
+            addedCouponMessage=false;
+        }
+        Assert.assertEquals(addedCouponMessage,true);
 
     }
 
@@ -55,10 +64,18 @@ public class CouponsPageTest extends Setup {
 
     public void testSavedCoupon() throws InterruptedException {
 
+        boolean offer_details;
         couponsPage.clickSavedCouponsArea();
-        couponsPage.clickOnSavedCoupon();
-        Assert.assertEquals(couponsPage.offerDetailVisibility(),true);
-        couponsPage.clickDismissButton();
+        try {
+            couponsPage.clickOnSavedCoupon();
+            offer_details = couponsPage.offerDetailVisibility();
+            couponsPage.clickDismissButton();
+        }
+        catch (Exception e)
+        {
+            offer_details=false;
+        }
+        Assert.assertEquals(offer_details,true);
 
     }
 
@@ -70,7 +87,7 @@ public class CouponsPageTest extends Setup {
         AndroidDriver androidDriver = (AndroidDriver) driver;
         androidDriver.hideKeyboard();
         couponsPage.clickSaveButton();
-        Assert.assertEquals(couponsPage.getWrongCouponPopup(),"SORRY CAN'T PROCESS. TO KNOW MORE GOTO HTTP://COMPLIANCE.SHUTTL.COM/");
+        Assert.assertEquals(couponsPage.getWrongCouponPopup(),getValueFromPPFile("invalidCouponMessage"));
         logger.info(couponsPage.getFindMyEnterCouponText());
 
     }
@@ -80,7 +97,8 @@ public class CouponsPageTest extends Setup {
     public void termsOfServiceTest() {
         couponsPage.clickEnterCouponCodeArea();
         couponsPage.clickTermOfService();
-        Assert.assertEquals(couponsPage.getTermsOfServiceTitle(),"Terms and Conditions");
+        String title=couponsPage.getTermsOfServiceTitle();
+        Assert.assertEquals(title,"Terms and Conditions");
 
     }
 
