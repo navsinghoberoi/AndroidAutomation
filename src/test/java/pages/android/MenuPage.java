@@ -28,33 +28,46 @@ public class MenuPage extends BasePage {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(1).click();
     }
-    public void clickWallets() {
+
+    public void clickCorporateProfile()
+    {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(2).click();
     }
 
-    public void clickRefer() {
+    public void clickWallets() {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(3).click();
     }
-    public void clickCoupon() {
+
+    public void clickRefer() {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(4).click();
     }
-
-    public void clickSafetyFeatures() {
+    public void clickCoupon() {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(5).click();
     }
 
-    public void clickExploreRoutes() {
+    public void clickNotification()
+    {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(6).click();
     }
 
-    public void clickHelp() {
+    public void clickSafetyFeatures() {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(7).click();
+    }
+
+    public void clickExploreRoutes() {
+        waitForClickabilityOf(menu_tray);
+        driver.findElements(menu_tray).get(8).click();
+    }
+
+    public void clickHelp() {
+        waitForClickabilityOf(menu_tray);
+        driver.findElements(menu_tray).get(9).click();
     }
 
 }

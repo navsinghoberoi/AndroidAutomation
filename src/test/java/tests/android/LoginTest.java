@@ -116,6 +116,7 @@ public class LoginTest extends Setup {
 
         String Text = homePage.getHeaderText();
         Assert.assertEquals(Text, "Search for a route");
+
     }
 
 
