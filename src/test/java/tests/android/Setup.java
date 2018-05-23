@@ -1,5 +1,6 @@
 package tests.android;
 
+import common.android.Constants;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebDriver;
@@ -8,12 +9,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.MalformedURLException;
-import java.util.*;
-import java.io.FileInputStream;
-
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 
@@ -22,7 +22,7 @@ public class Setup {
     public WebDriver driver = null;
 
     protected Properties loadPropertyFile() throws Exception {
-        FileInputStream fileInput = new FileInputStream(new File("src/Resources/data.properties"));
+        FileInputStream fileInput = new FileInputStream(new File(Constants.dataPropertiesFile));
         Properties prop = new Properties();
         prop.load(fileInput);
         return prop;
@@ -42,17 +42,23 @@ public class Setup {
         //capabilities.setCapability("device", "Android");
 
         //mandatory capabilities
-        capabilities.setCapability("deviceName","Samsung Galaxy S8 Plus GoogleAPI Emulator");
+       // capabilities.setCapability("deviceName","Samsung Galaxy S8 Plus GoogleAPI Emulator");
+        capabilities.setCapability("deviceName","Android");
         capabilities.setCapability("autoGrantPermissions", true);
         capabilities.setCapability("platformName","Android");
-        capabilities.setCapability("platformVersion","8.0");
+
+        capabilities.setCapability("platformVersion","8.0.0");
+
         capabilities.setCapability("noReset", noreset );
         capabilities.setCapability("fullReset", false);
         capabilities.setCapability("launchApp", getValueFromPPFile("androidAppActivity"));
         capabilities.setCapability("app", app.getAbsolutePath());
+
         //capabilities.setCapability("app", "sauce-storage:app-qa-3.6.0-qa.apk");
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-        //driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+
+        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        //driver = new AndroidDriver(new URL("http://nitishtest1991:11a0fed8-8611-471c-9f17-541f3bd68617@ondemand.saucelabs.com:80/wd/hub"), capabilities);
+
     }
 
 
@@ -62,7 +68,7 @@ public class Setup {
         File app = new File(appDir, getValueFromPPFile("iosFileName"));
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("platformName", "ios");
         capabilities.setCapability("platformVersion", "8.2");
         capabilities.setCapability("deviceName", "iPhone 5s");
         capabilities.setCapability("app", app.getAbsolutePath());

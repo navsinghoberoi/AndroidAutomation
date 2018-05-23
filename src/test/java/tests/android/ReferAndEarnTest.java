@@ -8,12 +8,10 @@ import org.testng.annotations.Test;
 import pages.android.*;
 
 public class ReferAndEarnTest extends Setup {
-
     private HomePage homePage;
     private LoginPage loginPage;
     private OtpPage otpPage;
     private Commons commons;
-    private MenuPage menuPage;
     private ReferAndEarnPage referAndEarnPage;
 
     @BeforeClass

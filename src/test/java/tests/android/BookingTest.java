@@ -5,22 +5,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import pages.android.CouponsPage;
-import pages.android.GetFreeRide;
-import pages.android.HomePage;
-import pages.android.LandingPage;
-import pages.android.LoginPage;
-import pages.android.OtpPage;
-import pages.android.PaytmPage;
-import pages.android.PostBooking;
-import pages.android.SelectLocationPage;
-import pages.android.ShuttlEnRoutePage;
-import pages.android.ShuttlWalletCheckoutPage;
-import pages.android.ShuttlWalletDetailsPage;
-import pages.android.SlotsPage;
-import pages.android.SlotsSelectedPage;
-import pages.android.SmsPage;
-import pages.android.WalletPage;
+import pages.android.*;
+import pages.android.GetFreeRidePage;
 
 public class BookingTest extends Setup {
 
@@ -36,9 +22,9 @@ public class BookingTest extends Setup {
     private ShuttlWalletCheckoutPage shuttlWalletCheckoutPage;
     private PaytmPage paytmPage;
     private CouponsPage couponsPage;
-    private PostBooking postBooking;
+    private PostBookingPage postBookingPage;
     private SmsPage smsPage;
-    private GetFreeRide getFreeRide;
+    private GetFreeRidePage getFreeRidePage;
     private OtpPage otpPage;
     private Commons commons;
 
@@ -57,9 +43,9 @@ public class BookingTest extends Setup {
         shuttlWalletCheckoutPage = new ShuttlWalletCheckoutPage(driver);
         paytmPage = new PaytmPage(driver);
         couponsPage = new CouponsPage(driver);
-        postBooking = new PostBooking(driver);
+        postBookingPage = new PostBookingPage(driver);
         smsPage = new SmsPage(driver);
-        getFreeRide = new GetFreeRide(driver);
+        getFreeRidePage = new GetFreeRidePage(driver);
         otpPage = new OtpPage(driver);
         commons = new Commons(driver);
 
@@ -157,8 +143,8 @@ public class BookingTest extends Setup {
 
     @Test (priority=3)
     public void bookingReschedule() throws InterruptedException {
-        postBooking.clickArrow();
-        postBooking.clickReschedule();
+        postBookingPage.clickArrow();
+        postBookingPage.clickReschedule();
         slotsPage.clickSlot1(2);
         slotsPage.clickCtaOnSlotsPage();
         slotsPage.confirmBookingPopup();
@@ -168,11 +154,11 @@ public class BookingTest extends Setup {
 
     @Test (priority=4)
     public void bookingCancel() throws InterruptedException {
-        postBooking.clickArrow();
-        postBooking.en_clickCancel();
-        postBooking.cancleReason();
-        postBooking.clickCancel();
-        postBooking.cancelBookingPopup();
+        postBookingPage.clickArrow();
+        postBookingPage.en_clickCancel();
+        postBookingPage.cancleReason();
+        postBookingPage.clickCancel();
+        postBookingPage.cancelBookingPopup();
     }
 
 
@@ -231,7 +217,7 @@ public class BookingTest extends Setup {
         }
         homePage.clickMenu();
         homePage.clickGetFreeRide();
-        getFreeRide.VerifyGetFreePage();
+        getFreeRidePage.VerifyGetFreePage();
         driver.navigate().back();
     }
     */

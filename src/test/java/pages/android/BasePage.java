@@ -16,6 +16,7 @@ public class BasePage extends Setup {
 
 
     public WebDriver driver;
+    public AndroidDriver androidDriver;
     String app_package_name = "app.goplus.in.myapplication.qa:id/";
     String app_package_name_android_gms = "com.google.android.gms:id/";
     private static final int DEFAULT_FIND_ELEMENT_TIMEOUT = 60;
@@ -28,10 +29,26 @@ public class BasePage extends Setup {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
     protected void waitForClickabilityOf(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
+
+
+    protected void scrollToText(String targetScrollText) {
+
+        androidDriver = (AndroidDriver) driver;
+        //androidDriver.scrollTo(targetScrollText);
+    }
+
+
+    protected void hideKeyboard()
+    {
+        androidDriver = (AndroidDriver) driver;
+        androidDriver.hideKeyboard();
+    }
+
 
     public void scrollPageUp() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -86,49 +103,43 @@ public class BasePage extends Setup {
         tapObject.put("element", Double.valueOf(((RemoteWebElement) elementToTap).getId()));
         js.executeScript("mobile: tap", tapObject);
     }
-    
-    public void clear(By locator)
-    {
-    WebElement we = driver.findElement(locator);
-    String text = we.getText();
-    System.out.println(text);
-    int maxChars = text.length();
-    for (int i = maxChars; i >= 0; i--){
-    ((AndroidDriver<WebElement>) driver).sendKeyEvent(67);
-    }
+
+    public void clear(By locator) {
+        WebElement we = driver.findElement(locator);
+        String text = we.getText();
+        System.out.println(text);
+        int maxChars = text.length();
+//        for (int i = maxChars; i >= 0; i--) {
+//            ((AndroidDriver<WebElement>) driver).sendKeyEvent(67);
+//        }
     }
 
 
-    public WebElement getElementWhenVisible(By locater, long...waitSeconds)
-    {
+    public WebElement getElementWhenVisible(By locater, long... waitSeconds) {
         assert waitSeconds.length <= 1;
         long seconds = waitSeconds.length > 0 ? waitSeconds[0] : DEFAULT_FIND_ELEMENT_TIMEOUT;
 
         WebElement element = null;
-        WebDriverWait wait  = new WebDriverWait(driver, seconds);
+        WebDriverWait wait = new WebDriverWait(driver, seconds);
         element = wait.until(ExpectedConditions.visibilityOfElementLocated(locater));
         return element;
     }
 
-    public WebElement getElementWhenClickable(By locator, long...waitSeconds)
-    {
+    public WebElement getElementWhenClickable(By locator, long... waitSeconds) {
         assert waitSeconds.length <= 1;
         long seconds = waitSeconds.length > 0 ? waitSeconds[0] : DEFAULT_FIND_ELEMENT_TIMEOUT;
 
         WebElement element = null;
-        WebDriverWait wait  = new WebDriverWait(driver, seconds);
+        WebDriverWait wait = new WebDriverWait(driver, seconds);
         element = wait.until(ExpectedConditions.elementToBeClickable(locator));
         return element;
     }
 
-    public boolean checkIfElementPresent(By locator, long... waitSeconds)
-    {
-        try{
+    public boolean checkIfElementPresent(By locator, long... waitSeconds) {
+        try {
             getElementWhenVisible(locator, waitSeconds);
             return true;
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             return false;
         }
     }
