@@ -1,13 +1,10 @@
 package tests.web;
-import com.sun.tools.classfile.Opcode;
-import common.android.Commons;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.android.HelpPage;
-import pages.android.HomePage;
-import pages.android.MenuPage;
-import pages.web.b2b.B2bSetup;
+
 import pages.web.b2b.LoginPanelPage;
 import java.net.MalformedURLException;
 
@@ -36,6 +33,13 @@ public class LoginPanelPageTest extends Setup{
         String expectedTitle = "Shuttl B2B Home";
         Assert.assertEquals(expectedTitle,actualTitle);
 
+    }
+
+
+    @AfterClass
+    public void tearDown() throws Exception {
+        System.out.println("Test cases completed , now closing browser");
+        driver.quit();
     }
 
 }
