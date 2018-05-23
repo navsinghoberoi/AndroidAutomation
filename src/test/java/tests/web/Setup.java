@@ -80,6 +80,7 @@ public class Setup {
             driver.manage().window().maximize();
             //driver.navigate().to(appURL);
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+            driver.get("http://qab2bui.goplus.in/home.html");
             //return driver;
         }
         else {

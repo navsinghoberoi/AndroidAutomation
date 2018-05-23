@@ -1,9 +1,10 @@
 package pages.web.b2b;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class TripReportPage extends B2bSetup {
+public class TripReportPage extends BasePage {
 
 
    private By busReportTab = By.xpath("//*[@id='reports-tab']/a");
@@ -14,6 +15,10 @@ public class TripReportPage extends B2bSetup {
    private By visibilityOfDownloadReport = By.xpath("//a[@class='reportLinkBtn']");
    private By cabReportTab = By.xpath("//a[@data-type='cab']");
    private By bookings = By.xpath(".//*[@value='BOOKINGS']");
+
+    public TripReportPage(WebDriver driver) {
+        super(driver);
+    }
 
 
     public void goTOReportTab()

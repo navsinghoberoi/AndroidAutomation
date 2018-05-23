@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 public class TripReportTest extends B2bSetup {
 
     private LoginPanelPageTest loginPageTest = new LoginPanelPageTest();
-
+/*
     @Test(priority = 1)
     public void verifyBusTripReport() throws MalformedURLException, InterruptedException {
         loginPageTest.verifyValidLogin();
@@ -138,6 +138,6 @@ public class TripReportTest extends B2bSetup {
 
     }
 
-
+*/
 
 }
