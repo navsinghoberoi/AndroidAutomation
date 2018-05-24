@@ -8,6 +8,7 @@ public class Commons extends BasePage {
     public Commons(WebDriver driver) {
         super(driver);
     }
+    private LoginPanelPage loginPanelPage = new LoginPanelPage(driver);
 
 
     LoginPanelPage loginPanelPage = new LoginPanelPage(driver);
