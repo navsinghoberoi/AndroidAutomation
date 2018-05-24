@@ -1,12 +1,14 @@
 package pages.android;
 
 import com.sun.xml.internal.rngom.parse.host.Base;
+import common.android.Commons;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import tests.android.Setup;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class MyRidesPage extends BasePage {
@@ -16,8 +18,9 @@ public class MyRidesPage extends BasePage {
     By CurrentActiveRideCheckScreen = By.xpath("//android.widget.TextView[@text='Today']");
     By currentRideBoardLocation = By.xpath("//android.widget.TextView[@index='CD Chowk ']");
     By historyRidesTab = By.xpath("//android.widget.TextView[@text='HISTORY']");
-    By tripSelectionByDate = By.xpath("//android.widget.TextView[@text='19 Apr 2018']");
-    By selectionOfTrip = By.id("mb_item_time");
+    By tripSelectionByDate = By.xpath("//android.widget.TextView[@index=1]");
+    //By selectionOfTrip = By.id("mb_item_time");
+    By ridesList = By.id("mb_past_list");
     By historyRideTitleText = By.xpath("//android.widget.TextView[@index=1]");
     By pickupPointText = By.xpath("//android.widget.TextView[@text='Dwarka Mor 1']");
     By dropPointText = By.xpath("//android.widget.TextView[@text='CD Chowk (Spaze IT park) ']");
@@ -35,11 +38,13 @@ public class MyRidesPage extends BasePage {
     By otherIssue = By.xpath("//android.widget.TextView[@text='I have some other issue with my trip']");
     By backButton = By.xpath("//android.widget.ImageButton[@index=0]");
 
+
     private AndroidDriver androidDriver;
     public MyRidesPage(WebDriver driver) {
         super(driver);
         androidDriver = (AndroidDriver)driver;
-    }
+
+            }
 
     public String getMyRidesDisplayText() {
 
@@ -54,7 +59,7 @@ public class MyRidesPage extends BasePage {
         driver.findElement(myRidesDisplayText).click();
     }
 
-    public String getMYRidesTitleText() {
+    public String getMyRidesTitleText() {
         waitForVisibilityOf(myRidesTitleText);
         String getMyRidesTitleText = driver.findElement(myRidesTitleText).getText();
         return getMyRidesTitleText;
@@ -87,18 +92,25 @@ public class MyRidesPage extends BasePage {
         driver.findElement(historyRidesTab).click();
 
     }
+    public void ridesSelectionClick(){
 
-    public String getHistoryRideSelectionText() {
-        //androidDriver.scrollTo("19 Apr 2018");
+        scrollDown();
+        waitForVisibilityOf(ridesList);
+        List<WebElement> RidesList = driver.findElements(ridesList);
+        RidesList.get(4).click();
+    }
+
+    public String getHistoryRideSelectionText()throws Exception {
+
         waitForVisibilityOf(tripSelectionByDate);
         String getSelectionOfTrip = driver.findElement(tripSelectionByDate).getText();
         return getSelectionOfTrip;
-    }
+        }
 
-    public void getHistoryRideSelectionClick() {
-        waitForClickabilityOf(selectionOfTrip);
-        driver.findElement(selectionOfTrip).click();
-    }
+//    public void getHistoryRideSelectionClick() {
+//        waitForClickabilityOf(selectionOfTrip);
+//        driver.findElement(selectionOfTrip).click();
+//    }
 
     public String getHistoryTitleText() {
         waitForVisibilityOf(historyRideTitleText);
@@ -120,7 +132,7 @@ public class MyRidesPage extends BasePage {
 
     public void getPickupPointClick() {
         List<WebElement> findPickupPoint = driver.findElements(pickupPointText);
-        findPickupPoint.get(1).click();
+        findPickupPoint.get(5).click();
 
     }
     public String getPickupPointText() {
