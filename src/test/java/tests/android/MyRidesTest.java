@@ -34,35 +34,36 @@ public class MyRidesTest extends Setup {
         myRidesPage.getMyRidesDisplayTextClick();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2 , dependsOnMethods = "myRidesDisplayText")
     public void myRidesTitleText() throws Exception{
 
-        String nyRidesTitleText = myRidesPage.getMYRidesTitleText();
-        Assert.assertEquals(nyRidesTitleText,"My Rides");
+        String myRidesTitleText = myRidesPage.getMYRidesTitleText();
+        Assert.assertEquals(myRidesTitleText,"My Rides");
 
         }
-    @Test(priority = 3)
+    @Test(priority = 3, dependsOnMethods = "myRidesDisplayText")
     public void activeRidesWindowsScreen()throws Exception{
         String activeRidesWindow = myRidesPage.getActiveRidesWindows();
         Assert.assertEquals(activeRidesWindow, "You don't have any active rides");
 
     }
 
-    @Test(priority = 4)
+    @Test(priority = 4, dependsOnMethods = "myRidesDisplayText")
     public void historyRidesTab()throws Exception{
         myRidesPage.getHistoryRidesTabClick();
         String activeTab = myRidesPage.getHistoryRidesTab();
         Assert.assertEquals(activeTab, "HISTORY");
 
     }
-    @Test(priority = 5)
+    @Test(priority = 5, dependsOnMethods = "historyRidesTab")
     public void rideSelectionFromHistory()throws Exception{
         String rideSelection = myRidesPage.getHistoryRideSelectionText();
-        Assert.assertEquals(rideSelection, gethistoryRide("historyRide") );
+        Assert.assertEquals(rideSelection, getValueFromPPFile(  "historyRide") );
         myRidesPage.getHistoryRideSelectionClick();
 
     }
-    @Test(priority = 6)
+
+    @Test(priority = 6, dependsOnMethods = "rideSelectionFromHistory")
     public void verifyRideNowTitletext(){
         myRidesPage.getRideNowButtonClick();
         String rideNowTitleText = myRidesPage.getRideNowTitleText();
@@ -70,13 +71,13 @@ public class MyRidesTest extends Setup {
         myRidesPage.clickBackButton();
     }
 
-    @Test(priority = 7)
+    @Test(priority = 7,dependsOnMethods = "rideSelectionFromHistory")
     public void selctedHistoryRideTitleText()throws Exception{
         String historyRideTitleText = myRidesPage.getHistoryTitleText();
-        Assert.assertEquals(historyRideTitleText, gethistoryRideTitleText("historyRideTitle"));
+        Assert.assertEquals(historyRideTitleText, getValueFromPPFile("historyRideTitle"));
     }
 
-    @Test(priority = 8)
+    @Test(priority = 8, dependsOnMethods = "rideSelectionFromHistory")
     public void pickAndDropLocationText(){
         String pickupPoint = myRidesPage.getPickupPointText();
         String getPickupPointInMyRidesText = myRidesPage.getPickupPointInMyRidesText();
@@ -85,12 +86,13 @@ public class MyRidesTest extends Setup {
             Assert.assertEquals(pickupPointInMyRides,"Dwarka Mor 1");
         }
     }
-    @Test(priority = 9)
+    @Test(priority = 9 , dependsOnMethods = "rideSelectionFromHistory")
     public void needHelpWithTheRide()
     {
         String needHelpText = myRidesPage.getNeedHelpWithThisRideText();
         Assert.assertEquals(needHelpText, "NEED HELP WITH THIS RIDE?");
         myRidesPage.getNeedHelpWithThisRideButtonClick();
     }
+
 
 }

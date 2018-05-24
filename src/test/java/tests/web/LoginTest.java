@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 
 import static com.thoughtworks.selenium.SeleneseTestNgHelper.assertEquals;
 
-public class LoginPanelPageTest extends Setup{
+class LoginPanelPageTest extends Setup{
 
     private  LoginPanelPage loginPanelPage;
 

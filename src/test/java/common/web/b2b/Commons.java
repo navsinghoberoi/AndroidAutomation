@@ -2,13 +2,15 @@ package common.web.b2b;
 
 import org.openqa.selenium.WebDriver;
 import pages.android.BasePage;
+import pages.web.b2b.LoginPanelPage;
 
-public class commons extends BasePage {
-    public commons(WebDriver driver) {
+public class Commons extends BasePage {
+    public Commons(WebDriver driver) {
         super(driver);
     }
 
 
+    LoginPanelPage loginPanelPage = new LoginPanelPage(driver);
     public void login() throws InterruptedException {
         loginPanelPage.typeUsername("sumeet.joon");
         loginPanelPage.typePassword("sumeet");

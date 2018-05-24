@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
+import tests.android.Setup;
 
 import java.util.List;
 
@@ -88,7 +89,7 @@ public class MyRidesPage extends BasePage {
     }
 
     public String getHistoryRideSelectionText() {
-        androidDriver.scrollTo("19 Apr 2018");
+        //androidDriver.scrollTo("19 Apr 2018");
         waitForVisibilityOf(tripSelectionByDate);
         String getSelectionOfTrip = driver.findElement(tripSelectionByDate).getText();
         return getSelectionOfTrip;
@@ -211,4 +212,6 @@ public class MyRidesPage extends BasePage {
         driver.findElement(backButton).click();
 
     }
+
+
 }
