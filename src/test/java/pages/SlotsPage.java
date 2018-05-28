@@ -26,6 +26,10 @@ public class SlotsPage extends BasePage {
     By buyPassOptionSubtext = By.id("item_booking_option.text");
     By takePPROptionSubtext = By.id("item_booking_option.text");
     By backButton = By.className("android.widget.ImageButton");
+    By locatePickupStop = By.id("locate_pickup_button");
+    By ppName = By.id("from_tv");
+    By dpName = By.id("drop_tv");
+    By selectTimeSlotText = By.xpath("//android.widget.TextView[@text='Select a Timeslot']");
 
     public void clickSlot(int index) throws InterruptedException {
         waitForClickabilityOf(selectSlot);
@@ -128,5 +132,39 @@ public class SlotsPage extends BasePage {
 
     }
 
+    public boolean isLocatePickupStopDisplayed()
+    {
+        waitForClickabilityOf(locatePickupStop);
+        boolean result =  driver.findElement(locatePickupStop).isDisplayed();
+        return result;
+    }
+
+
+    public String getPPNameOnSlotsPage(){
+        waitForVisibilityOf(ppName);
+        String data = driver.findElement(ppName).getText();
+        return data;
+    }
+
+
+    public String getDPNameOnSlotsPage(){
+        waitForVisibilityOf(dpName);
+        String data = driver.findElement(dpName).getText();
+        return data;
+    }
+
+
+
+    public boolean isSelectTimeslotDisplayed(){
+
+        if (checkIfElementPresent(selectTimeSlotText, 10) == true) {
+            System.out.println("Select timeslot is displayed, i.e. user is on slots page");
+            return true;
+        } else {
+            System.out.println("Select timeslot is not displayed, i.e. user is not on slots page");
+            return false;
+        }
+
+    }
 
 }

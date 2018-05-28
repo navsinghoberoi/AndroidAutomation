@@ -38,22 +38,17 @@ public class Commons extends BasePage {
     private RefundPassPage refundPassPage = new RefundPassPage(driver);
 
 
-    public void login() throws InterruptedException {
-        Thread.sleep(5000);
-        landingPage.clickSkipToLogin();
-        //Thread.sleep(2000);
-        loginPage.enterMobileNumber("5556667033");
-        //loginPage.clickGetOtp();
-        //loginPage.enterOtp("1111");
-        loginPage.clickVerify();
-        otpPage.enterOtp("2344");
-        String Text = new HomePage(driver).getHeaderText();
-
+    public void login(String phoneNumber,String OTP) throws Exception {
+        enterUserPhoneNumberOTP(phoneNumber, OTP);
     }
 
-    public void goToHomepage() throws InterruptedException {
-        if (!homePage.checkBuddyButton())
-            login();
+    public void goToHomepage() throws Exception {
+        if (!homePage.checkSearchBar()) {
+            enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        }
+        else{
+            System.out.println("User is already on the homepage");
+        }
     }
 
 
