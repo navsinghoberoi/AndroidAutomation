@@ -20,6 +20,7 @@ public class HomePage extends BasePage {
 	By clickGetFreeRide = By.xpath("//android.widget.CheckedTextView[@text='Get Free Rides']");
 	By closeSearchPopup = By.id("hso.close_icon");
 	By myPass = By.id("design_menu_item_text");
+    By cachedLocation = By.id("sr_li_name");
 
 	public String getHeaderText() {
 		waitForVisibilityOf(searchBar);
@@ -128,6 +129,40 @@ public class HomePage extends BasePage {
 		driver.findElements(myPass).get(index).click();
 	}
 
+    public boolean isFindRouteButtonDisplayed(){
+        waitForVisibilityOf(findRoutebutton);
+        boolean displayed = driver.findElement(findRoutebutton).isDisplayed();
+        return displayed;
+    }
+
+
+    public boolean isFindRouteButtonEnabled(){
+        waitForVisibilityOf(findRoutebutton);
+        boolean displayed = driver.findElement(findRoutebutton).isEnabled();
+        return displayed;
+    }
+
+
+    public boolean checkCachedLocations(String location){
+        boolean result=false;
+        waitForClickabilityOf(cachedLocation);
+        int size = driver.findElements(cachedLocation).size();
+
+        for(int i=0;i<size;i++) {
+
+            String text = driver.findElements(cachedLocation).get(i).getText();
+            if(text.equalsIgnoreCase(location)){
+                System.out.println("Match has been found");
+                result=true;
+                break;
+            }else{
+                result=false;
+            }
+
+        }
+
+        return result;
+    }
 
 
 

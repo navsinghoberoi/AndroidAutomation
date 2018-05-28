@@ -26,6 +26,7 @@ public class SlotsPage extends BasePage {
     By buyPassOptionSubtext = By.id("item_booking_option.text");
     By takePPROptionSubtext = By.id("item_booking_option.text");
     By backButton = By.className("android.widget.ImageButton");
+    By locatePickupStop = By.id("locate_pickup_button");
 
     public void clickSlot(int index) throws InterruptedException {
         waitForClickabilityOf(selectSlot);
@@ -126,6 +127,13 @@ public class SlotsPage extends BasePage {
         String selectedOption = clickBuyPassOption(optionIndex);
         System.out.println("Subtext of the selected option = " + selectedOption);
 
+    }
+
+    public boolean isLocatePickupStopDisplayed()
+    {
+        waitForClickabilityOf(locatePickupStop);
+        boolean result =  driver.findElement(locatePickupStop).isDisplayed();
+        return result;
     }
 
 
