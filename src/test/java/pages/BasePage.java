@@ -143,4 +143,18 @@ public class BasePage extends Setup {
             return false;
         }
     }
+
+
+    public boolean checkIfElementClickable(By locator, long... waitSeconds) {
+        try {
+            getElementWhenClickable(locator, waitSeconds);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
+
+
 }

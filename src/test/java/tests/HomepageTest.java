@@ -28,10 +28,11 @@ public class HomepageTest extends Setup {
     private OtpPage otpPage;
     private Commons commons;
 
+
     @BeforeMethod
     public void setUp() throws Exception {
 
-        createAndroidSession(false);
+        createAndroidSession(true);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
@@ -60,26 +61,25 @@ public class HomepageTest extends Setup {
         driver.quit();
     }
 
-    @Test(priority = 1, enabled = false)
+    @Test(priority = 1)
     public void testHomeCards() throws Exception {
-        createAndroidSession(true);
         commons.goToHomepage();
     }
 
-    @Test(priority = 3, enabled = true)
+    @Test(priority = 2)
     public void testHomePageOldUser() throws Exception {
-        commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+    //    commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
         boolean result = homePage.checkSearchBar();
         Assert.assertEquals(result, true, "test case failed");
         driver.quit();
     }
 
-    @Test(priority = 2, enabled = true)
+    @Test(priority = 3, enabled = false)
     public void testHomePageNewUserWithoutBooking() throws Exception {
+        createAndroidSession(false);
         commons.enterUserPhoneNumberOTP("userWithoutBookingPhoneNumber", "userWithoutBookingOTP");
         boolean result = homePage.checkSearchBar();
         Assert.assertEquals(result, false, "test case failed");
-
     }
 
     @Test(priority = 4)
@@ -118,9 +118,9 @@ public class HomepageTest extends Setup {
     public void verifyFindRouteButtonWithoutAddresses() throws Exception {
         //      commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
         commons.clickSearchBar();
-        boolean isEnabled = homePage.isFindRouteButtonEnabled();
-        System.out.println("Is search card enabled before entering home and office address ? " + isEnabled);
-        Assert.assertEquals(isEnabled, false, "test case failed");
+        boolean isFindRouteButtonEnabled = homePage.isFindRouteButtonEnabled();
+        System.out.println("Is search card enabled before entering home and office address ? " + isFindRouteButtonEnabled);
+        Assert.assertEquals(isFindRouteButtonEnabled, false, "test case failed");
 
     }
 
@@ -180,6 +180,7 @@ public class HomepageTest extends Setup {
         commons.clickSearchBar();
         String text = homePage.getFromLocationText();
         System.out.println("Heading of from location field = " + text);
+        Assert.assertEquals(text, "Enter home location", "test case failed"); // Might fail coz of app config, need to handle via time
     }
 
 
@@ -189,6 +190,7 @@ public class HomepageTest extends Setup {
         commons.clickSearchBar();
         String text = homePage.getToLocationText();
         System.out.println("Heading of to location field = " + text);
+        Assert.assertEquals(text, "Enter office location", "test case failed"); // Might fail coz of app config, need to handle via time
     }
 
 
@@ -255,6 +257,138 @@ public class HomepageTest extends Setup {
         homePage.clickFromLocation();
         boolean result = homePage.checkCachedLocations(getValueFromPPFile("homeAddress"));
         System.out.println(result);
+        Assert.assertEquals(result, true, "test case failed");
+    }
+
+
+    @Test(priority = 19)
+    public void verifyBuddyIconIsDisplayed() {
+
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        boolean result = homePage.checkBuddyButton();
+        Assert.assertEquals(result, true, "test case failed");
+    }
+
+
+    @Test(priority = 20)
+    public void verifyBuddyIconIsEnabled() {
+
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        boolean result = homePage.isBuddyButtonEnabled();
+        Assert.assertEquals(result, true, "test case failed");
+    }
+
+
+    @Test(priority = 21)
+    public void verifyBuddyIconOptions() {
+        boolean result = false;
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        homePage.clickBuddy();
+        int size = homePage.getBuddyOptionsSize();
+        if (size > 0) {
+            result = true;
+        } else {
+            result = false;
+        }
+        Assert.assertEquals(result, true, "test case failed");
+    }
+
+
+    @Test(priority = 22)
+    public void verifyReportIssueOptionClick() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        homePage.clickBuddy();
+        boolean result = homePage.reportIssueOptionClick();
+        Assert.assertEquals(result, true, "test case failed");
+    }
+
+
+    @Test(priority = 23)
+    public void verifyReportIssueLandingPage() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        homePage.clickBuddy();
+        homePage.reportIssueOptionClick();
+        boolean result = homePage.checkReportIssuePage();
+        Assert.assertEquals(result, true, "test case failed");
+
+    }
+
+
+    @Test(priority = 24)
+    public void verifyBackButtonOnReportIssuePage() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        homePage.clickBuddy();
+        homePage.reportIssueOptionClick();
+        homePage.clickBackButton();
+        boolean result = homePage.checkBuddyButton();
+        Assert.assertEquals(result, true, "test case failed");
+
+    }
+
+
+    @Test(priority = 25)
+    public void verifyReserveSeatButtonIsDisplayed() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        boolean result = homePage.isReserveSeatButtonDisplayed();
+        Assert.assertEquals(result, true, "test case failed");
+    }
+
+
+    @Test(priority = 26)
+    public void verifyReserveSeatButtonIsEnabled() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        boolean result = homePage.isReserveSeatEnabled();
+        Assert.assertEquals(result, true, "test case failed");
+    }
+
+
+    @Test(priority = 27)
+    public void verifyRebookCardMorningTitle() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        String result = homePage.getMorningRebookCardTitle();
+        Assert.assertEquals(result, "Morning Ride", "test case failed");
+    }
+
+    @Test(priority = 28)
+    public void verifyRebookCardEveningTitle() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        String result = homePage.getEveningRebookCardTitle();
+        Assert.assertEquals(result, "Evening Ride", "test case failed");
+    }
+
+
+    @Test(priority = 29)
+    public void printRebookCardContent() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        homePage.getRebookCardContents();
+    }
+
+
+    @Test(priority = 30)
+    public void verifyReserveSeatClick() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        boolean result = homePage.reserveSeatClick();
+        Assert.assertEquals(result, true, "test case failed");
+    }
+
+
+    @Test(priority = 31)
+    public void verifySlotsPageOnClickOfReserveSeat() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        homePage.reserveSeatClick();
+        boolean result = slotsPage.isSelectTimeslotDisplayed();
+        System.out.println(result);
+        Assert.assertEquals(result, true, "test case failed");
+
+    }
+
+
+    @Test(priority = 32)
+    public void verifyBackButtonFromSlotsPage() {
+        // commons.enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        homePage.reserveSeatClick();
+        homePage.clickBackButton();
+        boolean result = homePage.checkBuddyButton();
         Assert.assertEquals(result, true, "test case failed");
     }
 
