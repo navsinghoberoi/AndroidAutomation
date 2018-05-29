@@ -63,7 +63,7 @@ public class HomepageTest extends Setup {
 
     @Test(priority = 1)
     public void testHomeCards() throws Exception {
-        commons.goToHomepage();
+        commons.goToHomepage("oldUserPhoneNumber","oldUserOTP");
     }
 
     @Test(priority = 2)

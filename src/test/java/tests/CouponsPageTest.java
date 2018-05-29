@@ -1,9 +1,12 @@
 package tests;
 
+import common.Commons;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.CouponsPage;
@@ -19,26 +22,31 @@ public class CouponsPageTest extends Setup {
     private CouponsPage couponsPage;
     private HomePage homePage;
     private MenuPage menuPage;
-    private BasePage basePage;
+    private Commons commons;
 
-
-    @BeforeClass
+    @BeforeMethod
     public void setUp() throws Exception {
         createAndroidSession(true);
         couponsPage = new CouponsPage(driver);
         homePage = new HomePage(driver);
         menuPage = new MenuPage(driver);
-        basePage = new BasePage(driver);
-        homePage.clickMenu();
-        menuPage.clickCoupon();
+        commons = new Commons(driver);
+        commons.goToHomepage("9999315652","oldUserOTP");
+    }
 
+
+    @AfterMethod
+    public void tearDown() throws Exception {
+        System.out.println("Test case completed");
+        driver.quit();
     }
 
 
     @Test(priority = 1)
 
     public void testAddCoupon() throws Exception {
-
+        homePage.clickMenu();
+        menuPage.clickCoupon();
         boolean addedCouponMessage;
         couponsPage.clickCouponCodeArea();
         couponsPage.enterCouponCode("couponcode");
@@ -63,7 +71,8 @@ public class CouponsPageTest extends Setup {
     @Test(priority = 2)
 
     public void testSavedCoupon() throws InterruptedException {
-
+        homePage.clickMenu();
+        menuPage.clickCoupon();
         boolean offer_details;
         couponsPage.clickSavedCouponsArea();
         try {
@@ -82,6 +91,8 @@ public class CouponsPageTest extends Setup {
     @Test(priority = 3)
 
     public void invalidCouponTest() throws Exception {
+        homePage.clickMenu();
+        menuPage.clickCoupon();
         couponsPage.clickEnterCouponCodeArea();
         couponsPage.enterCouponCode("random");
         AndroidDriver androidDriver = (AndroidDriver) driver;
@@ -95,6 +106,8 @@ public class CouponsPageTest extends Setup {
     @Test(priority = 4)
 
     public void termsOfServiceTest() {
+        homePage.clickMenu();
+        menuPage.clickCoupon();
         couponsPage.clickEnterCouponCodeArea();
         couponsPage.clickTermOfService();
         String title=couponsPage.getTermsOfServiceTitle();

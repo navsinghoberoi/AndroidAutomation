@@ -94,7 +94,7 @@ public class BookingTest extends Setup {
 
     @Test(priority = 1)
     public void signIn() throws Exception {
-        commons.goToHomepage();
+        commons.goToHomepage("oldUserPhoneNumber","oldUserOTP");
         homePage.clickBuddy();
         Thread.sleep(10000);
     }

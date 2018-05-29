@@ -48,7 +48,7 @@ public class Setup {
         capabilities.setCapability("platformName","Android");
         capabilities.setCapability("noReset", noreset );
         capabilities.setCapability("fullReset", false);
-        capabilities.setCapability("launchApp", getValueFromPPFile("androidAppActivity"));
+    //    capabilities.setCapability("launchApp", getValueFromPPFile("androidAppActivity"));
         capabilities.setCapability("app", app.getAbsolutePath());
 
         //capabilities.setCapability("app", "sauce-storage:app-qa-3.6.0-qa.apk");
@@ -56,46 +56,6 @@ public class Setup {
         driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
         //driver = new AndroidDriver(new URL("http://nitishtest1991:11a0fed8-8611-471c-9f17-541f3bd68617@ondemand.saucelabs.com:80/wd/hub"), capabilities);
 
-    }
-
-
-    public void createIosSession() throws Exception {
-        Properties prop = loadPropertyFile();
-        File appDir = new File(getValueFromPPFile("iosFilePath"));
-        File app = new File(appDir, getValueFromPPFile("iosFileName"));
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", "ios");
-        capabilities.setCapability("platformVersion", "8.2");
-        capabilities.setCapability("deviceName", "iPhone 5s");
-        capabilities.setCapability("app", app.getAbsolutePath());
-        driver = new IOSDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
-
-    }
-
-
-    public void createBrowserSession(String env) throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", "src/Resources/chromedriver");
-        if (env == "local")
-        {
-
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--disable-extensions");
-            driver = new ChromeDriver(options);
-            //driver = new ChromeDriver();
-            driver.manage().window().maximize();
-            //driver.navigate().to(appURL);
-            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-            //return driver;
-        }
-        else {
-            DesiredCapabilities caps = DesiredCapabilities.chrome();
-            caps.setCapability("platform", "Windows XP");
-            caps.setCapability("version", "43.0");
-
-            WebDriver driver = new RemoteWebDriver(caps);
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        }
     }
 
 }
