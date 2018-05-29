@@ -94,7 +94,7 @@ public class BookingTest extends Setup {
 
     @Test(priority = 1)
     public void signIn() throws InterruptedException {
-        commons.goToHomepage();
+        //commons.goToHomepage();
         homePage.clickBuddy();
         Thread.sleep(10000);
     }

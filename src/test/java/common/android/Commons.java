@@ -54,10 +54,15 @@ public class Commons extends BasePage {
 
     }
 
-    public void goToHomepage() throws InterruptedException {
-        if (!homePage.checkBuddyButton())
-            login();
+    public void goToHomepage() throws Exception {
+        if (!homePage.checkSearchBar()) {
+            enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+        }
+        else{
+            System.out.println("User is already on the homepage");
+        }
     }
+
 
 
     /* This method lets user login by specifying phonenumber and OTP*/

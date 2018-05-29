@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidKeyCode;
 import oracle.jrockit.jfr.ActiveSettingEvent;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.android.HomePage;
 import pages.android.MyRidesPage;
@@ -59,90 +60,90 @@ public class MyRidesTest extends Setup {
     public void rideSelectionFromHistory()throws Exception{
         myRidesPage.ridesSelectionClick();
         String rideSelection = myRidesPage.getHistoryRideSelectionText();
-        Assert.assertEquals(rideSelection, getValueFromPPFile(  "historyRideTitle") );
+        Assert.assertEquals(rideSelection, myRidesPage.getRideSelectionDate());
 
     }
-
-    @Test(priority = 6, dependsOnMethods = "rideSelectionFromHistory")
-    public void verifyRideNowTitletext(){
-        myRidesPage.getRideNowButtonClick();
-        String rideNowTitleText = myRidesPage.getRideNowTitleText();
-        Assert.assertEquals(rideNowTitleText,"Select a Timeslot");
-        myRidesPage.clickBackButton();
-    }
-
-    @Test(priority = 7,dependsOnMethods = "rideSelectionFromHistory")
-    public void selctedHistoryRideTitleText()throws Exception{
-        String historyRideTitleText = myRidesPage.getHistoryTitleText();
-        Assert.assertEquals(historyRideTitleText, getValueFromPPFile("historyRideTitle"));
-    }
-
-    @Test(priority = 8, dependsOnMethods = "rideSelectionFromHistory")
-    public void pickAndDropLocationText(){
-        String pickupPoint = myRidesPage.getPickupPointText();
-        String getPickupPointInMyRidesText = myRidesPage.getPickupPointInMyRidesText();
-        if(pickupPoint.equals(getPickupPointInMyRidesText)){
-            String pickupPointInMyRides = myRidesPage.getPickupPointInMyRidesText();
-            Assert.assertEquals(pickupPointInMyRides,"Dwarka Mor 1");
-        }
-    }
-    @Test(priority = 9 , dependsOnMethods = "rideSelectionFromHistory")
-    public void needHelpWithTheRide()
-    {
-        String needHelpText = myRidesPage.getNeedHelpWithThisRideText();
-        Assert.assertEquals(needHelpText, "NEED HELP WITH THIS RIDE?");
-        myRidesPage.getNeedHelpWithThisRideButtonClick();
-    }
-    @Test(priority = 10)
-    public void getLostAnItemText(){
-        System.out.println("I am here 1");
-        myRidesPage.getLostItemClick();
-        System.out.println("I am here 2");
-        String getLostItemButtonText = myRidesPage.getLostItemTitleText();
-        Assert.assertEquals(getLostItemButtonText, "I lost an item");
-        myRidesPage.getDescriptionText();
-        myRidesPage.SubmitButtonClick();
-        myRidesPage.clickBackButton();
-        String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
-        Assert.assertEquals(getHelpTitleText,"Select An Issue");
-    }
-
-    @Test(priority = 12)
-    public void getPickUpIssue(){
-        myRidesPage.getPickUpItemClick();
-        String getPickButtonText = myRidesPage.getPickupPointText();
-        Assert.assertEquals(getPickButtonText,"I have an issue with my pickup");
-        myRidesPage.getDescriptionText();
-        myRidesPage.SubmitButtonClick();
-        myRidesPage.clickBackButton();
-        String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
-        Assert.assertEquals(getHelpTitleText,"Select An Issue");
-
-    }
-
-    @Test(priority = 13)
-    public void getDriverIssue(){
-        myRidesPage.getIssueWithDriverClick();
-        String getDriverButtonText = myRidesPage.getIssueWithDriver();
-        Assert.assertEquals(getDriverButtonText,"I have an issue with my driver");
-        myRidesPage.getDescriptionText();
-        myRidesPage.SubmitButtonClick();
-        myRidesPage.clickBackButton();
-        String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
-        Assert.assertEquals(getHelpTitleText,"Select An Issue");
-    }
-
-    @Test(priority = 14)
-    public void getOtherIssue(){
-        myRidesPage.getOtherIssueClick();
-        String getOtherIssueText = myRidesPage.getOtherIssue();
-        Assert.assertEquals(getOtherIssueText,"I have some other issue with my trip");
-        myRidesPage.getDescriptionText();
-        myRidesPage.SubmitButtonClick();
-        myRidesPage.clickBackButton();
-        String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
-        Assert.assertEquals(getHelpTitleText,"Select An Issue");
-    }
+//
+//    @Test(priority = 6, dependsOnMethods = "rideSelectionFromHistory")
+//    public void verifyRideNowTitletext(){
+//        myRidesPage.getRideNowButtonClick();
+//        String rideNowTitleText = myRidesPage.getRideNowTitleText();
+//        Assert.assertEquals(rideNowTitleText,"Select a Timeslot");
+//        myRidesPage.clickBackButton();
+//    }
+//
+//    @Test(priority = 7,dependsOnMethods = "rideSelectionFromHistory")
+//    public void selctedHistoryRideTitleText()throws Exception{
+//        String historyRideTitleText = myRidesPage.getHistoryTitleText();
+//        Assert.assertEquals(historyRideTitleText, getValueFromPPFile("historyRideTitle"));
+//    }
+//
+//    @Test(priority = 8, dependsOnMethods = "rideSelectionFromHistory")
+//    public void pickAndDropLocationText(){
+//        String pickupPoint = myRidesPage.getPickupPointText();
+//        String getPickupPointInMyRidesText = myRidesPage.getPickupPointInMyRidesText();
+//        if(pickupPoint.equals(getPickupPointInMyRidesText)){
+//            String pickupPointInMyRides = myRidesPage.getPickupPointInMyRidesText();
+//            Assert.assertEquals(pickupPointInMyRides,"Dwarka Mor 1");
+//        }
+//    }
+//    @Test(priority = 9 , dependsOnMethods = "rideSelectionFromHistory")
+//    public void needHelpWithTheRide()
+//    {
+//        String needHelpText = myRidesPage.getNeedHelpWithThisRideText();
+//        Assert.assertEquals(needHelpText, "NEED HELP WITH THIS RIDE?");
+//        myRidesPage.getNeedHelpWithThisRideButtonClick();
+//    }
+//    @Test(priority = 10)
+//    public void getLostAnItemText(){
+//        System.out.println("I am here 1");
+//        myRidesPage.getLostItemClick();
+//        System.out.println("I am here 2");
+//        String getLostItemButtonText = myRidesPage.getLostItemTitleText();
+//        Assert.assertEquals(getLostItemButtonText, "I lost an item");
+//        myRidesPage.getDescriptionText();
+//        myRidesPage.SubmitButtonClick();
+//        myRidesPage.clickBackButton();
+//        String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
+//        Assert.assertEquals(getHelpTitleText,"Select An Issue");
+//    }
+//
+//    @Test(priority = 12)
+//    public void getPickUpIssue(){
+//        myRidesPage.getPickUpItemClick();
+//        String getPickButtonText = myRidesPage.getPickupPointText();
+//        Assert.assertEquals(getPickButtonText,"I have an issue with my pickup");
+//        myRidesPage.getDescriptionText();
+//        myRidesPage.SubmitButtonClick();
+//        myRidesPage.clickBackButton();
+//        String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
+//        Assert.assertEquals(getHelpTitleText,"Select An Issue");
+//
+//    }
+//
+//    @Test(priority = 13)
+//    public void getDriverIssue(){
+//        myRidesPage.getIssueWithDriverClick();
+//        String getDriverButtonText = myRidesPage.getIssueWithDriver();
+//        Assert.assertEquals(getDriverButtonText,"I have an issue with my driver");
+//        myRidesPage.getDescriptionText();
+//        myRidesPage.SubmitButtonClick();
+//        myRidesPage.clickBackButton();
+//        String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
+//        Assert.assertEquals(getHelpTitleText,"Select An Issue");
+//    }
+//
+//    @Test(priority = 14)
+//    public void getOtherIssue(){
+//        myRidesPage.getOtherIssueClick();
+//        String getOtherIssueText = myRidesPage.getOtherIssue();
+//        Assert.assertEquals(getOtherIssueText,"I have some other issue with my trip");
+//        myRidesPage.getDescriptionText();
+//        myRidesPage.SubmitButtonClick();
+//        myRidesPage.clickBackButton();
+//        String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
+//        Assert.assertEquals(getHelpTitleText,"Select An Issue");
+//    }
 
 
 }

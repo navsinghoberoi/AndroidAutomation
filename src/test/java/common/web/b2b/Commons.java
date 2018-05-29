@@ -11,7 +11,7 @@ public class Commons extends BasePage {
     private LoginPanelPage loginPanelPage = new LoginPanelPage(driver);
 
 
-    LoginPanelPage loginPanelPage = new LoginPanelPage(driver);
+    //LoginPanelPage loginPanelPage = new LoginPanelPage(driver);
     public void login() throws InterruptedException {
         loginPanelPage.typeUsername("sumeet.joon");
         loginPanelPage.typePassword("sumeet");
