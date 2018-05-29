@@ -9,6 +9,9 @@ import org.openqa.selenium.WebElement;
 import tests.android.Setup;
 
 import java.net.MalformedURLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MyRidesPage extends BasePage {
@@ -19,13 +22,14 @@ public class MyRidesPage extends BasePage {
     By currentRideBoardLocation = By.xpath("//android.widget.TextView[@index='CD Chowk ']");
     By historyRidesTab = By.xpath("//android.widget.TextView[@text='HISTORY']");
     By tripSelectionByDate = By.xpath("//android.widget.TextView[@index=1]");
-    //By selectionOfTrip = By.id("mb_item_time");
-    By ridesList = By.id("mb_past_list");
+    By selectionOfTripDate = By.id("list_item_title");
+    By selectionOfTripTime = By.id("mb_item_time");
+    By ridesList = By.id("mb_item_parent");
     By historyRideTitleText = By.xpath("//android.widget.TextView[@index=1]");
-    By pickupPointText = By.xpath("//android.widget.TextView[@text='Dwarka Mor 1']");
-    By dropPointText = By.xpath("//android.widget.TextView[@text='CD Chowk (Spaze IT park) ']");
-    By pickupPointInMyRides = By.xpath("//android.widget.TextView[@text='Dwarka Mor 1']");
-    By dropPointInMyRidesText = By.xpath("//android.widget.TextView[@text='CD Chowk (Spaze IT park) ']");
+    By pickupPointText = By.id("pdwl.pick_up_name");
+    // By dropPointText = By.id("pdwl.drop_name");
+    By pickupPointInMyRides = By.id("pdwl.pick_up_name");
+    // By dropPointInMyRidesText = By.xpath("//android.widget.TextView[@text='CD Chowk (Spaze IT park) ']");
     By historyRideNowButton = By.xpath("//android.widget.TextView[@text='RIDE NOW']");
     By rideNowTitleText = By.xpath("//android.widget.TextView[@text='Select a Timeslot']");
     By needHelpWithThisRide = By.xpath("//android.widget.TextView[@text='NEED HELP WITH THIS RIDE?']");
@@ -44,7 +48,7 @@ public class MyRidesPage extends BasePage {
         super(driver);
         androidDriver = (AndroidDriver)driver;
 
-            }
+    }
 
     public String getMyRidesDisplayText() {
 
@@ -92,12 +96,34 @@ public class MyRidesPage extends BasePage {
         driver.findElement(historyRidesTab).click();
 
     }
+    public String getRideSelectionDate(){
+
+        waitForVisibilityOf(tripSelectionByDate);
+        String dateText =  driver.findElement(tripSelectionByDate).getText();
+        if(dateText.equalsIgnoreCase("Today")){
+            String dateFormat = new SimpleDateFormat("MMMM dd, yyyy").format(new Date());
+            return dateFormat + "RideTime";
+
+        }
+        else{
+
+            return dateText ;
+        }
+
+    }
+    public void getSelectionOfTripTime (){
+
+        waitForVisibilityOf(selectionOfTripTime);
+        List<WebElement> RideTime = driver.findElement(selectionOfTripTime);
+        RideTime.get(0).getText();
+
+    }
     public void ridesSelectionClick(){
 
-        scrollDown();
+//      scrollDown();
         waitForVisibilityOf(ridesList);
         List<WebElement> RidesList = driver.findElements(ridesList);
-        RidesList.get(4).click();
+        RidesList.get(0).click();
     }
 
     public String getHistoryRideSelectionText()throws Exception {
@@ -105,7 +131,7 @@ public class MyRidesPage extends BasePage {
         waitForVisibilityOf(tripSelectionByDate);
         String getSelectionOfTrip = driver.findElement(tripSelectionByDate).getText();
         return getSelectionOfTrip;
-        }
+    }
 
 //    public void getHistoryRideSelectionClick() {
 //        waitForClickabilityOf(selectionOfTrip);
@@ -136,14 +162,18 @@ public class MyRidesPage extends BasePage {
 
     }
     public String getPickupPointText() {
-        String findPickupPoint = driver.findElement(pickupPointText).getText();
-        return findPickupPoint;
+
+        List<WebElement> findPickupPointText = driver.findElements(pickupPointText);
+        return findPickupPointText.get(0).getText();
 
     }
 
-    public String getDropPointText() {
-        String findDropPoint = driver.findElement(dropPointText).getText();
-        return findDropPoint;
+    public void getDropPointText() {
+
+        List<WebElement> findDropPointText = driver.findElements(pickupPointText);
+        findDropPointText.get(0).getText();
+//        String findDropPointText = driver.findElement(dropPointText).getText();
+//        return findDropPointText;
     }
 
     public String getPickupPointInMyRidesText() {
@@ -152,7 +182,7 @@ public class MyRidesPage extends BasePage {
     }
 
     public String getDropPointInMyRidesText() {
-        String findDropPointInMyRides = driver.findElement(dropPointInMyRidesText).getText();
+        String findDropPointInMyRides = driver.findElement(pickupPointText).getText();
         return findDropPointInMyRides;
     }
 
@@ -224,6 +254,5 @@ public class MyRidesPage extends BasePage {
         driver.findElement(backButton).click();
 
     }
-
 
 }
