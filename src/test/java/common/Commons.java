@@ -42,9 +42,9 @@ public class Commons extends BasePage {
         enterUserPhoneNumberOTP(phoneNumber, OTP);
     }
 
-    public void goToHomepage() throws Exception {
+    public void goToHomepage(String phoneNumber, String OTP) throws Exception {
         if (!homePage.checkSearchBar()) {
-            enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+            enterUserPhoneNumberOTP(phoneNumber, OTP);
         }
         else{
             System.out.println("User is already on the homepage");
@@ -58,7 +58,7 @@ public class Commons extends BasePage {
         String userOTP = getValueFromPPFile(otpKey);
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
-        loginPage.enterMobileNumber(userPhoneNumber);
+        loginPage.enterMobileNumber(phoneNumberKey);
         loginPage.clickVerify();
 
         /*

@@ -65,11 +65,23 @@ public class HomePage extends BasePage {
         driver.findElement(findRoutebutton).click();
     }
 
-    public void clickMenu() {
+   /* public void clickMenu() {
 
         waitForClickabilityOf(menuButton);
         driver.findElement(menuButton).click();
+    }*/
+
+    public void clickMenu() {
+        if (checkIfElementClickable(menuButton, 20) == true) {
+            System.out.println("Menu button is displayed, need to open menu");
+            waitForClickabilityOf(menuButton);
+            driver.findElement(menuButton).click();
+        } else {
+            System.out.println("Menu button is not displayed");
+        }
     }
+
+
 
     public void clickWallet() {
         waitForClickabilityOf(wallet_button);
