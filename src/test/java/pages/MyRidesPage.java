@@ -34,8 +34,9 @@ public class MyRidesPage extends BasePage {
     By rideNowTitleText = By.xpath("//android.widget.TextView[@text='Select a Timeslot']");
     By needHelpWithThisRide = By.xpath("//android.widget.TextView[@text='NEED HELP WITH THIS RIDE?']");
     By needHelpTitleText = By.xpath("//android.widget.TextView[@index=1]");
-   // By lostAnItem = By.id("th_item_name");
-    By lostAnItem = By.xpath("//*[@id='th_item_name'][@text='I lost an item']");
+    //By lostAnItem = By.id("th_item_name");
+    By lostAnItem = By.xpath("//*[@text='I lost an item']");
+    // By lostAnItem = By.xpath("//android.widget.TextView[@text='I lost an item']");
     By descriptionTextField = By.xpath("//android.widget.EditText[@index=2]");
     By submitButton = By.xpath("//android.widget.Button[@text='SUBMIT']");
     By pickUpIssue = By.id("th_item_name");
@@ -45,9 +46,10 @@ public class MyRidesPage extends BasePage {
 
 
     private AndroidDriver androidDriver;
+
     public MyRidesPage(WebDriver driver) {
         super(driver);
-        androidDriver = (AndroidDriver)driver;
+        androidDriver = (AndroidDriver) driver;
 
     }
 
@@ -97,29 +99,31 @@ public class MyRidesPage extends BasePage {
         driver.findElement(historyRidesTab).click();
 
     }
-    public String getRideSelectionDate(){
+
+    public String getRideSelectionDate() {
 
         waitForVisibilityOf(tripSelectionByDate);
-        String dateText =  driver.findElement(tripSelectionByDate).getText();
+        String dateText = driver.findElement(tripSelectionByDate).getText();
 
-        if(dateText.equalsIgnoreCase("Today")){
+        if (dateText.equalsIgnoreCase("Today")) {
             String dateFormat = new SimpleDateFormat("MMMM dd, yyyy").format(new Date());
             return dateFormat + "RideTime";
 
-        }
-        else{
+        } else {
 
-            return dateText ;
+            return dateText;
         }
     }
-    public void ignoreTitleTexr(){
+
+    public void ignoreTitleTexr() {
 
         waitForVisibilityOf(selectionOfTripTime);
         List<WebElement> RideTime = driver.findElement(selectionOfTripTime);
         RideTime.get(0).getText();
 
     }
-    public void ridesSelectionClick(){
+
+    public void ridesSelectionClick() {
 
 //      scrollDown();
         waitForVisibilityOf(ridesList);
@@ -127,7 +131,7 @@ public class MyRidesPage extends BasePage {
         RidesList.get(0).click();
     }
 
-    public String getHistoryRideSelectionText()throws Exception {
+    public String getHistoryRideSelectionText() throws Exception {
 
         waitForVisibilityOf(tripSelectionByDate);
         String getSelectionOfTrip = driver.findElement(tripSelectionByDate).getText();
@@ -151,9 +155,10 @@ public class MyRidesPage extends BasePage {
         driver.findElement(historyRideNowButton).click();
 
     }
-    public String getRideNowButtonText(){
+
+    public String getRideNowButtonText() {
         waitForClickabilityOf(historyRideNowButton);
-       String findRideNowButtonText = driver.findElement(historyRideNowButton).getText();
+        String findRideNowButtonText = driver.findElement(historyRideNowButton).getText();
         return findRideNowButtonText;
 
     }
@@ -169,6 +174,7 @@ public class MyRidesPage extends BasePage {
         findPickupPoint.get(5).click();
 
     }
+
     public String getPickupPointText() {
 
         List<WebElement> findPickupPointText = driver.findElements(pickupPointText);
@@ -200,7 +206,8 @@ public class MyRidesPage extends BasePage {
         driver.findElement(needHelpWithThisRide).click();
 
     }
-    public String getNeedHelpWithThisRideText(){
+
+    public String getNeedHelpWithThisRideText() {
         waitForVisibilityOf(needHelpWithThisRide);
         String findNeedHelpWithText = driver.findElement(needHelpWithThisRide).getText();
         return findNeedHelpWithText;
@@ -210,62 +217,70 @@ public class MyRidesPage extends BasePage {
         String findHelpIssue = driver.findElement(needHelpTitleText).getText();
         return findHelpIssue;
     }
-    public String getNeedHelpTitleText(){
+
+    public String getNeedHelpTitleText() {
         waitForVisibilityOf(needHelpTitleText);
-        String findHelpTitleText= driver.findElement(needHelpTitleText).getText();
+        String findHelpTitleText = driver.findElement(needHelpTitleText).getText();
         return findHelpTitleText;
     }
-    public void getLostItemClick(){
 
-//        waitForVisibilityOf(lostAnItem);
-//        System.out.println("I am her in fun 2");
-//        List<WebElement> helpList = driver.findElement(lostAnItem);
-//        System.out.println("Total elements :" + helpList.size());
-//        System.out.println("I am her in fun 3");
-//        helpList.get(0).click();
-//        System.out.println("I am her in fun 4");
-//        driver.findElement(lostAnItem).click();
+    public void getLostItemClick() {
 
-        List<WebElement> list  = driver.findElement(lostAnItem);
-        for (int i=0;i<list.size();i++){
-            System.out.println("clicked on "+list.get(i).getAttribute("xpath"));
-        }
+//      waitForVisibilityOf(lostAnItem);
+//      driver.findElement(lostAnItem).click();
+        waitForClickabilityOf(lostAnItem);
+        List<WebElement> helpList = driver.findElements(lostAnItem);
+        helpList.get(0).click();
+        driver.findElement(lostAnItem).click();
+
+//        List<WebElement> list  = driver.findElement(lostAnItem);
+//        for (int i=0;i<list.size();i++){
+//        System.out.println("clicked on "+list.get(i).getAttribute("xpath"));
     }
+
     public String getLostItemTitleText() {
         String findLostItemTitlleText = driver.findElement(lostAnItem).getText();
         return findLostItemTitlleText;
     }
-    public void getDescriptionText(){
+
+    public void getDescriptionText() {
         waitForVisibilityOf(descriptionTextField);
         driver.findElement(descriptionTextField).sendKeys("This Is Test Description");
     }
-    public void SubmitButtonClick(){
+
+    public void SubmitButtonClick() {
         waitForVisibilityOf(submitButton);
         driver.findElement(submitButton).click();
     }
-    public void getPickUpItemClick(){
+
+    public void getPickUpItemClick() {
         waitForClickabilityOf(pickUpIssue);
         List<WebElement> helpList = driver.findElement(pickUpIssue);
         helpList.get(1).click();
         //driver.findElement(pickUpIssue).click();
     }
-    public String getPickUpIssueText(){
+
+    public String getPickUpIssueText() {
         String findPickupIssue = driver.findElement(pickUpIssue).getText();
         return findPickupIssue;
     }
-    public void getIssueWithDriverClick(){
+
+    public void getIssueWithDriverClick() {
         waitForVisibilityOf(driverIssue);
         driver.findElement(driverIssue).click();
     }
-    public String getIssueWithDriver(){
+
+    public String getIssueWithDriver() {
         String findDriverIssue = driver.findElement(driverIssue).getText();
         return findDriverIssue;
     }
-    public void getOtherIssueClick(){
+
+    public void getOtherIssueClick() {
         waitForVisibilityOf(otherIssue);
         driver.findElement(otherIssue).click();
     }
-    public String getOtherIssue(){
+
+    public String getOtherIssue() {
         String findTripIssue = driver.findElement(otherIssue).getText();
         return findTripIssue;
     }
