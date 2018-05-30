@@ -32,7 +32,8 @@ public class HomePage extends BasePage {
     By rebookCardTitle = By.id("hr.ride_session");
     By rebookCardPickupPoint = By.id("hr.pick_up_location");
     By rebookCardDropPoint = By.id("hr.drop_location");
-
+    By homecardTrackShuttl = By.id("hab.action_container");
+    By homecardPickupPoint = By.id("hab.pick_up_location");
 
     public String getHeaderText() {
         waitForVisibilityOf(searchBar);
@@ -80,7 +81,6 @@ public class HomePage extends BasePage {
             System.out.println("Menu button is not displayed");
         }
     }
-
 
 
     public void clickWallet() {
@@ -288,5 +288,44 @@ public class HomePage extends BasePage {
     }
 
 
-}
+    public String getBookingHomecardData() {
+        String pickupPointName = null;
+        waitForClickabilityOf(homecardTrackShuttl);
+        boolean isTrackShuttlVisible = driver.findElement(homecardTrackShuttl).isDisplayed();
+        System.out.println("Track shuttl visibility on homecard is = " + isTrackShuttlVisible);
 
+        if (isTrackShuttlVisible) {
+            waitForClickabilityOf(homecardPickupPoint);
+            pickupPointName = driver.findElement(homecardPickupPoint).getText();
+            System.out.println(pickupPointName);
+
+        } else {
+            System.out.println("Track Shuttl is not displayed on the booking homecard");
+        }
+        System.out.println("Value of pickupoint name = " + pickupPointName);
+        return pickupPointName;
+    }
+
+
+    public void clickBookingHomeCard() {
+        waitForClickabilityOf(homecardTrackShuttl);
+        driver.findElement(homecardTrackShuttl).click();
+    }
+
+
+    public boolean isTrackShuttlDisplayed() {
+            boolean isTrackShuttlVisible;
+        if (checkIfElementPresent(homecardTrackShuttl, 15) == true) {
+            System.out.println("TRACK SHUTTL is appearing on active ride");
+            isTrackShuttlVisible = driver.findElement(homecardTrackShuttl).isDisplayed();
+        } else {
+            System.out.println("TRACK SHUTTL is not appearing, so no active ride on homepage");
+            isTrackShuttlVisible = false;
+        }
+
+        return isTrackShuttlVisible;
+    }
+
+
+
+}

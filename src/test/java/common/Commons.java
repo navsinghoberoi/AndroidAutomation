@@ -195,4 +195,28 @@ public class Commons extends BasePage {
         return lines ;
     }
 
+
+    public boolean verifyIsStringPresent(String text, By locator) {
+        boolean result = false;
+        waitForClickabilityOf(locator);
+        int size = driver.findElements(locator).size();
+
+        for (int i = 0; i < size; i++) {
+
+            String content = driver.findElements(locator).get(i).getText();
+            if (content.equalsIgnoreCase(text)) {
+                result = true;
+                break;
+            } else {
+                result = false;
+            }
+
+        }
+
+        return result;
+    }
+
+
+
+
 }
