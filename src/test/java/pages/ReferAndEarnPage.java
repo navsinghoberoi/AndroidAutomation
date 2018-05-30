@@ -1,4 +1,4 @@
-package pages.android;
+package pages;
 
 
 import org.openqa.selenium.By;

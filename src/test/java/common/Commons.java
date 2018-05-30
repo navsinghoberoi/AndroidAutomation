@@ -1,4 +1,4 @@
-package common.android;
+package common;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -10,7 +10,7 @@ import pages.*;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
-import pages.android.*;
+//import pages.android.*;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.LoginPage;
+import pages.OtpPage;
 import pages.ReferAndEarnPage;
 
 

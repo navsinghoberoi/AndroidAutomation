@@ -1,12 +1,12 @@
-package pages.android;
+package pages;
 
 import com.sun.xml.internal.rngom.parse.host.Base;
-import common.android.Commons;
+import common.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
-import tests.android.Setup;
+import tests.Setup;
 
 import java.net.MalformedURLException;
 import java.text.DateFormat;
@@ -34,12 +34,13 @@ public class MyRidesPage extends BasePage {
     By rideNowTitleText = By.xpath("//android.widget.TextView[@text='Select a Timeslot']");
     By needHelpWithThisRide = By.xpath("//android.widget.TextView[@text='NEED HELP WITH THIS RIDE?']");
     By needHelpTitleText = By.xpath("//android.widget.TextView[@index=1]");
-    By lostAnItem = By.xpath("/android.widget.TextView[@text='I lost an item']");
+   // By lostAnItem = By.id("th_item_name");
+    By lostAnItem = By.xpath("//*[@id='th_item_name'][@text='I lost an item']");
     By descriptionTextField = By.xpath("//android.widget.EditText[@index=2]");
     By submitButton = By.xpath("//android.widget.Button[@text='SUBMIT']");
-    By pickUpIssue = By.xpath("//android.widget.TextView[@text='I have an issue with my pickup']");
-    By driverIssue = By.xpath("//android.widget.TextView[@text='I have an issue with my driver']");
-    By otherIssue = By.xpath("//android.widget.TextView[@text='I have some other issue with my trip']");
+    By pickUpIssue = By.id("th_item_name");
+    By driverIssue = By.id("th_item_name");
+    By otherIssue = By.id("th_item_name");
     By backButton = By.xpath("//android.widget.ImageButton[@index=0]");
 
 
@@ -100,6 +101,7 @@ public class MyRidesPage extends BasePage {
 
         waitForVisibilityOf(tripSelectionByDate);
         String dateText =  driver.findElement(tripSelectionByDate).getText();
+
         if(dateText.equalsIgnoreCase("Today")){
             String dateFormat = new SimpleDateFormat("MMMM dd, yyyy").format(new Date());
             return dateFormat + "RideTime";
@@ -109,9 +111,8 @@ public class MyRidesPage extends BasePage {
 
             return dateText ;
         }
-
     }
-    public void getSelectionOfTripTime (){
+    public void ignoreTitleTexr(){
 
         waitForVisibilityOf(selectionOfTripTime);
         List<WebElement> RideTime = driver.findElement(selectionOfTripTime);
@@ -150,6 +151,13 @@ public class MyRidesPage extends BasePage {
         driver.findElement(historyRideNowButton).click();
 
     }
+    public String getRideNowButtonText(){
+        waitForClickabilityOf(historyRideNowButton);
+       String findRideNowButtonText = driver.findElement(historyRideNowButton).getText();
+        return findRideNowButtonText;
+
+    }
+
 
     public String getRideNowTitleText() {
         String getRideNowTitleText = driver.findElement(rideNowTitleText).getText();
@@ -208,8 +216,20 @@ public class MyRidesPage extends BasePage {
         return findHelpTitleText;
     }
     public void getLostItemClick(){
-        waitForClickabilityOf(lostAnItem);
-        driver.findElement(lostAnItem).click();
+
+//        waitForVisibilityOf(lostAnItem);
+//        System.out.println("I am her in fun 2");
+//        List<WebElement> helpList = driver.findElement(lostAnItem);
+//        System.out.println("Total elements :" + helpList.size());
+//        System.out.println("I am her in fun 3");
+//        helpList.get(0).click();
+//        System.out.println("I am her in fun 4");
+//        driver.findElement(lostAnItem).click();
+
+        List<WebElement> list  = driver.findElement(lostAnItem);
+        for (int i=0;i<list.size();i++){
+            System.out.println("clicked on "+list.get(i).getAttribute("xpath"));
+        }
     }
     public String getLostItemTitleText() {
         String findLostItemTitlleText = driver.findElement(lostAnItem).getText();
@@ -225,7 +245,9 @@ public class MyRidesPage extends BasePage {
     }
     public void getPickUpItemClick(){
         waitForClickabilityOf(pickUpIssue);
-        driver.findElement(pickUpIssue).click();
+        List<WebElement> helpList = driver.findElement(pickUpIssue);
+        helpList.get(1).click();
+        //driver.findElement(pickUpIssue).click();
     }
     public String getPickUpIssueText(){
         String findPickupIssue = driver.findElement(pickUpIssue).getText();
