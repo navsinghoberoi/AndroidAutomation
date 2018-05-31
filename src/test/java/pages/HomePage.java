@@ -128,10 +128,10 @@ public class HomePage extends BasePage {
 
     public boolean checkSearchBar() {
         if (checkIfElementPresent(searchBar, 10) == true) {
-            System.out.println("Search bar is displayed i.e. old user");
+            System.out.println("Search bar is displayed");
             return true;
         } else {
-            System.out.println("Search bar is not displayed i.e. new user");
+            System.out.println("Search bar is not displayed");
             return false;
         }
     }

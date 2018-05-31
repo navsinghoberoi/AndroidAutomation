@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class CancelOrRescheduleRidePage extends BasePage {
 
@@ -14,6 +15,10 @@ public class CancelOrRescheduleRidePage extends BasePage {
     By crossIcon = By.id("close_button");
     By cancelRescheduleSelectedCategory = By.id("action_reason_text");
     By backIcon = By.id("action_left");
+    By rescheduleSlotsPageSubtext = By.id("reschedule.sub_title");
+    By rescheduleSlotsPageReserveSeatSubtext = By.id("book_sub_cta");
+    By selectRescheduleSlot = By.id("parent_view");
+    By reserveSeat = By.id("reschedule_active_container");
 
 
     public CancelOrRescheduleRidePage(WebDriver driver) {
@@ -106,5 +111,35 @@ public class CancelOrRescheduleRidePage extends BasePage {
         waitForClickabilityOf(backIcon);
         driver.findElement(backIcon).click();
     }
+
+    public String rescheduleSlotsPageSubtext(){
+
+        waitForVisibilityOf(rescheduleSlotsPageSubtext);
+        return driver.findElement(rescheduleSlotsPageSubtext).getText();
+    }
+
+    public String rescheduleSlotsPageReserveSeatSubtext(){
+        waitForVisibilityOf(rescheduleSlotsPageReserveSeatSubtext);
+        return driver.findElement(rescheduleSlotsPageReserveSeatSubtext).getText();
+
+    }
+
+
+    public void clickRescheduleSlot(int index) throws InterruptedException {
+        if (checkIfElementPresent(selectRescheduleSlot, 10) == true) {
+            System.out.println("Slot for rescheduling ride is displayed");
+            driver.findElements(selectRescheduleSlot).get(index).click();
+        } else {
+            System.out.println("Slot for rescheduling ride is not displayed");
+        }
+
+    }
+
+    public void reserveSeatForRescheduleRide(){
+        waitForClickabilityOf(reserveSeat);
+        driver.findElement(reserveSeat).click();
+    }
+
+
 
 }
