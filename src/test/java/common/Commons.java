@@ -46,7 +46,7 @@ public class Commons extends BasePage {
     public void login(String phoneNumber,String OTP) throws Exception {
         enterUserPhoneNumberOTP(phoneNumber, OTP);
     }
-    
+
     public void goToHomepage() throws Exception {
         if (!homePage.checkSearchBar()) {
             enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
