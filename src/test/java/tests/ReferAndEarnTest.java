@@ -4,26 +4,35 @@ import common.Commons;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.LoginPage;
+import pages.OtpPage;
 import pages.ReferAndEarnPage;
 
 
 public class ReferAndEarnTest extends Setup {
-
     private HomePage homePage;
+    private LoginPage loginPage;
+    private OtpPage otpPage;
     private Commons commons;
     private ReferAndEarnPage referAndEarnPage;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() throws Exception {
         createAndroidSession(false);
-        commons = new Commons(driver);
-        commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
+//      commons = new Commons(driver);
+//      commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
         Thread.sleep(10000L);
         homePage = new HomePage(driver);
         homePage.clickMenu();
         referAndEarnPage = new ReferAndEarnPage(driver);
+    }
+
+    @Test(priority = 1)
+    public void testHomeCards() throws Exception {
+        commons.goToHomepage();
     }
 
     @Test(priority = 1)
@@ -94,8 +103,6 @@ public class ReferAndEarnTest extends Setup {
         referAndEarnPage.whatsAppButtonClick();
 
     }
-
-
 
     @AfterClass
     public void tearDown() throws Exception {

@@ -35,6 +35,12 @@ public class BasePage extends Setup {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    public void scrollDown(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        HashMap<String, String> scrollObject = new HashMap<String, String>();
+        scrollObject.put("direction", "down");
+        js.executeScript("mobile: scroll", scrollObject);
+    }
 
     protected void scrollToText(String targetScrollText) {
 
