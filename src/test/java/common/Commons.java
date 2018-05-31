@@ -36,6 +36,7 @@ public class Commons extends BasePage {
     private PassCompletePaymentPage passCompletePaymentPage = new PassCompletePaymentPage(driver);
     private PassDetailsPage passDetailsPage = new PassDetailsPage(driver);
     private RefundPassPage refundPassPage = new RefundPassPage(driver);
+    private TrackShuttlPage trackShuttlPage = new TrackShuttlPage(driver);
 
 
     public void login(String phoneNumber,String OTP) throws Exception {
@@ -196,7 +197,7 @@ public class Commons extends BasePage {
     }
 
 
-    public boolean verifyIsStringPresent(String text, By locator) {
+    public boolean verifyIsLocatorPresent(String text, By locator) {
         boolean result = false;
         waitForClickabilityOf(locator);
         int size = driver.findElements(locator).size();
@@ -217,6 +218,12 @@ public class Commons extends BasePage {
     }
 
 
+    public void openRideOptionsFromBookingHomecards(){
+        homePage.clickBookingHomeCard();
+        trackShuttlPage.dismissProtip();
+        trackShuttlPage.clickOptionsIcon();
+
+    }
 
 
 }
