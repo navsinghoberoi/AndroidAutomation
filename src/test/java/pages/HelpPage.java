@@ -30,9 +30,10 @@ public class HelpPage extends BasePage{
     By email_us=By.xpath("//android.widget.LinearLayout[@index='3']");
     By gmail_to=By.className("android.widget.MultiAutoCompleteTextView");
     By we_are_hiring=By.xpath("//android.widget.LinearLayout[@index='4']");
-    By open_positions=By.xpath("//android.view.View[@index='0']");
+    By open_positions=By.xpath("//android.view.View[@index='1']");
     By terms_and_conditions=By.id(app_package_name+"terms_conditions");
     By title_terms_and_conditions=By.className("android.widget.TextView");
+    By please_wait_popup=By.id(app_package_name+"body");
 
 
     public void clickFAQS()
