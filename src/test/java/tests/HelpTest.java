@@ -3,8 +3,7 @@ package tests;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.HelpPage;
 import pages.HomePage;
 import pages.MenuPage;
@@ -15,9 +14,9 @@ public class HelpTest extends Setup{
     private HomePage homePage;
     private MenuPage menuPage;
     private HelpPage helpPage;
-    AndroidDriver androidDriver=(AndroidDriver)driver;
 
-    @BeforeClass
+
+    @BeforeMethod
     public void setUp() throws Exception {
         createAndroidSession(true);
         homePage = new HomePage(driver);
@@ -29,7 +28,8 @@ public class HelpTest extends Setup{
     }
 
 
-    @Test
+
+    @Test(priority = 4)
     public void testWhatIsAutoBookingSubContent()
     {
         helpPage.clickFAQS();
@@ -39,7 +39,7 @@ public class HelpTest extends Setup{
 
     }
 
-    @Test
+    @Test(priority = 5)
     public void testWhatIsPayPerRideContent()
     {
         helpPage.clickFAQS();
@@ -49,7 +49,7 @@ public class HelpTest extends Setup{
     }
 
 
-    @Test
+    @Test(priority = 6)
     public void testOneWayTwoWayContent()
     {
         helpPage.clickFAQS();
@@ -58,7 +58,7 @@ public class HelpTest extends Setup{
         helpPage.clickOneWayTwoWay();
     }
 
-    @Test
+    @Test(priority = 7)
     public void testEatInsideShuttlContent()
     {
         helpPage.clickFAQS();
@@ -67,7 +67,7 @@ public class HelpTest extends Setup{
         helpPage.clickEatInsideShuttl();
     }
 
-    @Test
+    @Test(priority = 8)
     public void testWhatIsShuttlServiceAndShuttlContent()
     {
         helpPage.clickFAQS();
@@ -76,7 +76,7 @@ public class HelpTest extends Setup{
         helpPage.clickWhatIsShuttlServiceAndShuttl();
     }
 
-    @Test
+    @Test(priority = 9)
     public void testWhatIsShuttlServiceContent()
     {
         helpPage.clickFAQS();
@@ -85,7 +85,7 @@ public class HelpTest extends Setup{
         helpPage.clickWhatIsShuttlService();
     }
 
-    @Test
+    @Test(priority = 10)
     public void testNotGettingShuttlCredits()
     {
         helpPage.clickFAQS();
@@ -94,43 +94,69 @@ public class HelpTest extends Setup{
         helpPage.clickNotGettingShuttlCredits();
     }
 
-    @Test
+    @Test(priority = 11)
     public void testCallUsButton() throws Exception {
-        helpPage.clickFAQS();
-        helpPage.clickCallUsButton();
-        Assert.assertEquals(helpPage.getNumberOfNCR(),getValueFromPPFile("customerCareNCR"));
+        String callus=null;
+        try {
+            helpPage.clickFAQS();
+            helpPage.clickCallUsButton();
+            callus=helpPage.getNumberOfNCR();
+        }catch (Exception e) {}
+
+        Assert.assertEquals(callus,getValueFromPPFile("customerCareNCR"));
     }
 
 
-    @Test
+    @Test(priority = 1)
     public void testCallCustomerCareNCR() throws Exception {
-        helpPage.clickCallCustomerCareNCR();
-        Assert.assertEquals(helpPage.getNumberOfNCR(),getValueFromPPFile("customerCareNCR"));
+
+        String number=null;
+        try {
+            helpPage.clickCallCustomerCareNCR();
+            number=helpPage.getNumberOfNCR();
+
+        }catch (Exception e){}
+        Assert.assertEquals(number,getValueFromPPFile("customerCareNCR"));
     }
 
-    @Test
+    @Test(priority = 2)
     public void testCallCustomerCareKolkata() throws Exception {
-        helpPage.clickCallCustomerCareKolkata();
-        Assert.assertEquals(helpPage.getNumberOfKolkata(),getValueFromPPFile("customerCareKolkata"));
+        String number=null;
+        try {
+            helpPage.clickCallCustomerCareKolkata();
+            number=helpPage.getNumberOfKolkata();
+        }catch (Exception e){}
+
+        Assert.assertEquals(number,getValueFromPPFile("customerCareKolkata"));
     }
 
-    @Test
+    @Test(priority = 3)
     public void testEmailUS() throws Exception {
-        helpPage.clickEmailUs();
-        Assert.assertEquals(helpPage.getToOfEmailUs(),getValueFromPPFile("emailUs"));
+        String email=null;
+
+        try {
+
+            helpPage.clickEmailUs();
+            email=helpPage.getToOfEmailUs();
+
+        }catch (Exception e){}
+
+        System.out.println(email);
+        Assert.assertEquals(email,getValueFromPPFile("emailUs"));
     }
 
-    @Test
+    @Test(priority = 12)
     public void testWeAreHiring()
     {
-        helpPage.clickweAreHiring();
-        Assert.assertEquals(helpPage.openPositions(),true);
+        boolean check=false;
+
+            helpPage.clickweAreHiring();
+            check=helpPage.openPositions();
+
+        driver.navigate().back();
+
+        Assert.assertEquals(check,true);
     }
 
-    @Test
-    public void testTermsAndConditions()
-    {
-        helpPage.clickTermsAndConditions();
-        Assert.assertEquals(helpPage.titleDisplayedOfTermsAndConditions(),"Terms and Conditions");
-    }
+
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -135,7 +136,14 @@ public class CouponsPage extends BasePage {
         return expiry;
     }
 
-
+    public void addCouponIntegrated() throws Exception {
+        clickCouponCodeArea();
+        enterCouponCode("couponcode");
+        AndroidDriver androidDriver = (AndroidDriver) driver;
+        androidDriver.hideKeyboard();
+        clickSaveButton();
+        driver.navigate().back();
+    }
 
 
    /* public void waitForVisibility()
