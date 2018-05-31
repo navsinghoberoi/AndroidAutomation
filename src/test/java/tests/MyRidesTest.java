@@ -28,7 +28,7 @@ public class MyRidesTest extends Setup {
     public void verifyMyRidesDisplayText() throws Exception {
         String ridesDisplayText = myRidesPage.getMyRidesDisplayText();
         Assert.assertEquals(ridesDisplayText, "My Rides");
-        myRidesPage.getMyRidesDisplayTextClick();
+        myRidesPage.clickMyRidesDisplayText();
     }
 
     @Test(priority = 2, dependsOnMethods = "verifyMyRidesDisplayText")
@@ -48,7 +48,7 @@ public class MyRidesTest extends Setup {
 
     @Test(priority = 4, dependsOnMethods = "verifyMyRidesDisplayText")
     public void verifyHistoryRidesTab() throws Exception {
-        myRidesPage.getHistoryRidesTabClick();
+        myRidesPage.clickHistoryRidesTab();
         String activeTab = myRidesPage.getHistoryRidesTab();
         Assert.assertEquals(activeTab, "HISTORY");
 
@@ -56,14 +56,14 @@ public class MyRidesTest extends Setup {
 
     @Test(priority = 5, dependsOnMethods = "verifyHistoryRidesTab")
     public void verifyRideSelectionFromHistory() throws Exception {
-        myRidesPage.ridesSelectionClick();
+        myRidesPage.clickRidesSelection();
         String rideNowButton = myRidesPage.getRideNowButtonText();
         Assert.assertEquals(rideNowButton, "RIDE NOW");
     }
 
     @Test(priority = 6, dependsOnMethods = "verifyRideSelectionFromHistory")
     public void verifyGetRideNowTitleText() {
-        myRidesPage.getRideNowButtonClick();
+        myRidesPage.clickRideNowButton();
         String rideNowTitleText = myRidesPage.getRideNowTitleText();
         Assert.assertEquals(rideNowTitleText, "Select a Timeslot");
         myRidesPage.clickBackButton();
@@ -89,28 +89,28 @@ public class MyRidesTest extends Setup {
     public void verifyNeedHelpWithTheRide() {
         String needHelpText = myRidesPage.getNeedHelpWithThisRideText();
         Assert.assertEquals(needHelpText, "NEED HELP WITH THIS RIDE?");
-        myRidesPage.getNeedHelpWithThisRideButtonClick();
+        myRidesPage.clickGetNeedHelpWithThisRideButton();
     }
 
     @Test(priority = 10, dependsOnMethods = "verifyNeedHelpWithTheRide", enabled = false)
     public void verifyGetLostAnItemText() {
 
-        myRidesPage.getLostItemClick();
+        myRidesPage.clickGetLostItem();
         String getLostItemButtonText = myRidesPage.getLostItemTitleText();
         Assert.assertEquals(getLostItemButtonText, "I lost an item");
         myRidesPage.getDescriptionText();
-        myRidesPage.SubmitButtonClick();
+        myRidesPage.clickSubmitButton();
         String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
         Assert.assertEquals(getHelpTitleText, "Select An Issue");
     }
 
     @Test(priority = 11, dependsOnMethods = "verifyNeedHelpWithTheRide", enabled = false)
     public void verifyGetPickUpIssue() {
-        myRidesPage.getPickUpItemClick();
+        myRidesPage.clickGetPickUpItem();
         String getPickButtonText = myRidesPage.getPickupPointText();
         Assert.assertEquals(getPickButtonText, "I have an issue with my pickup");
         myRidesPage.getDescriptionText();
-        myRidesPage.SubmitButtonClick();
+        myRidesPage.clickSubmitButton();
         String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
         Assert.assertEquals(getHelpTitleText, "Select An Issue");
 
@@ -118,22 +118,22 @@ public class MyRidesTest extends Setup {
 
     @Test(priority = 12, dependsOnMethods = "verifyNeedHelpWithTheRide", enabled = false)
     public void verifyGetDriverIssue() {
-        myRidesPage.getIssueWithDriverClick();
+        myRidesPage.clickGetIssueWithDriver();
         String getDriverButtonText = myRidesPage.getIssueWithDriver();
         Assert.assertEquals(getDriverButtonText, "I have an issue with my driver");
         myRidesPage.getDescriptionText();
-        myRidesPage.SubmitButtonClick();
+        myRidesPage.clickSubmitButton();
         String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
         Assert.assertEquals(getHelpTitleText, "Select An Issue");
     }
 
     @Test(priority = 13, dependsOnMethods = "verifyNeedHelpWithTheRide", enabled = false)
     public void verifyGetOtherIssue() {
-        myRidesPage.getOtherIssueClick();
+        myRidesPage.clickGetOtherIssue();
         String getOtherIssueText = myRidesPage.getOtherIssue();
         Assert.assertEquals(getOtherIssueText, "I have some other issue with my trip");
         myRidesPage.getDescriptionText();
-        myRidesPage.SubmitButtonClick();
+        myRidesPage.clickSubmitButton();
         String getHelpTitleText = myRidesPage.getNeedHelpTitleText();
         Assert.assertEquals(getHelpTitleText, "Select An Issue");
     }

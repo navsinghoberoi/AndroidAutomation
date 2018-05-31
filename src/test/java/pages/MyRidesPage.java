@@ -60,7 +60,7 @@ public class MyRidesPage extends BasePage {
         return findMyRidesDisplayText;
     }
 
-    public void getMyRidesDisplayTextClick() {
+    public void clickMyRidesDisplayText() {
 
         waitForClickabilityOf(myRidesDisplayText);
         driver.findElement(myRidesDisplayText).click();
@@ -94,7 +94,7 @@ public class MyRidesPage extends BasePage {
 
     }
 
-    public void getHistoryRidesTabClick() {
+    public void clickHistoryRidesTab() {
         waitForClickabilityOf(historyRidesTab);
         driver.findElement(historyRidesTab).click();
 
@@ -123,7 +123,7 @@ public class MyRidesPage extends BasePage {
 
     }
 
-    public void ridesSelectionClick() {
+    public void clickRidesSelection() {
 
 //      scrollDown();
         waitForVisibilityOf(ridesList);
@@ -138,7 +138,7 @@ public class MyRidesPage extends BasePage {
         return getSelectionOfTrip;
     }
 
-//    public void getHistoryRideSelectionClick() {
+//    public void clickHistoryRideSelection() {
 //        waitForClickabilityOf(selectionOfTrip);
 //        driver.findElement(selectionOfTrip).click();
 //    }
@@ -149,7 +149,7 @@ public class MyRidesPage extends BasePage {
         return findHistoryTitleText;
     }
 
-    public void getRideNowButtonClick() {
+    public void clickRideNowButton() {
 
         waitForClickabilityOf(historyRideNowButton);
         driver.findElement(historyRideNowButton).click();
@@ -169,7 +169,7 @@ public class MyRidesPage extends BasePage {
         return getRideNowTitleText;
     }
 
-    public void getPickupPointClick() {
+    public void clickGetPickupPoint() {
         List<WebElement> findPickupPoint = driver.findElements(pickupPointText);
         findPickupPoint.get(5).click();
 
@@ -200,7 +200,7 @@ public class MyRidesPage extends BasePage {
         return findDropPointInMyRides;
     }
 
-    public void getNeedHelpWithThisRideButtonClick() {
+    public void clickGetNeedHelpWithThisRideButton() {
 
         waitForVisibilityOf(needHelpWithThisRide);
         driver.findElement(needHelpWithThisRide).click();
@@ -224,7 +224,7 @@ public class MyRidesPage extends BasePage {
         return findHelpTitleText;
     }
 
-    public void getLostItemClick() {
+    public void clickGetLostItem() {
 
 //      waitForVisibilityOf(lostAnItem);
 //      driver.findElement(lostAnItem).click();
@@ -248,12 +248,12 @@ public class MyRidesPage extends BasePage {
         driver.findElement(descriptionTextField).sendKeys("This Is Test Description");
     }
 
-    public void SubmitButtonClick() {
+    public void clickSubmitButton() {
         waitForVisibilityOf(submitButton);
         driver.findElement(submitButton).click();
     }
 
-    public void getPickUpItemClick() {
+    public void clickGetPickUpItem() {
         waitForClickabilityOf(pickUpIssue);
         List<WebElement> helpList = driver.findElement(pickUpIssue);
         helpList.get(1).click();
@@ -265,7 +265,7 @@ public class MyRidesPage extends BasePage {
         return findPickupIssue;
     }
 
-    public void getIssueWithDriverClick() {
+    public void clickGetIssueWithDriver() {
         waitForVisibilityOf(driverIssue);
         driver.findElement(driverIssue).click();
     }
@@ -275,7 +275,7 @@ public class MyRidesPage extends BasePage {
         return findDriverIssue;
     }
 
-    public void getOtherIssueClick() {
+    public void clickGetOtherIssue() {
         waitForVisibilityOf(otherIssue);
         driver.findElement(otherIssue).click();
     }
