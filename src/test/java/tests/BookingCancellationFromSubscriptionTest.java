@@ -113,10 +113,8 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
     @Test(priority = 5)
     public void verifyShowTrafficOptionDisplayed() {
-        homepage.clickBookingHomeCard();
-        trackShuttlPage.dismissProtip();
-        trackShuttlPage.clickOptionsIcon();
-        boolean result = commons.verifyIsStringPresent("Show Traffic", trackShuttlPage.optionsName);
+        commons.openRideOptionsFromBookingHomecards();
+        boolean result = commons.verifyIsLocatorPresent("Show Traffic", trackShuttlPage.getOptionsNameLocator());
         Assert.assertEquals(result, true, "test case failed");
     }
 
@@ -131,9 +129,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
     @Test(priority = 7)
     public void verifyRideCancelPageTitle() {
-        homepage.clickBookingHomeCard();
-        trackShuttlPage.dismissProtip();
-        trackShuttlPage.clickOptionsIcon();
+        commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         String title = cancelOrRescheduleRidePage.getCancelReschedulePageTitle();
         Assert.assertEquals(title, "Cancel or Reschedule Ride?", "test case failed");
@@ -143,12 +139,10 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
     @Test(priority = 8)
     public void verifyCrossIconClickOnRideCancelPage() {
-        homepage.clickBookingHomeCard();
-        trackShuttlPage.dismissProtip();
-        trackShuttlPage.clickOptionsIcon();
+        commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         cancelOrRescheduleRidePage.crossIconClick();
-        boolean result = commons.verifyIsStringPresent("Show Traffic", trackShuttlPage.optionsName);
+        boolean result = commons.verifyIsLocatorPresent("Show Traffic", trackShuttlPage.getOptionsNameLocator());
         Assert.assertEquals(result, true, "test case failed");
 
     }
@@ -157,9 +151,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
     @Test(priority = 9)
     public void verifyCancelRideCategoriesCount() {
         boolean result;
-        homepage.clickBookingHomeCard();
-        trackShuttlPage.dismissProtip();
-        trackShuttlPage.clickOptionsIcon();
+        commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         int size = cancelOrRescheduleRidePage.getCancelRescheduleCategories();
         if (size == 3) {
@@ -173,9 +165,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
     @Test(priority = 10)
     public void verifySelectedRideCancelCategoryText() {
-        homepage.clickBookingHomeCard();
-        trackShuttlPage.dismissProtip();
-        trackShuttlPage.clickOptionsIcon();
+        commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         String cancelCategoryText = cancelOrRescheduleRidePage.selectCancelRescheduleCategory(1);
         String cancelSelectedCategory = cancelOrRescheduleRidePage.getCancelRescheduleSelectedCategoryText();
@@ -185,9 +175,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
     @Test(priority = 11)
     public void verifyRideSelectedCategoryBackIconClick() {
-        homepage.clickBookingHomeCard();
-        trackShuttlPage.dismissProtip();
-        trackShuttlPage.clickOptionsIcon();
+        commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         cancelOrRescheduleRidePage.selectCancelRescheduleCategory(1);
         cancelOrRescheduleRidePage.backIconClick();
@@ -199,9 +187,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
     @Test(priority = 12)
     public void verifyCancelAndRescheduleButtonsDisplayedFirstCategory() {
         boolean result;
-        homepage.clickBookingHomeCard();
-        trackShuttlPage.dismissProtip();
-        trackShuttlPage.clickOptionsIcon();
+        commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         cancelOrRescheduleRidePage.selectCancelRescheduleCategory(0);
         boolean isCancelRideButtonDisplayed = cancelOrRescheduleRidePage.isCancelRideButtonDisplayed();
@@ -219,9 +205,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
     @Test(priority = 13)
     public void verifyCancelAndRescheduleButtonsDisplayedSecondCategory() {
         boolean result;
-        homepage.clickBookingHomeCard();
-        trackShuttlPage.dismissProtip();
-        trackShuttlPage.clickOptionsIcon();
+        commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         cancelOrRescheduleRidePage.selectCancelRescheduleCategory(1);
         boolean isCancelRideButtonDisplayed = cancelOrRescheduleRidePage.isCancelRideButtonDisplayed();
@@ -239,9 +223,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
     @Test(priority = 14)
     public void verifyCancelAndRescheduleButtonsDisplayedThirdCategory() {
         boolean result;
-        homepage.clickBookingHomeCard();
-        trackShuttlPage.dismissProtip();
-        trackShuttlPage.clickOptionsIcon();
+        commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         cancelOrRescheduleRidePage.selectCancelRescheduleCategory(2);
         boolean isCancelRideButtonDisplayed = cancelOrRescheduleRidePage.isCancelRideButtonDisplayed();
@@ -258,9 +240,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
     @Test(priority = 15)
     public void verifyCancelRidePopupText() {
-        homepage.clickBookingHomeCard();
-        trackShuttlPage.dismissProtip();
-        trackShuttlPage.clickOptionsIcon();
+        commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         cancelOrRescheduleRidePage.selectCancelRescheduleCategory(1);
         cancelOrRescheduleRidePage.clickCancelRide();

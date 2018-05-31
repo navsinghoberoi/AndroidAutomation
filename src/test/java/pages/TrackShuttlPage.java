@@ -14,7 +14,7 @@ public class TrackShuttlPage extends BasePage {
     By ppNameOnMap = By.id("mtspd.location_name");        // Click this to remove blue bubble from trackShuttl screen
     By pressToBoard = By.id("pb.chirp_container");
     By optionsIcon = By.id("pb.options_chevron");
-    public By optionsName = By.id("itso.text");     // Options include cancel/reschedule trip , locate pickup etc
+    By optionsName = By.id("itso.text");     // Options include cancel/reschedule trip , locate pickup etc
     By backIcon = By.id("pb.custom_back");
     By cancelProTip = By.id("pb_cancel_pro_tip");
     By protipText = By.id("pb_pro_tip");
@@ -67,8 +67,6 @@ public class TrackShuttlPage extends BasePage {
 
 
     public int printOptionValues() {
-        /*waitForClickabilityOf(optionsIcon);
-        driver.findElement(optionsIcon).click();*/
         clickOptionsIcon();
         waitForClickabilityOf(optionsName);
         List<WebElement> options = driver.findElements(optionsName);
@@ -119,5 +117,11 @@ public class TrackShuttlPage extends BasePage {
         waitForVisibilityOf(protipText);
         return driver.findElement(protipText).getText();
     }
+
+
+ public By getOptionsNameLocator(){
+
+        return optionsName;
+ }
 
 }
