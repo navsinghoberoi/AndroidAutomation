@@ -130,6 +130,16 @@ public class ProfilePage extends BasePage {
     }
 
 
+    public void scrollToEmail() {
+
+
+            scrollTo("CORPORATE ACCOUNT");
+            waitForVisibilityOf(corporateEmail);
+
+    }
+
+
+
 }
 
 

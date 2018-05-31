@@ -1,5 +1,6 @@
 package pages;
 
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -10,8 +11,8 @@ public class CouponsPage extends BasePage {
         // TODO Auto-generated constructor stub
     }
 
-    By enter_coupon_area = By.xpath("//android.widget.TextView[@text='ENTER COUPON']");
-    By saved_coupon_area = By.xpath("//android.widget.TextView[@text='SAVED COUPONS']");
+    By enter_coupon_area = By.xpath("//android.widget.TextView[@text='Enter Coupon']");
+    By saved_coupon_area = By.xpath("//android.widget.TextView[@text='Saved Coupons']");
     By saved_coupons_name = By.id(app_package_name+"layout_container");
     By terms_of_service = By.id(app_package_name+"enter_promo.tnc");
    // By enter_coupon_text = By.id(app_package_name + "enter_promo.text");
@@ -19,9 +20,9 @@ public class CouponsPage extends BasePage {
     By enable_coupon_code_area = By.id(app_package_name + "enter_promo.edit_text");
     By addCouponConfirmationPopup = By.id(app_package_name + "popup_notify_wa.title");
     By fromToIcon = By.id(app_package_name + "from_to");
-    By dismiss_button = By.xpath("//android.widget.Button[@text='DISMISS']");
+    By dismiss_button = By.xpath("//android.widget.Button[@text='Dismiss']");
     By wrong_coupon_popup=By.id(app_package_name+"message");
-    By title_terms_and_conditions=By.xpath("//android.widget.TextView[@text='Terms and Conditions'");
+    By title_terms_and_conditions=By.xpath("//android.widget.TextView[@text='Terms and Conditions']");
     By offer_details=By.xpath("//android.widget.TextView[@text='Offer Details']");
     By expiry_date=By.id(app_package_name+"expiry_tv");
 
@@ -135,7 +136,14 @@ public class CouponsPage extends BasePage {
         return expiry;
     }
 
-
+    public void addCouponIntegrated() throws Exception {
+        clickCouponCodeArea();
+        enterCouponCode("couponcode");
+        AndroidDriver androidDriver = (AndroidDriver) driver;
+        androidDriver.hideKeyboard();
+        clickSaveButton();
+        driver.navigate().back();
+    }
 
 
    /* public void waitForVisibility()

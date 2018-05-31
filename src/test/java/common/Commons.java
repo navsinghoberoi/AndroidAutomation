@@ -41,15 +41,16 @@ public class Commons extends BasePage {
     private PassCompletePaymentPage passCompletePaymentPage = new PassCompletePaymentPage(driver);
     private PassDetailsPage passDetailsPage = new PassDetailsPage(driver);
     private RefundPassPage refundPassPage = new RefundPassPage(driver);
+    private TrackShuttlPage trackShuttlPage = new TrackShuttlPage(driver);
 
 
     public void login(String phoneNumber,String OTP) throws Exception {
         enterUserPhoneNumberOTP(phoneNumber, OTP);
     }
 
-    public void goToHomepage() throws Exception {
+    public void goToHomepage(String phoneNumber, String OTP) throws Exception {
         if (!homePage.checkSearchBar()) {
-            enterUserPhoneNumberOTP("oldUserPhoneNumber", "oldUserOTP");
+            enterUserPhoneNumberOTP(phoneNumber, OTP);
         }
         else{
             System.out.println("User is already on the homepage");
@@ -64,7 +65,7 @@ public class Commons extends BasePage {
         String userOTP = getValueFromPPFile(otpKey);
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
-        loginPage.enterMobileNumber(userPhoneNumber);
+        loginPage.enterMobileNumber(phoneNumberKey);
         loginPage.clickVerify();
 
         /*
@@ -200,5 +201,35 @@ public class Commons extends BasePage {
 
         return lines ;
     }
+
+
+    public boolean verifyIsLocatorPresent(String text, By locator) {
+        boolean result = false;
+        waitForClickabilityOf(locator);
+        int size = driver.findElements(locator).size();
+
+        for (int i = 0; i < size; i++) {
+
+            String content = driver.findElements(locator).get(i).getText();
+            if (content.equalsIgnoreCase(text)) {
+                result = true;
+                break;
+            } else {
+                result = false;
+            }
+
+        }
+
+        return result;
+    }
+
+
+    public void openRideOptionsFromBookingHomecards(){
+        homePage.clickBookingHomeCard();
+        trackShuttlPage.dismissProtip();
+        trackShuttlPage.clickOptionsIcon();
+
+    }
+
 
 }
