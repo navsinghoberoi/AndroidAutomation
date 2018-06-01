@@ -6,9 +6,9 @@ import org.testng.annotations.*;
 import pages.*;
 
 
-// Precondition -- Active booking should be present
+// Precondition -- Active booking and multiple slots should be present
 
-public class BookingCancellationFromSubscriptionTest extends Setup {
+public class BookingRescheduleTest extends Setup {
     private LandingPage landingPage;
     private LoginPage loginPage;
     private PersonalDetailsPage personalDetails;
@@ -53,7 +53,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
         subscriptionBuyAndRefundTest = new SubscriptionBuyAndRefundTest();
         trackShuttlPage = new TrackShuttlPage(driver);
         cancelOrRescheduleRidePage = new CancelOrRescheduleRidePage(driver);
-        commons.goToHomepage("oldUserPhoneNumber","oldUserOTP");
+        commons.goToHomepage("oldUserPhoneNumber", "oldUserOTP");
     }
 
     @AfterMethod
@@ -128,7 +128,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
 
     @Test(priority = 7)
-    public void verifyRideCancelPageTitle() {
+    public void verifyRideReschedulePageTitle() {
         commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         String title = cancelOrRescheduleRidePage.getCancelReschedulePageTitle();
@@ -138,7 +138,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
 
     @Test(priority = 8)
-    public void verifyCrossIconClickOnRideCancelPage() {
+    public void verifyCrossIconClickOnRideReschedulePage() {
         commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         cancelOrRescheduleRidePage.crossIconClick();
@@ -149,7 +149,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
 
     @Test(priority = 9)
-    public void verifyCancelRideCategoriesCount() {
+    public void verifyRescheduleRideCategoriesCount() {
         boolean result;
         commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
@@ -164,7 +164,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
 
     @Test(priority = 10)
-    public void verifySelectedRideCancelCategoryText() {
+    public void verifySelectedRideRescheduleCategoryText() {
         commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         String cancelCategoryText = cancelOrRescheduleRidePage.selectCancelRescheduleCategory(1);
@@ -239,22 +239,49 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
 
     @Test(priority = 15)
-    public void verifyCancelRidePopupText() {
+    public void verifyTimeslotsPageOnClickOfRescheduleRide() {
         commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         cancelOrRescheduleRidePage.selectCancelRescheduleCategory(1);
-        cancelOrRescheduleRidePage.clickCancelRide();
-        String result = cancelOrRescheduleRidePage.getRideCancelledPopupTitle();
-        Assert.assertEquals(result, "Ride Cancelled", "test case failed");
+        cancelOrRescheduleRidePage.clickResheduleRide();
+        String result = cancelOrRescheduleRidePage.rescheduleSlotsPageSubtext();
+        Assert.assertEquals(result, "Please select a suitable timeslot to book a new ride", "test case failed");
     }
 
-    @Test(priority = 16)
-    public void verifyRideCancelledNotAppearingOnHomepage() {
-        boolean result = homepage.isTrackShuttlDisplayed();
-        Assert.assertEquals(result, false, "test case failed");
 
+    @Test(priority = 16)
+    public void verifySubtextAfterSelectingRideForRescheduling() throws Exception {
+        commons.openRideOptionsFromBookingHomecards();
+        trackShuttlPage.selectRideOption(0);
+        cancelOrRescheduleRidePage.selectCancelRescheduleCategory(1);
+        cancelOrRescheduleRidePage.clickResheduleRide();
+        cancelOrRescheduleRidePage.clickRescheduleSlot(1);
+        String result = cancelOrRescheduleRidePage.rescheduleSlotsPageReserveSeatSubtext();
+        Assert.assertEquals(result, "Your current ride will be cancelled automatically", "test case failed");
+
+    }
+
+
+    @Test(priority = 17)
+    public void verifyRescheduleRideConfirmationPopup() throws Exception {
+        commons.openRideOptionsFromBookingHomecards();
+        trackShuttlPage.selectRideOption(0);
+        cancelOrRescheduleRidePage.selectCancelRescheduleCategory(1);
+        cancelOrRescheduleRidePage.clickResheduleRide();
+        cancelOrRescheduleRidePage.clickRescheduleSlot(1);
+        cancelOrRescheduleRidePage.reserveSeatForRescheduleRide();
+        String actualText = bookingCompletePage.getBookingConfirmPopupTitle();
+        System.out.println("Text after rescheduling a booking = " + actualText);
+        bookingCompletePage.clickBookingConfirmPopupCTA();
+        Assert.assertEquals(actualText, "Ride Confirmed", "Booking is not rescheduled");
+    }
+
+
+    @Test(priority = 18)
+    public void verifyRescheduledRideAppearingOnHomepage() {
+        boolean result = homepage.isTrackShuttlDisplayed();
+        Assert.assertEquals(result, true, "test case failed");
     }
 
 
 }
-

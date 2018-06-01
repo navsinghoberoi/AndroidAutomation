@@ -31,7 +31,7 @@ public class CouponsPageTest extends Setup {
         homePage = new HomePage(driver);
         menuPage = new MenuPage(driver);
         commons = new Commons(driver);
-        commons.goToHomepage("9999315652","oldUserOTP");
+        commons.goToHomepage("oldUserPhoneNumber","oldUserOTP");
     }
 
 

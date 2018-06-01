@@ -27,6 +27,12 @@ public class HelpTest extends Setup{
 
     }
 
+    @AfterMethod
+    public void tearDown() throws Exception {
+        Thread.sleep(2000);
+        System.out.println("Test case completed");
+        driver.quit();
+    }
 
 
     @Test(priority = 4)

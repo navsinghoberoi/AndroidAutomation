@@ -65,7 +65,7 @@ public class Commons extends BasePage {
         String userOTP = getValueFromPPFile(otpKey);
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
-        loginPage.enterMobileNumber(phoneNumberKey);
+        loginPage.enterMobileNumber(userPhoneNumber);
         loginPage.clickVerify();
 
         /*
