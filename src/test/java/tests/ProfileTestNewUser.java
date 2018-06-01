@@ -33,7 +33,7 @@ public class ProfileTestNewUser extends Setup {
     @BeforeClass
     public void setUp() throws Exception {
 
-        createAndroidSession(true);
+        createAndroidSession(false);
         common = new Commons(driver);
 
 
