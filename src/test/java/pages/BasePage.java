@@ -42,10 +42,9 @@ public class BasePage extends Setup {
         js.executeScript("mobile: scroll", scrollObject);
     }
 
-    protected void scrollToText(String targetScrollText) {
-
+    protected  void scrollToText(String visibleText) {
         androidDriver = (AndroidDriver) driver;
-        //androidDriver.scrollTo(targetScrollText);
+        androidDriver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+visibleText+"\").instance(0))");
     }
 
 
@@ -159,13 +158,6 @@ public class BasePage extends Setup {
             return false;
         }
     }
-
-    public void scrollTo(String visibleText) {
-        androidDriver = (AndroidDriver) driver;
-        androidDriver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+visibleText+"\").instance(0))");
-    }
-
-
 
 
 }

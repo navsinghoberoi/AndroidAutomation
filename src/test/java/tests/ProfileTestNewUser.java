@@ -15,7 +15,9 @@ import pages.ProfilePage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ProfileTest extends Setup {
+
+
+public class ProfileTestNewUser extends Setup {
 
 
     private Commons common;
@@ -31,7 +33,7 @@ public class ProfileTest extends Setup {
     @BeforeClass
     public void setUp() throws Exception {
 
-        createAndroidSession(false);
+        createAndroidSession(true);
         common = new Commons(driver);
 
 

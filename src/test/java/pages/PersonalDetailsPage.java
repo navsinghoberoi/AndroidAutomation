@@ -259,6 +259,7 @@ public class PersonalDetailsPage extends BasePage {
     }
 
     public void clearPersonalEmailField() {
+        scrollToText("Birthday");
         driver.findElement(personalEmailField).clear();
     }
 
