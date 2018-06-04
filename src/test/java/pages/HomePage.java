@@ -34,6 +34,7 @@ public class HomePage extends BasePage {
     By rebookCardDropPoint = By.id("hr.drop_location");
     By homecardTrackShuttl = By.id("hab.action_container");
     By homecardPickupPoint = By.id("hab.pick_up_location");
+    By subscriptionPasses = By.id("cpt.rides");
 
     public String getHeaderText() {
         waitForVisibilityOf(searchBar);
@@ -155,6 +156,7 @@ public class HomePage extends BasePage {
     {
         waitForClickabilityOf(myPass);
         driver.findElements(myPass).get(index).click();
+        openSubscriptionPass();
     }
 
     public boolean isFindRouteButtonDisplayed() {
@@ -326,6 +328,16 @@ public class HomePage extends BasePage {
         return isTrackShuttlVisible;
     }
 
+    public void openSubscriptionPass() {
+        if (checkIfElementPresent(subscriptionPasses, 15) == true) {
+            System.out.println("Multiple passes are available on My Pass page");
+            driver.findElements(subscriptionPasses).get(0).click();
+        } else {
+            System.out.println("Multiple passes are not availble on My Pass page");
+        }
+
+
+    }
 
 
 }

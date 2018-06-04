@@ -231,5 +231,23 @@ public class Commons extends BasePage {
 
     }
 
+    public void openSearchBarAndFindRoute(String homeAddress, String officeAddress) throws Exception
+    {
+        clickSearchBar();
+        homePage.clickFromLocation();
+        selectLocationPage.selectSearchLocation(getValueFromPPFile(homeAddress), 0);
+        homePage.clickToLocation();
+        selectLocationPage.selectSearchLocation(getValueFromPPFile(officeAddress), 0);
+        homePage.clickFindMyShuttl();
+    }
+
+
+    public String splitAndTrimString(String toBeSplit,int index,String pattern){
+
+        String array[] = toBeSplit.split(pattern);
+        String finalString = array[index].trim();
+        return finalString;
+    }
+
 
 }
