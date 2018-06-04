@@ -3,7 +3,6 @@ package tests;
 import common.Commons;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -32,7 +31,7 @@ public class ReferAndEarnTest extends Setup {
 
     @Test(priority = 1)
     public void testHomeCards() throws Exception {
-        commons.goToHomepage();
+        commons.goToHomepage("newUserPhoneNumber" , "OTP");
     }
 
     @Test(priority = 1)
