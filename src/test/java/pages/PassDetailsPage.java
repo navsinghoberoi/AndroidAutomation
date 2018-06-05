@@ -15,6 +15,7 @@ public class PassDetailsPage extends BasePage {
     By cancelPopupText = By.id("message");
     By cancelPopupDismiss = By.id("button2");
     By cancelPopupConfirm = By.id("button1");
+    By noPassCTA = By.id("empty_feed_retry");
 
     public PassDetailsPage(WebDriver driver) {
         super(driver);
@@ -75,6 +76,17 @@ public class PassDetailsPage extends BasePage {
     public void getRidesValidityData(int ridesIndex, int validityIndex) {
         getRidesRemaining(ridesIndex);
         getpassValidity(validityIndex);
+    }
+
+    public boolean isNoPassCTADisplayed() {
+        boolean result;
+        if (checkIfElementPresent(noPassCTA, 10) == true) {
+            System.out.println("User does not has pass");
+            result = driver.findElement(noPassCTA).isEnabled();
+        } else {
+            result = false;
+        }
+        return result;
     }
 
 
