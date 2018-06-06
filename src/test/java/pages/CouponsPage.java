@@ -20,7 +20,7 @@ public class CouponsPage extends BasePage {
     By enable_coupon_code_area = By.id(app_package_name + "enter_promo.edit_text");
     By addCouponConfirmationPopup = By.id(app_package_name + "popup_notify_wa.title");
     By fromToIcon = By.id(app_package_name + "from_to");
-    By dismiss_button = By.xpath("//android.widget.Button[@text='Dismiss']");
+    By dismiss_button = By.xpath("//android.widget.Button[@text='DISMISS']");
     By wrong_coupon_popup=By.id(app_package_name+"message");
     By title_terms_and_conditions=By.xpath("//android.widget.TextView[@text='Terms and Conditions']");
     By offer_details=By.xpath("//android.widget.TextView[@text='Offer Details']");
@@ -142,7 +142,7 @@ public class CouponsPage extends BasePage {
         AndroidDriver androidDriver = (AndroidDriver) driver;
         androidDriver.hideKeyboard();
         clickSaveButton();
-        driver.navigate().back();
+       // driver.navigate().back();
     }
 
 

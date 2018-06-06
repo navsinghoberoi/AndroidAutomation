@@ -15,52 +15,58 @@ public class BookingFromCouponPage extends BasePage {
     By couponsDisplayText = By.xpath("//android.widget.CheckedTextView[@text='Coupons']");
     By couponsTitleText = By.xpath("//android.widget.TextView[@index=1]");
     By savedCouponTab = By.xpath("//android.widget.TextView[@text='SAVED COUPONS']");
-    By offer_details=By.xpath("//android.widget.TextView[@text='Offer Details']");
+    By offer_details = By.xpath("//android.widget.TextView[@text='Offer Details']");
     By savedCoupon = By.id("layout_container");
     By savedCouponCode = By.id("code_tv");
     By popUp = By.id("popup_notify_wa.icon");
     By couponText = By.id("booking_coupon_text");
     By backButton = By.xpath("//android.widget.ImageButton[@index=0]");
-
+    By slotTime = By.id("parent_view");
+    By rideConfirmed = By.id("dsf.title");
+    By gotItButton = By.id("dsf.button");
+    By bookingCurrentRideCard = By.id("hab.action_container");
+    By pickuHomepageCard = By.id("hab.pick_up_location");
+    By currentRideInMyRIde = By.id("pdwl.pick_up_name");
+    By getSavedCouponTabAfterBooking = By.xpath("//android.widget.TextView[@text='You do not have any saved coupons.']");
 
 
     public String getCouponsDisplayText() {
-        System.out.println("I am inside inside fucntion");
         waitForVisibilityOf(couponsDisplayText);
-        System.out.println("I am testing visibility");
         String findCouponDisplayText = driver.findElement(couponsDisplayText).getText();
-        System.out.println("Tested Visibility");
         return findCouponDisplayText;
     }
 
     public void clickCouponsDisplayText() {
-        System.out.println("Testing click");
         waitForClickabilityOf(couponsDisplayText);
-        System.out.println("Clicked");
         driver.findElement(couponsDisplayText).click();
     }
+
     public String getCouponTitleText() {
 
         waitForClickabilityOf(couponsTitleText);
         String getCouponTitleText = driver.findElement(couponsTitleText).getText();
         return getCouponTitleText;
     }
-    public void clickSavedCouponTab(){
+
+    public void clickSavedCouponTab() {
         waitForVisibilityOf(savedCouponTab);
         driver.findElement(savedCouponTab).click();
     }
-    public void clickSavedCoupon(){
+
+    public void clickSavedCoupon() {
         waitForVisibilityOf(savedCoupon);
         List<WebElement> savedCouponsList = driver.findElements(savedCoupon);
         savedCouponsList.get(0).click();
     }
-    public String getSavedCouponCodeText(){
+
+    public String getSavedCouponCodeText() {
         waitForVisibilityOf(savedCouponCode);
         String getCouponCode = driver.findElement(savedCouponCode).getText();
         return getCouponCode;
 
     }
-    public void clickPopUp(){
+
+    public void clickPopUp() {
 
         if (checkIfElementPresent(popUp, 20) == true) {
             System.out.println("Coupon Added PopUp is displayed, need to click on screen");
@@ -71,21 +77,59 @@ public class BookingFromCouponPage extends BasePage {
             driver.findElement(savedCouponTab).click();
         }
     }
-    public boolean getOfferDetailVisibility()
-    {
+
+    public boolean getOfferDetailVisibility() {
         waitForVisibilityOf(offer_details);
         return driver.findElement(offer_details).isDisplayed();
     }
+
     public void clickBackButton() {
 
         waitForClickabilityOf(backButton);
         driver.findElement(backButton).click();
 
     }
-    public String getCouponCodeText(){
+
+    public String getCouponCodeText() {
         waitForVisibilityOf(couponText);
         String getCouponText = driver.findElement(couponText).getText();
         return getCouponText;
     }
 
+    public String getSavedCouponScreenAfterCouponRedemption() {
+        waitForVisibilityOf(getSavedCouponTabAfterBooking);
+        String CouponTabAfterRedeem = driver.findElement(getSavedCouponTabAfterBooking).getText();
+        return CouponTabAfterRedeem;
+    }
+    public String  getRideConfirmedTest(){
+        waitForVisibilityOf(rideConfirmed);
+        String getRideConfirmedText = driver.findElement(rideConfirmed).getText();
+        return getRideConfirmedText;
+    }
+    public void clickRideConfirmedGotItButton(){
+        waitForClickabilityOf(gotItButton);
+        driver.findElement(gotItButton).click();
+    }
+    public boolean bookingCardVisibility() {
+        if (checkIfElementPresent(bookingCurrentRideCard)){
+
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    public String pickUpStopCard(){
+
+        waitForVisibilityOf(pickuHomepageCard);
+        String pickupHomePageCardTest = driver.findElement(pickuHomepageCard).getText();
+        return pickupHomePageCardTest;
+    }
+    public String  currentRideText (){
+        waitForVisibilityOf(currentRideInMyRIde);
+        String currentRidePicupText = driver.findElement(currentRideInMyRIde);
+        return currentRidePicupText;
+
+    }
 }

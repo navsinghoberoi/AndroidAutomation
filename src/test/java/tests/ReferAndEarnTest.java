@@ -19,20 +19,15 @@ public class ReferAndEarnTest extends Setup {
     private Commons commons;
     private ReferAndEarnPage referAndEarnPage;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() throws Exception {
         createAndroidSession(false);
-//      commons = new Commons(driver);
-//      commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
+        commons = new Commons(driver);
+        commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
         Thread.sleep(10000L);
         homePage = new HomePage(driver);
         homePage.clickMenu();
         referAndEarnPage = new ReferAndEarnPage(driver);
-    }
-
-    @Test(priority = 1)
-    public void testHomeCards() throws Exception {
-        commons.goToHomepage();
     }
 
     @Test(priority = 1)
