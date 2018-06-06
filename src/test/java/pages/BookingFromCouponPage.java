@@ -112,10 +112,8 @@ public class BookingFromCouponPage extends BasePage {
     }
     public boolean bookingCardVisibility() {
         if (checkIfElementPresent(bookingCurrentRideCard)){
-
             return true;
         } else {
-
             return false;
         }
     }

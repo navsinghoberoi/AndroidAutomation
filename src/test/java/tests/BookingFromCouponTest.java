@@ -8,12 +8,8 @@ import pages.*;
 
 public class BookingFromCouponTest extends Setup {
 
-    private LandingPage landingPage;
-    private LoginPage loginPage;
-    private PersonalDetailsPage personalDetails;
+
     private HomeAddressPage homeAddressPage;
-    private OfficeAddressPage officeAddressPage;
-    private OtpPage otpPage;
     private HomePage homePage;
     private MenuPage menuPage;
     private Commons commons;
@@ -21,13 +17,6 @@ public class BookingFromCouponTest extends Setup {
     private BookingFromCouponPage bookingFromCouponPage;
     private SelectLocationPage selectLocationPage;
     private SlotsPage slotsPage;
-    private ExplorePassesPage explorePassesPage;
-    private ChooseBenefitsPage chooseBenefitsPage;
-    private ReviewRoutePage reviewRoutePage;
-    private PassCompletePaymentPage passCompletePaymentPage;
-    private PassDetailsPage passDetailsPage;
-    private RefundPassPage refundPassPage;
-    private BookingCompletePage bookingCompletePage;
     private MyRidesPage myRidesPage;
 
     @BeforeClass
@@ -102,8 +91,8 @@ public class BookingFromCouponTest extends Setup {
 
     @Test(priority = 5)
     public void verifyCurrentRideVisibility() {
-        boolean homepageCurrenrRideCard = bookingFromCouponPage.bookingCardVisibility();
-        Assert.assertEquals(homepageCurrenrRideCard, true);
+        boolean homepageCurrentRideCard = bookingFromCouponPage.bookingCardVisibility();
+        Assert.assertEquals(homepageCurrentRideCard, true);
 
     }
 
@@ -112,8 +101,8 @@ public class BookingFromCouponTest extends Setup {
         String pickupStopText = bookingFromCouponPage.pickUpStopCard();
         homePage.clickMenu();
         myRidesPage.clickMyRidesDisplayText();
-        String currentRideText = bookingFromCouponPage.currentRideText();
-        Assert.assertEquals(currentRideText, pickupStopText);
+        String currentRidePickupText = bookingFromCouponPage.currentRideText();
+        Assert.assertEquals(currentRidePickupText, pickupStopText);
         driver.navigate().back();
     }
 
