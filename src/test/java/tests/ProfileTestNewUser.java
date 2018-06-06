@@ -15,7 +15,9 @@ import pages.ProfilePage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ProfileTest extends Setup {
+
+
+public class ProfileTestNewUser extends Setup {
 
 
     private Commons common;

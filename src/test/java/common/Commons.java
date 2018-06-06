@@ -65,7 +65,7 @@ public class Commons extends BasePage {
         String userOTP = getValueFromPPFile(otpKey);
         Thread.sleep(5000);
         landingPage.clickSkipToLogin();
-        loginPage.enterMobileNumber(phoneNumberKey);
+        loginPage.enterMobileNumber(userPhoneNumber);
         loginPage.clickVerify();
 
         /*
@@ -229,6 +229,24 @@ public class Commons extends BasePage {
         trackShuttlPage.dismissProtip();
         trackShuttlPage.clickOptionsIcon();
 
+    }
+
+    public void openSearchBarAndFindRoute(String homeAddress, String officeAddress) throws Exception
+    {
+        clickSearchBar();
+        homePage.clickFromLocation();
+        selectLocationPage.selectSearchLocation(getValueFromPPFile(homeAddress), 0);
+        homePage.clickToLocation();
+        selectLocationPage.selectSearchLocation(getValueFromPPFile(officeAddress), 0);
+        homePage.clickFindMyShuttl();
+    }
+
+
+    public String splitAndTrimString(String toBeSplit,int index,String pattern){
+
+        String array[] = toBeSplit.split(pattern);
+        String finalString = array[index].trim();
+        return finalString;
     }
 
 

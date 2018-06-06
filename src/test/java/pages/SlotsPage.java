@@ -30,6 +30,8 @@ public class SlotsPage extends BasePage {
     By ppName = By.id("from_tv");
     By dpName = By.id("drop_tv");
     By selectTimeSlotText = By.xpath("//android.widget.TextView[@text='Select a Timeslot']");
+    By ridesRemainingOnSlotsPage = By.id("slots.info_text");
+    By alertTitle = By.id("alertTitle");
 
     public void clickSlot(int index) throws InterruptedException {
         waitForClickabilityOf(selectSlot);
@@ -166,5 +168,56 @@ public class SlotsPage extends BasePage {
         }
 
     }
+
+    public boolean isRidesRemainingDisplayedOnSlotsPage(){
+
+        if (checkIfElementPresent(ridesRemainingOnSlotsPage, 10) == true) {
+            System.out.println("Rides remaining count is displayed on slots page");
+            return true;
+        } else {
+            System.out.println("Rides remaining count is displayed on slots page");
+            return false;
+        }
+
+    }
+
+    public String getRidesRemainingCountOnSlotsPage(){
+
+        waitForVisibilityOf(ridesRemainingOnSlotsPage);
+        String ridesCount = driver.findElement(ridesRemainingOnSlotsPage).getText();
+        System.out.println("Rides remaining count on slots page = "+ridesCount);
+        return ridesCount;
+    }
+
+
+    public boolean isReserveSeatButtonEnabled(){
+        boolean result;
+        if (checkIfElementPresent(clickCTA_button, 10) == true) {
+            result = driver.findElement(clickCTA_button).isEnabled();
+            System.out.println("Reserve seat button is enabled");
+            return result;
+        } else {
+            System.out.println("Rides remaining count is displayed on slots page");
+            return false;
+        }
+
+    }
+
+
+    public boolean isAlertDisplayedForBookingSameRoute(){
+        boolean result;
+        if (checkIfElementPresent(alertTitle, 10) == true) {
+            result = driver.findElement(alertTitle).isEnabled();
+            System.out.println("Alert is displayed for trying to book on same route when already one booking is created");
+            String alertText = driver.findElement(alertTitle).getText();
+            System.out.println("Heading of the alert = " +alertText);
+            return result;
+        } else {
+            System.out.println("Alert for booking on same route is not displayed");
+            return false;
+        }
+
+    }
+
 
 }

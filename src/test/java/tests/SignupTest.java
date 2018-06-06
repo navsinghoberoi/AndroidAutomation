@@ -51,9 +51,9 @@ public class SignupTest extends Setup {
         commons.signUp("newUserPhoneNumber" , "OTP" ,
                        "gender" , "userName" ,
                        "homeAddress");
-        boolean result = homepage.isBuddyButtonEnabled();
+        boolean result = homepage.isFindRouteButtonEnabled();
+        System.out.println(result);
         Assert.assertEquals(result, true, "test case failed");
-        System.out.println("User has signed up successfully");
 
     }
 
