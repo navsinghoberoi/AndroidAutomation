@@ -14,10 +14,11 @@ public class BookingFromCouponTest extends Setup {
     private MenuPage menuPage;
     private Commons commons;
     private CouponsPage couponsPage;
-    private BookingFromCouponPage bookingFromCouponPage;
     private SelectLocationPage selectLocationPage;
     private SlotsPage slotsPage;
     private MyRidesPage myRidesPage;
+    private BookingCompletePage bookingCompletePage;
+
 
     @BeforeClass
     public void Setup() throws Exception {
@@ -28,10 +29,10 @@ public class BookingFromCouponTest extends Setup {
         homePage = new HomePage(driver);
         homePage.clickMenu();
         couponsPage = new CouponsPage(driver);
-        bookingFromCouponPage = new BookingFromCouponPage(driver);
         homeAddressPage = new HomeAddressPage(driver);
         slotsPage = new SlotsPage(driver);
         myRidesPage = new MyRidesPage(driver);
+        bookingCompletePage = new BookingCompletePage(driver);
 
     }
 
@@ -44,15 +45,14 @@ public class BookingFromCouponTest extends Setup {
     @Test()
     public void verifyCouponsDisplayText() {
 
-        String couponDisplayText = bookingFromCouponPage.getCouponsDisplayText();
+        String couponDisplayText = couponsPage.getCouponsDisplayText();
         Assert.assertEquals(couponDisplayText, "Coupons");
-        bookingFromCouponPage.clickCouponsDisplayText();
-
+        couponsPage.clickCouponsDisplayText();
     }
 
     @Test(priority = 1)
     public void verifyCouponsTitleText() {
-        String couponTitleText = bookingFromCouponPage.getCouponTitleText();
+        String couponTitleText = couponsPage.getCouponTitleText();
         Assert.assertEquals(couponTitleText, "Coupons");
 
     }
@@ -60,13 +60,13 @@ public class BookingFromCouponTest extends Setup {
     @Test(priority = 2)
     public void verifyEnterCouponCode() throws Exception {
         couponsPage.addCouponIntegrated();
-        bookingFromCouponPage.clickPopUp();
-        bookingFromCouponPage.clickSavedCouponTab();
-        bookingFromCouponPage.clickSavedCoupon();
-        String couponCode = bookingFromCouponPage.getSavedCouponCodeText();
+        couponsPage.clickPopUp();
+        couponsPage.clickSavedCouponsArea();
+        couponsPage.clickOnSavedCoupon();
+        String couponCode = couponsPage.getSavedCouponCodeText();
         Assert.assertEquals(couponCode, getValueFromPPFile("couponcode"));
         couponsPage.clickDismissButton();
-        bookingFromCouponPage.clickBackButton();
+        couponsPage.clickBackButton();
 
     }
 
@@ -75,7 +75,7 @@ public class BookingFromCouponTest extends Setup {
         homePage.checkSearchBar();
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
-        String couponDetails = bookingFromCouponPage.getCouponCodeText();
+        String couponDetails = slotsPage.getCouponCodeTextOnSlotScreen();
         Assert.assertEquals(couponDetails, getValueFromPPFile("couponcode"));
         slotsPage.clickCtaOnSlotsPage();
 
@@ -83,35 +83,34 @@ public class BookingFromCouponTest extends Setup {
 
     @Test(priority = 4)
     public void verifyRideConfirmed() {
-        String getRideConfirmationText = bookingFromCouponPage.getRideConfirmedTest();
+
+        String getRideConfirmationText = bookingCompletePage.getBookingConfirmPopupTitle();
         Assert.assertEquals(getRideConfirmationText, "Ride Confirmed");
-        bookingFromCouponPage.clickRideConfirmedGotItButton();
+        bookingCompletePage.clickBookingConfirmPopupCTA();
 
     }
-
     @Test(priority = 5)
     public void verifyCurrentRideVisibility() {
-        boolean homepageCurrentRideCard = bookingFromCouponPage.bookingCardVisibility();
+        boolean homepageCurrentRideCard = homePage.isTrackShuttlDisplayed();
         Assert.assertEquals(homepageCurrentRideCard, true);
 
     }
 
     @Test(priority = 6)
-    public void verifyCurrentRide() throws Exception {
-        String pickupStopText = bookingFromCouponPage.pickUpStopCard();
+    public void verifyCurrentRideInMyRides() throws Exception {
         homePage.clickMenu();
         myRidesPage.clickMyRidesDisplayText();
-        String currentRidePickupText = bookingFromCouponPage.currentRideText();
-        Assert.assertEquals(currentRidePickupText, pickupStopText);
+        String currentRidePickupText = myRidesPage.currentRideText();
+        Assert.assertEquals(currentRidePickupText, getValueFromPPFile("homeAddress"));
         driver.navigate().back();
     }
 
     @Test(priority = 7)
     public void verifyCouponRedeemAfterBooking() {
         homePage.clickMenu();
-        bookingFromCouponPage.clickCouponsDisplayText();
-        bookingFromCouponPage.clickSavedCouponTab();
-        String savedCouponScreenAfterCR = bookingFromCouponPage.getSavedCouponScreenAfterCouponRedemption();
+        couponsPage.clickCouponsDisplayText();
+        couponsPage.clickSavedCouponsArea();
+        String savedCouponScreenAfterCR = couponsPage.getSavedCouponScreenAfterCouponRedemption();
         Assert.assertEquals(savedCouponScreenAfterCR,"You do not have any saved coupons.");
 
     }

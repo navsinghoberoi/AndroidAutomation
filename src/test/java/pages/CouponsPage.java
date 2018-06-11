@@ -3,6 +3,9 @@ package pages;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 
 public class CouponsPage extends BasePage {
@@ -10,9 +13,14 @@ public class CouponsPage extends BasePage {
         super(driver);
         // TODO Auto-generated constructor stub
     }
-
-    By enter_coupon_area = By.xpath("//android.widget.TextView[@text='Enter Coupon']");
-    By saved_coupon_area = By.xpath("//android.widget.TextView[@text='Saved Coupons']");
+    By couponsDisplayText = By.xpath("//android.widget.CheckedTextView[@text='Coupons']");
+    By couponsTitleText = By.xpath("//android.widget.TextView[@index=1]");
+    By backButton = By.xpath("//android.widget.ImageButton[@index=0]");
+    By popUp = By.id("popup_notify_wa.icon");
+    By savedCouponCode = By.id("code_tv");
+    By getSavedCouponTabAfterBooking = By.xpath("//android.widget.TextView[@text='You do not have any saved coupons.']");
+    By enter_coupon_area = By.xpath("//android.widget.TextView[@text='ENTER COUPON']");
+    By saved_coupon_area = By.xpath("//android.widget.TextView[@text='SAVED COUPONS']");
     By saved_coupons_name = By.id(app_package_name+"layout_container");
     By terms_of_service = By.id(app_package_name+"enter_promo.tnc");
    // By enter_coupon_text = By.id(app_package_name + "enter_promo.text");
@@ -28,6 +36,63 @@ public class CouponsPage extends BasePage {
 
 
 
+    public String getCouponsDisplayText() {
+        waitForVisibilityOf(couponsDisplayText);
+        String findCouponDisplayText = driver.findElement(couponsDisplayText).getText();
+        return findCouponDisplayText;
+    }
+    public void clickCouponsDisplayText() {
+         waitForClickabilityOf(couponsDisplayText);
+         driver.findElement(couponsDisplayText).click();
+    }
+
+    public String getCouponTitleText() {
+
+        waitForClickabilityOf(couponsTitleText);
+        String getCouponTitleText = driver.findElement(couponsTitleText).getText();
+        return getCouponTitleText;
+    }
+
+    public void clickBackButton() {
+
+        waitForClickabilityOf(backButton);
+        driver.findElement(backButton).click();
+
+    }
+
+    public void clickSavedCoupon() {
+        waitForVisibilityOf(saved_coupons_name);
+        List<WebElement> savedCouponsList = driver.findElements(saved_coupons_name);
+        savedCouponsList.get(0).click();
+    }
+
+    public String getSavedCouponCodeText() {
+        waitForVisibilityOf(savedCouponCode);
+        String getCouponCode = driver.findElement(savedCouponCode).getText();
+        return getCouponCode;
+
+    }
+    public void clickPopUp() {
+
+        if (checkIfElementPresent(popUp, 20) == true) {
+        System.out.println("Coupon Added PopUp is displayed, need to click on screen");
+        waitForClickabilityOf(popUp);
+        driver.navigate().back();
+    } else {
+        waitForVisibilityOf(saved_coupon_area);
+        driver.findElement(saved_coupon_area).click();
+    }
+}
+//    public String getCouponCodeTextOnSlotScreen() {
+//        waitForVisibilityOf(couponText);
+//        String getCouponText = driver.findElement(couponText).getText();
+//        return getCouponText;
+//    }
+    public String getSavedCouponScreenAfterCouponRedemption() {
+        waitForVisibilityOf(getSavedCouponTabAfterBooking);
+        String CouponTabAfterRedeem = driver.findElement(getSavedCouponTabAfterBooking).getText();
+        return CouponTabAfterRedeem;
+}
 
     public void clickEnterCouponCodeArea()
     {
@@ -144,11 +209,4 @@ public class CouponsPage extends BasePage {
         clickSaveButton();
        // driver.navigate().back();
     }
-
-
-   /* public void waitForVisibility()
-    {
-        waitForVisibilityOf();
-    }
-    */
 }
