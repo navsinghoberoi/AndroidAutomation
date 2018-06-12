@@ -3,7 +3,7 @@ package tests;
 import common.Commons;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
@@ -18,20 +18,15 @@ public class ReferAndEarnTest extends Setup {
     private Commons commons;
     private ReferAndEarnPage referAndEarnPage;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() throws Exception {
         createAndroidSession(false);
-//      commons = new Commons(driver);
-//      commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
+        commons = new Commons(driver);
+        commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
         Thread.sleep(10000L);
         homePage = new HomePage(driver);
         homePage.clickMenu();
         referAndEarnPage = new ReferAndEarnPage(driver);
-    }
-
-    @Test(priority = 1)
-    public void testHomeCards() throws Exception {
-        commons.goToHomepage("newUserPhoneNumber" , "OTP");
     }
 
     @Test(priority = 1)

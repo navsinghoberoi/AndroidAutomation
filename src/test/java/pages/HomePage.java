@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,12 @@ public class HomePage extends BasePage {
     By homecardTrackShuttl = By.id("hab.action_container");
     By homecardPickupPoint = By.id("hab.pick_up_location");
     By subscriptionPasses = By.id("cpt.rides");
+    By rideStatus = By.id("hab.ride_day");
+    By currentRideStatus = By.id("list_item_title");
+    By rideInfo = By.id("hab.vehicle_text");
+    By currentLocationButton = By.id("pb_refocus_map_btn");
+
+
 
     public String getHeaderText() {
         waitForVisibilityOf(searchBar);
@@ -66,12 +73,6 @@ public class HomePage extends BasePage {
         waitForClickabilityOf(findRoutebutton);
         driver.findElement(findRoutebutton).click();
     }
-
-   /* public void clickMenu() {
-
-        waitForClickabilityOf(menuButton);
-        driver.findElement(menuButton).click();
-    }*/
 
     public void clickMenu() {
         if (checkIfElementClickable(menuButton, 20) == true) {
@@ -336,8 +337,29 @@ public class HomePage extends BasePage {
             System.out.println("Multiple passes are not availble on My Pass page");
         }
 
+    }
+    public String getRideStatus(){
+        waitForVisibilityOf(rideStatus);
+        String RideST = driver.findElement(rideStatus).getText();
+        return RideST;
+    }
+    public String getCurrentRideTitle() {
+        waitForVisibilityOf(currentRideStatus);
+        String currentRideTitleSt = driver.findElement(currentRideStatus).getText();
+        return currentRideTitleSt;
 
     }
-
-
+    public boolean getCurrentLocationIcon(){
+        waitForVisibilityOf(currentLocationButton);
+        return driver.findElement(currentLocationButton).isDisplayed();
 }
+    public void clickCurrentLocationButton(){
+        waitForVisibilityOf(currentLocationButton);
+        driver.findElement(currentLocationButton).click();
+    }
+    public void shuttlVehicleDetail(){
+        waitForVisibilityOf(rideInfo);
+        driver.findElement(rideInfo).getText();
+
+        }
+    }
