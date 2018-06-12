@@ -43,6 +43,7 @@ public class MyRidesPage extends BasePage {
     By driverIssue = By.id("th_item_name");
     By otherIssue = By.id("th_item_name");
     By backButton = By.xpath("//android.widget.ImageButton[@index=0]");
+    By currentRideInMyRIde = By.id("pdwl.pick_up_name");
 
 
     private AndroidDriver androidDriver;
@@ -289,6 +290,12 @@ public class MyRidesPage extends BasePage {
 
         waitForClickabilityOf(backButton);
         driver.findElement(backButton).click();
+
+    }
+    public String currentRideText (){
+        waitForVisibilityOf(currentRideInMyRIde);
+        String currentRidePickupText = driver.findElement(currentRideInMyRIde).getText();
+        return currentRidePickupText;
 
     }
 

@@ -32,6 +32,8 @@ public class SlotsPage extends BasePage {
     By selectTimeSlotText = By.xpath("//android.widget.TextView[@text='Select a Timeslot']");
     By ridesRemainingOnSlotsPage = By.id("slots.info_text");
     By alertTitle = By.id("alertTitle");
+    By couponText = By.id("booking_coupon_text");
+
 
     public void clickSlot(int index) throws InterruptedException {
         waitForClickabilityOf(selectSlot);
@@ -217,6 +219,11 @@ public class SlotsPage extends BasePage {
             return false;
         }
 
+    }
+    public String getCouponCodeTextOnSlotScreen() {
+        waitForVisibilityOf(couponText);
+        String getCouponText = driver.findElement(couponText).getText();
+        return getCouponText;
     }
 
 
