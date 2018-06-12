@@ -15,7 +15,11 @@ public class OfficeAddressPage extends BasePage {
     By changeLocation = By.id(app_package_name_android_gms + "cancel_button");
     By selectLocation = By.id(app_package_name_android_gms + "confirm_button");
     By submit = By.id("frag_usr_reg2.action_done");
-
+    By subtitleText = By.id("frag_usr_reg2.sub_title");
+    By backIcon = By.id("frag_usr_reg2.back");
+    By myLocationButton = By.id(app_package_name_android_gms + "my_location_button");
+    By nearbyPlaces = By.id(app_package_name_android_gms + "place_name");
+    By useThisPlaceHeading = By.id(app_package_name_android_gms + "card_title");
 
     public OfficeAddressPage(WebDriver driver)  {
         super(driver);
@@ -98,6 +102,120 @@ public class OfficeAddressPage extends BasePage {
         waitForVisibilityOf(submit);
         driver.findElement(submit).click();
     }
+
+    public String whereDoYouWorkSubtext(){
+        waitForVisibilityOf(subtitleText);
+        return driver.findElement(subtitleText).getText();
+    }
+
+
+    public void backIconClick(){
+        waitForClickabilityOf(backIcon);
+        driver.findElement(backIcon).click();
+
+    }
+
+    public boolean isSelectOfficeLocationFieldDisplayed(){
+        boolean result;
+        if (checkIfElementPresent(selectOfficeLocation, 10) == true) {
+            System.out.println("Select Office Location field is displayed on office address page");
+            result = driver.findElement(selectOfficeLocation).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Select Office Location field is not displayed");
+            result = false;
+            return result;
+        }
+    }
+
+
+    public boolean isOfficeLocationDetailsSubmitButtonDisplayed(){
+        boolean result;
+        if (checkIfElementPresent(submit, 10) == true) {
+            System.out.println("Submit button (DONE) is appearing on Select Office Location page");
+            result = driver.findElement(submit).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Submit button is not appearing on Select Office Location page");
+            result = false;
+            return result;
+        }
+
+    }
+
+
+    public boolean isSearchBarDisplayed(){
+
+        boolean result;
+        if (checkIfElementPresent(searchBar, 10) == true) {
+            System.out.println("Search bar field is displayed after clicking select office location");
+            result = driver.findElement(searchBar).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Search bar field is not displayed");
+            result = false;
+            return result;
+        }
+    }
+
+
+    public boolean isSelectThisLocationDisplayed(){
+
+        boolean result;
+        if (checkIfElementPresent(selectThisLocation, 10) == true) {
+            System.out.println("Select this location field is displayed");
+            result = driver.findElement(selectThisLocation).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Select this location field is not displayed");
+            result = false;
+            return result;
+        }
+    }
+
+
+    public boolean isNearbyPlacesDisplayed(){
+
+        boolean result;
+        if (checkIfElementPresent(nearbyPlaces, 10) == true) {
+            System.out.println("Nearby places are displayed");
+            result = driver.findElement(nearbyPlaces).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Nearby places are displayed");
+            result = false;
+            return result;
+        }
+    }
+
+
+
+    public boolean isMyLocationIconDisplayed(){
+
+        boolean result;
+        if (checkIfElementPresent(myLocationButton, 10) == true) {
+            System.out.println("My location icon is displayed on map");
+            result = driver.findElement(myLocationButton).isDisplayed();
+            return result;
+        } else {
+            System.out.println("My location icon is displayed on map");
+            result = false;
+            return result;
+        }
+    }
+
+
+    public String getUseThisPlaceHeading(){
+        waitForVisibilityOf(useThisPlaceHeading);
+        return driver.findElement(useThisPlaceHeading).getText();
+    }
+
+    public String getOfficeLocationEnteredText(){
+        waitForVisibilityOf(selectOfficeLocation);
+        return driver.findElement(selectOfficeLocation).getText();
+    }
+
+
 
 
 

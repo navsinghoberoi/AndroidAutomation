@@ -16,6 +16,12 @@ public class HomeAddressPage extends BasePage {
     By selectLocation = By.id(app_package_name_android_gms + "confirm_button");
     By flatNum = By.id("frag_usr_reg2.address_input");
     By submit = By.id("frag_usr_reg2.action_next");
+    By subtitleText = By.id("frag_usr_reg2.sub_title");
+    By backIcon = By.id("frag_usr_reg2.back");
+    By myLocationButton = By.id(app_package_name_android_gms + "my_location_button");
+    By nearbyPlaces = By.id(app_package_name_android_gms + "place_name");
+    By useThisPlaceHeading = By.id(app_package_name_android_gms + "card_title");
+    By homeAddressDetailsSubmitAtSignup = By.id("frag_usr_reg2.action_next");
 
 
     public HomeAddressPage(WebDriver driver)  {
@@ -110,6 +116,125 @@ public class HomeAddressPage extends BasePage {
         waitForVisibilityOf(submit);
         driver.findElement(submit).click();
     }
+
+
+    public String whereDoYouLiveSubtext()
+    {
+        waitForVisibilityOf(subtitleText);
+        return driver.findElement(subtitleText).getText();
+    }
+
+
+    public boolean isSelectHomeLocationFieldDisplayed(){
+        boolean result;
+        if (checkIfElementPresent(selectHomeLocation, 10) == true) {
+            System.out.println("Select Home Location field is displayed on home address page");
+            result = driver.findElement(selectHomeLocation).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Select Home Location field is not displayed");
+            result = false;
+            return result;
+        }
+    }
+
+    public void backIconClick(){
+        waitForClickabilityOf(backIcon);
+        driver.findElement(backIcon).click();
+
+    }
+
+
+
+    public boolean isSearchBarDisplayed(){
+
+        boolean result;
+        if (checkIfElementPresent(searchBar, 10) == true) {
+            System.out.println("Search bar field is displayed after clicking select home location");
+            result = driver.findElement(searchBar).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Search bar field is not displayed");
+            result = false;
+            return result;
+        }
+    }
+
+
+    public boolean isSelectThisLocationDisplayed(){
+
+        boolean result;
+        if (checkIfElementPresent(selectThisLocation, 10) == true) {
+            System.out.println("Select this location field is displayed");
+            result = driver.findElement(selectThisLocation).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Select this location field is not displayed");
+            result = false;
+            return result;
+        }
+    }
+
+
+    public boolean isNearbyPlacesDisplayed(){
+
+        boolean result;
+        if (checkIfElementPresent(nearbyPlaces, 10) == true) {
+            System.out.println("Nearby places are displayed");
+            result = driver.findElement(nearbyPlaces).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Nearby places are displayed");
+            result = false;
+            return result;
+        }
+    }
+
+
+
+    public boolean isMyLocationIconDisplayed(){
+
+        boolean result;
+        if (checkIfElementPresent(myLocationButton, 10) == true) {
+            System.out.println("My location icon is displayed on map");
+            result = driver.findElement(myLocationButton).isDisplayed();
+            return result;
+        } else {
+            System.out.println("My location icon is displayed on map");
+            result = false;
+            return result;
+        }
+    }
+
+
+
+    public String getUseThisPlaceHeading(){
+        waitForVisibilityOf(useThisPlaceHeading);
+        return driver.findElement(useThisPlaceHeading).getText();
+    }
+
+
+    public String geHomeLocationEnteredText(){
+        waitForVisibilityOf(selectHomeLocation);
+        return driver.findElement(selectHomeLocation).getText();
+    }
+
+
+    public boolean isHomeLocationDetailsSubmitArrowDisplayed(){
+        boolean result;
+        if (checkIfElementPresent(homeAddressDetailsSubmitAtSignup, 10) == true) {
+            System.out.println("Submit arrow is appearing on Select Home Location page");
+            result = driver.findElement(homeAddressDetailsSubmitAtSignup).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Submit arrow is not appearing on Select Home Location page");
+            result = false;
+            return result;
+        }
+
+    }
+
+
 
 
 
