@@ -30,7 +30,14 @@ public class PersonalDetailsPage extends BasePage {
     By genderFemaleProfile = By.id("radioButtonFemale");
     By genderOtherProfile = By.id("profile.gender_other");
     By textAfterSavingProfile = By.id("message");
-
+    By titleText = By.id("frag_usr_reg1.title");
+    By subtitleText = By.id("frag_usr_reg1.sub_title");
+    By genderIcon = By.id("urg.gender_icon");
+    By haveReferralCode = By.id("frag_usr_reg1.have_referral_code");
+    By referralCodePopupHeading = By.id("ref_code.label");
+    By referralCodeField = By.id("ref_code.input");
+    By referralCodeSubmit = By.id("ref_code.submit");
+    By referralCodeErrorText = By.id("textinput_error");
 
     public PersonalDetailsPage(WebDriver driver) {
         super(driver);
@@ -268,4 +275,97 @@ public class PersonalDetailsPage extends BasePage {
     }
 
 
+    public boolean isUserOnPersonalDetailsPage(){
+        boolean result;
+        if (checkIfElementPresent(titleText, 15) == true) {
+            System.out.println("User is on personal details page");
+            result = driver.findElement(titleText).isEnabled();
+            return result;
+        } else {
+            System.out.println("User is not on personal details page");
+            result = false;
+            return result;
+        }
+    }
+
+
+    public String getPersonalDetailsPageHeading(){
+
+        waitForVisibilityOf(titleText);
+        return driver.findElement(titleText).getText();
+    }
+
+
+    public String getPersonalDetailsPageSubheading(){
+
+        waitForVisibilityOf(subtitleText);
+        return driver.findElement(subtitleText).getText();
+    }
+
+
+    public int getAvailableGendersCount(){
+
+        waitForClickabilityOf(genderIcon);
+        int size =   driver.findElements(genderIcon).size();
+        System.out.println("Number of gender options available are = "+size);
+        return size;
+    }
+
+
+    public boolean isHaveAReferralCodeDisplayed(){
+        boolean result;
+        if (checkIfElementPresent(haveReferralCode, 10) == true) {
+            System.out.println("Have a Referral Code ? is displayed");
+            result = driver.findElement(haveReferralCode).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Have a Referral Code ? is not displayed");
+            result = false;
+            return result;
+        }
+    }
+
+
+    public void haveAReferralCodeClick(){
+
+        waitForClickabilityOf(haveReferralCode);
+        driver.findElement(haveReferralCode).click();
+    }
+
+
+    public String getReferralCodePopupHeading(){
+        waitForVisibilityOf(referralCodePopupHeading);
+        return  driver.findElement(referralCodePopupHeading).getText();
+    }
+
+
+    public String getReferralCodeErrorPrompt(){
+
+        waitForClickabilityOf(referralCodeField);
+        driver.findElement(referralCodeField).sendKeys("123");
+        waitForClickabilityOf(referralCodeSubmit);
+        driver.findElement(referralCodeSubmit).click();
+        waitForVisibilityOf(referralCodeErrorText);
+        String errorText = driver.findElement(referralCodeErrorText).getText();
+        return errorText;
+    }
+
+
+
+    public boolean isPersonalDetailsSubmitArrowDisplayed(){
+        boolean result;
+        if (checkIfElementPresent(personalDetailsSubmitAtSignup, 10) == true) {
+            System.out.println("Submit arrow is appearing on Personal details page");
+            result = driver.findElement(personalDetailsSubmitAtSignup).isDisplayed();
+            return result;
+        } else {
+            System.out.println("Submit arrow is appearing on Personal details page");
+            result = false;
+            return result;
+        }
+
+    }
+
+
 }
+

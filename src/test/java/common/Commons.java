@@ -87,7 +87,7 @@ public class Commons extends BasePage {
     }
 
     public void enterHomeAddressDetailsNewUser(String homeAddressKey) throws Exception {
-        String homeText = homeAddressPage.whereDoYouLiveText();
+    //    String homeText = homeAddressPage.whereDoYouLiveText();
         homeAddressPage.selectHomeLocationClick();
         homeAddressPage.searchBarClick();
         homeAddressPage.enterHomeAddress(getValueFromPPFile(homeAddressKey));
