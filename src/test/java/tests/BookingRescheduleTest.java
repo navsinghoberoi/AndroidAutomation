@@ -2,6 +2,7 @@ package tests;
 
 import common.Commons;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.*;
 
@@ -29,6 +30,7 @@ public class BookingRescheduleTest extends Setup {
     private SubscriptionBuyAndRefundTest subscriptionBuyAndRefundTest;
     private TrackShuttlPage trackShuttlPage;
     private CancelOrRescheduleRidePage cancelOrRescheduleRidePage;
+    private String className;
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -54,14 +56,23 @@ public class BookingRescheduleTest extends Setup {
         trackShuttlPage = new TrackShuttlPage(driver);
         cancelOrRescheduleRidePage = new CancelOrRescheduleRidePage(driver);
         commons.goToHomepage("oldUserPhoneNumber", "oldUserOTP");
+        className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
     @AfterMethod
-    public void tearDown() throws Exception {
+    public void tearDown(ITestResult iTestResult){
+        if (ITestResult.FAILURE == iTestResult.getStatus()){
+            commons.captureScreenshot(driver,className);
+            System.out.println("Screenshot taken for failed testcase");
+        }
+    }
+
+
+    @AfterClass
+    public void quit() {
         System.out.println("Test cases completed , now closing app");
         driver.quit();
     }
-
 
     @Test
     public void verifyActiveRideHomecardDisplayed() {

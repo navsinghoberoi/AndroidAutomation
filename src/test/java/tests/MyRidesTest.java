@@ -2,6 +2,9 @@ package tests;
 
 import common.Commons;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -12,6 +15,7 @@ public class MyRidesTest extends Setup {
     private HomePage homePage;
     private Commons commons;
     private MyRidesPage myRidesPage;
+    private String className;
 
     @BeforeClass
     public void setUp() throws Exception {
@@ -22,7 +26,26 @@ public class MyRidesTest extends Setup {
         homePage = new HomePage(driver);
         homePage.clickMenu();
         myRidesPage = new MyRidesPage(driver);
+        className = getClass().getSimpleName() + commons.getCurrentTime();
     }
+
+    @AfterMethod
+    public void tearDown(ITestResult iTestResult){
+        if (ITestResult.FAILURE == iTestResult.getStatus()){
+            commons.captureScreenshot(driver,className);
+            System.out.println("Screenshot taken for failed testcase");
+        }
+    }
+
+
+    @AfterClass
+    public void quit() {
+        System.out.println("Test cases completed , now closing app");
+        driver.quit();
+    }
+
+
+
 
     @Test(priority = 1)
     public void verifyMyRidesDisplayText() throws Exception {

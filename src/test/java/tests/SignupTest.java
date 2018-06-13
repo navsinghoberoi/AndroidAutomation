@@ -2,6 +2,7 @@ package tests;
 
 import common.Commons;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.annotations.Test;
 import pages.HomeAddressPage;
@@ -25,6 +26,7 @@ public class SignupTest extends Setup {
     private OtpPage otpPage;
     private HomePage homepage;
     private Commons commons;
+    private String className;
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -37,13 +39,24 @@ public class SignupTest extends Setup {
         otpPage = new OtpPage(driver);
         homepage = new HomePage(driver);
         commons = new Commons(driver);
+        className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
     @AfterMethod
-    public void tearDown() throws Exception {
+    public void tearDown(ITestResult iTestResult){
+        if (ITestResult.FAILURE == iTestResult.getStatus()){
+            commons.captureScreenshot(driver,className);
+            System.out.println("Screenshot taken for failed testcase");
+        }
+    }
+
+
+    @AfterClass
+    public void quit() {
         System.out.println("Test cases completed , now closing app");
         driver.quit();
     }
+
 
     @Test(priority = 1)
     public void verifyUserNotRegistered() throws Exception {

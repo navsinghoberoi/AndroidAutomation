@@ -2,6 +2,7 @@ package tests;
 
 import common.Commons;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.*;
 
@@ -18,6 +19,7 @@ public class BookingFromCouponTest extends Setup {
     private SlotsPage slotsPage;
     private MyRidesPage myRidesPage;
     private BookingCompletePage bookingCompletePage;
+    private String className;
 
 
     @BeforeClass
@@ -33,7 +35,15 @@ public class BookingFromCouponTest extends Setup {
         slotsPage = new SlotsPage(driver);
         myRidesPage = new MyRidesPage(driver);
         bookingCompletePage = new BookingCompletePage(driver);
+        className = getClass().getSimpleName() + commons.getCurrentTime();
+    }
 
+    @AfterMethod
+    public void tearDown(ITestResult iTestResult){
+        if (ITestResult.FAILURE == iTestResult.getStatus()){
+            commons.captureScreenshot(driver,className);
+            System.out.println("Screenshot taken for failed testcase");
+        }
     }
 
     @AfterClass
