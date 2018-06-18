@@ -56,7 +56,7 @@ public class BookingPostpayRide extends Setup {
         refundPassPage = new RefundPassPage(driver);
         bookingCompletePage = new BookingCompletePage(driver);
         subscriptionBuyAndRefundTest = new SubscriptionBuyAndRefundTest();
-        //  commons.goToHomepage("postpayUserPhoneNumer", "postpayUserOTP");
+        commons.goToHomepage("postpayUserPhoneNumer", "postpayUserOTP");
         trackShuttlPage = new TrackShuttlPage(driver);
         cancelOrRescheduleRidePage = new CancelOrRescheduleRidePage(driver);
         className = getClass().getSimpleName() + commons.getCurrentTime();
