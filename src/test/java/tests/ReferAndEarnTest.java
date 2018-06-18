@@ -2,7 +2,9 @@ package tests;
 
 import common.Commons;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -17,6 +19,7 @@ public class ReferAndEarnTest extends Setup {
     private OtpPage otpPage;
     private Commons commons;
     private ReferAndEarnPage referAndEarnPage;
+    private String className;
 
     @BeforeClass
     public void setUp() throws Exception {
@@ -27,6 +30,15 @@ public class ReferAndEarnTest extends Setup {
         homePage = new HomePage(driver);
         homePage.clickMenu();
         referAndEarnPage = new ReferAndEarnPage(driver);
+        className = getClass().getSimpleName() + commons.getCurrentTime();
+    }
+
+    @AfterMethod
+    public void tearDown(ITestResult iTestResult){
+        if (ITestResult.FAILURE == iTestResult.getStatus()){
+            commons.captureScreenshot(driver,className);
+            System.out.println("Screenshot taken for failed testcase");
+        }
     }
 
     @Test(priority = 1)

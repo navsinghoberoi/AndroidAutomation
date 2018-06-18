@@ -2,6 +2,7 @@ package tests;
 
 import common.Commons;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.*;
 
@@ -30,6 +31,7 @@ public class BookingFromSubscriptionTest extends Setup {
     private SubscriptionBuyAndRefundTest subscriptionBuyAndRefundTest;
     private String ridesLeftCountBeforeBooking;
     private String ridesLeftCountAfterBooking;
+    private String className;
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -53,14 +55,23 @@ public class BookingFromSubscriptionTest extends Setup {
         bookingCompletePage = new BookingCompletePage(driver);
         subscriptionBuyAndRefundTest = new SubscriptionBuyAndRefundTest();
         commons.goToHomepage("oldUserPhoneNumber", "oldUserOTP");
+        className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
     @AfterMethod
-    public void tearDown() throws Exception {
+    public void tearDown(ITestResult iTestResult){
+        if (ITestResult.FAILURE == iTestResult.getStatus()){
+            commons.captureScreenshot(driver,className);
+            System.out.println("Screenshot taken for failed testcase");
+        }
+    }
+
+
+    @AfterClass
+    public void quit() {
         System.out.println("Test cases completed , now closing app");
         driver.quit();
     }
-
     @Test(priority = 1)
     public void verifyIsSubscriptionDisplayed() {
         homepage.clickMenu();

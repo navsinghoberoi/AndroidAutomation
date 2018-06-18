@@ -4,10 +4,8 @@ import common.Commons;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import pages.BasePage;
 import pages.CouponsPage;
 import pages.HomePage;
@@ -23,6 +21,7 @@ public class CouponsPageTest extends Setup {
     private HomePage homePage;
     private MenuPage menuPage;
     private Commons commons;
+    private String className;
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -32,12 +31,22 @@ public class CouponsPageTest extends Setup {
         menuPage = new MenuPage(driver);
         commons = new Commons(driver);
         commons.goToHomepage("oldUserPhoneNumber","oldUserOTP");
+        className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
 
     @AfterMethod
-    public void tearDown() throws Exception {
-        System.out.println("Test case completed");
+    public void tearDown(ITestResult iTestResult){
+        if (ITestResult.FAILURE == iTestResult.getStatus()){
+            commons.captureScreenshot(driver,className);
+            System.out.println("Screenshot taken for failed testcase");
+        }
+    }
+
+
+    @AfterClass
+    public void quit() {
+        System.out.println("Test cases completed , now closing app");
         driver.quit();
     }
 

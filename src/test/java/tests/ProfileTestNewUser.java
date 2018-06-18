@@ -3,10 +3,8 @@ package tests;
 import common.Commons;
 import common.Constants;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import pages.HomePage;
 import pages.MenuPage;
 import pages.PersonalDetailsPage;
@@ -28,7 +26,7 @@ public class ProfileTestNewUser extends Setup {
             , userFinalBirthdate, userFinalPersonalEmail, userFinalCorporateEmail, userFinalName;
 
     private boolean profileSaved = false;
-
+    private String className;
 
     @BeforeClass
     public void setUp() throws Exception {
@@ -50,9 +48,21 @@ public class ProfileTestNewUser extends Setup {
 
         profilePage = new ProfilePage(driver);
         personalDetailsPage = new PersonalDetailsPage(driver);
-
+        className = getClass().getSimpleName() + common.getCurrentTime();
 
     }
+
+    @AfterMethod
+    public void tearDown(ITestResult iTestResult){
+        if (ITestResult.FAILURE == iTestResult.getStatus()){
+            common.captureScreenshot(driver,className);
+            System.out.println("Screenshot taken for failed testcase");
+        }
+    }
+
+
+
+
 
 
     // ----------------------------       TEST CASES FOR NEW USER       ----------------------------

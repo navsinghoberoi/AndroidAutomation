@@ -1,8 +1,10 @@
 package tests;
 
+import common.Commons;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.HelpPage;
 import pages.HomePage;
@@ -14,7 +16,8 @@ public class HelpTest extends Setup{
     private HomePage homePage;
     private MenuPage menuPage;
     private HelpPage helpPage;
-
+    private Commons commons;
+    private String className;
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -22,18 +25,26 @@ public class HelpTest extends Setup{
         homePage = new HomePage(driver);
         menuPage = new MenuPage(driver);
         helpPage=new HelpPage(driver);
+        commons = new Commons(driver);
         homePage.clickMenu();
         menuPage.clickHelp();
-
+        className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
     @AfterMethod
-    public void tearDown() throws Exception {
-        Thread.sleep(2000);
-        System.out.println("Test case completed");
-        driver.quit();
+    public void tearDown(ITestResult iTestResult){
+        if (ITestResult.FAILURE == iTestResult.getStatus()){
+            commons.captureScreenshot(driver,className);
+            System.out.println("Screenshot taken for failed testcase");
+        }
     }
 
+
+    @AfterClass
+    public void quit() {
+        System.out.println("Test cases completed , now closing app");
+        driver.quit();
+    }
 
     @Test(priority = 4)
     public void testWhatIsAutoBookingSubContent()

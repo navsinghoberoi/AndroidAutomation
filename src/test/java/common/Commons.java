@@ -5,6 +5,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import pages.*;
 import java.io.BufferedReader;
@@ -12,6 +14,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Commons extends BasePage {
@@ -38,19 +43,17 @@ public class Commons extends BasePage {
     private TrackShuttlPage trackShuttlPage = new TrackShuttlPage(driver);
     private CouponsPage couponsPage = new CouponsPage(driver);
 
-    public void login(String phoneNumber,String OTP) throws Exception {
+    public void login(String phoneNumber, String OTP) throws Exception {
         enterUserPhoneNumberOTP(phoneNumber, OTP);
     }
 
     public void goToHomepage(String phoneNumber, String OTP) throws Exception {
         if (!homePage.checkSearchBar()) {
             enterUserPhoneNumberOTP(phoneNumber, OTP);
-        }
-        else{
+        } else {
             System.out.println("User is already on the homepage");
         }
     }
-
 
 
     /* This method lets user login by specifying phonenumber and OTP*/
@@ -87,7 +90,7 @@ public class Commons extends BasePage {
     }
 
     public void enterHomeAddressDetailsNewUser(String homeAddressKey) throws Exception {
-    //    String homeText = homeAddressPage.whereDoYouLiveText();
+        //    String homeText = homeAddressPage.whereDoYouLiveText();
         homeAddressPage.selectHomeLocationClick();
         homeAddressPage.searchBarClick();
         homeAddressPage.enterHomeAddress(getValueFromPPFile(homeAddressKey));
@@ -121,7 +124,6 @@ public class Commons extends BasePage {
     }
 
 
-
     public void clickSearchBar() {
         homePage.clickSearchBar();
     }
@@ -131,8 +133,7 @@ public class Commons extends BasePage {
     }
 
 
-    public void buySubscriptionViaShuttlCredits(String homeAddress, String officeAddress, int slotIndex, int optionIndex,int menuItemIndex) throws Exception
-    {
+    public void buySubscriptionViaShuttlCredits(String homeAddress, String officeAddress, int slotIndex, int optionIndex, int menuItemIndex) throws Exception {
         clickSearchBar();
         homePage.clickFromLocation();
         selectLocationPage.selectSearchLocation(getValueFromPPFile(homeAddress), 0);
@@ -148,8 +149,7 @@ public class Commons extends BasePage {
         passCompletePaymentPage.clickPassPurchaseSuccessfulCTA();
     }
 
-    public void refundSubscription(int menuItemIndex,int ridesIndex,int validityIndex, int reasonForPassDelete,int refundPassValueIndex)
-    {
+    public void refundSubscription(int menuItemIndex, int ridesIndex, int validityIndex, int reasonForPassDelete, int refundPassValueIndex) {
         homePage.openMyPass(menuItemIndex); // User will be redirected to Pass details page directly (from version 36000+)
         passDetailsPage.getRidesValidityData(ridesIndex, validityIndex);
         passDetailsPage.deletePass(reasonForPassDelete);
@@ -159,26 +159,21 @@ public class Commons extends BasePage {
     }
 
 
-
     public void clearTextField(By fieldLocator) {
         driver.findElement(fieldLocator).clear();
     }
 
 
-
     // ------------------------     CREATE TEXT FILE      -------------------------
 
 
-
-    public void writeTextFile(String filePath , String lineText) throws IOException {
+    public void writeTextFile(String filePath, String lineText) throws IOException {
         File f = new File(filePath);
-        FileUtils.write(f,lineText,true);
+        FileUtils.write(f, lineText, true);
     }
 
 
-
-    public List<String> readTextFileFromEnd(String filePath , int startLine , int endLine)
-    {
+    public List<String> readTextFileFromEnd(String filePath, int startLine, int endLine) {
 
         List<String> lines = null;
         try {
@@ -186,14 +181,14 @@ public class Commons extends BasePage {
             LineIterator it = IOUtils.lineIterator(
                     new BufferedReader(new FileReader(filePath)));
 
-            for (int i = startLine ; i < endLine ; i++)
+            for (int i = startLine; i < endLine; i++)
                 lines.add(it.next());
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return lines ;
+        return lines;
     }
 
 
@@ -218,15 +213,14 @@ public class Commons extends BasePage {
     }
 
 
-    public void openRideOptionsFromBookingHomecards(){
+    public void openRideOptionsFromBookingHomecards() {
         homePage.clickBookingHomeCard();
         trackShuttlPage.dismissProtip();
         trackShuttlPage.clickOptionsIcon();
 
     }
 
-    public void openSearchBarAndFindRoute(String homeAddress, String officeAddress) throws Exception
-    {
+    public void openSearchBarAndFindRoute(String homeAddress, String officeAddress) throws Exception {
         clickSearchBar();
         homePage.clickFromLocation();
         selectLocationPage.selectSearchLocation(getValueFromPPFile(homeAddress), 0);
@@ -234,18 +228,19 @@ public class Commons extends BasePage {
         selectLocationPage.selectSearchLocation(getValueFromPPFile(officeAddress), 0);
         homePage.clickFindMyShuttl();
     }
-    public void bookingViaCoupon(String homeAddress,String OfficeAddress) throws Exception{
+
+    public void bookingViaCoupon(String homeAddress, String OfficeAddress) throws Exception {
         couponsPage.clickCouponsDisplayText();
         couponsPage.addCouponIntegrated();
         couponsPage.clickPopUp();
         driver.navigate().back();
-        openSearchBarAndFindRoute("homeAddress","officeAddress");
+        openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         slotsPage.clickCtaOnSlotsPage();
     }
 
 
-    public String splitAndTrimString(String toBeSplit,int index,String pattern){
+    public String splitAndTrimString(String toBeSplit, int index, String pattern) {
 
         String array[] = toBeSplit.split(pattern);
         String finalString = array[index].trim();
@@ -253,4 +248,27 @@ public class Commons extends BasePage {
     }
 
 
+    public void captureScreenshot(WebDriver driver, String screenshotName) {
+
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File source = ts.getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(source, new File("./Screenshots/" + screenshotName + ".png"));
+        } catch (IOException e) {
+            System.out.println("Exception occured while taking screenshot : " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+    public String getCurrentTime() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
 }
+
+
+
+
