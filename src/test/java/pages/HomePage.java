@@ -344,13 +344,8 @@ public class HomePage extends BasePage {
     public String getRideStatus(){
         waitForVisibilityOf(rideStatus);
         String RideST = driver.findElement(rideStatus).getText();
-        if (RideST.equalsIgnoreCase("Tomorrow")) {
-            String dateFormat = new SimpleDateFormat("dd mmmm yyyy").format(new Date());
-            return dateFormat;
-        } else {
-            return RideST;
+        return RideST;
         }
-    }
 
     public String getCurrentRideTitle() {
         waitForVisibilityOf(currentRideStatus);
