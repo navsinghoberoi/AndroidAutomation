@@ -103,19 +103,19 @@ public class PostBookingPage extends BasePage {
 	}
 	public void clickShowTraffic(){
 		waitForClickabilityOf(toggleButton);
-		List<WebElement> showTrafficToggel = driver.findElements(toggleButton);
-		showTrafficToggel.get(1).click();
+		List<WebElement> showTrafficToggle = driver.findElements(toggleButton);
+		showTrafficToggle.get(1).click();
 	}
 	public void getShowTrafficStatus(){
 		waitForClickabilityOf(toggleButton);
-		List<WebElement> show_Traffic_Toggel = driver.findElements(toggleButton);
+		List<WebElement> show_Traffic_Toggle = driver.findElements(toggleButton);
 
-		if(show_Traffic_Toggel.get(1).getText()=="ON"){
-			System.out.println("Traffic Toggel Is Enabled");
+		if(show_Traffic_Toggle.get(1).getText()=="ON"){
+			System.out.println("Traffic Toggle Is Enabled");
 		}
 		else {
-			show_Traffic_Toggel.get(1).click();
-			System.out.println("Clicked on Traffic Toggel");
+			show_Traffic_Toggle.get(1).click();
+			System.out.println("Clicked on Traffic Toggle");
 		}
 
 	}
@@ -135,11 +135,11 @@ public class PostBookingPage extends BasePage {
 		System.out.println(shuttleArrivalBubble);
 
 		if (shuttleArrivalBubble.get(0).getText()=="ON"){
-			System.out.println("Toggel Is Enabled");
+			System.out.println("Toggle Is Enabled");
 		}
 		else{
 			shuttleArrivalBubble.get(0).click();
-			System.out.println("Clicked on Toggel");
+			System.out.println("Clicked on Toggle");
 		}
 	}
 	public boolean arrivalBubble(){
