@@ -135,6 +135,13 @@ public class SlotsPage extends BasePage {
         System.out.println("Subtext of the selected option = " + selectedOption);
 
     }
+    public void selctOptionFromContinuePPRO(int slotIndex, int optionIndex) throws Exception{
+        clickSlot(slotIndex);
+        clickCtaOnSlotsPage();
+        getSelectOptionText();
+        String pPROption = clickPPROption(optionIndex);
+        System.out.printf("Subtext of the selected option = " + pPROption);
+    }
 
     public boolean isLocatePickupStopDisplayed()
     {
