@@ -331,13 +331,19 @@ public class HomePage extends BasePage {
 
     public void openSubscriptionPass() {
         if (checkIfElementPresent(subscriptionPasses, 15) == true) {
-            System.out.println("Multiple passes are available on My Pass page");
-            driver.findElements(subscriptionPasses).get(0).click();
+            int size = driver.findElements(subscriptionPasses).size();
+            if (size > 1) {
+                System.out.println("Multiple passes are available on My Pass page, opening first pass");
+                driver.findElements(subscriptionPasses).get(0).click();
+            } else if(size == 1){
+                System.out.println("Only one pass is available, pass details page are opened automatically");
+            }
         } else {
-            System.out.println("Multiple passes are not availble on My Pass page");
+            System.out.println("No passes available on My Pass page");
         }
 
     }
+
     public String getRideStatus(){
         waitForVisibilityOf(rideStatus);
         String RideST = driver.findElement(rideStatus).getText();

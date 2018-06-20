@@ -293,6 +293,54 @@ public class SlotsPage extends BasePage {
     }
 
 
+    public boolean isBuyPassOptionDisplayed() {
+        boolean result = false;
+        if (checkIfElementPresent(buyPassOption, 10) == true) {
+            result = driver.findElements(buyPassOption).get(0).isDisplayed();
+            String optionName =  driver.findElements(buyPassOption).get(0).getText();
+            System.out.println("Buy Pass option is displayed = " +optionName);
+        } else {
+            System.out.println("Postpay option is not displayed");
+        }
+
+        return result;
+
+    }
+
+
+    // This methods checks Buy pass CTA OR Buy pass option from Continue
+    public boolean checkBuyPassDisplayed() throws Exception{
+        boolean result =false;
+        String cta = getCTAOnSlotsPage();
+        if(cta.equalsIgnoreCase("BUY PASS"))
+        {
+            System.out.println("Only Buy Pass option displayed on slots page, i.e. Non PPR route");
+            result = true;
+        }else if(cta.equalsIgnoreCase("CONTINUE")){
+            clickCtaOnSlotsPage();
+            System.out.println("Multiple options are displayed on slots page, i.e.PPR route");
+            result = isBuyPassOptionDisplayed();
+        }
+
+        return result;
+    }
+
+// This methods clicks on Buy pass CTA OR Buy pass option from Continue
+    public void clickBuyPass() throws Exception{
+        String cta = getCTAOnSlotsPage();
+        if(cta.equalsIgnoreCase("BUY PASS"))
+        {
+            System.out.println("Only Buy Pass option displayed on slots page, i.e. Non PPR route");
+            clickCtaOnSlotsPage();
+        }else if(cta.equalsIgnoreCase("CONTINUE")){
+            clickCtaOnSlotsPage();
+            System.out.println("Multiple options are displayed on slots page, i.e.PPR route");
+            clickBuyPassOption(0);
+        }
+
+    }
+
+
 
 
 }
