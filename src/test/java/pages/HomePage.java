@@ -3,8 +3,11 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import sun.font.TrueTypeFont;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HomePage extends BasePage {
@@ -348,24 +351,26 @@ public class HomePage extends BasePage {
         waitForVisibilityOf(rideStatus);
         String RideST = driver.findElement(rideStatus).getText();
         return RideST;
-    }
+        }
+
     public String getCurrentRideTitle() {
         waitForVisibilityOf(currentRideStatus);
         String currentRideTitleSt = driver.findElement(currentRideStatus).getText();
         return currentRideTitleSt;
-
     }
+
     public boolean getCurrentLocationIcon(){
         waitForVisibilityOf(currentLocationButton);
         return driver.findElement(currentLocationButton).isDisplayed();
-}
+    }
+
     public void clickCurrentLocationButton(){
         waitForVisibilityOf(currentLocationButton);
         driver.findElement(currentLocationButton).click();
     }
+
     public void shuttlVehicleDetail(){
         waitForVisibilityOf(rideInfo);
         driver.findElement(rideInfo).getText();
-
-        }
     }
+}
