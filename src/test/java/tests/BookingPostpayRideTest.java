@@ -10,7 +10,7 @@ import pages.*;
 Before running testcase -- Need to clear device details and booking metadata (from sql and mongoDB).
 */
 
-public class BookingPostpayRide extends Setup {
+public class BookingPostpayRideTest extends Setup {
 
     private LandingPage landingPage;
     private LoginPage loginPage;
@@ -80,16 +80,16 @@ public class BookingPostpayRide extends Setup {
     public void verifyUserNotHaveSubscription() {
         homepage.clickMenu();
         homepage.openMyPass(0);
-        boolean result = passDetailsPage.isNoPassCTADisplayed();
-        Assert.assertEquals(result, true, "test case failed");
+        boolean noPassCtaDisplayed = passDetailsPage.isNoPassCTADisplayed();
+        Assert.assertEquals(noPassCtaDisplayed, true, "test case failed");
     }
 
 
     @Test(priority = 2)
     public void verifySlotsPage() throws Exception {
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
-        boolean isDisplayed = slotsPage.isLocatePickupStopDisplayed();
-        Assert.assertEquals(isDisplayed, true, "test case failed");
+        boolean isSlotsPageDisplayed = slotsPage.isLocatePickupStopDisplayed();
+        Assert.assertEquals(isSlotsPageDisplayed, true, "test case failed");
     }
 
 
@@ -97,9 +97,9 @@ public class BookingPostpayRide extends Setup {
     public void verifySlotsPageBackClick() throws Exception {
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         homepage.clickBackButton();
-        boolean isDisplayed = homepage.isFindRouteButtonDisplayed();
-        System.out.println("Is search card displayed ? " + isDisplayed);
-        Assert.assertEquals(isDisplayed, true, "test case failed");
+        boolean isSearchCardDisplayed = homepage.isFindRouteButtonDisplayed();
+        System.out.println("Is search card displayed ? " + isSearchCardDisplayed);
+        Assert.assertEquals(isSearchCardDisplayed, true, "test case failed");
 
     }
 
@@ -108,8 +108,8 @@ public class BookingPostpayRide extends Setup {
     public void verifyIsBannerDisplayedOnSlotsPage() throws Exception {
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
-        boolean result = slotsPage.isBannerImageDisplayed();
-        Assert.assertEquals(result, true);
+        boolean isBannerDisplayed = slotsPage.isBannerImageDisplayed();
+        Assert.assertEquals(isBannerDisplayed, true);
 
     }
 
@@ -126,8 +126,8 @@ public class BookingPostpayRide extends Setup {
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         slotsPage.clickCtaOnSlotsPage();    //Click Continue button
-        boolean result = slotsPage.isPostpayOptionDisplayed();
-        Assert.assertEquals(result, true);
+        boolean isPostpayOptionDisplayed = slotsPage.isPostpayOptionDisplayed();
+        Assert.assertEquals(isPostpayOptionDisplayed, true);
     }
 
 
@@ -136,8 +136,8 @@ public class BookingPostpayRide extends Setup {
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         slotsPage.clickCtaOnSlotsPage();    //Click Continue button
-        String result = slotsPage.checkPostpayOptionText();
-        Assert.assertEquals(result, "Ride Now, Pay Later");
+        String postpayOptionText = slotsPage.checkPostpayOptionText();
+        Assert.assertEquals(postpayOptionText, "Ride Now, Pay Later");
     }
 
 
@@ -146,8 +146,8 @@ public class BookingPostpayRide extends Setup {
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         slotsPage.clickCtaOnSlotsPage();    //Click Continue button
-        String result = slotsPage.checkPostpaySubtext();
-        Assert.assertEquals(result, "Take a trial ride, and pay if you like your ride experience.");
+        String postpaySubtext = slotsPage.checkPostpaySubtext();
+        Assert.assertEquals(postpaySubtext, "Take a trial ride, and pay if you like your ride experience.");
     }
 
 
@@ -157,17 +157,17 @@ public class BookingPostpayRide extends Setup {
         slotsPage.clickSlot(0);
         slotsPage.clickCtaOnSlotsPage();    //Click Continue button
         slotsPage.clickPostPayOption();
-        String actualText = bookingCompletePage.getBookingConfirmPopupTitle();
-        System.out.println("Text after creating a booking = " + actualText);
+        String bookingConfirmPopupTitle = bookingCompletePage.getBookingConfirmPopupTitle();
+        System.out.println("Text after creating a booking = " + bookingConfirmPopupTitle);
         bookingCompletePage.clickBookingConfirmPopupCTA();
-        Assert.assertEquals(actualText, "Ride Confirmed");
+        Assert.assertEquals(bookingConfirmPopupTitle, "Ride Confirmed");
 
     }
 
     @Test(priority = 10)
     public void verifyActiveRideHomecardDisplayed() {
-        boolean result = homepage.isTrackShuttlDisplayed();
-        Assert.assertEquals(result, true, "test case failed");
+        boolean trackShuttlDisplayed = homepage.isTrackShuttlDisplayed();
+        Assert.assertEquals(trackShuttlDisplayed, true, "test case failed");
     }
 
 
@@ -177,8 +177,8 @@ public class BookingPostpayRide extends Setup {
         trackShuttlPage.selectRideOption(0);
         cancelOrRescheduleRidePage.selectCancelRescheduleCategory(1);
         cancelOrRescheduleRidePage.clickCancelRide();
-        String result = cancelOrRescheduleRidePage.getRideCancelledPopupTitle();
-        Assert.assertEquals(result, "Ride Cancelled", "test case failed");
+        String rideCancelledPopupTitle = cancelOrRescheduleRidePage.getRideCancelledPopupTitle();
+        Assert.assertEquals(rideCancelledPopupTitle, "Ride Cancelled", "test case failed");
     }
 
 
@@ -187,8 +187,8 @@ public class BookingPostpayRide extends Setup {
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         slotsPage.clickCtaOnSlotsPage();    //Click Continue button
-        String result = slotsPage.checkPostpayOptionText();
-        Assert.assertEquals(result, "Ride Now, Pay Later");
+        String postpayOptionText = slotsPage.checkPostpayOptionText();
+        Assert.assertEquals(postpayOptionText, "Ride Now, Pay Later");
     }
 
 

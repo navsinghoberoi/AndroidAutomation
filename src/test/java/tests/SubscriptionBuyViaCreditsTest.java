@@ -72,18 +72,18 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
     public void verifyIsSubscriptionDisplayed() {
         homepage.clickMenu();
         homepage.openMyPass(0);
-        boolean result = passDetailsPage.isNoPassCTADisplayed();
-        Assert.assertEquals(result, true);
+        boolean noPassCtaDisplayed = passDetailsPage.isNoPassCTADisplayed();
+        Assert.assertEquals(noPassCtaDisplayed, true);
     }
 
 
     @Test(priority = 2)
     public void verifyBuyPassOptionAppearing() throws Exception {
-        boolean result;
+        boolean buyPassOptionDisplayed;
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
-        result = slotsPage.checkBuyPassDisplayed();
-        Assert.assertEquals(result, true);
+        buyPassOptionDisplayed = slotsPage.checkBuyPassDisplayed();
+        Assert.assertEquals(buyPassOptionDisplayed, true);
     }
 
 
@@ -93,25 +93,25 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         slotsPage.clickSlot(0);
         slotsPage.clickBuyPass();
         explorePassesPage.dismissPassRulesPopup();
-        String result = explorePassesPage.getPageHeading();
-        Assert.assertEquals(result, "Shuttl Pass");
+        String pageHeading = explorePassesPage.getPageTitle();
+        Assert.assertEquals(pageHeading, "Shuttl Pass");
     }
 
 
     @Test(priority = 4)
     public void verifyPassesCountOnExplorePassPage() throws Exception {
-        boolean result;
+        boolean passesCount;
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         slotsPage.clickBuyPass();
         explorePassesPage.dismissPassRulesPopup();
         int count = explorePassesPage.passesCount();
         if (count == 0) {
-            result = false;
+            passesCount = false;
         } else {
-            result = true;
+            passesCount = true;
         }
-        Assert.assertEquals(result, true);
+        Assert.assertEquals(passesCount, true);
     }
 
 
@@ -122,8 +122,8 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         slotsPage.clickBuyPass();
         explorePassesPage.dismissPassRulesPopup();
         explorePassesPage.openPass(0);
-        String result = chooseBenefitsPage.getPageHeading();
-        Assert.assertEquals(result, "Choose Benefits With");
+        String pageHeading = chooseBenefitsPage.getPageTitle();
+        Assert.assertEquals(pageHeading, "Choose Benefits With");
     }
 
 
@@ -134,8 +134,8 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         slotsPage.clickBuyPass();
         explorePassesPage.dismissPassRulesPopup();
         explorePassesPage.openPass(0);
-        String result = chooseBenefitsPage.getCTAName();
-        Assert.assertEquals(result, "Proceed without benefits");
+        String pageCTAName = chooseBenefitsPage.getCTAName();
+        Assert.assertEquals(pageCTAName, "Proceed without benefits");
     }
 
 
@@ -147,14 +147,14 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         explorePassesPage.dismissPassRulesPopup();
         explorePassesPage.openPass(0);
         chooseBenefitsPage.submitPassBenefitsDetails();
-        String result = reviewRoutePage.getPageHeading();
-        Assert.assertEquals(result, "Review Route For");
+        String pageHeading = reviewRoutePage.getPageTitle();
+        Assert.assertEquals(pageHeading, "Review Route For");
     }
 
 
     @Test(priority = 8)
     public void verifyReviewRoutePageCTA() throws Exception {
-        boolean result;
+        boolean pageCTAName;
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         slotsPage.clickBuyPass();
@@ -163,11 +163,11 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         chooseBenefitsPage.submitPassBenefitsDetails();
         String ctaName = reviewRoutePage.getCTAName();
         if (ctaName.contains("Continue To Pay ₹")) {
-            result = true;
+            pageCTAName = true;
         } else {
-            result = false;
+            pageCTAName = false;
         }
-        Assert.assertEquals(result, true);
+        Assert.assertEquals(pageCTAName, true);
     }
 
 
@@ -180,14 +180,14 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         explorePassesPage.openPass(0);
         chooseBenefitsPage.submitPassBenefitsDetails();
         reviewRoutePage.submitReviewRouteDetails();
-        String result = passCompletePaymentPage.getPageHeading();
-        Assert.assertEquals(result, "Complete Payment");
+        String pageHeading = passCompletePaymentPage.getPageTitle();
+        Assert.assertEquals(pageHeading, "Complete Payment");
     }
 
 
     @Test(priority = 10)
     public void verifyTotalPriceAmountOnCompletePaymentPage() throws Exception {
-        boolean result;
+        boolean isTotalPassPriceCalculatedCorrectly;
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         slotsPage.clickBuyPass();
@@ -203,17 +203,17 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         reviewRoutePage.submitReviewRouteDetails();
         String totalPriceOnCompletePaymentPage = passCompletePaymentPage.getTotalPrice();
         if (totalPriceOnCompletePaymentPage.equals(expectedTotalPrice)) {
-            result = true;
+            isTotalPassPriceCalculatedCorrectly = true;
         } else {
-            result = false;
+            isTotalPassPriceCalculatedCorrectly = false;
         }
-        Assert.assertEquals(result, true);
+        Assert.assertEquals(isTotalPassPriceCalculatedCorrectly, true);
     }
 
 
     @Test(priority = 11)
     public void verifyPayButtonIsEnabledOnCompletePaymentPage() throws Exception {
-        boolean result;
+        boolean isPayButtonEnabled;
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         slotsPage.clickBuyPass();
@@ -221,8 +221,8 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         explorePassesPage.openPass(0);
         chooseBenefitsPage.submitPassBenefitsDetails();
         reviewRoutePage.submitReviewRouteDetails();
-        result = passCompletePaymentPage.isPayButtonEnabled();
-        Assert.assertEquals(result, true);
+        isPayButtonEnabled = passCompletePaymentPage.isPayButtonEnabled();
+        Assert.assertEquals(isPayButtonEnabled, true);
     }
 
 
@@ -235,8 +235,8 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         explorePassesPage.openPass(0);
         chooseBenefitsPage.submitPassBenefitsDetails();
         reviewRoutePage.submitReviewRouteDetails();
-        String result = passCompletePaymentPage.getPayButtonText();
-        Assert.assertEquals(result, "Pay Now");
+        String payButtonText = passCompletePaymentPage.getPayButtonText();
+        Assert.assertEquals(payButtonText, "Pay Now");
     }
 
 
@@ -258,8 +258,8 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
     public void verifyIsSubscriptionDisplayedAfterPassPurchase() {
         homepage.clickMenu();
         homepage.openMyPass(0);
-        boolean result = passDetailsPage.isNoPassCTADisplayed();
-        Assert.assertEquals(result, false);
+        boolean noPassCtaDisplayed = passDetailsPage.isNoPassCTADisplayed();
+        Assert.assertEquals(noPassCtaDisplayed, false);
     }
 
 

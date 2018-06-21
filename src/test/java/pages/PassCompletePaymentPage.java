@@ -79,7 +79,7 @@ public class PassCompletePaymentPage extends BasePage {
         getTotalPrice();
     }
 
-    public String getPageHeading() {
+    public String getPageTitle() {
         waitForVisibilityOf(pageHeading);
         return driver.findElement(pageHeading).getText();
     }

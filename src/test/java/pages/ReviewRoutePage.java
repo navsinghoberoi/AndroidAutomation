@@ -19,7 +19,7 @@ public class ReviewRoutePage extends BasePage {
     }
 
 
-    public String getPageHeading() {
+    public String getPageTitle() {
         waitForVisibilityOf(pageHeading);
         return driver.findElement(pageHeading).getText();
     }

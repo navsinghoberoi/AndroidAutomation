@@ -82,7 +82,7 @@ public class ExplorePassesPage extends BasePage {
         System.out.println("Offer label text of pass is = " + offerLabel);
     }
 
-    public String getPageHeading() {
+    public String getPageTitle() {
         waitForVisibilityOf(pageHeading);
         return driver.findElement(pageHeading).getText();
     }
