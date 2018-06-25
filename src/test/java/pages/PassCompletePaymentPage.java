@@ -14,7 +14,7 @@ public class PassCompletePaymentPage extends BasePage {
     By passPurchasedText = By.id("dsf.title");
     By successfullyPurchasePassText = By.id("dsf.message");
     By cta = By.id("dsf.button");
-
+    By pageHeading = By.className("android.widget.TextView");
 
     public PassCompletePaymentPage(WebDriver driver) {
         super(driver);
@@ -78,5 +78,26 @@ public class PassCompletePaymentPage extends BasePage {
         getPassPrice();
         getTotalPrice();
     }
+
+    public String getPageTitle() {
+        waitForVisibilityOf(pageHeading);
+        return driver.findElement(pageHeading).getText();
+    }
+
+
+    public boolean isPayButtonEnabled(){
+        boolean result;
+        waitForVisibilityOf(payNowButton);
+        result = driver.findElement(payNowButton).isEnabled();
+        return result;
+    }
+
+
+    public String getPayButtonText(){
+
+        waitForVisibilityOf(payNowButton);
+        return driver.findElement(payNowButton).getText();
+    }
+
 
 }

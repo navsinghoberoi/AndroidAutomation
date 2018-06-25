@@ -12,7 +12,8 @@ public class ExplorePassesPage extends BasePage {
     By numOfPassRides = By.id("cpt.rides");
     By pricePerPassRide = By.id("cpt.price");
     By passValidity = By.id("cpt.validity");
-
+    By pageHeading = By.className("android.widget.TextView");
+    By passRulesPopup = By.id("sspa_button");
 
     public ExplorePassesPage(WebDriver driver) {
         super(driver);
@@ -80,6 +81,37 @@ public class ExplorePassesPage extends BasePage {
         System.out.println("Validity of pass is = " + passValidity);
         System.out.println("Offer label text of pass is = " + offerLabel);
     }
+
+    public String getPageTitle() {
+        waitForVisibilityOf(pageHeading);
+        return driver.findElement(pageHeading).getText();
+    }
+
+
+    public boolean isDismissPassRulesPopupDisplayed() {
+        boolean result;
+        if (checkIfElementPresent(passRulesPopup, 10) == true) {
+            System.out.println("Pass Rules Popup is displayed");
+            result = driver.findElement(passRulesPopup).isDisplayed();
+        } else {
+            System.out.println("Pass Rules Popup is not displayed");
+            result = false;
+        }
+            return result;
+    }
+
+
+    public void dismissPassRulesPopup() {
+        if (checkIfElementPresent(passRulesPopup, 10) == true) {
+            System.out.println("Pass Rules Popup is displayed");
+            driver.findElement(passRulesPopup).click();
+        } else {
+            System.out.println("Pass Rules Popup is displayed");
+        }
+
+    }
+
+
 
 
 }
