@@ -52,11 +52,7 @@ public class SubscriptionRefundTest extends Setup {
         passCompletePaymentPage = new PassCompletePaymentPage(driver);
         passDetailsPage = new PassDetailsPage(driver);
         refundPassPage = new RefundPassPage(driver);
-
-
-        // NOTE -- Need to remove comment from below line
-        //  commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
-
+        commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
