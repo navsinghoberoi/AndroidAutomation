@@ -11,6 +11,7 @@ public class RefundPassPage extends BasePage {
     By refundSuccessfulTitle = By.id("dsf.title");
     By refundSuccessfulMessage = By.id("dsf.message");
     By refundSuccessfulCTA = By.id("dsf.button");
+    By refundPassInfoIcon = By.id("rms.info_icon");
 
     public RefundPassPage(WebDriver driver) {
         super(driver);
@@ -35,6 +36,7 @@ public class RefundPassPage extends BasePage {
         String text2 = driver.findElement(refundSuccessfulMessage).getText();
         waitForVisibilityOf(refundSuccessfulCTA);
         String text3 = driver.findElement(refundSuccessfulCTA).getText();
+        driver.findElement(refundSuccessfulCTA).click();
         System.out.println("Pass refunded text = " + text1 + " ; " + text2 + " ; " + text3);
         return text1;
 
@@ -47,5 +49,42 @@ public class RefundPassPage extends BasePage {
         driver.findElement(discontinuePassButton).click();
     }
 
+    public boolean isDiscontinuePassButtonEnabled() {
+        boolean result = false;
+        if (checkIfElementPresent(discontinuePassButton, 10) == true) {
+            System.out.println("DISCONTINUE PASS button is displayed");
+            result = driver.findElement(discontinuePassButton).isEnabled();
+        } else {
+            System.out.println("DISCONTINUE PASS button is not displayed");
+        }
+        return result;
+    }
+
+
+    public String getDiscontinuePassButtonText() {
+        waitForClickabilityOf(discontinuePassButton);
+        return driver.findElement(discontinuePassButton).getText();
+    }
+
+
+    public void clickDiscontinuePassButton() {
+        waitForClickabilityOf(discontinuePassButton);
+        driver.findElement(discontinuePassButton).click();
+    }
+
+
+    public void clickRefundDetailsInfo(){
+        waitForClickabilityOf(refundPassInfoIcon);
+        driver.findElement(refundPassInfoIcon).click();
+    }
+
+
+    public String getPassPriceFromRefundDetailsInfoPopup(int index){
+        waitForClickabilityOf(refundPassValue);
+        String passPrice = driver.findElements(refundPassValue).get(index).getText();
+        System.out.println("Refund pass value from info popup = "+passPrice);
+        return passPrice;
+
+    }
 
 }

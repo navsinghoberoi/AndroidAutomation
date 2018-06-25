@@ -16,6 +16,7 @@ public class PassDetailsPage extends BasePage {
     By cancelPopupDismiss = By.id("button2");
     By cancelPopupConfirm = By.id("button1");
     By noPassCTA = By.id("empty_feed_retry");
+    By passPrice = By.id("cpt.price");
 
     public PassDetailsPage(WebDriver driver) {
         super(driver);
@@ -87,6 +88,78 @@ public class PassDetailsPage extends BasePage {
             result = false;
         }
         return result;
+    }
+
+    public boolean isDeletePassIconEnabled() {
+        boolean result = false;
+        if (checkIfElementPresent(deleteIcon, 10) == true) {
+            System.out.println("Delete pass icon is enabled");
+            result = driver.findElement(deleteIcon).isEnabled();
+        } else {
+            System.out.println("Delete pass icon is not enabled");
+        }
+        return result;
+    }
+
+    public boolean isDeletePassIconDisplayed() {
+        boolean result = false;
+        if (checkIfElementPresent(deleteIcon, 10) == true) {
+            System.out.println("Delete pass icon is displayed");
+            result = driver.findElement(deleteIcon).isDisplayed();
+        } else {
+            System.out.println("Delete pass icon is not displayed");
+        }
+        return result;
+    }
+
+
+    public void clickDeleteIcon() {
+        waitForClickabilityOf(deleteIcon);
+        driver.findElement(deleteIcon).click();
+    }
+
+
+    public int getDeletePassReasonsCount() {
+        waitForClickabilityOf(selectDeleteReason);
+        int size = driver.findElements(selectDeleteReason).size();
+
+        for (int i = 0; i < size; i++) {
+
+            String reason = driver.findElements(selectDeleteReason).get(i).getText();
+            System.out.println("Reason for Discontinuing Pass = " + reason);
+        }
+        return size;
+    }
+
+
+    public void selectDeletePassReason(int reasonForPassDelete) {
+        waitForClickabilityOf(selectDeleteReason);
+        driver.findElements(selectDeleteReason).get(reasonForPassDelete).click();
+
+    }
+
+    public String getCancelSubscriptionPopupHeading() {
+        waitForVisibilityOf(cancelPopupTitle);
+        String titleCancelPopup = driver.findElement(cancelPopupTitle).getText();
+        return titleCancelPopup;
+    }
+
+
+    public String getCancelSubscriptionPopupContent() {
+        waitForVisibilityOf(cancelPopupText);
+        String textCancelPopup = driver.findElement(cancelPopupText).getText();
+        return textCancelPopup;
+    }
+
+    public void clickConfirmButtonOnCancelSubsPopup() {
+        waitForVisibilityOf(cancelPopupConfirm);
+        driver.findElement(cancelPopupConfirm).click();
+    }
+
+
+    public String getPassPrice(){
+        waitForVisibilityOf(passPrice);
+        return driver.findElement(passPrice).getText();
     }
 
 
