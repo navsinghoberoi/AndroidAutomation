@@ -172,7 +172,7 @@ public class BookingPostpayRideTest extends Setup {
 
 
     @Test(priority = 11)
-    public void cancelPostPayRide() {
+    public void verifyCancelPostPayRide() {
         commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
         cancelOrRescheduleRidePage.selectCancelRescheduleCategory(1);

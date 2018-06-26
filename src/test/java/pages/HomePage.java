@@ -80,8 +80,8 @@ public class HomePage extends BasePage {
     public void clickMenu() {
         if (checkIfElementClickable(menuButton, 20) == true) {
             System.out.println("Menu button is displayed, need to open menu");
-            waitForClickabilityOf(menuButton);
             driver.findElement(menuButton).click();
+            System.out.println("Menu button has been clicked");
         } else {
             System.out.println("Menu button is not displayed");
         }
