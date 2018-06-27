@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -267,6 +268,35 @@ public class Commons extends BasePage {
         return dateFormat.format(date);
     }
 
+
+    // Method to connect with SQL and get String value from db
+    public String connectSQLDbAndFetchValue(String ip, String username, String password, String dbName, String query, String columnName) throws Exception {
+        String value = "";
+        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("Driver is loaded");
+        Connection con = DriverManager.getConnection("jdbc:mysql://" + ip + "/" + dbName + "", username, password);
+        System.out.println("Connected to mysql database");
+        Statement smt = con.createStatement();
+        ResultSet res = smt.executeQuery(query);
+        while (res.next()) {
+            value = res.getString(columnName);  // specify column name
+        }
+
+        closeSQLDBConnection(con);
+        return value;
+    }
+
+
+    public void closeSQLDBConnection(Connection con) {
+        try {
+            con.close();
+            System.out.println("SQL Database connection closed");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Exception appeared while closing connection");
+        }
+
+    }
 }
 
 
