@@ -271,20 +271,28 @@ public class Commons extends BasePage {
 
     // Method to connect with SQL and get String value from db
     public String connectSQLDbAndFetchValue(String ip, String username, String password, String dbName, String query, String columnName) throws Exception {
-        String value = "";
-        Class.forName("com.mysql.jdbc.Driver");
-        System.out.println("Driver is loaded");
-        Connection con = DriverManager.getConnection("jdbc:mysql://" + ip + "/" + dbName + "", username, password);
-        System.out.println("Connected to mysql database");
-        Statement smt = con.createStatement();
-        ResultSet res = smt.executeQuery(query);
-        while (res.next()) {
-            value = res.getString(columnName);  // specify column name
-        }
+                String value = "";
+        try {
+                Class.forName("com.mysql.jdbc.Driver");
+                System.out.println("Driver is loaded");
+                System.out.println("jdbc:mysql://" + ip + "/" + dbName + "");
+                Connection con = DriverManager.getConnection("jdbc:mysql://" + ip + "/" + dbName + "", username, password);
+                System.out.println("Connected to mysql database");
+                Statement smt = con.createStatement();
+                ResultSet res = smt.executeQuery(query);
+                while (res.next()) {
 
-        closeSQLDBConnection(con);
+                    value = res.getString(columnName); // specify column name
+                    System.out.println("Value : " + value);
+                }
+                closeSQLDBConnection(con);
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
         return value;
-    }
+        }
 
 
     public void closeSQLDBConnection(Connection con) {

@@ -57,12 +57,25 @@ public class SlotsPage extends BasePage {
     }
 
     public String clickCtaOnSlotsPage() throws InterruptedException {
-        waitForVisibilityOf(clickCTA_button);
-        String ctaName = driver.findElement(clickCTA_button).getText();
-        System.out.println("Name of the CTA on slots page = " + ctaName);
-        driver.findElement(clickCTA_button).click();
-        Thread.sleep(3000);
-        return ctaName;
+            waitForVisibilityOf(clickCTA_button);
+            String ctaName = driver.findElement(clickCTA_button).getText();
+            System.out.println("Name of the CTA on slots page = " + ctaName);
+            driver.findElement(clickCTA_button).click();
+            Thread.sleep(3000);
+            return ctaName;
+    }
+
+    public String getCtaOnSlotsPage() throws InterruptedException {
+        try {
+            waitForVisibilityOf(clickCTA_button);
+            String ctaName = driver.findElement(clickCTA_button).getText();
+            System.out.println("Name of the CTA on slots page = " + ctaName);
+            Thread.sleep(3000);
+            return ctaName;
+        }
+        catch (Exception e){
+            return "CTA Button Not Found";
+        }
     }
 
     public String confirmBookingPopup() {
@@ -120,6 +133,16 @@ public class SlotsPage extends BasePage {
         Thread.sleep(2000);
         return text;
     }
+    public String getPPRSubText() {
+        waitForClickabilityOf(takePPROptionSubtext);
+        // extract fair from "Proceed to pay ₹100.0 for this ride"
+        List<WebElement> payPerRideOption = driver.findElements(takePPROptionSubtext);
+        String pprTextOption = payPerRideOption.get(1).getText();
+        System.out.println(pprTextOption);
+        pprTextOption = pprTextOption.substring(pprTextOption.indexOf("pay") + 4, pprTextOption.lastIndexOf("for") - 3);
+        // Convert String fair into Int fair
+        return pprTextOption;
+    }
 
     public void clickBackButton() {
         waitForVisibilityOf(backButton);
@@ -137,10 +160,9 @@ public class SlotsPage extends BasePage {
 
     }
     public void selctOptionFromContinuePPRO(int slotIndex, int optionIndex) throws Exception{
-        clickSlot(slotIndex);
-        clickCtaOnSlotsPage();
         getSelectOptionText();
-        String pPROption = clickPPROption(optionIndex);
+        String pPROption = clickBuyPassOption(optionIndex);
+        System.out.println(pPROption);
         System.out.printf("Subtext of the selected option = " + pPROption);
     }
 

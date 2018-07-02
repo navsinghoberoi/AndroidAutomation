@@ -46,6 +46,7 @@ public class HomePage extends BasePage {
 
 
 
+
     public String getHeaderText() {
         waitForVisibilityOf(searchBar);
         String HeaderText = driver.findElement(searchBar).getText();
@@ -352,13 +353,11 @@ public class HomePage extends BasePage {
         String RideST = driver.findElement(rideStatus).getText();
         return RideST;
         }
-
     public String getCurrentRideTitle() {
         waitForVisibilityOf(currentRideStatus);
         String currentRideTitleSt = driver.findElement(currentRideStatus).getText();
         return currentRideTitleSt;
     }
-
     public boolean getCurrentLocationIcon(){
         waitForVisibilityOf(currentLocationButton);
         return driver.findElement(currentLocationButton).isDisplayed();
