@@ -55,12 +55,12 @@ public class PayPerRideTest extends Setup {
         }
     }
 
-    @Test(priority = 1,enabled = false)
+    @Test(priority = 1)
     public void verifyNonPayPerRideRoute() throws Exception {
         commons.openSearchBarAndFindRoute("officeAddress", "homeAddress");
         slotsPage.clickSlot(0);
         String continueButtonText = slotsPage.getCtaOnSlotsPage();
-        Assert.assertEquals(continueButtonText, "BUY PASS","CTA Button Not Found");
+        Assert.assertEquals(continueButtonText, "BUY PASS", "CTA Button Not Found");
         driver.navigate().back();
         homePage.closeSearchPopup();
 
@@ -81,27 +81,30 @@ public class PayPerRideTest extends Setup {
 
         pprSubText = slotsPage.getPPRSubText();
         System.out.println(pprSubText);
-        slotsPage.selctOptionFromContinuePPRO(0, 1);
+        slotsPage.selectOptionFromContinuePPRO(0, 1);
         payPerRideCompletePaymentPage.clickShuttlCreditRButton();
         String finalRidePrice = payPerRideCompletePaymentPage.getFinalRidePrice();
-        Assert.assertEquals(finalRidePrice , pprSubText);
+        Assert.assertEquals(finalRidePrice, pprSubText);
 
     }
+
     @Test(priority = 4)
     public void verifyPaymentTitleText() {
 
         String pprTitleText = payPerRideCompletePaymentPage.paymentTitleText();
         Assert.assertEquals(pprTitleText, "Complete Payment");
     }
+
     @Test(priority = 5)
-    public void verifyPayNowButtonVisibiltyBeforePaymentModeSelection() throws Exception{
+    public void verifyPayNowButtonVisibiltyBeforePaymentModeSelection() throws Exception {
         driver.navigate().back();
         slotsPage.clickCtaOnSlotsPage();
-        slotsPage.selctOptionFromContinuePPRO(0, 1);
+        slotsPage.selectOptionFromContinuePPRO(0, 1);
         boolean getPNBButtonVisibiltyBeforeModeSelection = payPerRideCompletePaymentPage.noPayNowButtonDisplayed();
-        Assert.assertEquals(getPNBButtonVisibiltyBeforeModeSelection,false);
+        Assert.assertEquals(getPNBButtonVisibiltyBeforeModeSelection, false);
 
     }
+
     @Test(priority = 6)
     public void verifyPayNowButtonVisibilty() {
         payPerRideCompletePaymentPage.clickShuttlCreditRButton();
@@ -115,21 +118,18 @@ public class PayPerRideTest extends Setup {
         String rideConfirmed = bookingCompletePage.clickBookingConfirmPopupCTA();
         Assert.assertEquals(rideConfirmed, "GOT IT!");
     }
+
     @Test(priority = 8)
-    public void verifyHomepageCard(){
+    public void verifyHomepageCard() {
         homePage.clickMenu();
         driver.navigate().back();
         boolean homeCardDisplay = homePage.isTrackShuttlDisplayed();
-        Assert.assertEquals(homeCardDisplay,true);
+        Assert.assertEquals(homeCardDisplay, true);
     }
+
     @Test(priority = 9)
     public void verifyShuttlCreditBalanceAfterBooking() throws Exception {
         String creditsAfterBooking = commons.connectSQLDbAndFetchValue(getValueFromPPFile("umsQaDbIP"), getValueFromPPFile("umsQaDbUserName"), getValueFromPPFile("umsQaDbPassword"), getValueFromPPFile("umsQaDbName"), getValueFromPPFile("umsQaDbSqlQueryFetchUSerWalletDetails"), getValueFromPPFile("umsQaDbFetchBalanceColumnName"));
-        System.out.println(creditsBeforeBooking);
-        System.out.println(pprSubText);
-        System.out.println(creditsAfterBooking);
-        Assert.assertEquals(Integer.parseInt(creditsBeforeBooking) - Integer.parseInt(pprSubText.substring(1,pprSubText.length())), Integer.parseInt(creditsAfterBooking));
-        System.out.println(creditsBeforeBooking);
-        System.out.println(pprSubText);
+        Assert.assertEquals((Double.parseDouble(creditsBeforeBooking) - Double.parseDouble(pprSubText.substring(1, pprSubText.length()))), Double.parseDouble(creditsAfterBooking));
     }
 }

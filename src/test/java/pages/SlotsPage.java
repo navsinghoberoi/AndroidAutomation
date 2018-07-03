@@ -159,7 +159,7 @@ public class SlotsPage extends BasePage {
         System.out.println("Subtext of the selected option = " + selectedOption);
 
     }
-    public void selctOptionFromContinuePPRO(int slotIndex, int optionIndex) throws Exception{
+    public void selectOptionFromContinuePPRO(int slotIndex, int optionIndex) throws Exception{
         getSelectOptionText();
         String pPROption = clickBuyPassOption(optionIndex);
         System.out.println(pPROption);
