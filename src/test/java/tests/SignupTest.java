@@ -48,6 +48,7 @@ public class SignupTest extends Setup {
             commons.captureScreenshot(driver,className);
             System.out.println("Screenshot taken for failed testcase");
         }
+        driver.quit();
     }
 
 

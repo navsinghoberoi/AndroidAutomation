@@ -64,6 +64,7 @@ public class BookingFromSubscriptionTest extends Setup {
             commons.captureScreenshot(driver,className);
             System.out.println("Screenshot taken for failed testcase");
         }
+        driver.quit();
     }
 
 
