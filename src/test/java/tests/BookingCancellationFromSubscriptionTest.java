@@ -27,7 +27,6 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
     private PassDetailsPage passDetailsPage;
     private RefundPassPage refundPassPage;
     private BookingCompletePage bookingCompletePage;
-    private SubscriptionBuyAndRefundTest subscriptionBuyAndRefundTest;
     private TrackShuttlPage trackShuttlPage;
     private CancelOrRescheduleRidePage cancelOrRescheduleRidePage;
     private String className;
@@ -52,7 +51,6 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
         passDetailsPage = new PassDetailsPage(driver);
         refundPassPage = new RefundPassPage(driver);
         bookingCompletePage = new BookingCompletePage(driver);
-        subscriptionBuyAndRefundTest = new SubscriptionBuyAndRefundTest();
         trackShuttlPage = new TrackShuttlPage(driver);
         cancelOrRescheduleRidePage = new CancelOrRescheduleRidePage(driver);
         commons.goToHomepage("oldUserPhoneNumber","oldUserOTP");

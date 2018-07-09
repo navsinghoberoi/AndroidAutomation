@@ -28,7 +28,6 @@ public class BookingFromSubscriptionTest extends Setup {
     private PassDetailsPage passDetailsPage;
     private RefundPassPage refundPassPage;
     private BookingCompletePage bookingCompletePage;
-    private SubscriptionBuyAndRefundTest subscriptionBuyAndRefundTest;
     private String ridesLeftCountBeforeBooking;
     private String ridesLeftCountAfterBooking;
     private String className;
@@ -53,7 +52,6 @@ public class BookingFromSubscriptionTest extends Setup {
         passDetailsPage = new PassDetailsPage(driver);
         refundPassPage = new RefundPassPage(driver);
         bookingCompletePage = new BookingCompletePage(driver);
-        subscriptionBuyAndRefundTest = new SubscriptionBuyAndRefundTest();
         commons.goToHomepage("oldUserPhoneNumber", "oldUserOTP");
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
