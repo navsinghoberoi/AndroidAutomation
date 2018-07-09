@@ -8,10 +8,6 @@ import java.util.List;
 
 public class SlotsPage extends BasePage {
 
-    public SlotsPage(WebDriver driver) {
-        super(driver);
-    }
-
     By selectSlot = By.id("parent_view");
     By selectSlotsBoardingTime = By.id(app_package_name + "time_tv");
     By selectRoute_button = By.id(app_package_name + "next_shuttl_container");
@@ -34,7 +30,24 @@ public class SlotsPage extends BasePage {
     By alertTitle = By.id("alertTitle");
     By couponText = By.id("booking_coupon_text");
     By bannerImage = By.id("banner_shutl_more_image");
+    By mapButton = By.id("map_button");
+    By crossButton = By.xpath("//android.widget.ImageButton[@index='0']");
+    By pickup_Title = By.xpath("//android.widget.TextView[@text='View Pickup Stop']");
+    By view_Route_Map = By.id("navigate_button");
+    By suggest_Different_Time = By.id("suggest_slot");
+    By okButton = By.id("button1");
+    By cancelButton = By.id("button2");
+    By timePopUp = By.id("time_header");
+    By hourSelection = By.xpath("//android.widget.RadialTimePickerView$RadialPickerTouchHelper[@index=7]");
+    By minuteSelection = By.xpath("//android.widget.RadialTimePickerView$RadialPickerTouchHelper[@index=6]");
+    By thankYouPage = By.xpath("//android.widget.TextView[@text='Thank You!']");
+    By thankYouPageOkButton = By.id("dsf.button");
 
+
+
+    public SlotsPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void clickSlot(int index) throws InterruptedException {
         waitForClickabilityOf(selectSlot);
@@ -43,9 +56,9 @@ public class SlotsPage extends BasePage {
         Thread.sleep(2000);
     }
 
-    public void clickRoute() throws InterruptedException {
+    public void clickRoute(int index) throws InterruptedException {
         waitForClickabilityOf(selectRoute_button);
-        driver.findElement(selectRoute_button).click();
+        driver.findElements(selectRoute_button).get(index).click();
         Thread.sleep(2000);
     }
 
@@ -57,12 +70,12 @@ public class SlotsPage extends BasePage {
     }
 
     public String clickCtaOnSlotsPage() throws InterruptedException {
-            waitForVisibilityOf(clickCTA_button);
-            String ctaName = driver.findElement(clickCTA_button).getText();
-            System.out.println("Name of the CTA on slots page = " + ctaName);
-            driver.findElement(clickCTA_button).click();
-            Thread.sleep(3000);
-            return ctaName;
+        waitForVisibilityOf(clickCTA_button);
+        String ctaName = driver.findElement(clickCTA_button).getText();
+        System.out.println("Name of the CTA on slots page = " + ctaName);
+        driver.findElement(clickCTA_button).click();
+        Thread.sleep(3000);
+        return ctaName;
     }
 
     public String getCtaOnSlotsPage() throws InterruptedException {
@@ -72,8 +85,7 @@ public class SlotsPage extends BasePage {
             System.out.println("Name of the CTA on slots page = " + ctaName);
             Thread.sleep(3000);
             return ctaName;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return "CTA Button Not Found";
         }
     }
@@ -133,6 +145,7 @@ public class SlotsPage extends BasePage {
         Thread.sleep(2000);
         return text;
     }
+
     public String getPPRSubText() {
         waitForClickabilityOf(takePPROptionSubtext);
         // extract fair from "Proceed to pay ₹100.0 for this ride"
@@ -159,37 +172,36 @@ public class SlotsPage extends BasePage {
         System.out.println("Subtext of the selected option = " + selectedOption);
 
     }
-    public void selectOptionFromContinuePPRO(int slotIndex, int optionIndex) throws Exception{
+
+    public void selectOptionFromContinuePPRO(int optionIndex) throws Exception {
         getSelectOptionText();
         String pPROption = clickBuyPassOption(optionIndex);
         System.out.println(pPROption);
         System.out.printf("Subtext of the selected option = " + pPROption);
     }
 
-    public boolean isLocatePickupStopDisplayed()
-    {
+    public boolean isLocatePickupStopDisplayed() {
         waitForClickabilityOf(locatePickupStop);
-        boolean result =  driver.findElement(locatePickupStop).isDisplayed();
+        boolean result = driver.findElement(locatePickupStop).isDisplayed();
         return result;
     }
 
 
-    public String getPPNameOnSlotsPage(){
+    public String getPPNameOnSlotsPage() {
         waitForVisibilityOf(ppName);
         String data = driver.findElement(ppName).getText();
         return data;
     }
 
 
-    public String getDPNameOnSlotsPage(){
+    public String getDPNameOnSlotsPage() {
         waitForVisibilityOf(dpName);
         String data = driver.findElement(dpName).getText();
         return data;
     }
 
 
-
-    public boolean isSelectTimeslotDisplayed(){
+    public boolean isSelectTimeslotDisplayed() {
 
         if (checkIfElementPresent(selectTimeSlotText, 10) == true) {
             System.out.println("Select timeslot is displayed, i.e. user is on slots page");
@@ -201,7 +213,7 @@ public class SlotsPage extends BasePage {
 
     }
 
-    public boolean isRidesRemainingDisplayedOnSlotsPage(){
+    public boolean isRidesRemainingDisplayedOnSlotsPage() {
 
         if (checkIfElementPresent(ridesRemainingOnSlotsPage, 10) == true) {
             System.out.println("Rides remaining count is displayed on slots page");
@@ -213,16 +225,16 @@ public class SlotsPage extends BasePage {
 
     }
 
-    public String getRidesRemainingCountOnSlotsPage(){
+    public String getRidesRemainingCountOnSlotsPage() {
 
         waitForVisibilityOf(ridesRemainingOnSlotsPage);
         String ridesCount = driver.findElement(ridesRemainingOnSlotsPage).getText();
-        System.out.println("Rides remaining count on slots page = "+ridesCount);
+        System.out.println("Rides remaining count on slots page = " + ridesCount);
         return ridesCount;
     }
 
 
-    public boolean isReserveSeatButtonEnabled(){
+    public boolean isReserveSeatButtonEnabled() {
         boolean result;
         if (checkIfElementPresent(clickCTA_button, 10) == true) {
             result = driver.findElement(clickCTA_button).isEnabled();
@@ -236,13 +248,13 @@ public class SlotsPage extends BasePage {
     }
 
 
-    public boolean isAlertDisplayedForBookingSameRoute(){
+    public boolean isAlertDisplayedForBookingSameRoute() {
         boolean result;
         if (checkIfElementPresent(alertTitle, 10) == true) {
             result = driver.findElement(alertTitle).isEnabled();
             System.out.println("Alert is displayed for trying to book on same route when already one booking is created");
             String alertText = driver.findElement(alertTitle).getText();
-            System.out.println("Heading of the alert = " +alertText);
+            System.out.println("Heading of the alert = " + alertText);
             return result;
         } else {
             System.out.println("Alert for booking on same route is not displayed");
@@ -250,6 +262,7 @@ public class SlotsPage extends BasePage {
         }
 
     }
+
     public String getCouponCodeTextOnSlotScreen() {
         waitForVisibilityOf(couponText);
         String getCouponText = driver.findElement(couponText).getText();
@@ -326,8 +339,8 @@ public class SlotsPage extends BasePage {
         boolean result = false;
         if (checkIfElementPresent(buyPassOption, 10) == true) {
             result = driver.findElements(buyPassOption).get(0).isDisplayed();
-            String optionName =  driver.findElements(buyPassOption).get(0).getText();
-            System.out.println("Buy Pass option is displayed = " +optionName);
+            String optionName = driver.findElements(buyPassOption).get(0).getText();
+            System.out.println("Buy Pass option is displayed = " + optionName);
         } else {
             System.out.println("Postpay option is not displayed");
         }
@@ -338,14 +351,13 @@ public class SlotsPage extends BasePage {
 
 
     // This methods checks Buy pass CTA OR Buy pass option from Continue
-    public boolean checkBuyPassDisplayed() throws Exception{
-        boolean result =false;
+    public boolean checkBuyPassDisplayed() throws Exception {
+        boolean result = false;
         String cta = getCTAOnSlotsPage();
-        if(cta.equalsIgnoreCase("BUY PASS"))
-        {
+        if (cta.equalsIgnoreCase("BUY PASS")) {
             System.out.println("Only Buy Pass option displayed on slots page, i.e. Non PPR route");
             result = true;
-        }else if(cta.equalsIgnoreCase("CONTINUE")){
+        } else if (cta.equalsIgnoreCase("CONTINUE")) {
             clickCtaOnSlotsPage();
             System.out.println("Multiple options are displayed on slots page, i.e.PPR route");
             result = isBuyPassOptionDisplayed();
@@ -354,14 +366,13 @@ public class SlotsPage extends BasePage {
         return result;
     }
 
-// This methods clicks on Buy pass CTA OR Buy pass option from Continue
-    public void clickBuyPass() throws Exception{
+    // This methods clicks on Buy pass CTA OR Buy pass option from Continue
+    public void clickBuyPass() throws Exception {
         String cta = getCTAOnSlotsPage();
-        if(cta.equalsIgnoreCase("BUY PASS"))
-        {
+        if (cta.equalsIgnoreCase("BUY PASS")) {
             System.out.println("Only Buy Pass option displayed on slots page, i.e. Non PPR route");
             clickCtaOnSlotsPage();
-        }else if(cta.equalsIgnoreCase("CONTINUE")){
+        } else if (cta.equalsIgnoreCase("CONTINUE")) {
             clickCtaOnSlotsPage();
             System.out.println("Multiple options are displayed on slots page, i.e.PPR route");
             clickBuyPassOption(0);
@@ -369,7 +380,159 @@ public class SlotsPage extends BasePage {
 
     }
 
+    public Boolean viewOnMap() {
+        waitForVisibilityOf(mapButton);
+        boolean getViewOnMapText = driver.findElement(mapButton).isDisplayed();
+        return getViewOnMapText;
+    }
 
+    public void clickViewOnMap() {
+        waitForClickabilityOf(mapButton);
+        driver.findElement(mapButton).click();
+    }
 
+    public void clickCrossButton() {
+        waitForVisibilityOf(crossButton);
+        driver.findElement(crossButton).click();
+    }
+
+    public boolean viewCrossButton() {
+        boolean result;
+        if (checkIfElementPresent(crossButton, 10) == true) {
+            System.out.println("Cross icon is Enabled");
+            result = driver.findElement(crossButton).isEnabled();
+        } else {
+            result = false;
+        }
+        return result;
+    }
+
+    public boolean viewPickupStop() {
+        waitForVisibilityOf(locatePickupStop);
+        boolean getViewPB = driver.findElement(locatePickupStop).isDisplayed();
+        return getViewPB;
+    }
+
+    public void clickPickupStop() {
+        waitForVisibilityOf(locatePickupStop);
+        driver.findElement(locatePickupStop).click();
+    }
+
+    public String pickupTitle() {
+        waitForVisibilityOf(pickup_Title);
+        String getpickUpTitle = driver.findElement(pickup_Title).getText();
+        return getpickUpTitle;
+    }
+
+    public boolean viewRouteMapVisible() {
+
+        boolean routeMapButton;
+        if (checkIfElementPresent(view_Route_Map, 10) == true) {
+            System.out.println("View Route Map is Enabled");
+            routeMapButton = driver.findElement(view_Route_Map).isEnabled();
+        } else {
+            return false;
+        }
+        return routeMapButton;
+    }
+    public void clickRouteMapButton(){
+        waitForClickabilityOf(view_Route_Map);
+        driver.findElement(view_Route_Map).click();
+
+    }
+
+    public boolean suggestDifferentTimeButtonVisible() {
+        boolean getSuggestDifferentTime;
+        scrollToText("SUGGEST A DIFFERENT TIME");
+        if (checkIfElementPresent(suggest_Different_Time, 10) == true) {
+            System.out.println("SDT Button is Enabled");
+            getSuggestDifferentTime = driver.findElement(suggest_Different_Time).isEnabled();
+        } else {
+            return false;
+        }
+        return getSuggestDifferentTime;
+    }
+    public void clickDifferentTimeButton(){
+        waitForVisibilityOf(suggest_Different_Time);
+        driver.findElement(suggest_Different_Time).click();
+    }
+    public void clickOkButtonOnPopup(){
+        waitForVisibilityOf(okButton);
+        driver.findElement(okButton).click();
+    }
+    public void clickCancelButtonOnPopup(){
+        waitForVisibilityOf(cancelButton);
+        driver.findElement(cancelButton).click();
+    }
+    public boolean timePopupVisible(){
+        boolean getTimePopupVisible;
+        if(checkIfElementPresent(timePopUp,10)==true){
+            System.out.println("Time popUp is visible "+ timePopUp);
+            getTimePopupVisible = driver.findElement(timePopUp).isEnabled();
+        }
+        else{
+            return false;
+        }
+        return getTimePopupVisible;
+    }
+    public void getHourSelection(){
+        System.out.println("I am here 1");
+        waitForVisibilityOf(hourSelection);
+        System.out.println("I am here 2");
+        driver.findElement(hourSelection).click();
+    }
+    public void getMinuteSelection(){
+        System.out.println("I am here 4");
+        waitForVisibilityOf(minuteSelection);
+        System.out.println("I am here 5");
+        driver.findElement(minuteSelection).click();
+    }
+    public boolean getThankyouPageVisible(){
+        boolean thank_you_Page;
+        if(checkIfElementPresent(thankYouPage)){
+            System.out.println("Thank You Page Visible "+ thankYouPage);
+            thank_you_Page = driver.findElement(thankYouPage).isEnabled();
+        }
+        else{
+            return false;
+        }
+        return thank_you_Page;
+    }
+    public boolean getThankyouPageOkButton(){
+        waitForVisibilityOf(okButton);
+        boolean thankyou_OkButton = driver.findElement(okButton).isEnabled();
+        return thankyou_OkButton;
+    }
+    public void clickOkButton(){
+        waitForClickabilityOf(okButton);
+        driver.findElement(okButton).click();
+    }
+    public boolean getRouteOption(){
+        boolean singleRouteAvailable;
+        if(checkIfElementPresent(selectRoute_button,10)==true){
+            System.out.println("Only One Route Available "+ selectRoute_button);
+            singleRouteAvailable = driver.findElement(selectRoute_button).isDisplayed();
+        }
+        else{
+            return false;
+        }
+        return singleRouteAvailable;
+    }
+    public boolean getSlotsVisibility(int index){
+
+        try{
+            waitForVisibilityOf(selectSlot);
+            boolean slotVisible = driver.findElements(selectSlot).get(0).isDisplayed();
+            return slotVisible;
+        }
+        catch (Exception e) {
+            return false;
+        }
+
+    }
+    public void clickThankYouPageOkButton(){
+        waitForClickabilityOf(thankYouPageOkButton);
+        driver.findElement(thankYouPageOkButton).click();
+    }
 
 }

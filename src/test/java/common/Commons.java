@@ -221,12 +221,12 @@ public class Commons extends BasePage {
 
     }
 
-    public void openSearchBarAndFindRoute(String homeAddress, String officeAddress) throws Exception {
+    public void openSearchBarAndFindRoute(String address1, String address2) throws Exception {
         clickSearchBar();
         homePage.clickFromLocation();
-        selectLocationPage.selectSearchLocation(getValueFromPPFile(homeAddress), 0);
+        selectLocationPage.selectSearchLocation(getValueFromPPFile(address1), 0);
         homePage.clickToLocation();
-        selectLocationPage.selectSearchLocation(getValueFromPPFile(officeAddress), 0);
+        selectLocationPage.selectSearchLocation(getValueFromPPFile(address2), 0);
         homePage.clickFindMyShuttl();
     }
 
