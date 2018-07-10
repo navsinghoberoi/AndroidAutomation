@@ -38,7 +38,7 @@ public class SlotsPage extends BasePage {
     By okButton = By.id("button1");
     By cancelButton = By.id("button2");
     By timePopUp = By.id("time_header");
-    By hourSelection = By.xpath("//android.widget.RadialTimePickerView$RadialPickerTouchHelper[@index=7]");
+    By hourSelection = By.className("android.widget.RadialTimePickerView$RadialPickerTouchHelper");
     By minuteSelection = By.xpath("//android.widget.RadialTimePickerView$RadialPickerTouchHelper[@index=6]");
     By thankYouPage = By.xpath("//android.widget.TextView[@text='Thank You!']");
     By thankYouPageOkButton = By.id("dsf.button");
@@ -476,16 +476,19 @@ public class SlotsPage extends BasePage {
         return getTimePopupVisible;
     }
     public void getHourSelection(){
-        System.out.println("I am here 1");
-        waitForVisibilityOf(hourSelection);
-        System.out.println("I am here 2");
-        driver.findElement(hourSelection).click();
+        if(checkIfElementClickable(hourSelection,10) == true){
+        driver.findElements(hourSelection).get(7).click();
+        }else {
+            System.out.println("The time din't get selected");
+        }
     }
     public void getMinuteSelection(){
-        System.out.println("I am here 4");
-        waitForVisibilityOf(minuteSelection);
-        System.out.println("I am here 5");
-        driver.findElement(minuteSelection).click();
+        if(checkIfElementClickable(minuteSelection,10) == true) {
+            driver.findElement(minuteSelection).click();
+        }
+        else{
+            System.out.println("The time din't get selected");
+        }
     }
     public boolean getThankyouPageVisible(){
         boolean thank_you_Page;
@@ -499,8 +502,8 @@ public class SlotsPage extends BasePage {
         return thank_you_Page;
     }
     public boolean getThankyouPageOkButton(){
-        waitForVisibilityOf(okButton);
-        boolean thankyou_OkButton = driver.findElement(okButton).isEnabled();
+        waitForVisibilityOf(thankYouPageOkButton);
+        boolean thankyou_OkButton = driver.findElement(thankYouPageOkButton).isEnabled();
         return thankyou_OkButton;
     }
     public void clickOkButton(){

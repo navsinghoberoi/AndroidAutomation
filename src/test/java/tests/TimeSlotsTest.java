@@ -45,7 +45,7 @@ public class TimeSlotsTest extends Setup {
         }
     }
 
-    @Test(priority = 1,enabled = false)
+    @Test(priority = 1)
     public void verifyPickupLocation() throws Exception {
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         String getPickUpLocation = slotsPage.getPPNameOnSlotsPage();
@@ -53,35 +53,35 @@ public class TimeSlotsTest extends Setup {
         Assert.assertEquals(result, true);
     }
 
-    @Test(priority = 2,enabled = false)
+    @Test(priority = 2)
     public void verifySingleRoute() {
         boolean getSingleRouteInfo = slotsPage.getRouteOption();
         Assert.assertEquals(getSingleRouteInfo, false);
     }
 
-    @Test(priority = 3,enabled = false)
+    @Test(priority = 3)
     public void verifyMultipleRoute() throws Exception {
         driver.navigate().back();
-        slotsPage.clickCrossButton();
+        driver.navigate().back();
         commons.openSearchBarAndFindRoute("multipleRoute", "officeAddress");
         boolean getmultipleRoute = slotsPage.getRouteOption();
         Assert.assertEquals(getmultipleRoute, true);
         slotsPage.clickRoute(0);
     }
 
-    @Test(priority = 4,enabled = false)
+    @Test(priority = 4)
     public void verifySlotsVisible() {
         boolean slots_Visibility = slotsPage.getSlotsVisibility(0);
         Assert.assertTrue(slots_Visibility);
     }
 
-    @Test(priority = 5,enabled = false)
+    @Test(priority = 5)
     public void verifyViewOnMapButtonVisible() throws Exception {
         boolean viewOnMapButtonVisible = slotsPage.viewOnMap();
         Assert.assertEquals(viewOnMapButtonVisible, true);
     }
 
-    @Test(priority = 6,enabled = false)
+    @Test(priority = 6)
     public void verifyViewOnMapCrossIconVisible() {
         slotsPage.clickViewOnMap();
         boolean crossButtonVisible = slotsPage.viewCrossButton();
@@ -92,6 +92,7 @@ public class TimeSlotsTest extends Setup {
 
     @Test(priority = 7)
     public void verifyViewPickupStopButtonVisible() throws Exception {
+        driver.navigate().back();
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         boolean viewPKButtonVisible = slotsPage.viewPickupStop();
         Assert.assertEquals(viewPKButtonVisible, true);
@@ -127,13 +128,9 @@ public class TimeSlotsTest extends Setup {
 
     @Test(priority = 12)
     public void verifyAddingATimeSuggestion() {
-        System.out.println("I am here");
         slotsPage.getHourSelection();
-        System.out.println("I am here 3");
         slotsPage.getMinuteSelection();
-        System.out.println("I am here 6");
         slotsPage.clickOkButtonOnPopup();
-        System.out.println("I am here 7");
         boolean getThankyouPopup = slotsPage.getThankyouPageVisible();
         Assert.assertEquals(getThankyouPopup, true);
     }
