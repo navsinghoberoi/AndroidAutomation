@@ -484,7 +484,7 @@ public class SlotsPage extends BasePage {
     }
     public void getMinuteSelection(){
         if(checkIfElementClickable(minuteSelection,10) == true) {
-            driver.findElement(minuteSelection).click();
+            driver.findElements(minuteSelection).get(5).click();
         }
         else{
             System.out.println("The time din't get selected");

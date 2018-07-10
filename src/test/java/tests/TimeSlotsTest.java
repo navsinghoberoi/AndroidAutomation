@@ -93,6 +93,7 @@ public class TimeSlotsTest extends Setup {
     @Test(priority = 7)
     public void verifyViewPickupStopButtonVisible() throws Exception {
         driver.navigate().back();
+        driver.navigate().back();
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         boolean viewPKButtonVisible = slotsPage.viewPickupStop();
         Assert.assertEquals(viewPKButtonVisible, true);
