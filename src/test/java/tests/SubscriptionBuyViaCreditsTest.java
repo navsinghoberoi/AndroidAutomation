@@ -58,6 +58,7 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
             commons.captureScreenshot(driver, className + " " + iTestResult.getMethod().getMethodName());
             System.out.println("Screenshot taken for failed testcase");
         }
+        driver.quit();
     }
 
 

@@ -48,7 +48,7 @@ public class BasePage extends Setup {
     }
 
 
-    protected void hideKeyboard()
+    public void hideKeyboard()
     {
         androidDriver = (AndroidDriver) driver;
         androidDriver.hideKeyboard();

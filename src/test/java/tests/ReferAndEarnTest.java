@@ -39,6 +39,7 @@ public class ReferAndEarnTest extends Setup {
             commons.captureScreenshot(driver,className);
             System.out.println("Screenshot taken for failed testcase");
         }
+        driver.quit();
     }
 
     @Test(priority = 1)
