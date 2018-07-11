@@ -42,6 +42,7 @@ public class TimeSlotsTest extends Setup {
         if (ITestResult.FAILURE == iTestResult.getStatus()) {
             commons.captureScreenshot(driver, className);
             System.out.println("Screenshot taken for failed testcase");
+            driver.quit();
         }
     }
 
