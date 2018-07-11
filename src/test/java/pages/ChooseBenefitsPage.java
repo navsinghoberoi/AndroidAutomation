@@ -7,6 +7,8 @@ public class ChooseBenefitsPage extends BasePage {
 
     By cta = By.id("pb.cta");
     By pageHeading = By.className("android.widget.TextView");
+    By addonName = By.id("aoi.title");
+    By addAddon = By.id("aoi.button");
 
     public ChooseBenefitsPage(WebDriver driver) {
         super(driver);
@@ -28,5 +30,14 @@ public class ChooseBenefitsPage extends BasePage {
         return driver.findElement(cta).getText();
     }
 
+    public String getAddonName(){
+        waitForVisibilityOf(addonName);
+        return driver.findElement(addonName).getText();
+    }
 
+    public String selectAddonForAdditionalBenefits(){
+        waitForVisibilityOf(addAddon);
+        driver.findElement(addAddon).click();
+        return driver.findElement(addAddon).getText(); // Addon price
+    }
 }
