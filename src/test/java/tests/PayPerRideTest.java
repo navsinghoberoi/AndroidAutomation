@@ -82,7 +82,7 @@ public class PayPerRideTest extends Setup {
 
         pprSubText = slotsPage.getPPRSubText();
         System.out.println(pprSubText);
-        slotsPage.selectOptionFromContinuePPRO(0, 1);
+        slotsPage.selectOptionFromContinuePPRO(1);
         payPerRideCompletePaymentPage.clickShuttlCreditRButton();
         String finalRidePrice = payPerRideCompletePaymentPage.getFinalRidePrice();
         Assert.assertEquals(finalRidePrice, pprSubText);
@@ -100,7 +100,7 @@ public class PayPerRideTest extends Setup {
     public void verifyPayNowButtonVisibiltyBeforePaymentModeSelection() throws Exception {
         driver.navigate().back();
         slotsPage.clickCtaOnSlotsPage();
-        slotsPage.selectOptionFromContinuePPRO(0, 1);
+        slotsPage.selectOptionFromContinuePPRO( 1);
         boolean getPNBButtonVisibiltyBeforeModeSelection = payPerRideCompletePaymentPage.noPayNowButtonDisplayed();
         Assert.assertEquals(getPNBButtonVisibiltyBeforeModeSelection, false);
 
