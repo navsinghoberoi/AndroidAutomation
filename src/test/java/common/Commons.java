@@ -305,6 +305,15 @@ public class Commons extends BasePage {
         }
 
     }
+
+    public void openRideOptionsFromBookingHomecardsForBoardedRide() {
+        homePage.openBoardedRideHomecard();
+        trackShuttlPage.dismissProtip();
+        trackShuttlPage.clickOptionsIcon();
+
+    }
+
+
 }
 
 

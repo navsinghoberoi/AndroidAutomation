@@ -27,7 +27,7 @@ public class MyRidesPage extends BasePage {
     By ridesList = By.id("mb_item_parent");
     By historyRideTitleText = By.xpath("//android.widget.TextView[@index=1]");
     By pickupPointText = By.id("pdwl.pick_up_name");
-    // By dropPointText = By.id("pdwl.drop_name");
+    By dropPointText = By.id("pdwl.drop_name");
     By pickupPointInMyRides = By.id("pdwl.pick_up_name");
     // By dropPointInMyRidesText = By.xpath("//android.widget.TextView[@text='CD Chowk (Spaze IT park) ']");
     By historyRideNowButton = By.xpath("//android.widget.TextView[@text='RIDE NOW']");
@@ -197,7 +197,8 @@ public class MyRidesPage extends BasePage {
     }
 
     public String getDropPointInMyRidesText() {
-        String findDropPointInMyRides = driver.findElement(pickupPointText).getText();
+        waitForVisibilityOf(dropPointText);
+        String findDropPointInMyRides = driver.findElement(dropPointText).getText();
         return findDropPointInMyRides;
     }
 
