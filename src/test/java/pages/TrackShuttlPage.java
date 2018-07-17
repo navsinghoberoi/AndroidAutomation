@@ -33,6 +33,10 @@ public class TrackShuttlPage extends BasePage {
     By registrationNumber = By.id("hab.vehicle_text");
     By homecardTrackShuttl =By.id("hab.action_container");
     By currentLocation = By.id("bc_refocus_map_btn");
+    By boardingSuccessfulPopupText = By.id("dsf.title");
+    By sosButton = By.id("pb_sos_btn");
+    By dropPointETA = By.id("pb.drop_time_info");
+    By dropPointName = By.id("pb.drop_location");
 
     public TrackShuttlPage(WebDriver driver) {
         super(driver);
@@ -290,6 +294,48 @@ public class TrackShuttlPage extends BasePage {
     public boolean currentLocationButton(){
         waitForClickabilityOf(currentLocation);
         return driver.findElement(currentLocation).isDisplayed();
+    }
+
+    public String getBoardingSuccessfulPopupTitle() {
+        waitForVisibilityOf(boardingSuccessfulPopupText);
+        return driver.findElement(boardingSuccessfulPopupText).getText();
+    }
+
+    public boolean checkPressToBoardCTADisplayed() {
+        if (checkIfElementPresent(pressToBoard, 10) == true) {
+            System.out.println("PRESS TO BOARD button is displayed");
+            return true;
+        } else {
+            System.out.println("PRESS TO BOARD button is not displayed");
+            return false;
+        }
+    }
+
+    public boolean isSOSbuttonDisplayed() {
+        if (checkIfElementPresent(sosButton, 10) == true) {
+            System.out.println("SOS button is displayed");
+            return true;
+        } else {
+            System.out.println("SOS button is not displayed");
+            return false;
+        }
+    }
+
+    public boolean isSOSButtonClickable() {
+        waitForVisibilityOf(sosButton);
+        return driver.findElement(sosButton).isEnabled();
+    }
+
+    public String getDropStopReachTimeText() {
+        waitForVisibilityOf(dropPointETA);
+        String etaText = driver.findElement(dropPointETA).getText();
+        System.out.println(etaText);
+        return etaText;
+    }
+
+    public String getDropPointName() {
+        waitForVisibilityOf(dropPointName);
+        return driver.findElement(dropPointName).getText();
     }
 
 }

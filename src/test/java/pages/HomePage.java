@@ -43,6 +43,7 @@ public class HomePage extends BasePage {
     By currentRideStatus = By.id("list_item_title");
     By rideInfo = By.id("hab.vehicle_text");
     By currentLocationButton = By.id("pb_refocus_map_btn");
+    By ongoingHomecard = By.id("hbpb.ride_day");
 
 
 
@@ -372,4 +373,15 @@ public class HomePage extends BasePage {
         waitForVisibilityOf(rideInfo);
         driver.findElement(rideInfo).getText();
     }
+
+    public String getOngoingBookingHomecardText() {
+        waitForVisibilityOf(ongoingHomecard);
+        return driver.findElement(ongoingHomecard).getText();
+    }
+
+    public void openBoardedRideHomecard() {
+        waitForVisibilityOf(ongoingHomecard);
+        driver.findElement(ongoingHomecard).click();
+    }
+
 }

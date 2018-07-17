@@ -17,6 +17,7 @@ public class PassDetailsPage extends BasePage {
     By cancelPopupConfirm = By.id("button1");
     By noPassCTA = By.id("empty_feed_retry");
     By passPrice = By.id("cpt.price");
+    By activeBenefits = By.id("acb.container");
 
     public PassDetailsPage(WebDriver driver) {
         super(driver);
@@ -162,5 +163,20 @@ public class PassDetailsPage extends BasePage {
         return driver.findElement(passPrice).getText();
     }
 
+    public boolean isActiveBenefitsDisplayed() {
+        try {
+            scrollToText("Active Benefits");
+        } catch (Exception e) {
+            System.out.println("Scroll is not done as the element is not visible");
+            e.printStackTrace();
+        }
+        if (checkIfElementPresent(activeBenefits, 10) == true) {
+            System.out.println("Active Benefits is displayed on pass details page");
+            return true;
+        } else {
+            System.out.println("Active Benefits is not displayed on pass details page");
+            return false;
+        }
+    }
 
 }

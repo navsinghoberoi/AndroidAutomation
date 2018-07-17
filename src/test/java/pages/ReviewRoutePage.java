@@ -8,6 +8,9 @@ public class ReviewRoutePage extends BasePage {
     By cta = By.id("pd.make_payment_button");
     By pageHeading = By.className("android.widget.TextView");
     By ridesDaysCount = By.className("android.widget.TextView");
+    By selectTimeRangeOption = By.id("sc.time_range_container");
+    By selectTimeRangeValues = By.id("container");
+    By selectTimeRangeDoneButton = By.id("cancel.cta");
 
     public ReviewRoutePage(WebDriver driver) {
         super(driver);
@@ -35,6 +38,38 @@ public class ReviewRoutePage extends BasePage {
     {
         waitForVisibilityOf(ridesDaysCount);
         return driver.findElements(ridesDaysCount).get(1).getText();
+    }
+
+
+    public boolean isCTAEnabled() {
+        boolean result;
+        if (checkIfElementPresent(cta, 10) == true) {
+            result = driver.findElement(cta).isEnabled();
+        } else {
+            result = false;
+        }
+        return result;
+    }
+
+
+    public void selectTimeRangeMorningSession(int timeRangeIndex) {
+
+        waitForVisibilityOf(selectTimeRangeOption);
+        driver.findElements(selectTimeRangeOption).get(0).click();
+        waitForVisibilityOf(selectTimeRangeValues);
+        driver.findElements(selectTimeRangeValues).get(timeRangeIndex).click();
+        waitForVisibilityOf(selectTimeRangeDoneButton);
+        driver.findElement(selectTimeRangeDoneButton).click();
+    }
+
+    public void selectTimeRangeEveningSession(int timeRangeIndex) {
+
+        waitForVisibilityOf(selectTimeRangeOption);
+        driver.findElements(selectTimeRangeOption).get(1).click();
+        waitForVisibilityOf(selectTimeRangeValues);
+        driver.findElements(selectTimeRangeValues).get(timeRangeIndex).click();
+        waitForVisibilityOf(selectTimeRangeDoneButton);
+        driver.findElement(selectTimeRangeDoneButton).click();
     }
 
 }

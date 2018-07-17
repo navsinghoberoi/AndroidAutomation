@@ -29,7 +29,6 @@ public class BookingPostpayRideTest extends Setup {
     private PassDetailsPage passDetailsPage;
     private RefundPassPage refundPassPage;
     private BookingCompletePage bookingCompletePage;
-    private SubscriptionBuyAndRefundTest subscriptionBuyAndRefundTest;
     private TrackShuttlPage trackShuttlPage;
     private CancelOrRescheduleRidePage cancelOrRescheduleRidePage;
     private String className;
@@ -55,7 +54,6 @@ public class BookingPostpayRideTest extends Setup {
         passDetailsPage = new PassDetailsPage(driver);
         refundPassPage = new RefundPassPage(driver);
         bookingCompletePage = new BookingCompletePage(driver);
-        subscriptionBuyAndRefundTest = new SubscriptionBuyAndRefundTest();
         commons.goToHomepage("postpayUserPhoneNumer", "postpayUserOTP");
         trackShuttlPage = new TrackShuttlPage(driver);
         cancelOrRescheduleRidePage = new CancelOrRescheduleRidePage(driver);

@@ -15,6 +15,7 @@ public class PassCompletePaymentPage extends BasePage {
     By successfullyPurchasePassText = By.id("dsf.message");
     By cta = By.id("dsf.button");
     By pageHeading = By.className("android.widget.TextView");
+    By addonName = By.id("itd.tax_label");
 
     public PassCompletePaymentPage(WebDriver driver) {
         super(driver);
@@ -100,4 +101,8 @@ public class PassCompletePaymentPage extends BasePage {
     }
 
 
+    public String getAddonNameUnderPriceSummary() {
+        waitForVisibilityOf(addonName);
+        return driver.findElement(addonName).getText();
+    }
 }

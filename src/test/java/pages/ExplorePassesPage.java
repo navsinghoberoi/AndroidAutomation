@@ -106,7 +106,7 @@ public class ExplorePassesPage extends BasePage {
             System.out.println("Pass Rules Popup is displayed");
             driver.findElement(passRulesPopup).click();
         } else {
-            System.out.println("Pass Rules Popup is displayed");
+            System.out.println("Pass Rules Popup is not displayed");
         }
 
     }
