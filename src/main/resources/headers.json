@@ -1,0 +1,656 @@
+{
+    "BOOKING_CANCEL_REASONS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_PENDING_ACTIONS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BOOKING_HISTORY": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "ACTIVE_BOOKING": {
+        "userId": null,
+        "appVersion": "36008",
+        "platform": "ANDROID"
+    },
+    "COMBINED_SLOTS": {
+        "userId": null,
+        "appVersion": "36008",
+        "platform": "ANDROID"
+    },
+    "CREATE_BOOKING": {
+        "userId": null,
+        "appVersion": "36008",
+        "platform": "ANDROID",
+        "deviceType": "ANDROID",
+        "deviceId": "866255035951741",
+        "sessionId": "",
+        "requestId": ""
+    },
+    "BOOKING_PAYMENT_OPTIONS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BOOKING_CANCEL_REASON_INFO": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "TRIP_BOOKING_CATEGORIES": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "TRIP_SUBMIT_RATING": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "CANCEL_BOOKING": {
+        "userId": null,
+        "appVersion": "36008",
+        "platform": "ANDROID",
+        "deviceType": "ANDROID",
+        "deviceId": "866255035951741",
+        "sessionId": "",
+        "requestId": ""
+    },
+    "TRIP_BOOKING_ISSUES": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_HOME_CARDS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BOOKING_METADATA": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_BOOKING": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_BUDDY_CONFIG": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "B2B_USER_PARTNERS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "USER_META_DATA": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "USER_DEVICE_INFO": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SOS_INFO": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "DEVICE_INFO": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "USER_SAFETY_CHECK": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "USER_REFER_TERMS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_ALL_FAQ": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SEARCH_USER_FTH": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "ROUTE_LOCATIONS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "TRENDING_LOCATIONS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SEARCH_ROUTES": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "VIEW_ALL_COUPON": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "COUPON_VIEW_RECHARGE": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "WALLET_BALANCE": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_WALLET": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_ADD_MONEY_CHECK_SUM": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_SHUTTL_WALLET_INFO": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_GUARANTEED_SEATS_DETAIL": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_SUBSCRIPTIONS_FOR_FARE": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "USER_SUB_PLANS": {
+        "userId": null,
+        "appVersion": "36008",
+        "platform": "ANDROID"
+    },
+    "SUB_PLAN_USER_DETAIL": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_PLAN_EXPLORE_PASSES": {
+        "userId": null,
+        "appVersion": "36008",
+        "platform": "ANDROID"
+    },
+    "SUB_PLAN_DETAIL": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_TERMS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_EXPLORE_FROM_ROUTE": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "RECOMMEND_SUB_PLAN": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BUY_SUB": {
+        "userId": null,
+        "appVersion": "36008",
+        "platform": "ANDROID"
+    },
+    "SUB_TC": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_PLAN_OPTIONS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BUY_SUBSCRIPTION_PAYMENT_METHODS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_REFUND_CATEGORIES": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "REFUND_SUBSCRIPTION": {
+        "userId": null,
+        "appVersion": "36008",
+        "platform": "ANDROID"
+    },
+    "TRACK_SHUTTL_ACTIONS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BOOKING_SHARE_OPTIONS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_DETAIL": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "TASK_EXECUTED": {
+        "driverId": "$driverId",
+        "appVersion": "$appVersion"
+    },
+    "VERIFY_BOOKING": {
+        "driverId": "$driverId",
+        "appVersion": "$appVersion"
+    },
+    "GET_ALL_INDIVIDUAL": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "SEARCH_VEHICLE": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_INDIVIDUAL": {
+    "X-USER-TOKEN": "$supplyAuthToken"
+},
+    "GET_DRIVER": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_OPERATOR": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_OWNER": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_VEHICLE": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_PARTNERS": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_HELPER": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_ESCORT": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_GPS_DEVICES": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_VEHICLE_MODEL_MANUFACTURER": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "UPDATE_INDIVIDUAL": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "ADD_INDIVIDUAL": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "ADD_UPDATE_VEHICLE": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_VEHICLE_INSPECTION": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_DOCUMENTS_FOR_PARTNER": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_ALL_CITY": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_ALL_REGION": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "ADD_CITY": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "UPDATE_CITY": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_VEHICLE_BY_IDENTIFIER_NAME": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "ADD_ESCORT": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "UPDATE_ESCORT": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_PARTNERS_DOCUMENTS": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_VEHICLE_DRIVERS_DOCUMENTS": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "ADD_REGION": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "UPDATE_REGION": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "ADD_DRIVER": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "UPDATE_DRIVER_SUPPLY": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_DOCUMENTS_FOR_ESCORTS": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "GET_VEHICLES_FOR_PARTNER_AND_TIMERANGE": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "ADD_OPERATOR": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "UPDATE_OPERATOR": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "ADD_OWNER": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "UPDATE_OWNER": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "ADD_HELPER": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "UPDATE_HELPER": {
+        "X-USER-TOKEN": "$supplyAuthToken"
+    },
+    "AUTH_USER": {
+        "appVersion": "$appVersion",
+        "platform": "ANDROID",
+        "deviceId": "$deviceId",
+        "deviceType": "ANDROID",
+        "distinctId": "a64bd450-1b1d-40b3-b168-977b51643981",
+        "requestId": "",
+        "sessionId": ""
+    },
+    "AUTH_USER_SESSION": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "TRACK_SHUTTL": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_ADD_ON_LIST": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUGGEST_BOOKING": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BOOKING_MISSED_REASON_INFO": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_DYN_PROP": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_USER_PROPERTY": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BOOKING_ACTIVE_ID": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BOOKING_USER_DETAILS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "DEFAULT_WALLET": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_USER": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_PASS_RULES": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "UPDATE_USER_EMAIL": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_SURVEY": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "UPDATE_USER_INFO": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "USER_SAFETY_FEATURE_DETAIL": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "IGNORE_TRIP_FEEDBACK": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "USER_REFERRAL_EARNING": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_POST_PAY_DATA": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "PAYMENT_RECHARGE_HISTORY": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "ALLOCATE_VEHICLE_FOR_SCHEDULED_BOOKING": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUBMIT_SURVEY_RESPONSE": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "PAYMENT_GATEWAYS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "UNLINK_WALLET": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_WALLET_PAYMENT_METHODS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUGGEST_REBOOK": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "MARK_FAVORITE": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "UN_MARK_FAVORITE": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_USER_DETAIL": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BOOKING_MISSED_REASONS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_RECOMMEND": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "RECENT_BOOKING": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUBMIT_MISSED_REASON": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "PAY_FOR_BOOKING": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "BOOKING_DROP_LOCATION": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "VEHICLE_BREAKDOWN": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SAVE_PREFERRED_ROUTE": {
+        "deviceId": "$deviceId"
+    },
+    "STORE_NFC_BOARDING": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_USER_EDIT": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_PLAN_USER": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "SUB_PLAN_EXPLORE_FROM_TO_ROUTE": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_SESSION_GUARANTEED_BOOKING": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "UPDATE_SAFETY_FEATURE_DETAIL": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "CREATE_SHARE_CONTACTS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "AUTH_USER_OTP": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_USER_BY_PHONE": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_BOOKING_CANCEL_ATTEMPTS": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "CREATE_BOOKING_VIA_BOARDING": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "GET_WALLET_LOGIN_OTP": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "VALIDATE_WALLET_LOGIN_OTP": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    },
+    "USER_LOCATION": {
+        "userId": "$encryptedId",
+        "appVersion": "$appVersion",
+        "platform": "ANDROID"
+    }
+
+
+}

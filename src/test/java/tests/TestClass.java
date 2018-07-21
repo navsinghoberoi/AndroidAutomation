@@ -1,15 +1,20 @@
 package tests;
 
 import common.Commons;
+import io.restassured.response.Response;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.*;
+import apiEngine.ApiHelper;
 
 /*
 Intent of this class is to check new implementations or amend existing implementation
 */
 
-public class TestClass extends Setup {
+public class TestClass extends BasePage {
+    public static WebDriver driver;
     private LandingPage landingPage;
     private LoginPage loginPage;
     private PersonalDetailsPage personalDetails;
@@ -50,6 +55,9 @@ public class TestClass extends Setup {
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
+    public TestClass(WebDriver driver) {
+        super(driver);
+    }
 
     @Test(priority = 1,enabled = true)
     public void testQAUMSDBConnection() throws Exception{
@@ -66,5 +74,64 @@ public class TestClass extends Setup {
         System.out.println("------------ End of test 2 ----------------");
     }
 
+
+    @Test(priority = 3)
+    public void subscriptionBuyViaApiEngine(String UserID) {
+        System.out.println("----------------Buy user subscription --------------");
+
+        Response response = ApiHelper.buySub(UserID);
+        boolean value1 = commons.getBooleanValueFromApiResponse(response, "success");
+        int value2 = commons.getIntegerValueFromApiResponse(response, "data.userSubscriptionId");
+        Assert.assertEquals(value1,true);
+    }
+
+    @Test(priority = 4)
+    public void getActiveUserSubscriptionViaApiEngine() {
+        System.out.println("----------------Get active user subscription --------------");
+        ApiHelper.getUserActiveSubs("652245");
+    }
+
+    @Test(priority = 5)
+    public void createBookingViaApiEngine() {
+        System.out.println("-------------- Create booking --------------");
+        Response response = ApiHelper.createBooking("652245");
+        boolean value1 = commons.getBooleanValueFromApiResponse(response, "success");
+        int value2 = commons.getIntegerValueFromApiResponse(response, "data.bookingId");
+        Assert.assertEquals(value1,true);
+
+    }
+
+    @Test(priority = 6)
+    public void cancelBookingViaApiEngine() {
+        System.out.println("-------------- Cancel booking --------------");
+        Response response = ApiHelper.cancelBooking("652245");
+        boolean value1 = commons.getBooleanValueFromApiResponse(response, "success");
+        String value2 = commons.getStringValueFromApiResponse(response, "data.bookingStatus");
+        Assert.assertEquals(value1,true);
+        Assert.assertEquals(value2,"CANCELLED");
+
+    }
+
+    @Test(priority = 7)
+    public void refundSubscriptionViaApiEngine(String UserID) {
+        System.out.println("-------------- Refund Subscription --------------");
+        Response response = ApiHelper.refundSubscription(UserID);
+        boolean value1 = commons.getBooleanValueFromApiResponse(response, "success");
+        String value2 = commons.getStringValueFromApiResponse(response,"data.title");
+        Assert.assertEquals(value1,true);
+        Assert.assertEquals(value2,"Refund Successful");
+
+    }
+
+
+    public static void main(String args[]) throws Exception
+    {
+        Commons commons = new Commons(driver);
+        commons.subscriptionBuyViaApiEngine("652245");
+        commons.getActiveUserSubscriptionViaApiEngine("652245");
+        commons.createBookingViaApiEngine("652245");
+        commons.cancelBookingViaApiEngine("652245");
+        commons.refundSubscriptionViaApiEngine("652245");
+    }
 
 }
