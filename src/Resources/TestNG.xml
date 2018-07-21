@@ -6,8 +6,26 @@
     </listeners>
     <test name="Test cases" preserve-order="true">
         <classes>
-            <class name="tests.SignupTest">
-            </class>
+            <class name="tests.SignupTest"/>
+            <class name="tests.HomepageTest"/>
+            <class name="tests.ProfileTestNewUser"/>
+            <class name="tests.SearchLocationsTest"/>
+            <class name="tests.MyRidesTest"/>
+            <class name="tests.BookingPostpayRideTest"/>
+            <class name="tests.CouponsPageTest"/>
+            <class name="tests.TimeSlotsTest"/>
+            <class name="tests.SubscriptionBuyViaCreditsTest"/>
+            <class name="tests.SubscriptionBuyWithPBAddon"/>
+            <class name="tests.BookingFromCouponTest"/>
+            <class name="tests.BookingFromSubscriptionTest"/>
+            <class name="tests.BookingRescheduleTest"/>
+            <class name="tests.BookingCancellationFromSubscriptionTest"/>
+            <class name="tests.PayPerRideTest"/>
+            <class name="tests.PostBookingTest"/>
+            <class name="tests.PostBoardingTest"/>
+            <class name="tests.SubscriptionRefundTest"/>
+            <class name="tests.ReferAndEarnTest"/>
+            <class name="tests.HelpTest"/>
         </classes>
     </test>
 </suite>

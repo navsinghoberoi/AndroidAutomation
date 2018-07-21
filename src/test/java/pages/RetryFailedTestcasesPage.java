@@ -7,7 +7,7 @@ import org.testng.ITestResult;
 public class RetryFailedTestcasesPage implements IRetryAnalyzer {
 
     private int count = 0;
-    private static int maxTry = 3;
+    private static int maxTry = 1;
 
     public boolean retry(ITestResult iTestResult) {
         if (!iTestResult.isSuccess()) {
