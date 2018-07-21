@@ -12,12 +12,9 @@ import pages.*;
 
 public class PayPerRideTest extends Setup {
     private HomePage homePage;
-    private MenuPage menuPage;
-    private WalletPage MyWalletsPage;
     private SlotsPage slotsPage;
     private Commons commons;
     private PayPerRideCompletePaymentPage payPerRideCompletePaymentPage;
-    private MyWalletsPage myWalletsPage;
     private BookingCompletePage bookingCompletePage;
     private String className;
     private String creditsBeforeBooking;
@@ -31,7 +28,6 @@ public class PayPerRideTest extends Setup {
         commons = new Commons(driver);
         homePage = new HomePage(driver);
         //homePage.clickMenu();
-        myWalletsPage = new MyWalletsPage(driver);
         slotsPage = new SlotsPage(driver);
         payPerRideCompletePaymentPage = new PayPerRideCompletePaymentPage(driver);
         bookingCompletePage = new BookingCompletePage(driver);

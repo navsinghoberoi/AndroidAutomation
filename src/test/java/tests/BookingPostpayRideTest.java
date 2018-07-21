@@ -12,22 +12,10 @@ Before running testcase -- Need to clear device details and booking metadata (fr
 
 public class BookingPostpayRideTest extends Setup {
 
-    private LandingPage landingPage;
-    private LoginPage loginPage;
-    private PersonalDetailsPage personalDetails;
-    private HomeAddressPage homeAddressPage;
-    private OfficeAddressPage officeAddressPage;
-    private OtpPage otpPage;
     private HomePage homepage;
     private Commons commons;
-    private SelectLocationPage selectLocationPage;
     private SlotsPage slotsPage;
-    private ExplorePassesPage explorePassesPage;
-    private ChooseBenefitsPage chooseBenefitsPage;
-    private ReviewRoutePage reviewRoutePage;
-    private PassCompletePaymentPage passCompletePaymentPage;
     private PassDetailsPage passDetailsPage;
-    private RefundPassPage refundPassPage;
     private BookingCompletePage bookingCompletePage;
     private TrackShuttlPage trackShuttlPage;
     private CancelOrRescheduleRidePage cancelOrRescheduleRidePage;
@@ -37,22 +25,10 @@ public class BookingPostpayRideTest extends Setup {
     @BeforeMethod
     public void setUp() throws Exception {
         createAndroidSession(true);
-        landingPage = new LandingPage(driver);
-        loginPage = new LoginPage(driver);
-        personalDetails = new PersonalDetailsPage(driver);
-        homeAddressPage = new HomeAddressPage(driver);
-        officeAddressPage = new OfficeAddressPage(driver);
-        otpPage = new OtpPage(driver);
         homepage = new HomePage(driver);
         commons = new Commons(driver);
-        selectLocationPage = new SelectLocationPage(driver);
         slotsPage = new SlotsPage(driver);
-        explorePassesPage = new ExplorePassesPage(driver);
-        chooseBenefitsPage = new ChooseBenefitsPage(driver);
-        reviewRoutePage = new ReviewRoutePage(driver);
-        passCompletePaymentPage = new PassCompletePaymentPage(driver);
         passDetailsPage = new PassDetailsPage(driver);
-        refundPassPage = new RefundPassPage(driver);
         bookingCompletePage = new BookingCompletePage(driver);
         commons.goToHomepage("postpayUserPhoneNumer", "postpayUserOTP");
         trackShuttlPage = new TrackShuttlPage(driver);
