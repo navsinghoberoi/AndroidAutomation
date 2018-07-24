@@ -44,6 +44,16 @@ public class MenuPage extends BasePage {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(4).click();
     }
+    public String referText() {
+        try {
+            waitForClickabilityOf(menu_tray);
+            String getReferText = driver.findElements(menu_tray).get(4).getText();
+            return getReferText;
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
     public void clickCoupon() {
         waitForClickabilityOf(menu_tray);
         driver.findElements(menu_tray).get(5).click();

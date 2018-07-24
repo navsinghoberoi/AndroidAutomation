@@ -18,7 +18,7 @@ public class MyRidesPage extends BasePage {
     By myRidesDisplayText = By.xpath(("//android.widget.CheckedTextView[@text='My Rides']"));
     By myRidesTitleText = By.xpath("//android.widget.TextView[@index=1]");
     By currentRidesCheckText = By.id("mb_current_no_data");
-    By CurrentActiveRideCheckScreen = By.xpath("//android.widget.TextView[@text='Today']");
+    By CurrentActiveRideCheckScreen = By.id("mb_item_parent");
     By currentRideBoardLocation = By.xpath("//android.widget.TextView[@index='CD Chowk ']");
     By historyRidesTab = By.xpath("//android.widget.TextView[@text='HISTORY']");
     By tripSelectionByDate = By.xpath("//android.widget.TextView[@index=1]");
@@ -55,9 +55,15 @@ public class MyRidesPage extends BasePage {
     }
 
     public String getMyRidesDisplayText() {
+        String findMyRidesDisplayText = null;
+        try {
+            waitForVisibilityOf(myRidesDisplayText);
+            findMyRidesDisplayText = driver.findElement(myRidesDisplayText).getText();
 
-        waitForVisibilityOf(myRidesDisplayText);
-        String findMyRidesDisplayText = driver.findElement(myRidesDisplayText).getText();
+        }
+        catch(Exception e){
+            System.out.println(e.getStackTrace());
+        }
         return findMyRidesDisplayText;
     }
 
@@ -78,6 +84,18 @@ public class MyRidesPage extends BasePage {
         waitForVisibilityOf(currentRidesCheckText);
         String findMyActiveRidesWindows = driver.findElement(currentRidesCheckText).getText();
         return findMyActiveRidesWindows;
+
+    }
+    public boolean getCurrentRide() {
+        boolean currentRide = false;
+        if(checkIfElementClickable(CurrentActiveRideCheckScreen,10)==true){
+            currentRide = driver.findElements(CurrentActiveRideCheckScreen).get(0).isDisplayed();
+            System.out.println("Current Ride is Displayed");
+            return currentRide;
+        }else{
+            System.out.println("There is no current Ride");
+            return false;
+        }
     }
 
     public String getCurrentRideHomePageText() {

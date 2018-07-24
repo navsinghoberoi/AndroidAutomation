@@ -19,9 +19,9 @@ public class MyRidesTest extends Setup {
 
     @BeforeClass
     public void setUp() throws Exception {
-        createAndroidSession(false);
+        createAndroidSession(true);
         commons = new Commons(driver);
-        commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
+        //commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
         Thread.sleep(10000L);
         homePage = new HomePage(driver);
         homePage.clickMenu();
@@ -35,7 +35,7 @@ public class MyRidesTest extends Setup {
             commons.captureScreenshot(driver,className);
             System.out.println("Screenshot taken for failed testcase");
         }
-        driver.quit();
+       //  driver.quit();
     }
 
 
@@ -44,9 +44,6 @@ public class MyRidesTest extends Setup {
         System.out.println("Test cases completed , now closing app");
         driver.quit();
     }
-
-
-
 
     @Test(priority = 1)
     public void verifyMyRidesDisplayText() throws Exception {
@@ -67,7 +64,15 @@ public class MyRidesTest extends Setup {
     public void verifyActiveRidesWindowsScreen() throws Exception {
         String activeRidesWindow = myRidesPage.getActiveRidesWindows();
         Assert.assertEquals(activeRidesWindow, "You don't have any active rides");
-
+    }
+    @Test(priority = 4,dependsOnMethods = "verifyMyRidesDisplayText")
+    public void verifyCurrentRide() throws Exception{
+        //Need to book a ride first through API
+        driver.navigate().back();
+        homePage.clickMenu();
+        myRidesPage.clickMyRidesDisplayText();
+        boolean currentRideDisplay = myRidesPage.getCurrentRide();
+        Assert.assertEquals(currentRideDisplay,true,"Current Ride is displayed");
     }
 
     @Test(priority = 4, dependsOnMethods = "verifyMyRidesDisplayText")
