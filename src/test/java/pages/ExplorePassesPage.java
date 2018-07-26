@@ -20,55 +20,43 @@ public class ExplorePassesPage extends BasePage {
     }
 
 
-    public String getOfferLabelText(int index) throws Exception {
+    public String getOfferLabelText(int index) {
         waitForClickabilityOf(offerLabel);
-        Thread.sleep(2000);
         String text = driver.findElements(offerLabel).get(index).getText();
-        Thread.sleep(2000);
         return text;
     }
 
 
-    public String getNumOfPassRides(int index) throws Exception {
+    public String getNumOfPassRides(int index) {
         waitForClickabilityOf(numOfPassRides);
-        Thread.sleep(2000);
         String text = driver.findElements(numOfPassRides).get(index).getText();
-        Thread.sleep(2000);
         return text;
     }
 
-    public String getPricePerRide(int index) throws Exception {
+    public String getPricePerRide(int index) {
         waitForClickabilityOf(pricePerPassRide);
-        Thread.sleep(2000);
         String text = driver.findElements(pricePerPassRide).get(index).getText();
-        Thread.sleep(2000);
         return text;
     }
 
-    public String getPassValidity(int index) throws Exception {
+    public String getPassValidity(int index) {
         waitForClickabilityOf(passValidity);
-        Thread.sleep(2000);
         String text = driver.findElements(passValidity).get(index).getText();
-        Thread.sleep(2000);
         return text;
     }
 
-    public int passesCount() throws Exception {
+    public int passesCount() {
         waitForClickabilityOf(passValidity);
-        Thread.sleep(2000);
         List<WebElement> passCount = driver.findElements(passValidity);
         int size = passCount.size();
         System.out.println("Total number of passes available on this route are = " + size);
-        Thread.sleep(2000);
         return size;
     }
 
 
-    public void openPass(int index) throws Exception {
-        waitForClickabilityOf(offerLabel);
-        Thread.sleep(2000);
+    public void openPass(int index) {
+        waitForVisibilityOf(offerLabel);
         driver.findElements(offerLabel).get(index).click();
-        Thread.sleep(2000);
     }
 
     public void getPassDetails(int index) throws Exception {
@@ -102,7 +90,7 @@ public class ExplorePassesPage extends BasePage {
 
 
     public void dismissPassRulesPopup() {
-        if (checkIfElementPresent(passRulesPopup, 10) == true) {
+        if (checkIfElementPresent(passRulesPopup, 4) == true) {
             System.out.println("Pass Rules Popup is displayed");
             driver.findElement(passRulesPopup).click();
         } else {
