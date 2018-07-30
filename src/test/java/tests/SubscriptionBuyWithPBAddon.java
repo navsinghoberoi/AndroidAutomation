@@ -216,9 +216,10 @@ public class SubscriptionBuyWithPBAddon extends Setup {
         chooseBenefitsPage.submitPassBenefitsDetails();
         reviewRoutePage.selectTimeRangeMorningSession(0);
         reviewRoutePage.selectTimeRangeEveningSession(0);
-        String fullCTAName = reviewRoutePage.getCTAName();
+        String ctaNameOnReviewRoute = reviewRoutePage.getCTAName();
+        String array[] = ctaNameOnReviewRoute.split(" ");
+        String expectedTotalPrice = array[3];
         reviewRoutePage.submitReviewRouteDetails();
-        String expectedTotalPrice = fullCTAName.substring(16, 22);     // fetching total (pass + addons) price
         String totalPriceOnCompletePaymentPage = passCompletePaymentPage.getTotalPrice();
         if (totalPriceOnCompletePaymentPage.equals(expectedTotalPrice)) {
             isTotalPassPriceCalculatedCorrectly = true;
