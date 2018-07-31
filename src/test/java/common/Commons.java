@@ -1,6 +1,9 @@
 package common;
 
 
+import apiEngine.ApiHelper;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
@@ -8,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.*;
 import java.io.BufferedReader;
 import java.io.File;
@@ -313,6 +317,74 @@ public class Commons extends BasePage {
 
     }
 
+
+    // Method to fetch boolean values corresponding to a key from api response
+    public boolean getBooleanValueFromApiResponse(Response response, String key) {
+        JsonPath jsonPath = response.jsonPath();
+        boolean keyValue = jsonPath.getBoolean(key);
+        System.out.println("Value fetched of " + key + " key from response is = " + keyValue);
+        return keyValue;
+    }
+
+    // Method to fetch integer values corresponding to a key from api response
+    public int getIntegerValueFromApiResponse(Response response, String key) {
+        JsonPath jsonPath = response.jsonPath();
+        int keyValue = jsonPath.getInt(key);
+        System.out.println("Value fetched of " + key + " key from response is = " + keyValue);
+        return keyValue;
+    }
+
+    // Method to fetch double values corresponding to a key from api response
+    public double getDoubleValueFromApiResponse(Response response, String key) {
+        JsonPath jsonPath = response.jsonPath();
+        double keyValue = jsonPath.getDouble(key);
+        System.out.println("Value fetched of " + key + " key from response is = " + keyValue);
+        return keyValue;
+    }
+
+    // Method to fetch String values corresponding to a key from api response
+    public String getStringValueFromApiResponse(Response response, String key) {
+        JsonPath jsonPath = response.jsonPath();
+        String keyValue = jsonPath.getString(key);
+        System.out.println("Value fetched of " + key + " key from response is = " + keyValue);
+        return keyValue;
+    }
+
+
+    public void subscriptionBuyViaApiEngine(String UserID) {
+        Response response = ApiHelper.buySub(UserID);
+        boolean value1 = getBooleanValueFromApiResponse(response, "success");
+        int value2 = getIntegerValueFromApiResponse(response, "data.userSubscriptionId");
+        Assert.assertEquals(value1, true);
+    }
+
+
+    public void getActiveUserSubscriptionViaApiEngine(String UserID) {
+        ApiHelper.getUserActiveSubs(UserID);
+    }
+
+    public void createBookingViaApiEngine(String UserID) {
+        Response response = ApiHelper.createBooking(UserID);
+        boolean value1 = getBooleanValueFromApiResponse(response, "success");
+        int value2 = getIntegerValueFromApiResponse(response, "data.bookingId");
+        Assert.assertEquals(value1, true);
+    }
+
+    public void cancelBookingViaApiEngine(String UserID) {
+        Response response = ApiHelper.cancelBooking(UserID);
+        boolean value1 = getBooleanValueFromApiResponse(response, "success");
+        String value2 = getStringValueFromApiResponse(response, "data.bookingStatus");
+        Assert.assertEquals(value1, true);
+        Assert.assertEquals(value2, "CANCELLED");
+    }
+
+    public void refundSubscriptionViaApiEngine(String UserID) {
+        Response response = ApiHelper.refundSubscription(UserID);
+        boolean value1 = getBooleanValueFromApiResponse(response, "success");
+        String value2 = getStringValueFromApiResponse(response, "data.title");
+        Assert.assertEquals(value1, true);
+        Assert.assertEquals(value2, "Refund Successful");
+    }
 
 }
 

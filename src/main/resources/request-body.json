@@ -1,0 +1,778 @@
+{
+    "GET_STOPS_BY_ROUTE": {
+        "routeId": "$routeId"
+    },
+    "LOCATION_DISTANCE_FROM_LAT_LNG": {
+        "routeId": "$routeId",
+        "locationId": "$fromLocationId",
+        "latLng": {
+            "latitude": "$fromLat",
+            "longitude": "$fromLng"
+        }
+    },
+    "GET_LOCATIONS_BY_IDS": {
+        "locationIds": [
+            "$fromLocationId",
+            "$toLocationId"
+        ]
+    },
+    "GET_STATIC_SLOTS": {
+        "fromToRouteStops": [
+            {
+                "routeId": "$routeId",
+                "fromStopId": "$fromLocationId",
+                "toStopId": "$toLocationId"
+            }
+        ]
+    },
+    "GET_JOURNEY_TIME_BETWEEN_STOPS": {
+        "fromToRouteStops": [
+            {
+                "routeId": "$routeId",
+                "fromStopId": "$fromLocationId",
+                "toStopId": "$toLocationId"
+            }
+        ]
+    },
+    "IS_ROUTE_MARKED_FOR_INACTIVE": {
+        "routeId": "$routeId"
+    },
+    "REVERSE_ROUTE_LOCATIONS": {
+        "routeId": "$routeId",
+        "fromStopId": "$fromLocationId",
+        "toStopId": "$toLocationId"
+    },
+    "GET_ROUTE_START_TIMES_BETWEEN_RANGE": {
+        "routeIds": [
+            "$routeId"
+        ],
+        "fromTime": 1524720496,
+        "toTime": 1524726496
+    },
+    "GET_ROUTE_POINTS_BY_ROUTE": {
+        "routeId": "$routeId"
+    },
+    "GET_SLOTS_BY_ROUTES": {
+        "routeIds": ["$routeId"]
+    },
+    "ROUTE_OFF_DAYS_TIME": {
+        "routeIds": ["$routeId"]
+    },
+    "GET_ROUTE_BY_IDS": {
+        "routeIds": ["$routeId"]
+    },
+    "GET_EXEMPTED_ROUTES_BY_PARTNER": {
+        "partnerId": 1
+    },
+    "SUGGEST_ROUTE": {
+        "fromName": "Rajouri metro",
+        "toName": "Temp Loc 2",
+        "fromLat": "$fromLat",
+        "fromLng": "$fromLng",
+        "toLat": "$toLat",
+        "toLng": "$toLng"
+
+    },
+    "GET_WAY_POINT_FOR_ROUTE_ID": {
+        "routeId": "$routeId"
+    },
+    "GET_REACHABLE_ROUTE_LIST_BY_STOPS": {
+        "fromStopIds": [
+            "$fromLocationId"
+        ]
+    },
+    "IS_ROUTE_ACTIVE": {
+        "routeId": "$routeId"
+    },
+    "GET_ALL_FIRST_STOPS": {
+
+    },
+    "GET_ALL_ACTIVE_ROUTES": {
+
+    },
+    "GET_ALL_LOCATIONS": {
+
+    },
+    "GET_ROUTE_POINTS_BY_ROUTE_POINT_ID": {
+        "routePointId": 9286368
+    },
+    "GET_ALL_ROUTE_STOPS": {
+
+    },
+    "GET_ROUTE_IDS_BY_STOPS": {
+        "fromLocId": "$fromLocationId",
+        "toLocId": "$toLocationId"
+    },
+    "GET_ROUTE_OPERATIONAL_STATUS_RMS": {
+        "routeIds": ["$routeId"]
+    },
+    "USER_DEVICE_INFO": {
+        "gcmId": "eOqAYaaDEL8:APA91bH6Zr_ir44HfWt8nZ0LBlmVsaX900_2T1Lcbjn-PX3bRdZSX6sgB_bDMYOfREgN2bIz-CDTSTC_etori_CtQSA42gSbqari0vNVE5Lbf3TdH5wv8MWgh-CHVpuxZzR_BgYRM2pT"
+    },
+    "DEVICE_INFO": {
+        "deviceId": "$deviceId",
+        "gcmId": "$gcmId"
+    },
+    "SEARCH_PICKUP_LANDMARK": {
+        "locIds": ["$fromLocationId"]
+    },
+    "ADD_COUPON":{
+        "couponCode": "$couponCode"
+    },
+    "SUB_PLAN_EXPLORE_PASSES": {
+        "pairs": [
+            {
+                "routeId": "242",
+                "fromLocId": "1276",
+                "toLocId": "3150",
+                "reverseRouteId": "243",
+                "reverseFromLocId": "3190",
+                "reverseToLocId": "5729"
+            }
+        ]
+    },
+    "SUB_PLAN_DETAIL": {
+        "subscriptionId": "",
+        "fromId": "$fromLocationId",
+        "toId": "$toLocationId",
+        "returnFromId": "$toLocationId",
+        "returnToId": "$fromLocationId",
+        "routeId": "$routeId",
+        "returnRouteId": "$routeId"
+    },
+    "SUB_EXPLORE_FROM_ROUTE": {
+        "pairs": [
+            {
+                "routeId": "$routeId",
+                "fromLocId": "$fromLocationId",
+                "toLocId": "$toLocationId",
+                "reverseRouteId": "$reverseRouteId",
+                "reverseFromLocId": "$reverseFromLocationId",
+                "reverseToLocId": "$reverseToLocationId"
+            }
+        ]
+    },
+    "BUY_SUB": {
+        "bookType": "SELF_BOOK",
+        "email": "naveen.kumar1@gmail.com",
+        "routeId": "242",
+        "returnRouteId": "243",
+        "deductShuttlCashback": true,
+        "fromId": "1276",
+        "toId": "3150",
+        "returnToId": "5729",
+        "returnFromId": "3190",
+        "onlyAddOn":false,
+        "selectTimeEnabled":false,
+        "subscriptionId": null,
+        "twoWay":true,
+        "userFromLat": 28.720815963739174,
+        "userFromLng": 77.10728043317795,
+        "userSubscriptionId":null,
+        "userToLat": 28.396661823849836,
+        "userToLng": 77.04614686965942,
+        "wallet": "SHUTTL_WALLET"
+    },
+    "SUB_PLAN_OPTIONS": {
+        "userSubId": 78797,
+        "pairs": [
+            {
+                "routeId": "$routeId",
+                "fromLocId": "$fromLocationId",
+                "toLocId": "$toLocationId",
+                "reverseRouteId": "$reverseRouteId",
+                "reverseFromLocId": "$reverseFromLocationId",
+                "reverseToLocId": "$reverseToLocationId"
+            }
+        ]
+    },
+    "BUY_SUBSCRIPTION_PAYMENT_METHODS": {
+        "fromId": "$fromLocationId",
+        "onlyAddOn":false,
+        "returnFromId": "$reverseFromLocationId",
+        "returnRouteId": "$reverseRouteId",
+        "returnToId": "$reverseToLocationId",
+        "routeId": "$routeId",
+        "selectTimeEnabled":false,
+        "subscriptionId": null,
+        "toId": "$toLocationId",
+        "twoWay":true,
+        "userFromLat": 28.720815963739174,
+        "userFromLng": 77.10728043317795,
+        "userFromName": "Rithala Metro Station",
+        "userToLat": 28.396661823849836,
+        "userToLng": 77.04614686965942,
+        "userToName": "Vatika Business Park"
+    },
+    "TRACK_SHUTTL_ACTIONS": {
+        "bookingId": null,
+        "isMissed": false
+    },
+    "CANCEL_BOOKING": {
+        "bookingId": null,
+        "reasonId": 12
+    },
+    "GET_ALL_INDIVIDUAL": {
+        "pageCount": 0
+    },
+    "SEARCH_VEHICLE": {
+        "pageCount": 0
+    },
+    "GET_VEHICLE_MODEL_MANUFACTURER": {
+        "pageCount": 0
+    },
+    "ADD_INDIVIDUAL": {
+        "currentAddress":"Test",
+        "deleteDriver":"true",
+        "deleteHelper":"true",
+        "deleteOperator":"true",
+        "email":"manish1@shuttl.com",
+        "fileDetailsJsonList":"",
+        "mobile":"1232123456",
+        "name":"Munish",
+        "permanentAddress":"TestAddress",
+        "primaryaccount":"on",
+        "bankDetailsJsonList":[{"isActive":true,"accountNumber":"1234567","branch":"test","ifscCode":"test1234","bank":"ANDHRA_BANK","accountType":"SAVING"}]
+    },
+    "GET_DOCUMENTS_FOR_PARTNER": {
+        "partnerId": "100",
+        "vehicleRegistrationNumberList" :[],
+        "driverMobileList": []
+    },
+    "GET_ALL_CITY": {
+        "pageCount": 0
+    },
+    "GET_ALL_REGION": {
+        "pageCount": 0
+    },
+    "GET_VEHICLE_BY_IDENTIFIER_NAME": {
+        "vehicleIdentifierNameList": ["SAVIOR7777"]
+    },
+    "ADD_ESCORT":{
+        "individualId": null,
+        "enabled": true,
+        "languages": "english",
+        "escortOperationalTimingDTOS": [],
+        "partnerIds": "12",
+        "operatorId": "532",
+        "status": "LEAD"
+    },
+    "UPDATE_ESCORT":{
+        "individualId": null,
+        "escortId":null,
+        "enabled": true,
+        "languages": "english,hindi",
+        "escortOperationalTimingDTOS": [],
+        "partnerIds": "12",
+        "operatorId": "532",
+        "status": "LEAD"
+    },
+    "GET_DOCUMENTS_FOR_ESCORTS": {
+        "partnerId": "12",
+        "phoneNumbers":["9089108765"]
+    },
+    "GET_PARTNERS_DOCUMENTS": {
+        "partnerId": "12"
+    },
+    "GET_VEHICLE_DRIVERS_DOCUMENTS": {
+        "partnerId": "119",
+        "vehicleRegistrationNumber" :["TSTEST1111"]
+    },
+    "GET_VEHICLE_BY_IDENTIFIER_NAME": {
+        "vehicleIdentifierNameList" :["ZOOM0751"]
+    },
+    "ADD_DRIVER":{
+        "individualId":null,
+        "files":"",
+        "fileDetailsJsonList":"fileDetailsJsonList",
+        "fileDetails":"fileDetails",
+        "status=":"LEAD",
+        "operatorId":532,
+        "enabled": false,
+        "bankDetailsJsonList":[{"isActive":true,"accountNumber":"1234567","branch":"test","ifscCode":"test1234","bank":"ANDHRA_BANK","accountType":"SAVING"}]
+    },
+    "UPDATE_DRIVER_SUPPLY":{
+        "individualId":null,
+        "driverId":null,
+        "files":"",
+        "fileDetailsJsonList":"fileDetailsJsonList",
+        "fileDetails":"fileDetails",
+        "status=":"LEAD",
+        "operatorId":532,
+        "enabled": false,
+        "bankDetailsJsonList":[{"isActive":true,"accountNumber":"1234567","branch":"test","ifscCode":"test1234","bank":"ANDHRA_BANK","accountType":"SAVING"}]
+    },
+    "GET_VEHICLES_FOR_PARTNER_AND_TIMERANGE":{
+        "fromTime": 1529994600,
+        "toTime":1530081000,
+        "partnerId": "12"
+    },
+    "ADD_OWNER":{
+        "individualId":null,
+        "enabled":true
+    },
+    "UPDATE_OWNER":{
+        "ownerId":null,
+        "individualId":null,
+        "enabled":false
+    },
+    "ADD_OPERATOR":{
+        "enabled":false,
+        "individualId":null,
+        "legalStructure":"INDIVIDUAL",
+        "representativeName":"MunishTest",
+        "serviceTaxApplicable":1,
+        "status":"LEAD"
+    },
+    "UPDATE_OPERATOR":{
+        "id":null,
+        "enabled":false,
+        "individualId":null,
+        "legalStructure":"INDIVIDUAL",
+        "representativeName":"MunishTestUpdate",
+        "serviceTaxApplicable":1,
+        "status":"LEAD"
+    },
+    "ADD_HELPER":{
+        "individualId":null,
+        "enabled":true
+    },
+    "UPDATE_HELPER":{
+        "ownerId":null,
+        "individualId":null,
+        "enabled":false
+    },
+    "GET_TIME_SLOTS": {
+        "userId": "$userId",
+        "locationPairList":[
+            {
+                "routeId": "$routeId",
+                "fromLocation": "$fromLocationId",
+                "toLocation": "$toLocationId"
+            }
+        ]
+
+    },
+    "IS_TRIP_EXIST_FOR_DRIVER": {
+        "driverId": "$driverId"
+    },
+    "START_TRIP": {
+        "tripId": null,
+        "time": null,
+        "tripActionInitiatorEnum": "DRIVER"
+    },
+    "END_TRIPS": {
+        "tripIds": [],
+        "reason": "auto",
+        "tripActionInitiatorEnum": "DRIVER"
+    },
+    "GET_TRIP_ETA": {
+        "tripId": null
+    },
+    "FIND_STOPS_BY_ROUTE": {
+        "routeId": "$routeId",
+        "slotIds": ["$slotId"]
+    },
+    "FIND_VEHICLES_BY_DRIVER": {
+        "driverIds": ["$driverId"]
+    },
+    "GET_DRIVER_LAST_LOGIN_TIME": {
+        "driverId": "$driverId"
+    },
+    "FIND_VEHICLE_BY_ID": {
+        "vehicleId": "$vehicleId"
+    },
+    "FIND_VEHICLES_BY_IDS": {
+        "ids": ["$vehicleId"]
+    },
+    "GET_TODAYS_NON_ENDED_FIRST_TRIP_OF_VEHICLE": {
+        "vehicleId": "$vehicleId"
+    },
+    "GET_DRIVER_ACTION": {
+        "driverId": "$driverId",
+        "vehicleId": "$vehicleId"
+    },
+    "FIND_VEHICLE_LOCATION_AND_DISTANCE": {
+        "driverId": "$driverId",
+        "vehicleId": "$vehicleId",
+        "locationId": "$fromLocationId"
+    },
+    "FIND_VEHICLE_BY_DEVICE": {
+        "imei": "$imei"
+    },
+    "GET_ALL_LOCATION_ON_ROUTE_BY_ID": {
+        "routeId": "$routeId"
+    },
+    "UPDATE_VEHICLE_DETAIL": {
+        "vehicleId": "$vehicleId"
+    },
+    "FIND_REPORTING_SESSIONS_BY_VEHICLE": {
+        "vehcileNumber": "$vehicleNumber"
+    },
+    "GET_DRIVER_HEALTH_CHECK": {
+        "driverId": "$driverId"
+    },
+    "IS_VEHICLE_IMPOUND": {
+        "vehicleId": "$vehicleId"
+    },
+    "FIND_NON_ENDED_TRIPS_BY_SLOT_ID": {
+        "slotId": "$slotId",
+        "time": 1526538405
+    },
+    "GET_VEHICLE_NON_OPERATIONAL_STATUS": {
+        "vehicleId": "$vehicleId"
+    },
+    "GET_LAST_TRIP_OF_SLOT": {
+        "slotId": "$slotId"
+    },
+    "GET_DRIVER_GPS": {
+        "driverId": "$driverId"
+    },
+    "GET_TRAFFIC_CONGESTION": {
+        "routeId": "$routeId",
+        "day": "MONDAY"
+    },
+    "GET_TRIP_CROSSED_LOCATION_TIME": {
+        "tripId": null,
+        "locationId": "$fromLocationId",
+        "crossedTime": null
+    },
+    "GET_LATEST_TRIP_DEVIATION": {
+        "tripId": null
+    },
+    "GET_VAL": {
+        "key": "$redisKey"
+    },
+    "GET_USER_GPS_REQUEST_TIME_FOR_TRIP": {
+        "tripId": null
+    },
+    "FIND_ROUTE_POINTS_BY_ROUTE": {
+        "routeId": "$routeId"
+    },
+    "FIND_ROUTE_POINTS_DETAIL_BY_ROUTE": {
+        "routeId": "$routeId"
+    },
+    "GET_TRIP_USED_IN_LAST_SCHEDULE_SENT_TO_VEHICLE": {
+        "vehicleId": "$vehicleId"
+    },
+    "IS_KEY_TO_GET_WEB_PAGE_URL_FOR_VEHICLE_AVAILABLE": {
+        "vehicleId": "$vehicleId"
+    },
+    "IS_KEY_TO_GET_MOBILE_DATA_OF_VEHICLE_AVAILABLE": {
+        "vehicleId": "$vehicleId"
+    },
+    "IS_KEY_TO_GET_AUDIO_URL_FOR_VEHICLE_AVAILABLE": {
+        "vehicleId": "$vehicleId"
+    },
+    "FIND_LOCATIONS_BY_IDS": {
+        "ids": ["$fromLocationId", "$toLocationId"]
+    },
+    "FIND_TODAYS_TRIP": {
+        "routeId": "$routeId",
+        "time": 1526538405
+    },
+    "FIND_TODAYS_TIME_SLOTS_BY_ROUTE_ID_MAP": {
+        "routeIds": ["$routeId"]
+    },
+    "FIND_DEVICE_BY_SIM": {
+        "simId": "$simId"
+    },
+    "FIND_DRIVER_BY_DEVICE_ID": {
+        "deviceId": "$driverDeviceId"
+    },
+    "GET_TODAYS_LAST_TRIP_OF_VEHICLE": {
+        "vehicleId": "$vehicleId"
+    },
+    "GET_ALL_TRIP_ETA": {},
+    "FIND_DRIVER_BY_NUMBER": {
+        "number": "$driverNumber"
+    },
+    "FIND_UN_MAPPED_SIMS": {},
+    "LAST_OPERATIONAL_DAY_TRIP_FOR_ROUTE": {
+        "routeId": "$routeId"
+    },
+    "TODAYS_TIME_SLOTS_BY_VEHICLE_ID": {
+        "vehicleId": "$vehicleId"
+    },
+    "FIND_UN_MAPPED_DEVICES": {},
+    "FIND_DEVICES_BY_IDS": {
+        "ids": ["$driverDeviceId"]
+    },
+    "GET_DRAFT_ITINERARY_BY_ROUTE": {
+        "routeId": "$routeId"
+    },
+    "AVAILABLE_BUFFER_VEHICLE_IN_PLACE_OF_GIVEN_VEHICLE": {
+        "vehicleId": "$vehicleId"
+    },
+    "FIND_DEVICES_BY_OPERATOR": {
+        "opeartorId": 1
+    },
+    "GET_ROUTE_OPERATIONAL_STATUS": {
+        "routeIds": ["$routeId"]
+    },
+    "FIND_REPORTING_SESSIONS": {},
+    "FIND_ALL_PROPERTY": {},
+    "OPERATIONAL_VEHICLES_FROM_ROUTE_IDS": {
+        "routeIds": ["$routeId"]
+    },
+    "GET_ALL_VEHICLE_DETAIL": {},
+    "FIND_SIMS_BY_IDS": {
+        "ids": ["$simId"]
+    },
+    "FIND_ALL_VEHICLES": {
+        "page": 1,
+        "count": 1
+    },
+    "UPDATE_VEHICLE_ENTITY": {
+        "supplyVehicleId": "$supplyVehicleId"
+    },
+    "GET_VEHICLE_BY_SUPPLY_VEHICLE_ID": {
+        "supplyVehicleId": "$supplyVehicleId"
+    },
+    "SET_LAST_FACE_AUTH_TASK_FOR_DRIVER": {
+        "driverId": "$driverId"
+    },
+    "FIND_ALL_DRIVERS": {
+        "page": 1,
+        "count": 1
+    },
+    "FIND_DRIVERS_BY_IDS": {
+        "ids": ["$driverId"]
+    },
+    "SAVE_DRIVER_HEALTH_CHECK": {
+        "driverId": "$driverId"
+    },
+    "FIND_TODAYS_TIME_SLOTS_BY_SLOT_ID": {
+        "slotId": "$slotId"
+    },
+    "GET_ITINERARY": {
+        "vehicleNumber": "$vehicleNumber",
+        "routeId": "$routeId"
+    },
+    "SAVE_OR_UPDATE_SIM": {
+        "simNumber": "$driverSimNumber"
+    },
+    "FIND_BY_SIM_NUMBER": {
+        "simNumber": "$driverSimNumber"
+    },
+    "FIND_TRIPS_BY_ROUTE_AND_TIME": {
+        "routes": ["$routeId"],
+        "startTime": 1526538405
+    },
+    "GET_TRIPS_OF_VEHICLE_IN_GIVEN_INTERVAL": {
+        "vehicleId": "$vehicleId",
+        "driverId": "$driverId",
+        "fromTime": 1526538405,
+        "toTime": 1526538405
+    },
+    "FIND_DEVICE_BY_IMEI": {
+        "imei": "$imei"
+    },
+    "SET_MESSAGE_ALERT_FOR_DRIVER_APP": {
+        "vehicleId": "$vehicleId"
+    },
+    "UPDATE_DEVICE": {
+        "id": "$driverDeviceId"
+    },
+    "GET_VEHICLE_DETAIL": {
+        "vehicleId": "$vehicleId"
+    },
+    "FIND_DRIVER_BY_ID": {
+        "id": "$driverId"
+    },
+    "SAVE_MOBILE_PING": {
+        "mobilePing": 1526538405,
+        "driverId": "$driverId"
+    },
+    "GET_MESSAGE_ALERT_FOR_DRIVER_APP": {
+        "vehicleId": "$vehicleId"
+    },
+    "GET_LAST_FACE_AUTH_TASK_FOR_DRIVER": {
+        "driverId": "$driverId"
+    },
+    "GET_TODAYS_LAST_NON_ENDED_TRIP_OF_VEHICLE": {
+        "vehicleId": "$vehicleId"
+    },
+    "GET_DISABLED_SLOTS": {
+        "routeId": "$routeId"
+    },
+    "FIND_LAST_STOP_BY_ROUTE": {
+        "routeId": "$routeId"
+    },
+    "TRIPS_FOR_ROUTES_IN_GIVEN_INTERVAL": {
+        "routeIds": ["$routeId"],
+        "fromTime": 1526538405,
+        "toTime": 1526538405
+    },
+    "VEHICLES_BY_NUMBER_LIST": {
+        "vehicleNumberList": ["$vehicleNumber"]
+    },
+    "TRIPS_BY_ROUTE_ID_AND_OVER_LAPPING_TIME": {
+        "routeIds": ["$routeId"],
+        "startTime": 1526538405,
+        "endTime": 1526538405
+    },
+    "SET_KEY_TO_GET_MOBILE_DATA_OF_VEHICLE": {
+        "vehicleId": "$vehicleId",
+        "time": 1526538405
+    },
+    "UPDATE_VEHICLE_ITINERARY": {
+        "id": 1,
+        "vehicleId": "$vehicleId"
+    },
+    "DRIVER_HEALTH_CHECK": {},
+    "GET_SERVER_TIME": {},
+    "GET_VEHICLE_LOCATION_AND_DISTANCE": {
+        "driverId": "$driverId",
+        "vehicleId": "$vehicleId",
+        "locationId": "$fromLocationId"
+    },
+    "TASK_EXECUTED": {
+        "taskCodes":["FACE_AUTH"]
+    },
+    "VERIFY_BOOKING": {},
+    "GET_TRIPS_BY_ROUTE_IDS": {
+        "routeIds" : ["$routeId"],
+        "fromTime" : 1481481000,
+        "toTime" : 1490000000
+    },
+    "UPDATE_VEHICLE": {
+        "supplyVehicleId": "$supplyVehicleId"
+    },
+    "GET_TRIP_DETAILS_BY_IDS": {
+        "tripIdList": []
+    },
+    "GET_DRIVERS_AND_VEHICLES_DETAILS": {
+        "driverIds": ["$driverId"]
+    },
+    "GET_ALL_TRIPS_ETA_WITHIN_RANGE": {
+        "routeIdList": ["$routeId"]
+    },
+    "SET_USER_GPS_PING": {
+        "tripId": null,
+        "userId": "$userId",
+        "lat": "$fromLat",
+        "lng": "$fromLng",
+        "gpsTime": null,
+        "callTime": null
+    },
+    "TRIGGER_GPS_FALL_BACK_SERVICE": {
+        "driverId": "$driverId",
+        "tripId": null
+    },
+    "AUTH_USER": {
+        "distinctId": "a64bd450-1b1d-40b3-b168-977b51643981",
+        "phoneNumber": "$UmsUserPhoneNumber",
+        "loginType": "SHUTTL",
+        "newDevice": "true",
+        "newUser": "true",
+        "otp": "8809",
+        "deviceId": "$deviceId"
+    },
+    "AUTH_USER_SESSION": {
+        "sessionId": null,
+        "deviceId": "$deviceId"
+    },
+    "ADD_HOME_CARDS": {
+        "userIds": [],
+        "cardIds": []
+    },
+    "GET_USER_PROPERTY": {
+        "properties": ["REFER_ID"]
+    },
+    "UPDATE_USER_EMAIL": {
+        "email": "naveen.kumar1@shuttl.com"
+    },
+    "UPDATE_USER_INFO": {
+        "gender": "MALE"
+    },
+    "IGNORE_TRIP_FEEDBACK": {
+        "bookingId": null
+    },
+    "SUBMIT_SURVEY_RESPONSE": {
+        "surveyId":"2",
+        "questionResponses":[
+            {
+                "questionId": "2",
+                "answerText": "Hola Automation"
+            }
+        ]
+    },
+    "TRIP_BOOKING_ISSUES": {
+        "bookingId": null,
+        "issueId": 100,
+        "feedback": "automation"
+    },
+    "SUBMIT_MISSED_REASON": {
+        "bookingId": null,
+        "reasonId": null
+    },
+    "PAY_FOR_BOOKING": {
+        "bookingId": null,
+        "userSubscriptionId": null,
+        "wallet": "SHUTTL_WALLET"
+    },
+    "VEHICLE_BREAKDOWN": {
+        "currentTripId": null,
+        "futureTripId":[],
+        "locationIdNotCovered": [],
+        "vehicleLastPickUpPoint":null
+    },
+    "SAVE_PREFERRED_ROUTE": {
+        "routeId": "$routeId",
+        "fromLocationId": "$fromLocationId",
+        "toLocationId": "$toLocationId"
+    },
+    "STORE_NFC_BOARDING": {},
+    "SUB_USER_EDIT": {
+        "userSubscriptionId": null,
+        "bookType": "AUTO_BOOK",
+        "slotId": "$slotId"
+    },
+    "SUB_PLAN_EXPLORE_FROM_TO_ROUTE": {
+        "userSubId": null,
+        "pairs": [
+            {
+                "routeId": "$routeId",
+                "fromLocId": "$fromLocationId",
+                "toLocId": "$toLocationId",
+                "reverseRouteId": "$reverseRouteId",
+                "reverseFromLocId": "$reverseFromLocationId",
+                "reverseToLocId": "$reverseToLocationId"
+            }
+        ]
+    },
+    "UPDATE_SAFETY_FEATURE_DETAIL": {
+        "safetyContact": {
+            "name":"Him",
+            "phone":"+91 9982945074"
+        },
+
+        "safetyFeatureType":"EMERGENCY_CONTACTS"
+    },
+    "AUTH_USER_OTP": {
+        "phoneNumber": 1282945074
+    },
+    "CREATE_BOOKING_VIA_BOARDING": {
+        "tripId": null,
+        "fromId": "$fromLocationId",
+        "toId": "$toLocationId",
+        "routeId": "$routeId",
+        "identifier": null,
+        "source": "driver_server",
+        "boardingType": "CHIRP"
+    },
+    "GET_WALLET_LOGIN_OTP": {
+        "phoneNumber": "$paytmUserMobile",
+        "walletProviderType": "PAY_TM",
+        "email": null
+    },
+    "VALIDATE_WALLET_LOGIN_OTP": {
+        "phoneNumber": "$paytmUserMobile",
+        "otp":"$paytmOtp",
+        "state": null,
+        "walletProviderType": "PAY_TM",
+        "email":null
+    }
+
+}
