@@ -31,7 +31,7 @@ public class SubscriptionBuyWithPBAddon extends Setup {
         reviewRoutePage = new ReviewRoutePage(driver);
         passCompletePaymentPage = new PassCompletePaymentPage(driver);
         passDetailsPage = new PassDetailsPage(driver);
-        //  commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
+        commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
@@ -277,6 +277,12 @@ public class SubscriptionBuyWithPBAddon extends Setup {
         homepage.openMyPass(0);
         boolean activeBenefitsDisplayed = passDetailsPage.isActiveBenefitsDisplayed();
         Assert.assertEquals(activeBenefitsDisplayed, true);
+    }
+
+    // This method is added to refund the subscription bought in above methods
+    @Test(priority = 18)
+    public void refundPassViaApi() throws Exception {
+        commons.refundSubscriptionViaApiEngine(getValueFromPPFile("RefundPassUserID"));
     }
 
 }

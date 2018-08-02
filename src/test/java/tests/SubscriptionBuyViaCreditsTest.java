@@ -244,5 +244,10 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         Assert.assertEquals(noPassCtaDisplayed, false);
     }
 
+    // This method is added to refund the subscription bought in above methods
+    @Test(priority = 15)
+    public void refundPassViaApi() throws Exception {
+        commons.refundSubscriptionViaApiEngine(getValueFromPPFile("RefundPassUserID"));
+    }
 }
 

@@ -26,7 +26,7 @@ public class SearchLocationsTest extends Setup {
         selectLocationPage = new SelectLocationPage(driver);
         commons = new Commons(driver);
         basePage = new BasePage(driver);
-        //   commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
+        commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 

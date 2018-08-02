@@ -48,8 +48,10 @@ public class BookingFromSubscriptionTest extends Setup {
         System.out.println("Test cases completed , now closing app");
         driver.quit();
     }
+
     @Test(priority = 1)
-    public void verifyIsSubscriptionDisplayed() {
+    public void verifyIsSubscriptionDisplayed() throws Exception {
+        commons.subscriptionBuyViaApiEngine(getValueFromPPFile("BuyPassUserID")); // buy sub via api
         homepage.clickMenu();
         homepage.openMyPass(0);
         boolean result = passDetailsPage.isNoPassCTADisplayed();
@@ -105,8 +107,6 @@ public class BookingFromSubscriptionTest extends Setup {
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         String count = slotsPage.getRidesRemainingCountOnSlotsPage();
-      /* String rides[] = count.split(" ");
-       String countOnSlotsPage = rides[0];*/
         String countOnSlotsPage = commons.splitAndTrimString(count,0," ");
         System.out.println(countOnSlotsPage);
         System.out.println(ridesLeftCountBeforeBooking);   // remove this line
@@ -162,8 +162,6 @@ public class BookingFromSubscriptionTest extends Setup {
         homepage.clickMenu();
         homepage.openMyPass(0);
         String ridesCountAfterBooking = passDetailsPage.getRidesRemaining(0);
-       /*String rides[] = ridesCountAfterBooking.split("/");
-       ridesLeftCountAfterBooking = rides[0].trim();*/
         ridesLeftCountAfterBooking = commons.splitAndTrimString(ridesCountAfterBooking,0,"/");
         System.out.println(ridesLeftCountAfterBooking);
     }
@@ -181,6 +179,12 @@ public class BookingFromSubscriptionTest extends Setup {
 
         Assert.assertEquals(result, true, "test case failed");
 
+    }
+
+    @Test(priority = 13)
+    public void refundPassAndCancelBookingViaApi() throws Exception {
+        commons.refundSubscriptionViaApiEngine(getValueFromPPFile("RefundPassUserID")); // refund sub via api
+        commons.cancelBookingViaApiEngine(getValueFromPPFile("CancelBookingUserId")); // cancel booking via api
     }
 
 }

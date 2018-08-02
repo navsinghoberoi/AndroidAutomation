@@ -25,7 +25,7 @@ public class BookingRescheduleTest extends Setup {
         bookingCompletePage = new BookingCompletePage(driver);
         trackShuttlPage = new TrackShuttlPage(driver);
         cancelOrRescheduleRidePage = new CancelOrRescheduleRidePage(driver);
-        commons.goToHomepage("oldUserPhoneNumber", "oldUserOTP");
+        commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
@@ -45,8 +45,18 @@ public class BookingRescheduleTest extends Setup {
         driver.quit();
     }
 
+
     @Test
-    public void verifyActiveRideHomecardDisplayed() {
+    public void passPurchaseAndCreateBookingViaApi() throws Exception
+    {
+        commons.subscriptionBuyViaApiEngine(getValueFromPPFile("BuyPassUserID")); // buy pass via api
+        commons.createBookingViaApiEngine(getValueFromPPFile("CreateBookingUserId")); // createBooking via api
+    }
+
+    @Test
+    public void verifyActiveRideHomecardDisplayed() throws Exception {
+        //adding this temporarily to login if user gets logged out due to bug in getSession api
+        commons.goToHomepage("oldUserPhoneNumber", "oldUserOTP");
         boolean result = homepage.isTrackShuttlDisplayed();
         Assert.assertEquals(result, true, "test case failed");
     }
@@ -265,5 +275,10 @@ public class BookingRescheduleTest extends Setup {
         Assert.assertEquals(result, true, "test case failed");
     }
 
+    @Test(priority = 19)
+    public void refundPassAndCancelBookingViaApi() throws Exception {
+        commons.refundSubscriptionViaApiEngine(getValueFromPPFile("RefundPassUserID")); // refund sub via api
+        commons.cancelBookingViaApiEngine(getValueFromPPFile("CancelBookingUserId")); // cancel booking via api
+    }
 
 }

@@ -48,7 +48,8 @@ public class Setup {
         capabilities.setCapability("platformName","Android");
         capabilities.setCapability("noReset", noreset );
         capabilities.setCapability("fullReset", false);
-    //    capabilities.setCapability("launchApp", getValueFromPPFile("androidAppActivity"));
+        capabilities.setCapability("launchApp", getValueFromPPFile("androidAppActivity"));
+        capabilities.setCapability("appWaitActivity","app.goplus.in.myapplication.*");  // to handle multiple appActivity names
         capabilities.setCapability("app", app.getAbsolutePath());
 
         //capabilities.setCapability("app", "sauce-storage:app-qa-3.6.0-qa.apk");
