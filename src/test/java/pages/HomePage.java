@@ -210,7 +210,7 @@ public class HomePage extends BasePage {
 
     public boolean reportIssueOptionClick() {
 
-        if (checkIfElementPresent(reportIssueOption, 15) == true) {
+        if (checkIfElementPresent(reportIssueOption, 5) == true) {
             System.out.println("Report issue option is displayed");
             driver.findElement(reportIssueOption).click();
             System.out.println("Report issue page is opened");
@@ -223,7 +223,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean checkReportIssuePage() {
-        if (checkIfElementPresent(reportIssueSubmitButton, 10) == true) {
+        if (checkIfElementPresent(reportIssueSubmitButton, 5) == true) {
             System.out.println("User is on report issue page , SUBMIT button is displayed");
             return true;
         } else {
@@ -239,7 +239,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean isReserveSeatButtonDisplayed() {
-        if (checkIfElementPresent(reserveSeat, 10) == true) {
+        if (checkIfElementPresent(reserveSeat, 5) == true) {
             System.out.println("RESERVE A SEAT button is displayed");
             return true;
         } else {
@@ -251,7 +251,7 @@ public class HomePage extends BasePage {
 
     public boolean isReserveSeatEnabled() {
         boolean result = false;
-        if (checkIfElementPresent(reserveSeat, 10) == true) {
+        if (checkIfElementPresent(reserveSeat, 5) == true) {
             System.out.println("RESERVE A SEAT button is displayed");
             result = driver.findElement(reserveSeat).isEnabled();
             System.out.println("RESERVE A SEAT button is enabled");
@@ -323,7 +323,7 @@ public class HomePage extends BasePage {
 
     public boolean isTrackShuttlDisplayed() {
             boolean isTrackShuttlVisible;
-        if (checkIfElementPresent(homecardTrackShuttl, 15) == true) {
+        if (checkIfElementPresent(homecardTrackShuttl, 10) == true) {
             System.out.println("TRACK SHUTTL is appearing on active ride");
             isTrackShuttlVisible = driver.findElement(homecardTrackShuttl).isDisplayed();
         } else {
@@ -335,7 +335,7 @@ public class HomePage extends BasePage {
     }
 
     public void openSubscriptionPass() {
-        if (checkIfElementPresent(subscriptionPasses, 15) == true) {
+        if (checkIfElementPresent(subscriptionPasses, 10) == true) {
             int size = driver.findElements(subscriptionPasses).size();
             if (size > 1) {
                 System.out.println("Multiple passes are available on My Pass page, opening first pass");

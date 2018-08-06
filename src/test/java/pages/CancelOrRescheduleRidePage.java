@@ -54,7 +54,7 @@ public class CancelOrRescheduleRidePage extends BasePage {
 
 
     public boolean isCancelRideButtonDisplayed() {
-        if (checkIfElementPresent(cancelButton, 10) == true) {
+        if (checkIfElementPresent(cancelButton, 5) == true) {
             System.out.println("Cancel Ride button is displayed");
             return true;
         } else {
@@ -65,7 +65,7 @@ public class CancelOrRescheduleRidePage extends BasePage {
 
 
     public boolean isRescheduleRideButtonDisplayed() {
-        if (checkIfElementPresent(rescheduleButton, 10) == true) {
+        if (checkIfElementPresent(rescheduleButton, 5) == true) {
             System.out.println("Reschedule Ride button is displayed");
             return true;
         } else {
@@ -126,7 +126,7 @@ public class CancelOrRescheduleRidePage extends BasePage {
 
 
     public void clickRescheduleSlot(int index) throws InterruptedException {
-        if (checkIfElementPresent(selectRescheduleSlot, 10) == true) {
+        if (checkIfElementPresent(selectRescheduleSlot, 5) == true) {
             System.out.println("Slot for rescheduling ride is displayed");
             driver.findElements(selectRescheduleSlot).get(index).click();
         } else {

@@ -78,7 +78,7 @@ public class ExplorePassesPage extends BasePage {
 
     public boolean isDismissPassRulesPopupDisplayed() {
         boolean result;
-        if (checkIfElementPresent(passRulesPopup, 10) == true) {
+        if (checkIfElementPresent(passRulesPopup, 5) == true) {
             System.out.println("Pass Rules Popup is displayed");
             result = driver.findElement(passRulesPopup).isDisplayed();
         } else {
@@ -90,7 +90,7 @@ public class ExplorePassesPage extends BasePage {
 
 
     public void dismissPassRulesPopup() {
-        if (checkIfElementPresent(passRulesPopup, 4) == true) {
+        if (checkIfElementPresent(passRulesPopup, 5) == true) {
             System.out.println("Pass Rules Popup is displayed");
             driver.findElement(passRulesPopup).click();
         } else {

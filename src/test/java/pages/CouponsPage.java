@@ -74,7 +74,7 @@ public class CouponsPage extends BasePage {
     }
     public void clickPopUp() {
 
-        if (checkIfElementPresent(popUp, 20) == true) {
+        if (checkIfElementPresent(popUp, 5) == true) {
         System.out.println("Coupon Added PopUp is displayed, need to click on screen");
         waitForClickabilityOf(popUp);
         driver.navigate().back();

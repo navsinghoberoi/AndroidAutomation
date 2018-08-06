@@ -51,7 +51,7 @@ public class RefundPassPage extends BasePage {
 
     public boolean isDiscontinuePassButtonEnabled() {
         boolean result = false;
-        if (checkIfElementPresent(discontinuePassButton, 10) == true) {
+        if (checkIfElementPresent(discontinuePassButton, 5) == true) {
             System.out.println("DISCONTINUE PASS button is displayed");
             result = driver.findElement(discontinuePassButton).isEnabled();
         } else {
