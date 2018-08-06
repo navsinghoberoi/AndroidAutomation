@@ -50,7 +50,8 @@ public class SubscriptionRefundTest extends Setup {
     }
 
     @Test(priority = 1)
-    public void verifyIsSubscriptionDisplayed() {
+    public void verifyIsSubscriptionDisplayed() throws Exception {
+        commons.subscriptionBuyViaApiEngine(getValueFromPPFile("BuyPassUserID")); // buy sub via api
         homepage.clickMenu();
         homepage.openMyPass(0);
         boolean noPassCtaDisplayed = passDetailsPage.isNoPassCTADisplayed();
@@ -186,7 +187,6 @@ public class SubscriptionRefundTest extends Setup {
         passDetailsPage.clickConfirmButtonOnCancelSubsPopup();
         refundPassPage.clickDiscontinuePassButton();
         String refundPassText = refundPassPage.clickPassRefundSuccessfulCTA();
-        Thread.sleep(5000);
         Assert.assertEquals(refundPassText, "Refund Successful");
     }
 

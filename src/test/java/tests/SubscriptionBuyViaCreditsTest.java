@@ -179,12 +179,9 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         explorePassesPage.dismissPassRulesPopup();
         explorePassesPage.openPass(0);
         chooseBenefitsPage.submitPassBenefitsDetails();
-        String data = reviewRoutePage.getRidesDaysData();
-        String array[] = data.split(" ");
-        int rides = Integer.parseInt(array[0]);
-        int days = Integer.parseInt(array[3]);
-        int price = rides * days;
-        String expectedTotalPrice = "₹" + String.valueOf(price);
+        String ctaNameOnReviewRoute = reviewRoutePage.getCTAName();
+        String array[] = ctaNameOnReviewRoute.split(" ");
+        String expectedTotalPrice = array[3];
         reviewRoutePage.submitReviewRouteDetails();
         String totalPriceOnCompletePaymentPage = passCompletePaymentPage.getTotalPrice();
         if (totalPriceOnCompletePaymentPage.equals(expectedTotalPrice)) {
@@ -247,6 +244,10 @@ public class SubscriptionBuyViaCreditsTest extends Setup {
         Assert.assertEquals(noPassCtaDisplayed, false);
     }
 
-
+    // This method is added to refund the subscription bought in above methods
+    @Test(priority = 15)
+    public void refundPassViaApi() throws Exception {
+        commons.refundSubscriptionViaApiEngine(getValueFromPPFile("RefundPassUserID"));
+    }
 }
 

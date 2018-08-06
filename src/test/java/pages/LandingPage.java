@@ -39,15 +39,22 @@ public class LandingPage extends BasePage {
 
 
 	public void clickSkipToLogin() {
-		waitForVisibilityOf(skip_to_login_button);
+		if (checkIfElementPresent(skip_to_login_button, 10) == true) {
 		driver.findElement(skip_to_login_button).click();
+		System.out.println("Skip button is displayed");}
+		else {
+			System.out.println("Skip button is not displayed");
+		}
 	}
 
 
-	public void registeredDeviceAlertAcceptAtSignup()
-	{
-		waitForClickabilityOf(continueButtonAtDeviceRegisterAlert);
-		driver.findElement(continueButtonAtDeviceRegisterAlert).click();
+	public void registeredDeviceAlertAcceptAtSignup() {
+		if (checkIfElementPresent(continueButtonAtDeviceRegisterAlert, 5) == true) {
+			driver.findElement(continueButtonAtDeviceRegisterAlert).click();
+			System.out.println("Registered device alert is displayed");
+		} else {
+			System.out.println("Registered device alert is not displayed");
+		}
 	}
 
 
