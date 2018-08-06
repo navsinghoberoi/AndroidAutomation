@@ -13,22 +13,18 @@ import pages.SlotsPage;
 
 public class TimeSlotsTest extends Setup {
 
-    private HomePage homePage;
     private SlotsPage slotsPage;
     private Commons commons;
     private String className;
-    private BasePage basePage;
 
     @BeforeClass
     public void Setup() throws Exception {
         createAndroidSession(true);
         commons = new Commons(driver);
         // commons.goToHomepage("newUserPhoneNumber","OTP");
-        homePage = new HomePage(driver);
         //homePage.clickMenu();
         slotsPage = new SlotsPage(driver);
         className = getClass().getSimpleName() + commons.getCurrentTime();
-        basePage = new BasePage(driver);
     }
 
     @AfterClass

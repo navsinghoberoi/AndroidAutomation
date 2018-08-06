@@ -10,23 +10,8 @@ import pages.*;
 // Precondition -- Active booking should be present
 
 public class BookingCancellationFromSubscriptionTest extends Setup {
-    private LandingPage landingPage;
-    private LoginPage loginPage;
-    private PersonalDetailsPage personalDetails;
-    private HomeAddressPage homeAddressPage;
-    private OfficeAddressPage officeAddressPage;
-    private OtpPage otpPage;
     private HomePage homepage;
     private Commons commons;
-    private SelectLocationPage selectLocationPage;
-    private SlotsPage slotsPage;
-    private ExplorePassesPage explorePassesPage;
-    private ChooseBenefitsPage chooseBenefitsPage;
-    private ReviewRoutePage reviewRoutePage;
-    private PassCompletePaymentPage passCompletePaymentPage;
-    private PassDetailsPage passDetailsPage;
-    private RefundPassPage refundPassPage;
-    private BookingCompletePage bookingCompletePage;
     private TrackShuttlPage trackShuttlPage;
     private CancelOrRescheduleRidePage cancelOrRescheduleRidePage;
     private String className;
@@ -34,26 +19,11 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
     @BeforeMethod
     public void setUp() throws Exception {
         createAndroidSession(true);
-        landingPage = new LandingPage(driver);
-        loginPage = new LoginPage(driver);
-        personalDetails = new PersonalDetailsPage(driver);
-        homeAddressPage = new HomeAddressPage(driver);
-        officeAddressPage = new OfficeAddressPage(driver);
-        otpPage = new OtpPage(driver);
         homepage = new HomePage(driver);
         commons = new Commons(driver);
-        selectLocationPage = new SelectLocationPage(driver);
-        slotsPage = new SlotsPage(driver);
-        explorePassesPage = new ExplorePassesPage(driver);
-        chooseBenefitsPage = new ChooseBenefitsPage(driver);
-        reviewRoutePage = new ReviewRoutePage(driver);
-        passCompletePaymentPage = new PassCompletePaymentPage(driver);
-        passDetailsPage = new PassDetailsPage(driver);
-        refundPassPage = new RefundPassPage(driver);
-        bookingCompletePage = new BookingCompletePage(driver);
         trackShuttlPage = new TrackShuttlPage(driver);
         cancelOrRescheduleRidePage = new CancelOrRescheduleRidePage(driver);
-        commons.goToHomepage("oldUserPhoneNumber","oldUserOTP");
+        commons.goToHomepage("userWithoutSubsPhoneNumber","userWithoutSubsOTP");
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
@@ -74,9 +44,17 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
         driver.quit();
     }
 
+    @Test
+    public void passPurchaseAndCreateBookingViaApi() throws Exception
+    {
+        commons.subscriptionBuyViaApiEngine(getValueFromPPFile("BuyPassUserID")); // buy pass via api
+        commons.createBookingViaApiEngine(getValueFromPPFile("CreateBookingUserId")); // createBooking via api
+    }
 
     @Test
-    public void verifyActiveRideHomecardDisplayed() {
+    public void verifyActiveRideHomecardDisplayed() throws Exception  {
+        //adding this temporarily to login if user gets logged out due to bug in getSession api
+        commons.goToHomepage("oldUserPhoneNumber", "oldUserOTP");
         boolean result = homepage.isTrackShuttlDisplayed();
         Assert.assertEquals(result, true, "test case failed");
     }
@@ -267,6 +245,10 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
 
     }
 
+    @Test(priority = 17)
+    public void refundPassViaApi() throws Exception {
+        commons.refundSubscriptionViaApiEngine(getValueFromPPFile("RefundPassUserID")); // refund sub via api
+    }
 
 }
 

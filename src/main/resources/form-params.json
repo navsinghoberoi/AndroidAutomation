@@ -1,0 +1,170 @@
+{
+    "ENCRYPTED_USER_ID": {
+        "userId": 653547
+    },
+    "GET_COUPONS": {
+        "userId": "$encryptedId"
+    },
+    "ALERT_SERVICE": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "PUBLISH_GPS": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion",
+        "lat": "$fromLat",
+        "lng": "$fromLng",
+        "accuracy": 56,
+        "provider": "gps"
+    },
+    "GET_APP_CONFIG": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "BOARDING_STATUS_BY_DRIVER": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion",
+        "tripId": null
+    },
+    "GET_SCHEDULE": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "GET_DRIVER_PERSONAL_DETAILS": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "VERIFY_DRIVER_DEVICE_SIM": {
+        "number": "$driverNumber",
+        "imei": "$imei",
+        "simNumber": "$driverSimNumber"
+    },
+    "DRIVER_CONFIRMATION_CALL": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion",
+        "vehicleId": "$vehicleId"
+    },
+    "DRIVER_VEHICLES_DETAILS": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "DRIVER_REPORT_DETAILS": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "REACH_BY_CALL_OF_DRIVER": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "GET_ROUTE_INFORMATION": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "DRIVER_LOGOUT": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion",
+        "imei": "$imei"
+    },
+    "ALL_PICKUP_POINTS_FOR_ROUTE": {
+        "routeId": "$routeId"
+    },
+    "BATCH_PUBLISH_GPS": {
+        "driver_id": "$driverId",
+        "json": {
+            "gpsLocations":[
+                {
+                    "driverId":"$driverId",
+                    "timestamp":1500551600,
+                    "lat": "$fromLat",
+                    "lng": "$fromLng",
+                    "accuracy": 56,
+                    "provider": "gps"
+                }
+            ]
+        }
+    },
+    "GET_BOOKINGS_FOR_TRIP": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion",
+        "imei": "$imei",
+        "tripId": null,
+        "routeId": "$routeId"
+    },
+    "GET_ROUTE_POINTS_FOR_ROUTE": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion",
+        "routeId": "$routeId"
+    },
+    "STORE_DRIVER_START_TRIP_TIME": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "STORE_DRIVER_END_TRIP_TIME": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "VERIFY_BOOKING": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "GET_VIDEO_LIST": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion"
+    },
+    "ADD_INDIVIDUAL": {
+        "currentAddress":"Test",
+        "deleteDriver":"true",
+        "deleteHelper":"true",
+        "deleteOperator":"true",
+        "email":"manish1@shuttl.com",
+        "fileDetailsJsonList":"",
+        "mobile":"2452123456",
+        "name":"Munish",
+        "permanentAddress":"TestAddress",
+        "primaryaccount":"on",
+        "bankDetailsJsonList": " [{\r\n                \"isActive\":true,\r\n                \"accountNumber\":\"1234567\",\r\n                \"branch\":\"test\",\r\n                \"ifscCode\":\"test1234\",\r\n                \"bank\":\"ANDHRA_BANK\",\r\n                \"accountType\":\"SAVING\"\r\n            }]"
+    },
+    "UPDATE_INDIVIDUAL": {
+        "id":null,
+        "currentAddress":"Test",
+        "deleteDriver":"true",
+        "deleteHelper":"true",
+        "deleteOperator":"true",
+        "email":"manish1@shuttl.com",
+        "fileDetailsJsonList":"",
+        "mobile":"2452123456",
+        "name":"Munish",
+        "permanentAddress":"TestAddress",
+        "primaryaccount":"on",
+        "bankDetailsJsonList": " [{\r\n                \"isActive\":true,\r\n                \"accountNumber\":\"1234567\",\r\n                \"branch\":\"test\",\r\n                \"ifscCode\":\"test1234\",\r\n                \"bank\":\"ANDHRA_BANK\",\r\n                \"accountType\":\"SAVING\"\r\n            }]"
+    },
+    "ADD_CITY": {
+        "regionId":1,
+        "name":"DELHI",
+        "description":"NCR",
+        "latitude":"0",
+        "longitude":"0"
+    },
+    "UPDATE_CITY": {
+        "cityId":1,
+        "regionId":1,
+        "name":"DELHI",
+        "description":"NCR",
+        "latitude":"0",
+        "longitude":"0"
+    },
+    "ADD_REGION":{
+        "name":"PUNE",
+        "description":"Added region via automation"
+    },
+    "UPDATE_REGION":{
+        "regionId":null,
+        "name":"NCR",
+        "description":"Added region via automation"
+    },
+    "BOOKINGS_FOR_TRIP": {
+        "driver_id": "$driverId",
+        "appVersion": "$driverAppVersion",
+        "tripId": null
+    }
+}

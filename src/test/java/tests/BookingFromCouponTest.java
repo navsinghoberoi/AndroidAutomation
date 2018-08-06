@@ -10,12 +10,10 @@ import pages.*;
 public class BookingFromCouponTest extends Setup {
 
 
-    private HomeAddressPage homeAddressPage;
     private HomePage homePage;
     private MenuPage menuPage;
     private Commons commons;
     private CouponsPage couponsPage;
-    private SelectLocationPage selectLocationPage;
     private SlotsPage slotsPage;
     private MyRidesPage myRidesPage;
     private BookingCompletePage bookingCompletePage;
@@ -31,7 +29,6 @@ public class BookingFromCouponTest extends Setup {
         homePage = new HomePage(driver);
         homePage.clickMenu();
         couponsPage = new CouponsPage(driver);
-        homeAddressPage = new HomeAddressPage(driver);
         slotsPage = new SlotsPage(driver);
         myRidesPage = new MyRidesPage(driver);
         bookingCompletePage = new BookingCompletePage(driver);

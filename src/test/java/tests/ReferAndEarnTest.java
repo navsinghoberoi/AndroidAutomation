@@ -13,8 +13,6 @@ import pages.*;
 
 public class ReferAndEarnTest extends Setup {
     private HomePage homePage;
-    private LoginPage loginPage;
-    private OtpPage otpPage;
     private Commons commons;
     private ReferAndEarnPage referAndEarnPage;
     private String className;

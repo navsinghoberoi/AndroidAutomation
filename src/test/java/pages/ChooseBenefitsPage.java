@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class ChooseBenefitsPage extends BasePage {
 
     By cta = By.id("pb.cta");
-    By pageHeading = By.className("android.widget.TextView");
+    By pageHeading = By.xpath("//android.widget.TextView[@text='Choose Benefits With']");
     By addonName = By.id("aoi.title");
     By addAddon = By.id("aoi.button");
 

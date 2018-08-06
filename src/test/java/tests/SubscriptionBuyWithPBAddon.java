@@ -31,7 +31,7 @@ public class SubscriptionBuyWithPBAddon extends Setup {
         reviewRoutePage = new ReviewRoutePage(driver);
         passCompletePaymentPage = new PassCompletePaymentPage(driver);
         passDetailsPage = new PassDetailsPage(driver);
-        //  commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
+        commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
@@ -216,9 +216,10 @@ public class SubscriptionBuyWithPBAddon extends Setup {
         chooseBenefitsPage.submitPassBenefitsDetails();
         reviewRoutePage.selectTimeRangeMorningSession(0);
         reviewRoutePage.selectTimeRangeEveningSession(0);
-        String fullCTAName = reviewRoutePage.getCTAName();
+        String ctaNameOnReviewRoute = reviewRoutePage.getCTAName();
+        String array[] = ctaNameOnReviewRoute.split(" ");
+        String expectedTotalPrice = array[3];
         reviewRoutePage.submitReviewRouteDetails();
-        String expectedTotalPrice = fullCTAName.substring(16, 22);     // fetching total (pass + addons) price
         String totalPriceOnCompletePaymentPage = passCompletePaymentPage.getTotalPrice();
         if (totalPriceOnCompletePaymentPage.equals(expectedTotalPrice)) {
             isTotalPassPriceCalculatedCorrectly = true;
@@ -276,6 +277,12 @@ public class SubscriptionBuyWithPBAddon extends Setup {
         homepage.openMyPass(0);
         boolean activeBenefitsDisplayed = passDetailsPage.isActiveBenefitsDisplayed();
         Assert.assertEquals(activeBenefitsDisplayed, true);
+    }
+
+    // This method is added to refund the subscription bought in above methods
+    @Test(priority = 18)
+    public void refundPassViaApi() throws Exception {
+        commons.refundSubscriptionViaApiEngine(getValueFromPPFile("RefundPassUserID"));
     }
 
 }

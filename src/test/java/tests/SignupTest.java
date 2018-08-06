@@ -18,12 +18,9 @@ import pages.PersonalDetailsPage;
 
 public class SignupTest extends Setup {
 
-    private LandingPage landingPage;
-    private LoginPage loginPage;
     private PersonalDetailsPage personalDetails;
     private HomeAddressPage homeAddressPage;
     private OfficeAddressPage officeAddressPage;
-    private OtpPage otpPage;
     private HomePage homepage;
     private Commons commons;
     private String className;
@@ -31,12 +28,9 @@ public class SignupTest extends Setup {
     @BeforeMethod
     public void setUp() throws Exception {
         createAndroidSession(true);
-        landingPage = new LandingPage(driver);
-        loginPage = new LoginPage(driver);
         personalDetails = new PersonalDetailsPage(driver);
         homeAddressPage = new HomeAddressPage(driver);
         officeAddressPage = new OfficeAddressPage(driver);
-        otpPage = new OtpPage(driver);
         homepage = new HomePage(driver);
         commons = new Commons(driver);
         className = getClass().getSimpleName() + commons.getCurrentTime();

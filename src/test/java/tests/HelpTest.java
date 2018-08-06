@@ -28,6 +28,7 @@ public class HelpTest extends Setup{
         commons = new Commons(driver);
         homePage.clickMenu();
         menuPage.clickHelp();
+        commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 

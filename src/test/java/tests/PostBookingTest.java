@@ -8,8 +8,6 @@ import pages.*;
 
 public class PostBookingTest extends Setup {
     private HomePage homePage;
-    private MenuPage menuPage;
-    private SlotsPage slotsPage;
     private MyRidesPage myRidesPage;
     private Commons commons;
     private BookingCompletePage bookingCompletePage;
@@ -25,7 +23,6 @@ public class PostBookingTest extends Setup {
         Thread.sleep(10000L);
         homePage = new HomePage(driver);
         homePage.clickMenu();
-        slotsPage = new SlotsPage(driver);
         myRidesPage = new MyRidesPage(driver);
         bookingCompletePage = new BookingCompletePage(driver);
         trackShuttlPage = new TrackShuttlPage(driver);

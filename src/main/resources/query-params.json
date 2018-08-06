@@ -1,0 +1,304 @@
+{
+    "COMPUTE_FARE": {
+        "routeId": "$routeId",
+        "fromLocationId": "$fromLocationId",
+        "toLocationId": "$toLocationId"
+    },
+    "COMPUTE_FARE_WITH_TAX": {
+        "routeId": "$routeId",
+        "fromLocationId": "$fromLocationId",
+        "toLocationId": "$toLocationId"
+    },
+    "SUGGESTED_PAIRS_WITH_GEO_IDS": {
+        "fromLat": "$fromLat",
+        "fromLng": "$fromLng",
+        "toLat": "$toLat",
+        "toLng": "$toLng"
+    },
+    "GET_GEO_IDS": {
+        "fromLocationId": "$fromLocationId",
+        "toLocationId": "$toLocationId",
+        "fromToCheck": true
+    },
+    "GET_ROUTE_POINTS_FOR_ROUTE_RMS": {
+        "routeId": "$routeId"
+    },
+    "LOCATION_FOR_ROUTE": {
+        "routeId": "$routeId"
+    },
+    "ROUTE_POINTS_META_DATA": {
+        "routeId": "$routeId",
+        "fromLocId": "$fromLocationId",
+        "toLocId": "$toLocationId"
+    },
+    "GET_ROUTES_BY_PARTNER": {
+        "partnerId": 1
+    },
+    "SUGGESTED_PAIRS": {
+        "fromLat": "$fromLat",
+        "fromLng": "$fromLng",
+        "toLat": "$toLat",
+        "toLng": "$toLng"
+    },
+    "IS_CHIRP_ENABLED": {
+        "routeId": "$routeId"
+    },
+    "GET_SUBSCRIPTION_SLOT_DETAIL": {
+        "slotIds": "$slotId"
+    },
+    "GET_PENDING_ACTIONS": {
+        "source": "App_Open"
+    },
+    "REQUEST_ID_SESSION_ID": {
+        "userId": null,
+        "deviceId": "866255035951741",
+        "deviceType": "ANDROID"
+    },
+    "BOOKING_HISTORY": {
+        "limit": 30,
+        "page": 1
+    },
+    "COMBINED_SLOTS": {
+        "fromLat": "28.720815963739174",
+        "fromLng": "77.10728043317795",
+        "toLat": "28.396661823849836",
+        "toLng": "77.04614686965942",
+        "fromName": "Rithala Metro Station",
+        "toName": "Vatika Business Park",
+        "source": "Home"
+    },
+    "BOOKING_PAYMENT_OPTIONS": {
+        "bookingId": null
+    },
+    "BOOKING_CANCEL_REASON_INFO": {
+        "allowCancellation": true,
+        "allowReschedule": true
+    },
+    "GET_BOOKINGS_FOR_SLOT_ID": {
+        "slotId": "$slotId"
+    },
+    "BOOKING_METADATA": {
+        "bookingId": null
+    },
+    "GET_BOOKING": {
+        "bookingId": 753267
+    },
+    "GET_SHUTTL_CREDITS": {
+        "appVersion": "$appVersion",
+        "userId": "363533303336776879536f4861636b794d79467269656e64"
+    },
+    "GET_USER_FOR_CC": {
+        "mobile": "$mobile"
+    },
+    "INTERNAL_PROFILE": {
+        "userId": "$userId"
+    },
+    "GET_REFERRED_USERS_FOR_CC": {
+        "userId": "$encryptedId",
+        "listLimit": 500
+    },
+    "GET_BOOKINGS_HISTORY_FOR_CC": {
+        "userId": "$encryptedId",
+        "listLimit": 500
+    },
+    "GET_PARTNER_PROFILE": {
+        "userId": "$encryptedId"
+    },
+    "BH_USER_STATUS": {
+        "phoneNumber": "$bhMobile"
+    },
+    "FORMULA_ALL": {
+        "formulaType": "BOARDING_FORMULA"
+    },
+    "RMS_PANEL_PICK_UP_DATA": {
+        "routeId": "$routeId"
+    },
+    "SEARCH_LOCATIONS": {
+        "keyword": "Rajouri metro"
+    },
+    "SEARCH_USER_FTH": {
+        "sameSessionOnly": false
+    },
+    "ROUTE_LOCATIONS": {
+        "routeId": "$routeId"
+    },
+    "SEARCH_ROUTES": {
+        "keyword": "",
+        "type": "FROM",
+        "lat": "$fromLat",
+        "lng": "$fromLng"
+    },
+    "GET_USER_COUPON_FOR_CC": {
+        "userId": "$encryptedId",
+        "listLimit": 500
+    },
+    "COUPON_VIEW_RECHARGE": {
+        "amount": 10
+    },
+    "WALLET_BALANCE": {
+        "wallet": "PAY_TM"
+    },
+    "GET_WALLET": {
+        "showAppWallets": true
+    },
+    "GET_ADD_MONEY_CHECK_SUM": {
+        "amount": 1.0
+    },
+    "GET_SUBSCRIPTIONS_FOR_FARE": {
+        "userId": "$userId",
+        "routeId": "$routeId",
+        "fromLocId": "$fromLocationId",
+        "toLocId": "$toLocationId"
+    },
+    "SUB_PLAN_USER_DETAIL": {
+        "userSubscriptionId": null
+    },
+    "FILTERED_SUBSCRIPTION": {
+        "userId": "$userId"
+    },
+    "BOOKING_SHARE_OPTIONS": {
+        "bookingId": null
+    },
+    "SUB_DETAIL": {
+        "returnFromId": "$reverseFromLocationId",
+        "returnToId": "$reverseToLocationId",
+        "fromId": "$fromLocationId",
+        "toId": "$toLocationId",
+        "subscriptionId": null
+    },
+    "NOTIFY_PANIC_ALERT_MEMBERS": {
+        "imei": "$imei",
+        "time": 1526538405,
+        "lat": "$fromLat",
+        "long": "$fromLng"
+    },
+    "FIND_TRIPS_BY_ROUTE": {
+        "routeId": "$routeId",
+        "fromLocId": "$fromLocationId",
+        "toLocId": "$toLocationId"
+    },
+    "GET_ETA_BY_TRIP_ID_AND_STOP": {
+        "fromStopId": "$fromLocationId",
+        "tripId": null
+    },
+    "ALLOCATE_SEAT_ON_TRIP": {
+        "fromLocId": "$fromLocationId",
+        "toLocId": "$toLocationId",
+        "tripId": null,
+        "allocationValue": -1
+    },
+    "GET_VEHICLE_DETAIL_BY_SLOT": {
+        "slotId": "$slotId"
+    },
+    "DYNAMIC_TRIP_BY_STATIC_TRIP_ID_OR_SLOT_ID": {
+        "slotId": "$slotId"
+    },
+    "GET_DRIVER_DETAILS": {
+        "driverId": "$driverId"
+    },
+    "ROUTE_BY_ANY_TRIP": {
+        "tripId": null
+    },
+    "BOOKING_DETAILS_FOR_TRIP": {
+        "tripId": null,
+        "startTime": null,
+        "endTime": null
+    },
+    "SUB_PLAN_GET_INFO": {
+        "activeCouponId": null,
+        "userId": "$userId"
+    },
+    "TRACK_SHUTTL": {
+        "bookingId": null,
+        "lat": "$fromLat",
+        "lng": "$fromLng"
+    },
+    "GET_ADD_ON_LIST": {
+        "subscriptionId": null
+    },
+    "GET_DYN_PROP": {
+        "propName": "REFERRAL_LIMIT"
+    },
+    "BOOKING_USER_DETAILS": {
+        "bookingId": null
+    },
+    "GET_TRANSACTION_LIST_FOR_CC": {
+        "userId": "$encryptedId",
+        "listLimit": 500
+    },
+    "GET_TRANSACTION_AUDIT_FOR_CC": {
+        "userId": "$encryptedId",
+        "listLimit": 1
+    },
+    "GET_SUBSCRIPTION_FOR_USER_CC": {
+        "userId": "$encryptedId",
+        "listLimit": 1
+    },
+    "GET_SURVEY": {
+        "surveyType": "REPORT_ISSUE_HOME"
+    },
+    "USER_SAFETY_FEATURE_DETAIL": {
+        "safetyFeatureType": "EMERGENCY_CONTACTS"
+    },
+    "GET_POST_PAY_DATA": {
+        "bookingId": null
+    },
+    "UNLINK_WALLET": {
+        "wallet": "PAY_TM"
+    },
+    "MARK_FAVORITE": {
+        "routeId": "$routeId"
+    },
+    "UN_MARK_FAVORITE": {
+        "routeId": "$routeId"
+    },
+    "SUB_USER_DETAIL": {
+        "userSubscriptionId": null
+    },
+    "BOOKING_DROP_LOCATION": {
+        "type": "MORNING"
+    },
+    "GET_SESSION_GUARANTEED_BOOKING": {
+        "userSubscriptionId": null,
+        "SubscriptionId": null,
+        "addOnPackageIds": ""
+    },
+    "GET_ROUTE_AND_VEHICLE_LOCATION": {
+        "bookingId": null,
+        "authToken": "$ccAuthToken"
+    },
+    "GET_INFO_DATA": {
+        "userId": null,
+        "categoryId": null,
+        "entityInstanceId": null,
+        "authToken": "$ccAuthToken"
+    },
+    "GET_ENTITY_INSTANCES": {
+        "userId": "$encryptedId",
+        "categoryId": 100,
+        "authToken": "$ccAuthToken"
+    },
+    "GET_USER_BY_PHONE": {
+        "phoneNumber": "$UmsUserPhoneNumber",
+        "authToken": "$ccAuthToken"
+    },
+    "GET_CATEGORIES": {
+        "userId": "$encryptedId",
+        "authToken": "$ccAuthToken"
+    },
+    "SUBMIT_REQUEST": {
+        "userId": null,
+        "authToken": "$ccAuthToken"
+    },
+    "GET_PREVIOUS_INTERACTION": {
+        "userId": "$encryptedId",
+        "authToken": "$ccAuthToken"
+    },
+    "GET_USER_BY_EMAIL": {
+        "emailId": "$userEmail",
+        "authToken": "$ccAuthToken"
+    },
+    "GET_BOOKING_CANCEL_ATTEMPTS": {
+        "bookingId": null
+    }
+}
