@@ -380,8 +380,12 @@ public class HomePage extends BasePage {
     }
 
     public void openBoardedRideHomecard() {
-        waitForVisibilityOf(ongoingHomecard);
-        driver.findElement(ongoingHomecard).click();
+        if (checkIfElementPresent(ongoingHomecard, 10) == true) {
+            System.out.println("Ongoing Ride Homecard is displayed");
+            driver.findElement(ongoingHomecard).click();
+        } else {
+            System.out.println("Ongoing Ride Homecard is not displayed");
+        }
     }
 
 }

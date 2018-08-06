@@ -4,6 +4,10 @@ package common;
 import apiEngine.ApiHelper;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
@@ -363,11 +367,12 @@ public class Commons extends BasePage {
         ApiHelper.getUserActiveSubs(UserID);
     }
 
-    public void createBookingViaApiEngine(String UserID) {
+    public int createBookingViaApiEngine(String UserID) {
         Response response = ApiHelper.createBooking(UserID);
         boolean value1 = getBooleanValueFromApiResponse(response, "success");
         int value2 = getIntegerValueFromApiResponse(response, "data.bookingId");
         Assert.assertEquals(value1, true);
+        return value2;
     }
 
     public void cancelBookingViaApiEngine(String UserID) {
@@ -386,6 +391,24 @@ public class Commons extends BasePage {
         Assert.assertEquals(value2, "Refund Successful");
     }
 
+    public boolean boardRideViaApiEngine(String hostname,int bookingId) throws Exception {
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody body = RequestBody.create(mediaType, "[{\n  \"bookingId\": "+bookingId+",\n  \"timestamp\": 1532602200000,\n  \"boardingType\": \"CHIRP\"\n}]");
+        Request request = new Request.Builder()
+                .url(hostname + "/restricted/booking/board")
+                .post(body)
+                .addHeader("content-type", "application/json")
+                .addHeader("cache-control", "no-cache")
+                .addHeader("postman-token", "781d03c8-db21-c06f-2f42-b486a354b920")
+                .build();
+        okhttp3.Response response = client.newCall(request).execute();
+        boolean isApiSuccessful = response.isSuccessful();
+        System.out.println("Is api working fine ? = " +isApiSuccessful);
+    /*    String jsonData = response.body().string();
+        System.out.println("Response of board api = "+jsonData);*/
+        return isApiSuccessful;
+    }
 }
 
 
