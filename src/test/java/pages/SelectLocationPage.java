@@ -18,9 +18,9 @@ public class SelectLocationPage extends BasePage {
 	public void selectSearchLocation(String Location,int index) throws InterruptedException {
 		waitForClickabilityOf(searchLocation_button);
 		driver.findElement(searchLocation_button).sendKeys(Location);
-	//	Thread.sleep(3000);
+		Thread.sleep(3000);
 		waitForVisibilityOf(searchResult_button);
-	//	Thread.sleep(5000);
+		Thread.sleep(3000);
 		driver.findElements(searchResult_button).get(index).click();
 	}
 

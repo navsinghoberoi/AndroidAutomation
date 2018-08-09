@@ -2,12 +2,18 @@ package tests;
 
 import common.Commons;
 import io.restassured.response.Response;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.*;
 import apiEngine.ApiHelper;
+
+import java.io.IOException;
 
 /*
 Intent of this class is to check new implementations or amend existing implementation
@@ -32,10 +38,11 @@ public class TestClass extends BasePage {
     private PassDetailsPage passDetailsPage;
     private RefundPassPage refundPassPage;
     private String className;
+    private static String api = "https://dkr-serviceadmin.goplus.in/addTrip?tripId=0&slot=17:47:00&type=Extra%20Trip&vehicleId=3&routeId=241";
 
     @BeforeClass
     public void setUp() throws Exception {
-    //    createAndroidSession(true);
+        createAndroidSession(true);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         personalDetails = new PersonalDetailsPage(driver);
@@ -124,14 +131,31 @@ public class TestClass extends BasePage {
     }
 
 
+    public static void createTrip() throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(api)
+                .get()
+                .addHeader("Cookie", "authToken=f6ce750a-4048-4a17-b243-cac7358fd307")
+                .addHeader("Cache-Control", "no-cache")
+                .build();
+
+        okhttp3.Response response = client.newCall(request).execute();
+        System.out.println("Is api response successful = " +response.isSuccessful());
+    }
+
     public static void main(String args[]) throws Exception
     {
-        Commons commons = new Commons(driver);
+        /*Commons commons = new Commons(driver);
         commons.subscriptionBuyViaApiEngine("652245");
         commons.getActiveUserSubscriptionViaApiEngine("652245");
         commons.createBookingViaApiEngine("652245");
         commons.cancelBookingViaApiEngine("652245");
-        commons.refundSubscriptionViaApiEngine("652245");
-    }
+        commons.refundSubscriptionViaApiEngine("652245");*/
 
+    //       createTrip();
+
+
+    }
 }
