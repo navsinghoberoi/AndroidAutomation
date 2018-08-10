@@ -23,12 +23,12 @@ public class ReferAndEarnTest extends Setup {
         createAndroidSession(true);
         commons = new Commons(driver);
         //commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
-        Thread.sleep(5000L);
+        //Thread.sleep(5000L);
         homePage = new HomePage(driver);
         homePage.clickMenu();
         referAndEarnPage = new ReferAndEarnPage(driver);
         className = getClass().getSimpleName() + commons.getCurrentTime();
-        referalEarning = commons.connectSQLDbAndFetchValue(getValueFromPPFile("umsQaDbIP"), getValueFromPPFile("umsQaDbUserName"), getValueFromPPFile("umsQaDbPassword"), getValueFromPPFile("umsQaDbName"), getValueFromPPFile("umsQaDbSqlQueryFetchUserReferalEarning"), getValueFromPPFile("umsQaDbFetchEarningColumnName"));
+        referalEarning = commons.connectSQLDbAndFetchValue(getValueFromPPFile("umsQaDbIP"), getValueFromPPFile("umsQaDbUserName"), getValueFromPPFile("umsQaDbPassword"), getValueFromPPFile("umsQaDbName"), getValueFromPPFile("umsQaDbSqlQueryFetchUserThroughPHNumber"), getValueFromPPFile("umsQaDbFetchEarningColumnName"));
     }
 
     @AfterMethod
@@ -49,7 +49,7 @@ public class ReferAndEarnTest extends Setup {
     @Test(priority = 2)
     public void verifyReferAndEarnTitleText() throws Exception {
         System.out.println("clicked hamburger");
-        referAndEarnPage.getReferAndEarnDsiplayTextClick();
+        referAndEarnPage.getReferAndEarnDisplayTextClick();
         String headerText = referAndEarnPage.getRNETitleText();
         Assert.assertEquals(headerText, "Refer & Earn", "The header text din't match");
     }

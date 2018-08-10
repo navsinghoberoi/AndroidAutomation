@@ -47,7 +47,7 @@ public class ReferAndEarnPage extends BasePage {
         }
         return FindMyReferAndEarnText;
     }
-    public boolean getReferAndEarnDsiplayTextClick()
+    public boolean getReferAndEarnDisplayTextClick()
     {
         try{
             System.out.println("need to click on R&F title");
@@ -68,12 +68,9 @@ public class ReferAndEarnPage extends BasePage {
         try{
            waitForVisibilityOf(referAndEarnTitle);
            FindReferAndEarnTitleText= driver.findElement(referAndEarnTitle).getText();
-           return FindReferAndEarnTitleText;
        }catch (Exception e)
        {
-           driver.navigate().back();
-           homePage.clickMenu();
-           FindReferAndEarnTitleText =  menuPage.referText();
+           return FindReferAndEarnTitleText;
        }
         return FindReferAndEarnTitleText ;
     }
@@ -86,7 +83,6 @@ public class ReferAndEarnPage extends BasePage {
         }catch(Exception e)
         {
             return false;
-
         }
     }
     public String getTNCHeaderText() {
@@ -211,7 +207,6 @@ public class ReferAndEarnPage extends BasePage {
             driver.findElement(WhatsappSend).click();
             return true;
         }
-
         catch (Exception e){
             return false;
         }

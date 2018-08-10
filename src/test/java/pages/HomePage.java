@@ -18,13 +18,15 @@ public class HomePage extends BasePage {
 
     By searchBar = By.id("booking.search_bar");
     By buddyButton = By.className("android.widget.ImageView");
-    By buddyButtonClickable = By.className("android.widget.ImageButton");
+    By buddyButtonClickable = By.id("buddy");
     By buddyOptions = By.className("android.widget.TextView");
     By findRoutebutton = By.id("cfts.button");
     By fromLocationButton = By.id("cfts.from");
     By toLocationButton = By.id("cfts.to");
     By locationSwapButton = By.id("cfts.swap");
     By menuButton = By.className("android.widget.ImageButton");
+    By menuButtonById = By.id("open");
+    By menuButtonByXpath = By.xpath("//android.widget.ImageButton[@content-desc='open']");
     By wallet_button = By.id(app_package_name + "design_menu_item_text");
     By clickGetFreeRide = By.xpath("//android.widget.CheckedTextView[@text='Get Free Rides']");
     By closeSearchPopup = By.id("hso.close_icon");
@@ -44,7 +46,7 @@ public class HomePage extends BasePage {
     By rideInfo = By.id("hab.vehicle_text");
     By currentLocationButton = By.id("pb_refocus_map_btn");
     By ongoingHomecard = By.id("hbpb.ride_day");
-
+    By userProfileName = By.id("drawer.profile_image");
 
 
 
@@ -80,15 +82,33 @@ public class HomePage extends BasePage {
     }
 
     public void clickMenu() {
-        if (checkIfElementClickable(menuButton, 20) == true) {
+        if (checkIfElementClickable(menuButton, 15) == true) {
             System.out.println("Menu button is displayed, need to open menu");
             driver.findElement(menuButton).click();
             System.out.println("Menu button has been clicked");
+            if (checkUserProfileName() == true) {
+                System.out.println("User profile name is displayed i.e Menu is opened");
+            } else {
+                System.out.println("In retry method of clicking menu");
+                driver.findElement(menuButton).click();
+                if (checkUserProfileName() == true) {
+                    System.out.println("User profile name is displayed via Retry, i.e Menu is opened");
+                }
+            }
         } else {
             System.out.println("Menu button is not displayed");
         }
     }
 
+    public boolean checkUserProfileName() {
+        if (checkIfElementPresent(userProfileName, 10) == true) {
+            System.out.println("Menu page is opened");
+            return true;
+        } else {
+            System.out.println("Menu page is not opened");
+            return false;
+        }
+    }
 
     public void clickWallet() {
         waitForClickabilityOf(wallet_button);
@@ -123,13 +143,13 @@ public class HomePage extends BasePage {
 
     public boolean isBuddyButtonEnabled() {
         waitForVisibilityOf(buddyButtonClickable);
-        boolean result = driver.findElements(buddyButtonClickable).get(1).isEnabled();
+        boolean result = driver.findElement(buddyButtonClickable).isEnabled();
         return result;
     }
 
     public void clickBuddy() {
         waitForVisibilityOf(buddyButtonClickable);
-        driver.findElements(buddyButtonClickable).get(1).click();
+        driver.findElement(buddyButtonClickable).click();
     }
 
 
@@ -320,7 +340,6 @@ public class HomePage extends BasePage {
         driver.findElement(homecardTrackShuttl).click();
     }
 
-
     public boolean isTrackShuttlDisplayed() {
             boolean isTrackShuttlVisible;
         if (checkIfElementPresent(homecardTrackShuttl, 15) == true) {
@@ -353,7 +372,7 @@ public class HomePage extends BasePage {
         waitForVisibilityOf(rideStatus);
         String RideST = driver.findElement(rideStatus).getText();
         return RideST;
-        }
+    }
     public String getCurrentRideTitle() {
         waitForVisibilityOf(currentRideStatus);
         String currentRideTitleSt = driver.findElement(currentRideStatus).getText();

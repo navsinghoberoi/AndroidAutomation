@@ -25,7 +25,7 @@ public class BookingFromCouponTest extends Setup {
         createAndroidSession(true);
         commons = new Commons(driver);
         //commons.enterUserPhoneNumberOTP("newUserPhoneNumber", "OTP");
-        Thread.sleep(10000L);
+        //Thread.sleep(10000L);
         homePage = new HomePage(driver);
         homePage.clickMenu();
         couponsPage = new CouponsPage(driver);

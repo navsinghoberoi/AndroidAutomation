@@ -2,6 +2,10 @@ package pages;
 
 import com.sun.xml.internal.rngom.parse.host.Base;
 import common.*;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.TapOptions;
+import org.junit.experimental.categories.Categories;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import io.appium.java_client.android.AndroidDriver;
@@ -21,6 +25,7 @@ public class MyRidesPage extends BasePage {
     By CurrentActiveRideCheckScreen = By.id("mb_item_parent");
     By currentRideBoardLocation = By.xpath("//android.widget.TextView[@index='CD Chowk ']");
     By historyRidesTab = By.xpath("//android.widget.TextView[@text='HISTORY']");
+    By historyRideTabWithNoPreviousRide = By.id("mb_past_no_data");
     By tripSelectionByDate = By.xpath("//android.widget.TextView[@index=1]");
     By selectionOfTripDate = By.id("list_item_title");
     By selectionOfTripTime = By.id("mb_item_time");
@@ -34,9 +39,10 @@ public class MyRidesPage extends BasePage {
     By rideNowTitleText = By.xpath("//android.widget.TextView[@text='Select a Timeslot']");
     By needHelpWithThisRide = By.xpath("//android.widget.TextView[@text='NEED HELP WITH THIS RIDE?']");
     By needHelpTitleText = By.xpath("//android.widget.TextView[@index=1]");
-    //By lostAnItem = By.id("th_item_name");
-    By lostAnItem = By.xpath("//*[@text='I lost an item']");
-    // By lostAnItem = By.xpath("//android.widget.TextView[@text='I lost an item']");
+   // By lostAnItem = By.id("th_item_name");
+    By sessionExpired = By.xpath("//android.widget.Button[@text='OK']");
+    By lostAnItemText = By.xpath("//*[@text='I lost an item']");
+    By lostAnItem = By.xpath("//android.widget.TextView[@text='I lost an item']");
     By descriptionTextField = By.xpath("//android.widget.EditText[@index=2]");
     By submitButton = By.xpath("//android.widget.Button[@text='SUBMIT']");
     By pickUpIssue = By.id("th_item_name");
@@ -44,6 +50,8 @@ public class MyRidesPage extends BasePage {
     By otherIssue = By.id("th_item_name");
     By backButton = By.xpath("//android.widget.ImageButton[@index=0]");
     By currentRideInMyRIde = By.id("pdwl.pick_up_name");
+    By rideStatus = By.id("mb_item_status");
+
 
 
     private AndroidDriver androidDriver;
@@ -51,7 +59,6 @@ public class MyRidesPage extends BasePage {
     public MyRidesPage(WebDriver driver) {
         super(driver);
         androidDriver = (AndroidDriver) driver;
-
     }
 
     public String getMyRidesDisplayText() {
@@ -59,24 +66,61 @@ public class MyRidesPage extends BasePage {
         try {
             waitForVisibilityOf(myRidesDisplayText);
             findMyRidesDisplayText = driver.findElement(myRidesDisplayText).getText();
+            return findMyRidesDisplayText;
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+            return findMyRidesDisplayText;
+        }
+    }
 
+    public boolean clickMyRidesDisplayText() {
+
+        try {
+            waitForClickabilityOf(myRidesDisplayText);
+            driver.findElement(myRidesDisplayText).click();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+            return false;
+        }
+    }
+
+    public String getHistoryTabWithNoRides() {
+        String historyTextWithNoRides = null;
+        try {
+            waitForVisibilityOf(historyRideTabWithNoPreviousRide);
+            historyTextWithNoRides = driver.findElement(historyRideTabWithNoPreviousRide).getText();
+            return historyTextWithNoRides;
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+            return historyTextWithNoRides;
+        }
+    }
+    public boolean getHistoryTabViaOldUser(){
+        try {
+            waitForVisibilityOf(ridesList);
+            List<WebElement> getRideList = driver.findElements(ridesList);
+            getRideList.get(0).isDisplayed();
+            return true;
         }
         catch(Exception e){
             System.out.println(e.getStackTrace());
+            return false;
         }
-        return findMyRidesDisplayText;
-    }
-
-    public void clickMyRidesDisplayText() {
-
-        waitForClickabilityOf(myRidesDisplayText);
-        driver.findElement(myRidesDisplayText).click();
     }
 
     public String getMyRidesTitleText() {
-        waitForVisibilityOf(myRidesTitleText);
-        String getMyRidesTitleText = driver.findElement(myRidesTitleText).getText();
-        return getMyRidesTitleText;
+        String getMyRidesTitleText = null;
+        try {
+            waitForVisibilityOf(myRidesTitleText);
+            getMyRidesTitleText = driver.findElement(myRidesTitleText).getText();
+            return getMyRidesTitleText;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return getMyRidesTitleText;
+
+        }
     }
 
     public String getActiveRidesWindows() {
@@ -86,13 +130,14 @@ public class MyRidesPage extends BasePage {
         return findMyActiveRidesWindows;
 
     }
+
     public boolean getCurrentRide() {
         boolean currentRide = false;
-        if(checkIfElementClickable(CurrentActiveRideCheckScreen,10)==true){
+        if (checkIfElementClickable(CurrentActiveRideCheckScreen, 10) == true) {
             currentRide = driver.findElements(CurrentActiveRideCheckScreen).get(0).isDisplayed();
             System.out.println("Current Ride is Displayed");
             return currentRide;
-        }else{
+        } else {
             System.out.println("There is no current Ride");
             return false;
         }
@@ -113,10 +158,27 @@ public class MyRidesPage extends BasePage {
 
     }
 
-    public void clickHistoryRidesTab() {
-        waitForClickabilityOf(historyRidesTab);
-        driver.findElement(historyRidesTab).click();
+    public boolean clickHistoryRidesTab() {
+        try {
+            waitForClickabilityOf(historyRidesTab);
+            driver.findElement(historyRidesTab).click();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
 
+
+    }
+    public boolean clickSessionExpired(){
+
+        try{
+            waitForVisibilityOf(sessionExpired);
+            driver.findElement(sessionExpired).click();
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 
     public String getRideSelectionDate() {
@@ -142,12 +204,17 @@ public class MyRidesPage extends BasePage {
 
     }
 
-    public void clickRidesSelection() {
+    public boolean clickRidesSelection() {
 
 //      scrollDown();
-        waitForVisibilityOf(ridesList);
-        List<WebElement> RidesList = driver.findElements(ridesList);
-        RidesList.get(0).click();
+        try {
+            waitForVisibilityOf(ridesList);
+            List<WebElement> RidesList = driver.findElements(ridesList);
+            RidesList.get(0).click();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public String getHistoryRideSelectionText() throws Exception {
@@ -244,22 +311,24 @@ public class MyRidesPage extends BasePage {
         return findHelpTitleText;
     }
 
-    public void clickGetLostItem() {
-
-//      waitForVisibilityOf(lostAnItem);
-//      driver.findElement(lostAnItem).click();
-        waitForClickabilityOf(lostAnItem);
-        List<WebElement> helpList = driver.findElements(lostAnItem);
-        helpList.get(0).click();
-        driver.findElement(lostAnItem).click();
+    public boolean getLostItemText(int index) {
+        try {
+            waitForVisibilityOf(lostAnItem);
+            driver.findElements(lostAnItem).get(index).getText();
+            return true;
+        } catch (Exception e) {
+            System.out.println("get into false");
+            return false;
+        }
+    }
 
 //        List<WebElement> list  = driver.findElement(lostAnItem);
 //        for (int i=0;i<list.size();i++){
 //        System.out.println("clicked on "+list.get(i).getAttribute("xpath"));
-    }
 
     public String getLostItemTitleText() {
-        String findLostItemTitlleText = driver.findElement(lostAnItem).getText();
+        waitForVisibilityOf(lostAnItem);
+        String findLostItemTitlleText = driver.findElements(lostAnItem).get(0).getText();
         return findLostItemTitlleText;
     }
 
@@ -311,10 +380,22 @@ public class MyRidesPage extends BasePage {
         driver.findElement(backButton).click();
 
     }
-    public String currentRideText (){
+
+    public String currentRideText() {
         waitForVisibilityOf(currentRideInMyRIde);
         String currentRidePickupText = driver.findElement(currentRideInMyRIde).getText();
         return currentRidePickupText;
+
+    }
+    public String getStatusOfRide(int index)
+    {
+        try {
+            waitForVisibilityOf(rideStatus);
+            String currentStatusOfRide = driver.findElement(rideStatus).getText();
+            return currentStatusOfRide;
+        } catch (Exception e) {
+            return null;
+        }
 
     }
 

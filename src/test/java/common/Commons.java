@@ -59,15 +59,13 @@ public class Commons extends BasePage {
             System.out.println("User is already on the homepage");
         }
     }
-
-
     /* This method lets user login by specifying phonenumber and OTP*/
     public void enterUserPhoneNumberOTP(String phoneNumberKey, String otpKey) throws Exception {
         String userPhoneNumber = getValueFromPPFile(phoneNumberKey);
         String userOTP = getValueFromPPFile(otpKey);
-    //    Thread.sleep(5000);
         landingPage.clickSkipToLogin();
         loginPage.enterMobileNumber(userPhoneNumber);
+        loginPage.clickVerifyCheckBox();
         loginPage.clickVerify();
 
         /*
@@ -239,7 +237,7 @@ public class Commons extends BasePage {
         couponsPage.addCouponIntegrated();
         couponsPage.clickPopUp();
         driver.navigate().back();
-        openSearchBarAndFindRoute("homeAddress", "officeAddress");
+        openSearchBarAndFindRoute(homeAddress,OfficeAddress);
         slotsPage.clickSlot(0);
         slotsPage.clickCtaOnSlotsPage();
     }
@@ -297,8 +295,6 @@ public class Commons extends BasePage {
             }
         return value;
         }
-
-
     public void closeSQLDBConnection(Connection con) {
         try {
             con.close();
