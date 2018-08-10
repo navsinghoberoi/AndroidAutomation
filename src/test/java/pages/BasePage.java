@@ -25,14 +25,27 @@ public class BasePage extends Setup {
         this.driver = driver;
     }
 
-    protected void waitForVisibilityOf(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    protected boolean waitForVisibilityOf(By locator) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return true;
+        }
+        catch(Exception e){
+            System.out.println("Element Is not visible");
+            return false;
+        }
     }
 
-    protected void waitForClickabilityOf(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    protected boolean waitForClickabilityOf(By locator) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+            wait.until(ExpectedConditions.elementToBeClickable(locator));
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
     }
 
     public void scrollDown(){
@@ -46,7 +59,6 @@ public class BasePage extends Setup {
         androidDriver = (AndroidDriver) driver;
         androidDriver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+visibleText+"\").instance(0))");
     }
-
 
     public void hideKeyboard()
     {
@@ -108,7 +120,6 @@ public class BasePage extends Setup {
         tapObject.put("element", Double.valueOf(((RemoteWebElement) elementToTap).getId()));
         js.executeScript("mobile: tap", tapObject);
     }
-
     public void clear(By locator) {
         WebElement we = driver.findElement(locator);
         String text = we.getText();

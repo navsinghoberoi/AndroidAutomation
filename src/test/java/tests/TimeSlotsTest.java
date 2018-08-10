@@ -13,18 +13,21 @@ import pages.SlotsPage;
 
 public class TimeSlotsTest extends Setup {
 
+    private HomePage homePage;
     private SlotsPage slotsPage;
     private Commons commons;
     private String className;
+    private BasePage basePage;
 
     @BeforeClass
     public void Setup() throws Exception {
         createAndroidSession(true);
-        commons = new Commons(driver);
-        // commons.goToHomepage("newUserPhoneNumber","OTP");
+        commons = new Commons(driver);// commons.goToHomepage("newUserPhoneNumber","OTP");
+        homePage = new HomePage(driver);
         //homePage.clickMenu();
         slotsPage = new SlotsPage(driver);
         className = getClass().getSimpleName() + commons.getCurrentTime();
+        basePage = new BasePage(driver);
     }
 
     @AfterClass
@@ -39,7 +42,7 @@ public class TimeSlotsTest extends Setup {
             commons.captureScreenshot(driver, className);
             System.out.println("Screenshot taken for failed testcase");
         }
-        driver.quit();
+//        driver.quit();
     }
 
     @Test(priority = 1)
@@ -72,13 +75,19 @@ public class TimeSlotsTest extends Setup {
         Assert.assertTrue(slots_Visibility);
     }
 
-    @Test(priority = 5)
+//    @Test(priority = 5)
+//    public void SelectionOFEnabledSlot(){
+//
+//
+//
+//    }
+    @Test(priority = 6)
     public void verifyViewOnMapButtonVisible() throws Exception {
         boolean viewOnMapButtonVisible = slotsPage.viewOnMap();
         Assert.assertEquals(viewOnMapButtonVisible, true);
     }
 
-    @Test(priority = 6)
+    @Test(priority = 7)
     public void verifyViewOnMapCrossIconVisible() {
         slotsPage.clickViewOnMap();
         boolean crossButtonVisible = slotsPage.viewCrossButton();
@@ -87,7 +96,7 @@ public class TimeSlotsTest extends Setup {
         driver.navigate().back();
     }
 
-    @Test(priority = 7)
+    @Test(priority = 8)
     public void verifyViewPickupStopButtonVisible() throws Exception {
         driver.navigate().back();
         driver.navigate().back();
@@ -97,20 +106,20 @@ public class TimeSlotsTest extends Setup {
         slotsPage.clickPickupStop();
     }
 
-    @Test(priority = 8)
+    @Test(priority = 9)
     public void verifyViewPickupStopTitle() {
         String getPickup_Stop = slotsPage.pickupTitle();
         Assert.assertEquals(getPickup_Stop, "View Pickup Stop");
     }
 
-    @Test(priority = 9)
+    @Test(priority = 10)
     public void verifyViewRouteMapButtonVisible() {
         boolean view_Route_Map = slotsPage.viewRouteMapVisible();
         Assert.assertEquals(view_Route_Map, true);
 
     }
 
-    @Test(priority = 10)
+    @Test(priority = 11)
     public void verifySuggestDifferentTimeButtonVisible() {
         driver.navigate().back();
         boolean getSDT = slotsPage.suggestDifferentTimeButtonVisible();
@@ -118,13 +127,13 @@ public class TimeSlotsTest extends Setup {
         slotsPage.clickDifferentTimeButton();
     }
 
-    @Test(priority = 11)
+    @Test(priority = 12)
     public void verifyTimeScreenVisible() {
         boolean timeScreenPopupVisible = slotsPage.timePopupVisible();
         Assert.assertEquals(timeScreenPopupVisible, true);
     }
 
-    @Test(priority = 12)
+    @Test(priority = 13)
     public void verifyAddingATimeSuggestion() {
         slotsPage.getHourSelection();
         slotsPage.getMinuteSelection();
@@ -133,7 +142,7 @@ public class TimeSlotsTest extends Setup {
         Assert.assertEquals(getThankyouPopup, true);
     }
 
-    @Test(priority = 13)
+    @Test(priority = 14)
     public void verifyThankYouPopup() {
         boolean getOkButton = slotsPage.getThankyouPageOkButton();
         Assert.assertEquals(getOkButton, true);

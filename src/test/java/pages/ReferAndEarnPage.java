@@ -31,51 +31,112 @@ public class ReferAndEarnPage extends BasePage {
     By messageIcon = By.xpath("//android.widget.ImageView[@index=2]");
     By threeDotMenuIcon = By.xpath("//android.widget.ImageView[@index=3]");
     By startReferingButton = By.xpath("//android.widget.TextView[@text='START REFERRING']");
-
+    By referEarningValue = By.id("refer.earnings_card_value");
+    private MenuPage menuPage;
+    private HomePage homePage;
 
     public String getReferAndEarnDsiplayText() {
-        waitForVisibilityOf(referAndEarnDsiplayText);
-        String FindMyReferAndEarnText= driver.findElement(referAndEarnDsiplayText).getText();
+        String FindMyReferAndEarnText = null;
+        if(checkIfElementPresent(referAndEarnDsiplayText,10)){
+             FindMyReferAndEarnText= driver.findElement(referAndEarnDsiplayText).getText();
+        }
+        else{
+            FindMyReferAndEarnText =  menuPage.referText();
+        }
         return FindMyReferAndEarnText;
+    }
+    public boolean getReferAndEarnDisplayTextClick()
+    {
+        try{
+            System.out.println("need to click on R&F title");
+            waitForClickabilityOf(referAndEarnDsiplayText);
+            System.out.println("wait for clickability");
+            driver.findElement(referAndEarnDsiplayText).click();
+            System.out.println("clicked");
+            return true;
+        }catch(Exception e)
+        {
+            return false;
+        }
+    }
 
-    }
-    public void getReferAndEarnDsiplayTextClick()
-    {
-        waitForClickabilityOf(referAndEarnDsiplayText);
-        driver.findElement(referAndEarnDsiplayText).click();
-    }
     public String getRNETitleText(){
-        waitForVisibilityOf(referAndEarnTitle);
-        String FindReferAndEarnTitleText= driver.findElement(referAndEarnTitle).getText();
-        return FindReferAndEarnTitleText;
+        String FindReferAndEarnTitleText = null;
+        try{
+           waitForVisibilityOf(referAndEarnTitle);
+           FindReferAndEarnTitleText= driver.findElement(referAndEarnTitle).getText();
+       }catch (Exception e)
+       {
+           return FindReferAndEarnTitleText;
+       }
+        return FindReferAndEarnTitleText ;
     }
-    public void getActionInfoClick()
+    public boolean getActionInfoClick()
     {
-        waitForClickabilityOf(actionInfo);
-        driver.findElement(actionInfo).click();
+        try{
+            waitForClickabilityOf(actionInfo);
+            driver.findElement(actionInfo).click();
+            return true;
+        }catch(Exception e)
+        {
+            return false;
+        }
     }
     public String getTNCHeaderText() {
         waitForVisibilityOf(headerTNCText);
         String FindHeaderTNCTextValue =  driver.findElement(headerTNCText).getText();
         return FindHeaderTNCTextValue;
     }
-    public void clickBackButton(){
-        waitForClickabilityOf(backButton);
-        driver.findElement(backButton).click();
+    public boolean clickBackButton(){
+        try {
+            waitForClickabilityOf(backButton);
+            driver.findElement(backButton).click();
+            return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
     }
-    public void getReferalEarningClick()
+    public boolean getReferalEarningClick()
     {
-        waitForClickabilityOf(referalEarning);
-        driver.findElement(referalEarning).click();
+        try{
+            waitForClickabilityOf(referalEarning);
+            driver.findElement(referalEarning).click();
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+
+    }
+    public String getReferalEarning(){
+        try {
+            waitForVisibilityOf(referEarningValue);
+            String getREValue = driver.findElement(referEarningValue).getText();
+            getREValue = getREValue.substring(1);
+            System.out.println(getREValue);
+            return getREValue;
+        }
+        catch(Exception e){
+            return null;
+        }
     }
     public String getYourEarningTitle(){
         waitForVisibilityOf(yourEarningTitle);
         String FindYourEarningText = driver.findElement(yourEarningTitle).getText();
         return FindYourEarningText;
     }
-    public void getStartReferingClick(){
-        waitForClickabilityOf(startReferingButton);
-        driver.findElement(startReferingButton).click();
+    public boolean getStartReferingClick(){
+        try {
+            waitForClickabilityOf(startReferingButton);
+            driver.findElement(startReferingButton).click();
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
+
     }
     public String getStartReferingText(){
         waitForClickabilityOf(startReferingButton);
@@ -88,33 +149,64 @@ public class ReferAndEarnPage extends BasePage {
         String FindMyReferal_Code= driver.findElement(referalCode).getText();
         return FindMyReferal_Code;
     }
-    public void getWhatsappIconClick(){
-        waitForClickabilityOf(whatsappIcon);
-        driver.findElement(whatsappIcon).click();
+    public boolean getWhatsappIconClick(){
+        try {
+            waitForClickabilityOf(whatsappIcon);
+            driver.findElement(whatsappIcon).click();
+            return true;
+        }
+        catch(Exception e){
+            return false;
+
+        }
     }
     public String getWhatsappTitle(){
         String FindMyWhatsappTitleText = driver.findElement(whatsappTitleText).getText();
         return FindMyWhatsappTitleText;
     }
-    public void getWhatsAppScreen(){
-        waitForClickabilityOf(whatappScreen);
-        driver.findElement(whatappScreen).click();
+    public boolean getWhatsAppScreen(){
+        try {
+            waitForClickabilityOf(whatappScreen);
+            driver.findElement(whatappScreen).click();
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
     }
-    public void getWhatsappFirstContactClick(){
-        waitForClickabilityOf(WhatsappFirstElementClick);
-        driver.findElement(WhatsappFirstElementClick).click();
+    public boolean getWhatsappFirstContactClick(){
+        try {
+            waitForClickabilityOf(WhatsappFirstElementClick);
+            driver.findElement(WhatsappFirstElementClick).click();
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
     }
     public String getWhatsappScreenText(){
         String FindMyWhatsappContactTitle = driver.findElement(whatappScreen).getText();
         return FindMyWhatsappContactTitle;
     }
-    public void whatsAppButtonClick(){
-        waitForVisibilityOf(WhatsappSendButton);
-        driver.findElement(WhatsappSendButton).click();
+    public boolean whatsAppButtonClick(){
+        try {
+            waitForVisibilityOf(WhatsappSendButton);
+            driver.findElement(WhatsappSendButton).click();
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
-    public void getWhatappSendButton(){
-        waitForClickabilityOf(WhatsappSend);
-        driver.findElement(WhatsappSend).click();
+    public boolean getWhatappSendButton(){
+        try {
+            waitForClickabilityOf(WhatsappSend);
+            driver.findElement(WhatsappSend).click();
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
     public void getFBIconClick(){
         waitForClickabilityOf(facebookIcon);

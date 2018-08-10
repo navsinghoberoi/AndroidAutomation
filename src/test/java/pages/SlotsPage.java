@@ -537,5 +537,9 @@ public class SlotsPage extends BasePage {
         waitForClickabilityOf(thankYouPageOkButton);
         driver.findElement(thankYouPageOkButton).click();
     }
-
+    public void getSlotClickable(){
+            waitForClickabilityOf(selectSlot);
+            List<WebElement> slotClickable = driver.findElement(selectSlot);
+            slotClickable.get(0).click();
+    }
 }

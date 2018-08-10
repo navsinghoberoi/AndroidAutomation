@@ -18,7 +18,7 @@ public class HomePage extends BasePage {
 
     By searchBar = By.id("booking.search_bar");
     By buddyButton = By.className("android.widget.ImageView");
-    By buddyButtonClickable = By.className("android.widget.ImageButton");
+    By buddyButtonClickable = By.id("buddy");
     By buddyOptions = By.className("android.widget.TextView");
     By findRoutebutton = By.id("cfts.button");
     By fromLocationButton = By.id("cfts.from");
@@ -98,6 +98,15 @@ public class HomePage extends BasePage {
         }
     }
 
+    public boolean checkUserProfileName() {
+        if (checkIfElementPresent(userProfileName, 10) == true) {
+            System.out.println("Menu page is opened");
+            return true;
+        } else {
+            System.out.println("Menu page is not opened");
+            return false;
+        }
+    }
 
     public void clickWallet() {
         waitForClickabilityOf(wallet_button);
@@ -132,13 +141,13 @@ public class HomePage extends BasePage {
 
     public boolean isBuddyButtonEnabled() {
         waitForVisibilityOf(buddyButtonClickable);
-        boolean result = driver.findElements(buddyButtonClickable).get(1).isEnabled();
+        boolean result = driver.findElement(buddyButtonClickable).isEnabled();
         return result;
     }
 
     public void clickBuddy() {
         waitForVisibilityOf(buddyButtonClickable);
-        driver.findElements(buddyButtonClickable).get(1).click();
+        driver.findElement(buddyButtonClickable).click();
     }
 
 
@@ -342,7 +351,6 @@ public class HomePage extends BasePage {
         driver.findElement(homecardTrackShuttl).click();
     }
 
-
     public boolean isTrackShuttlDisplayed() {
             boolean isTrackShuttlVisible;
         if (checkIfElementPresent(homecardTrackShuttl, 10) == true) {
@@ -375,7 +383,7 @@ public class HomePage extends BasePage {
         waitForVisibilityOf(rideStatus);
         String RideST = driver.findElement(rideStatus).getText();
         return RideST;
-        }
+    }
     public String getCurrentRideTitle() {
         waitForVisibilityOf(currentRideStatus);
         String currentRideTitleSt = driver.findElement(currentRideStatus).getText();

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
 	By mobileNumber_button = By.id("login.phone_input");
+	By verifycheckBox = By.id("login.personal_data_consent_checkbox");
 	By referralCode_button = By.id("reg_referral");
 	By getOtp_button = By.className("android.widget.Button");
 	By enterOtp_button = By.id("verify_reg_otp");
@@ -18,6 +19,16 @@ public class LoginPage extends BasePage {
 	public void enterMobileNumber(String number) {
 		waitForVisibilityOf(mobileNumber_button);
 		driver.findElement(mobileNumber_button).sendKeys(number);
+	}
+
+	public void clickVerifyCheckBox() {
+
+		if (checkIfElementPresent(verifycheckBox, 15) == true) {
+			driver.findElement(verifycheckBox).click();
+		} else {
+
+			System.out.println("Login Checkbox is not present");
+		}
 	}
 
 	public void clickGetOtp() {
