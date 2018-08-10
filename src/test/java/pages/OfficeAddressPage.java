@@ -117,7 +117,7 @@ public class OfficeAddressPage extends BasePage {
 
     public boolean isSelectOfficeLocationFieldDisplayed(){
         boolean result;
-        if (checkIfElementPresent(selectOfficeLocation, 10) == true) {
+        if (checkIfElementPresent(selectOfficeLocation, 5) == true) {
             System.out.println("Select Office Location field is displayed on office address page");
             result = driver.findElement(selectOfficeLocation).isDisplayed();
             return result;
@@ -131,7 +131,7 @@ public class OfficeAddressPage extends BasePage {
 
     public boolean isOfficeLocationDetailsSubmitButtonDisplayed(){
         boolean result;
-        if (checkIfElementPresent(submit, 10) == true) {
+        if (checkIfElementPresent(submit, 5) == true) {
             System.out.println("Submit button (DONE) is appearing on Select Office Location page");
             result = driver.findElement(submit).isDisplayed();
             return result;
@@ -162,7 +162,7 @@ public class OfficeAddressPage extends BasePage {
     public boolean isSelectThisLocationDisplayed(){
 
         boolean result;
-        if (checkIfElementPresent(selectThisLocation, 10) == true) {
+        if (checkIfElementPresent(selectThisLocation, 5) == true) {
             System.out.println("Select this location field is displayed");
             result = driver.findElement(selectThisLocation).isDisplayed();
             return result;
@@ -177,7 +177,7 @@ public class OfficeAddressPage extends BasePage {
     public boolean isNearbyPlacesDisplayed(){
 
         boolean result;
-        if (checkIfElementPresent(nearbyPlaces, 10) == true) {
+        if (checkIfElementPresent(nearbyPlaces, 5) == true) {
             System.out.println("Nearby places are displayed");
             result = driver.findElement(nearbyPlaces).isDisplayed();
             return result;
@@ -193,7 +193,7 @@ public class OfficeAddressPage extends BasePage {
     public boolean isMyLocationIconDisplayed(){
 
         boolean result;
-        if (checkIfElementPresent(myLocationButton, 10) == true) {
+        if (checkIfElementPresent(myLocationButton, 5) == true) {
             System.out.println("My location icon is displayed on map");
             result = driver.findElement(myLocationButton).isDisplayed();
             return result;

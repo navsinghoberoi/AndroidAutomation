@@ -82,7 +82,7 @@ public class PassDetailsPage extends BasePage {
 
     public boolean isNoPassCTADisplayed() {
         boolean result;
-        if (checkIfElementPresent(noPassCTA, 10) == true) {
+        if (checkIfElementPresent(noPassCTA, 5) == true) {
             System.out.println("User does not has pass");
             result = driver.findElement(noPassCTA).isEnabled();
         } else {
@@ -93,7 +93,7 @@ public class PassDetailsPage extends BasePage {
 
     public boolean isDeletePassIconEnabled() {
         boolean result = false;
-        if (checkIfElementPresent(deleteIcon, 10) == true) {
+        if (checkIfElementPresent(deleteIcon, 5) == true) {
             System.out.println("Delete pass icon is enabled");
             result = driver.findElement(deleteIcon).isEnabled();
         } else {
@@ -104,7 +104,7 @@ public class PassDetailsPage extends BasePage {
 
     public boolean isDeletePassIconDisplayed() {
         boolean result = false;
-        if (checkIfElementPresent(deleteIcon, 10) == true) {
+        if (checkIfElementPresent(deleteIcon, 5) == true) {
             System.out.println("Delete pass icon is displayed");
             result = driver.findElement(deleteIcon).isDisplayed();
         } else {
@@ -170,7 +170,7 @@ public class PassDetailsPage extends BasePage {
             System.out.println("Scroll is not done as the element is not visible");
             e.printStackTrace();
         }
-        if (checkIfElementPresent(activeBenefits, 10) == true) {
+        if (checkIfElementPresent(activeBenefits, 5) == true) {
             System.out.println("Active Benefits is displayed on pass details page");
             return true;
         } else {

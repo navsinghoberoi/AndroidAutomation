@@ -43,7 +43,7 @@ public class ReviewRoutePage extends BasePage {
 
     public boolean isCTAEnabled() {
         boolean result;
-        if (checkIfElementPresent(cta, 10) == true) {
+        if (checkIfElementPresent(cta, 5) == true) {
             result = driver.findElement(cta).isEnabled();
         } else {
             result = false;

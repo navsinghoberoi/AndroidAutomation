@@ -277,7 +277,7 @@ public class TrackShuttlPage extends BasePage {
     }
     public boolean isRegistrationNumberVisible() {
         boolean registrationNumberText;
-        if (checkIfElementPresent(homecardTrackShuttl, 15) == true) {
+        if (checkIfElementPresent(homecardTrackShuttl, 10) == true) {
             System.out.println("TRACK SHUTTL is appearing on active ride");
             registrationNumberText = driver.findElement(homecardTrackShuttl).isDisplayed();
         } else {
@@ -302,7 +302,7 @@ public class TrackShuttlPage extends BasePage {
     }
 
     public boolean checkPressToBoardCTADisplayed() {
-        if (checkIfElementPresent(pressToBoard, 10) == true) {
+        if (checkIfElementPresent(pressToBoard, 5) == true) {
             System.out.println("PRESS TO BOARD button is displayed");
             return true;
         } else {
@@ -312,7 +312,7 @@ public class TrackShuttlPage extends BasePage {
     }
 
     public boolean isSOSbuttonDisplayed() {
-        if (checkIfElementPresent(sosButton, 10) == true) {
+        if (checkIfElementPresent(sosButton, 5) == true) {
             System.out.println("SOS button is displayed");
             return true;
         } else {

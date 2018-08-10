@@ -9,8 +9,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
 
-// Precondition -- Need to add board ride api using api after executing first test case
-
 public class PostBoardingTest extends Setup {
 
     private HomePage homepage;
@@ -19,17 +17,17 @@ public class PostBoardingTest extends Setup {
     private MyRidesPage myRidesPage;
     private MenuPage menuPage;
     private String className;
+    private int bookingIdFromAPI;
 
     @BeforeMethod
     public void setUp() throws Exception {
         createAndroidSession(true);
         homepage = new HomePage(driver);
         commons = new Commons(driver);
-
         trackShuttlPage = new TrackShuttlPage(driver);
         myRidesPage = new MyRidesPage(driver);
         menuPage = new MenuPage(driver);
-        //  commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
+        commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
@@ -48,20 +46,32 @@ public class PostBoardingTest extends Setup {
         driver.quit();
     }
 
+    @Test(priority=0)
+    public void buyPassAndCreateBookingViaApi() throws Exception
+    {
+        commons.subscriptionBuyViaApiEngine(getValueFromPPFile("BuyPassUserID")); // buy pass via api
+        bookingIdFromAPI =  commons.createBookingViaApiEngine(getValueFromPPFile("CreateBookingUserId")); // createBooking via api
+    }
 
     @Test(priority = 1)
-    public void verifyActiveRideHomecardDisplayed() {
+    public void verifyActiveRideHomecardDisplayed() throws Exception {
+        //adding this temporarily to login if user gets logged out due to bug in getSession api
+        commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
         boolean result = homepage.isTrackShuttlDisplayed();
         Assert.assertEquals(result, true);
     }
 
-    public void boardActiveBookingViaApi() {
-        /* Write code to hit booking/board api to board the user
-        Make this method call in verifyOngoingAppearingOnBookingHomecard() method */
+    @Test(priority = 2)
+    public void boardActiveRideViaApi() throws Exception {
+        boolean isRideBoarded =    commons.boardRideViaApiEngine(getValueFromPPFile("QA_UMS_URL"), +bookingIdFromAPI);
+        System.out.println("Is ride boarded using the /board api ? = "+isRideBoarded);
+        Assert.assertEquals(isRideBoarded,true);
     }
 
     @Test(priority = 2)
-    public void verifyOngoingAppearingOnBookingHomecard() {
+    public void verifyOngoingAppearingOnBookingHomecard() throws Exception {
+        //adding this temporarily to login if user gets logged out due to bug in getSession api
+        commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
         String boardedHomecardText = homepage.getOngoingBookingHomecardText();
         Assert.assertEquals(boardedHomecardText, "Ongoing");
     }
@@ -146,6 +156,11 @@ public class PostBoardingTest extends Setup {
         commons.openRideOptionsFromBookingHomecardsForBoardedRide();
         boolean cancelRideOptionAppearing = commons.verifyIsLocatorPresent("Cancel/Reschedule this trip", trackShuttlPage.getOptionsNameLocator());
         Assert.assertEquals(cancelRideOptionAppearing, false);
+    }
+
+    @Test(priority = 12)
+    public void refundPassViaApi() throws Exception {
+        commons.refundSubscriptionViaApiEngine(getValueFromPPFile("RefundPassUserID")); // refund sub via api
     }
 
 }

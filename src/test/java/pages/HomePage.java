@@ -44,7 +44,7 @@ public class HomePage extends BasePage {
     By rideInfo = By.id("hab.vehicle_text");
     By currentLocationButton = By.id("pb_refocus_map_btn");
     By ongoingHomecard = By.id("hbpb.ride_day");
-    By userProfileName = By.id("drawer.profile_image");
+    By userProfileName = By.id("drawer.user_name");
 
 
 
@@ -84,7 +84,7 @@ public class HomePage extends BasePage {
             System.out.println("Menu button is displayed, need to open menu");
             driver.findElement(menuButton).click();
             System.out.println("Menu button has been clicked");
-            if (checkUserProfileName() == true) {
+            if (checkUserProfileName() == true){
                 System.out.println("User profile name is displayed i.e Menu is opened");
             } else {
                 System.out.println("In retry method of clicking menu");
@@ -162,10 +162,19 @@ public class HomePage extends BasePage {
     }
 
     public void clickSearchBar() {
-        if (checkIfElementClickable(searchBar, 20) == true) {
+        if (checkIfElementClickable(searchBar, 15) == true) {
             System.out.println("Search bar is displayed, need to open search bar");
-            waitForClickabilityOf(searchBar);
             driver.findElement(searchBar).click();
+            if (isFindRouteButtonDisplayed() == true){
+                System.out.println("FIND A ROUTE button is displayed i.e Search bar is opened");
+            } else {
+                System.out.println("In retry method of clicking search");
+                driver.findElement(searchBar).click();
+                if (isFindRouteButtonDisplayed() == true) {
+                    System.out.println("FIND A ROUTE button is displayed via Retry i.e Search bar is opened");
+                }
+            }
+
         } else {
             System.out.println("Search bar is not displayed");
         }
@@ -184,9 +193,13 @@ public class HomePage extends BasePage {
     }
 
     public boolean isFindRouteButtonDisplayed() {
-        waitForVisibilityOf(findRoutebutton);
-        boolean displayed = driver.findElement(findRoutebutton).isDisplayed();
-        return displayed;
+        boolean result;
+        if(checkIfElementPresent(findRoutebutton,10)){
+        result = driver.findElement(findRoutebutton).isDisplayed();
+        }else {
+        result = false;
+        }
+        return result;
     }
 
 
@@ -228,7 +241,7 @@ public class HomePage extends BasePage {
 
     public boolean reportIssueOptionClick() {
 
-        if (checkIfElementPresent(reportIssueOption, 15) == true) {
+        if (checkIfElementPresent(reportIssueOption, 5) == true) {
             System.out.println("Report issue option is displayed");
             driver.findElement(reportIssueOption).click();
             System.out.println("Report issue page is opened");
@@ -241,7 +254,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean checkReportIssuePage() {
-        if (checkIfElementPresent(reportIssueSubmitButton, 10) == true) {
+        if (checkIfElementPresent(reportIssueSubmitButton, 5) == true) {
             System.out.println("User is on report issue page , SUBMIT button is displayed");
             return true;
         } else {
@@ -257,7 +270,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean isReserveSeatButtonDisplayed() {
-        if (checkIfElementPresent(reserveSeat, 10) == true) {
+        if (checkIfElementPresent(reserveSeat, 5) == true) {
             System.out.println("RESERVE A SEAT button is displayed");
             return true;
         } else {
@@ -269,7 +282,7 @@ public class HomePage extends BasePage {
 
     public boolean isReserveSeatEnabled() {
         boolean result = false;
-        if (checkIfElementPresent(reserveSeat, 10) == true) {
+        if (checkIfElementPresent(reserveSeat, 5) == true) {
             System.out.println("RESERVE A SEAT button is displayed");
             result = driver.findElement(reserveSeat).isEnabled();
             System.out.println("RESERVE A SEAT button is enabled");
@@ -340,7 +353,7 @@ public class HomePage extends BasePage {
 
     public boolean isTrackShuttlDisplayed() {
             boolean isTrackShuttlVisible;
-        if (checkIfElementPresent(homecardTrackShuttl, 15) == true) {
+        if (checkIfElementPresent(homecardTrackShuttl, 10) == true) {
             System.out.println("TRACK SHUTTL is appearing on active ride");
             isTrackShuttlVisible = driver.findElement(homecardTrackShuttl).isDisplayed();
         } else {
@@ -352,7 +365,7 @@ public class HomePage extends BasePage {
     }
 
     public void openSubscriptionPass() {
-        if (checkIfElementPresent(subscriptionPasses, 15) == true) {
+        if (checkIfElementPresent(subscriptionPasses, 10) == true) {
             int size = driver.findElements(subscriptionPasses).size();
             if (size > 1) {
                 System.out.println("Multiple passes are available on My Pass page, opening first pass");
@@ -397,8 +410,23 @@ public class HomePage extends BasePage {
     }
 
     public void openBoardedRideHomecard() {
-        waitForVisibilityOf(ongoingHomecard);
-        driver.findElement(ongoingHomecard).click();
+        if (checkIfElementPresent(ongoingHomecard, 10) == true) {
+            System.out.println("Ongoing Ride Homecard is displayed");
+            driver.findElement(ongoingHomecard).click();
+        } else {
+            System.out.println("Ongoing Ride Homecard is not displayed");
+        }
+    }
+
+
+    public boolean checkUserProfileName() {
+        if (checkIfElementPresent(userProfileName, 10) == true) {
+            System.out.println("Menu page is opened");
+            return true;
+        } else {
+            System.out.println("Menu page is not opened");
+            return false;
+        }
     }
 
 }

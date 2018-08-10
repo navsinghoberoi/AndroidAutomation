@@ -277,7 +277,7 @@ public class PersonalDetailsPage extends BasePage {
 
     public boolean isUserOnPersonalDetailsPage(){
         boolean result;
-        if (checkIfElementPresent(titleText, 15) == true) {
+        if (checkIfElementPresent(titleText, 5) == true) {
             System.out.println("User is on personal details page");
             result = driver.findElement(titleText).isEnabled();
             return result;
@@ -314,7 +314,7 @@ public class PersonalDetailsPage extends BasePage {
 
     public boolean isHaveAReferralCodeDisplayed(){
         boolean result;
-        if (checkIfElementPresent(haveReferralCode, 10) == true) {
+        if (checkIfElementPresent(haveReferralCode, 5) == true) {
             System.out.println("Have a Referral Code ? is displayed");
             result = driver.findElement(haveReferralCode).isDisplayed();
             return result;
@@ -354,7 +354,7 @@ public class PersonalDetailsPage extends BasePage {
 
     public boolean isPersonalDetailsSubmitArrowDisplayed(){
         boolean result;
-        if (checkIfElementPresent(personalDetailsSubmitAtSignup, 10) == true) {
+        if (checkIfElementPresent(personalDetailsSubmitAtSignup, 5) == true) {
             System.out.println("Submit arrow is appearing on Personal details page");
             result = driver.findElement(personalDetailsSubmitAtSignup).isDisplayed();
             return result;

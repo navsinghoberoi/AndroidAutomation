@@ -58,7 +58,7 @@ public class LoginPage extends BasePage {
     public void continueButtonClick()
     {
         {
-            if(checkIfElementPresent(continueButton,10) == true){
+            if(checkIfElementPresent(continueButton,5) == true){
                 waitForVisibilityOf(continueButton);
                 driver.findElement(continueButton).click();}
             else{

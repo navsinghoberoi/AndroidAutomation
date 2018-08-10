@@ -203,7 +203,7 @@ public class SlotsPage extends BasePage {
 
     public boolean isSelectTimeslotDisplayed() {
 
-        if (checkIfElementPresent(selectTimeSlotText, 10) == true) {
+        if (checkIfElementPresent(selectTimeSlotText, 5) == true) {
             System.out.println("Select timeslot is displayed, i.e. user is on slots page");
             return true;
         } else {
@@ -215,7 +215,7 @@ public class SlotsPage extends BasePage {
 
     public boolean isRidesRemainingDisplayedOnSlotsPage() {
 
-        if (checkIfElementPresent(ridesRemainingOnSlotsPage, 10) == true) {
+        if (checkIfElementPresent(ridesRemainingOnSlotsPage, 5) == true) {
             System.out.println("Rides remaining count is displayed on slots page");
             return true;
         } else {
@@ -236,7 +236,7 @@ public class SlotsPage extends BasePage {
 
     public boolean isReserveSeatButtonEnabled() {
         boolean result;
-        if (checkIfElementPresent(clickCTA_button, 10) == true) {
+        if (checkIfElementPresent(clickCTA_button, 5) == true) {
             result = driver.findElement(clickCTA_button).isEnabled();
             System.out.println("Reserve seat button is enabled");
             return result;
@@ -250,7 +250,7 @@ public class SlotsPage extends BasePage {
 
     public boolean isAlertDisplayedForBookingSameRoute() {
         boolean result;
-        if (checkIfElementPresent(alertTitle, 10) == true) {
+        if (checkIfElementPresent(alertTitle, 5) == true) {
             result = driver.findElement(alertTitle).isEnabled();
             System.out.println("Alert is displayed for trying to book on same route when already one booking is created");
             String alertText = driver.findElement(alertTitle).getText();
@@ -280,7 +280,7 @@ public class SlotsPage extends BasePage {
 
     public boolean isBannerImageDisplayed() {
         boolean result;
-        if (checkIfElementPresent(bannerImage, 10) == true) {
+        if (checkIfElementPresent(bannerImage, 5) == true) {
             result = driver.findElement(bannerImage).isEnabled();
             System.out.println("Banner image is displayed on slots page");
             return result;
@@ -294,7 +294,7 @@ public class SlotsPage extends BasePage {
 
     public boolean isPostpayOptionDisplayed() {
         boolean result = false;
-        if (checkIfElementPresent(secondOption, 10) == true) {
+        if (checkIfElementPresent(secondOption, 5) == true) {
             result = driver.findElements(secondOption).get(1).isDisplayed();
             System.out.println("Postpay option is displayed");
         } else {
@@ -308,7 +308,7 @@ public class SlotsPage extends BasePage {
 
     public String checkPostpayOptionText() {
         String optionName = "";
-        if (checkIfElementPresent(secondOption, 10) == true) {
+        if (checkIfElementPresent(secondOption, 5) == true) {
             optionName = driver.findElements(secondOption).get(1).getText();
             System.out.println("Postpay option is displayed");
         } else {
@@ -398,7 +398,7 @@ public class SlotsPage extends BasePage {
 
     public boolean viewCrossButton() {
         boolean result;
-        if (checkIfElementPresent(crossButton, 10) == true) {
+        if (checkIfElementPresent(crossButton, 5) == true) {
             System.out.println("Cross icon is Enabled");
             result = driver.findElement(crossButton).isEnabled();
         } else {
@@ -427,7 +427,7 @@ public class SlotsPage extends BasePage {
     public boolean viewRouteMapVisible() {
 
         boolean routeMapButton;
-        if (checkIfElementPresent(view_Route_Map, 10) == true) {
+        if (checkIfElementPresent(view_Route_Map, 5) == true) {
             System.out.println("View Route Map is Enabled");
             routeMapButton = driver.findElement(view_Route_Map).isEnabled();
         } else {
@@ -444,7 +444,7 @@ public class SlotsPage extends BasePage {
     public boolean suggestDifferentTimeButtonVisible() {
         boolean getSuggestDifferentTime;
         scrollToText("SUGGEST A DIFFERENT TIME");
-        if (checkIfElementPresent(suggest_Different_Time, 10) == true) {
+        if (checkIfElementPresent(suggest_Different_Time, 5) == true) {
             System.out.println("SDT Button is Enabled");
             getSuggestDifferentTime = driver.findElement(suggest_Different_Time).isEnabled();
         } else {
@@ -466,7 +466,7 @@ public class SlotsPage extends BasePage {
     }
     public boolean timePopupVisible(){
         boolean getTimePopupVisible;
-        if(checkIfElementPresent(timePopUp,10)==true){
+        if(checkIfElementPresent(timePopUp,5)==true){
             System.out.println("Time popUp is visible "+ timePopUp);
             getTimePopupVisible = driver.findElement(timePopUp).isEnabled();
         }
