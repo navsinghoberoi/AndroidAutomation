@@ -4,8 +4,6 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import javax.sound.midi.SysexMessage;
-
 public class ReferAndEarnPage extends BasePage {
 
     public ReferAndEarnPage(WebDriver driver) {
@@ -58,7 +56,6 @@ public class ReferAndEarnPage extends BasePage {
             return true;
         }catch(Exception e)
         {
-            menuPage.clickRefer();
             return false;
         }
     }

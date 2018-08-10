@@ -24,9 +24,7 @@ public class HomePage extends BasePage {
     By fromLocationButton = By.id("cfts.from");
     By toLocationButton = By.id("cfts.to");
     By locationSwapButton = By.id("cfts.swap");
-    By menuButton = By.className("android.widget.ImageButton");
-    By menuButtonById = By.id("open");
-    By menuButtonByXpath = By.xpath("//android.widget.ImageButton[@content-desc='open']");
+    By menuButton = By.xpath("//android.widget.ImageButton[@content-desc='open']");
     By wallet_button = By.id(app_package_name + "design_menu_item_text");
     By clickGetFreeRide = By.xpath("//android.widget.CheckedTextView[@text='Get Free Rides']");
     By closeSearchPopup = By.id("hso.close_icon");

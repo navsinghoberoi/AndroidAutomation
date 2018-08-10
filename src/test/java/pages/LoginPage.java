@@ -21,14 +21,13 @@ public class LoginPage extends BasePage {
 		driver.findElement(mobileNumber_button).sendKeys(number);
 	}
 
-	public boolean clickVerifyCheckBox() {
-		try {
-			waitForClickabilityOf(verifycheckBox);
+	public void clickVerifyCheckBox() {
+
+		if (checkIfElementPresent(verifycheckBox, 15) == true) {
 			driver.findElement(verifycheckBox).click();
-			return true;
-		} catch (Exception e) {
-			System.out.println(e.getStackTrace());
-			return false;
+		} else {
+
+			System.out.println("Login Checkbox is not present");
 		}
 	}
 

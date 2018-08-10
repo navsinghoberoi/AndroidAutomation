@@ -87,9 +87,9 @@ public class MyRidesTest extends Setup {
     public void verifyCurrentRideTabOnBooking() throws Exception {
 
         //Buy a subscription through API
-        commons.subscriptionBuyViaApiEngine("652824");
+        commons.subscriptionBuyViaApiEngine(getValueFromPPFile("BuyPassUserIDNewuser"));
         //Booked a ride first through API
-        commons.createBookingViaApiEngine("652824");
+        commons.createBookingViaApiEngine(getValueFromPPFile("CreateBookingNewUserId"));
         driver.navigate().back();
         commons.enterUserPhoneNumberOTP("old1UserPhoneNumber", "OTP");
         homePage.clickSearchBar();
@@ -148,8 +148,8 @@ public class MyRidesTest extends Setup {
     @Test(priority = 11)
     public void verifyCurrentTabAfterCancelBooking() throws Exception {
         //ApiHelper.cancelBooking(userId);
-        commons.cancelBookingViaApiEngine("652824");
-        commons.refundSubscriptionViaApiEngine("652824");
+        commons.cancelBookingViaApiEngine(getValueFromPPFile("CancelBookingNewUserId"));
+        commons.refundSubscriptionViaApiEngine(getValueFromPPFile("RefundPassUserIdNewUser"));
         driver.navigate().back();
         homePage.clickMenu();
         myRidesPage.clickMyRidesDisplayText();

@@ -1,7 +1,6 @@
 package tests;
 
 import common.Commons;
-import org.glassfish.grizzly.compression.lzma.impl.Base;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
