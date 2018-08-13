@@ -98,16 +98,6 @@ public class HomePage extends BasePage {
         }
     }
 
-    public boolean checkUserProfileName() {
-        if (checkIfElementPresent(userProfileName, 10) == true) {
-            System.out.println("Menu page is opened");
-            return true;
-        } else {
-            System.out.println("Menu page is not opened");
-            return false;
-        }
-    }
-
     public void clickWallet() {
         waitForClickabilityOf(wallet_button);
         driver.findElements(wallet_button).get(4).click();

@@ -66,7 +66,7 @@ public class ReferAndEarnTest extends Setup {
     @Test(priority = 4)
     public void verifyReferalCodeNumber() throws Exception {
         String referralCode = referAndEarnPage.getReferalCode();
-        Assert.assertEquals(referralCode, getValueFromPPFile("newUserPhoneNumber"));
+        Assert.assertEquals(referralCode, getValueFromPPFile("old1UserPhoneNumber"));
     }
 
     @Test(priority = 5)
@@ -102,16 +102,16 @@ public class ReferAndEarnTest extends Setup {
         referAndEarnPage.clickBackButton();
     }
 
-    @Test(priority = 9)
-    public void verifyWhatsappSendButton() {
-        referAndEarnPage.getWhatsappIconClick();
-        String whatsAppContactTextDetail = referAndEarnPage.getWhatsappScreenText();
-        Assert.assertEquals(whatsAppContactTextDetail, "Frequently contacted");
-        referAndEarnPage.getWhatsappFirstContactClick();
-        referAndEarnPage.getWhatappSendButton();
-        referAndEarnPage.whatsAppButtonClick();
+//    @Test(priority = 9)
+//    public void verifyWhatsappSendButton() {
+//        referAndEarnPage.getWhatsappIconClick();
+//        String whatsAppContactTextDetail = referAndEarnPage.getWhatsappScreenText();
+//        Assert.assertEquals(whatsAppContactTextDetail, "Frequently contacted");
+//        referAndEarnPage.getWhatsappFirstContactClick();
+//        referAndEarnPage.getWhatappSendButton();
+//        referAndEarnPage.whatsAppButtonClick();
 
-    }
+ //   }
 
     @AfterClass
     public void tearDown() throws Exception {

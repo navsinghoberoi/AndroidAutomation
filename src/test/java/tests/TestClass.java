@@ -14,7 +14,6 @@ import pages.*;
 import apiEngine.ApiHelper;
 
 import java.io.IOException;
-
 /*
 Intent of this class is to check new implementations or amend existing implementation
 */
@@ -39,6 +38,7 @@ public class TestClass extends BasePage {
     private RefundPassPage refundPassPage;
     private String className;
     private static String api = "https://dkr-serviceadmin.goplus.in/addTrip?tripId=0&slot=17:47:00&type=Extra%20Trip&vehicleId=3&routeId=241";
+    private static MyRidesPage myRidesPage;
 
     @BeforeClass
     public void setUp() throws Exception {
@@ -60,24 +60,25 @@ public class TestClass extends BasePage {
         passDetailsPage = new PassDetailsPage(driver);
         refundPassPage = new RefundPassPage(driver);
         className = getClass().getSimpleName() + commons.getCurrentTime();
+        myRidesPage = new MyRidesPage(driver);
     }
 
     public TestClass(WebDriver driver) {
         super(driver);
     }
 
-    @Test(priority = 1,enabled = true)
-    public void testQAUMSDBConnection() throws Exception{
+    @Test(priority = 1, enabled = true)
+    public void testQAUMSDBConnection() throws Exception {
         String dbValue = commons.connectSQLDbAndFetchValue(getValueFromPPFile("umsQaDbIP"), getValueFromPPFile("umsQaDbUserName"), getValueFromPPFile("umsQaDbPassword"), getValueFromPPFile("umsQaDbName"), getValueFromPPFile("umsQaDbSqlQuery"), getValueFromPPFile("umsQaDbColumnName"));
-        System.out.println("Value fetched from qa database = "+dbValue);
+        System.out.println("Value fetched from qa database = " + dbValue);
         System.out.println("------------ End of test 1 ----------------");
     }
 
 
-    @Test(priority = 2,enabled = true)
-    public void testProdUMSDBConnection() throws Exception{
+    @Test(priority = 2, enabled = true)
+    public void testProdUMSDBConnection() throws Exception {
         String dbValue = commons.connectSQLDbAndFetchValue(getValueFromPPFile("umsProdDbIP"), getValueFromPPFile("umsProdDbUserName"), getValueFromPPFile("umsProdDbPassword"), getValueFromPPFile("umsProdDbName"), getValueFromPPFile("umsProdDbSqlQuery"), getValueFromPPFile("umsProdDbColumnName"));
-        System.out.println("Value fetched from prod database = "+dbValue);
+        System.out.println("Value fetched from prod database = " + dbValue);
         System.out.println("------------ End of test 2 ----------------");
     }
 
@@ -89,7 +90,7 @@ public class TestClass extends BasePage {
         Response response = ApiHelper.buySub(UserID);
         boolean value1 = commons.getBooleanValueFromApiResponse(response, "success");
         int value2 = commons.getIntegerValueFromApiResponse(response, "data.userSubscriptionId");
-        Assert.assertEquals(value1,true);
+        Assert.assertEquals(value1, true);
     }
 
     @Test(priority = 4)
@@ -104,7 +105,7 @@ public class TestClass extends BasePage {
         Response response = ApiHelper.createBooking("652245");
         boolean value1 = commons.getBooleanValueFromApiResponse(response, "success");
         int value2 = commons.getIntegerValueFromApiResponse(response, "data.bookingId");
-        Assert.assertEquals(value1,true);
+        Assert.assertEquals(value1, true);
 
     }
 
@@ -114,8 +115,8 @@ public class TestClass extends BasePage {
         Response response = ApiHelper.cancelBooking("652245");
         boolean value1 = commons.getBooleanValueFromApiResponse(response, "success");
         String value2 = commons.getStringValueFromApiResponse(response, "data.bookingStatus");
-        Assert.assertEquals(value1,true);
-        Assert.assertEquals(value2,"CANCELLED");
+        Assert.assertEquals(value1, true);
+        Assert.assertEquals(value2, "CANCELLED");
 
     }
 
@@ -124,12 +125,11 @@ public class TestClass extends BasePage {
         System.out.println("-------------- Refund Subscription --------------");
         Response response = ApiHelper.refundSubscription(UserID);
         boolean value1 = commons.getBooleanValueFromApiResponse(response, "success");
-        String value2 = commons.getStringValueFromApiResponse(response,"data.title");
-        Assert.assertEquals(value1,true);
-        Assert.assertEquals(value2,"Refund Successful");
+        String value2 = commons.getStringValueFromApiResponse(response, "data.title");
+        Assert.assertEquals(value1, true);
+        Assert.assertEquals(value2, "Refund Successful");
 
     }
-
 
     public static void createTrip() throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -142,11 +142,10 @@ public class TestClass extends BasePage {
                 .build();
 
         okhttp3.Response response = client.newCall(request).execute();
-        System.out.println("Is api response successful = " +response.isSuccessful());
+        System.out.println("Is api response successful = " + response.isSuccessful());
     }
 
-    public static void main(String args[]) throws Exception
-    {
+    public static void main(String args[]) throws Exception {
         /*Commons commons = new Commons(driver);
         commons.subscriptionBuyViaApiEngine("652245");
         commons.getActiveUserSubscriptionViaApiEngine("652245");
@@ -154,8 +153,9 @@ public class TestClass extends BasePage {
         commons.cancelBookingViaApiEngine("652245");
         commons.refundSubscriptionViaApiEngine("652245");*/
 
-    //       createTrip();
+        //       createTrip();
 
 
     }
 }
+
