@@ -25,6 +25,7 @@ import java.net.MalformedURLException;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -405,6 +406,40 @@ public class Commons extends BasePage {
         System.out.println("Response of board api = "+jsonData);*/
         return isApiSuccessful;
     }
+
+    public int getHourOfDay(){
+        Calendar rightNow = Calendar.getInstance();
+        int hour = rightNow.get(Calendar.HOUR_OF_DAY);
+        System.out.println("Value of hour = "+hour);
+        return hour;
+    }
+
+    public String getFromLocationPlaceholder() {
+        int hour = getHourOfDay();
+        String pickupPoint = "";
+        if (hour >= 10 && hour <= 18) {
+            pickupPoint = "Enter office location";
+        } else {
+            pickupPoint = "Enter home location";
+        }
+        return pickupPoint;
+    }
+
+    public String getToLocationPlaceholder() {
+        int hour = getHourOfDay();
+        String dropPoint = "";
+        if (hour >= 10 && hour <= 18) {
+            dropPoint = "Enter home location";
+        } else {
+            dropPoint = "Enter office location";
+        }
+        return dropPoint;
+    }
+
+
+
+
+
 }
 
 

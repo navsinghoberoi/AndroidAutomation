@@ -15,14 +15,25 @@ public class SelectLocationPage extends BasePage {
 	}
 
 
-	public void selectSearchLocation(String Location,int index) throws InterruptedException {
-		waitForClickabilityOf(searchLocation_button);
-		driver.findElement(searchLocation_button).sendKeys(Location);
-		Thread.sleep(3000);
-		waitForVisibilityOf(searchResult_button);
-		Thread.sleep(3000);
-		driver.findElements(searchResult_button).get(index).click();
-	}
+    public void selectSearchLocation(String Location, int index) throws InterruptedException {
+        waitForClickabilityOf(searchLocation_button);
+        driver.findElement(searchLocation_button).sendKeys(Location);
+        //	Thread.sleep(3000);
+        waitForVisibilityOf(searchResult_button);
+        //	Thread.sleep(3000);
+        for (int i = 0; i < 5; i++) {
+            String searchLoc = driver.findElements(searchResult_button).get(index).getText();
+            System.out.println("Value of search location  = " + searchLoc);
+            if (searchLoc.contains(Location)) {
+                System.out.println("Search result(s) found for entered location");
+                driver.findElements(searchResult_button).get(index).click();
+                break;
+            } else {
+                System.out.println("Search result not found for entered location, trying again");
+                Thread.sleep(1500);
+            }
+        }
+    }
 
 
 	public void enterSearchLocation(String Location) {

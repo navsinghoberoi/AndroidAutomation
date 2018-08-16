@@ -33,7 +33,9 @@ public class HomePage extends BasePage {
     By reportIssueOption = By.xpath("//android.widget.TextView[@text='Report An Issue']");
     By reportIssueSubmitButton = By.xpath("//android.widget.Button[@text='Submit']");
     By reserveSeat = By.id("hr.action_button");
-    By rebookCardTitle = By.id("hr.ride_session");
+ //   By rebookCardTitle = By.id("hr.ride_session");
+    By rebookCardTitleMorning = By.xpath("//android.widget.TextView[@text='Morning Ride']");
+    By rebookCardTitleEvening = By.xpath("//android.widget.TextView[@text='Evening Ride']");
     By rebookCardPickupPoint = By.id("hr.pick_up_location");
     By rebookCardDropPoint = By.id("hr.drop_location");
     By homecardTrackShuttl = By.id("hab.action_container");
@@ -45,7 +47,7 @@ public class HomePage extends BasePage {
     By currentLocationButton = By.id("pb_refocus_map_btn");
     By ongoingHomecard = By.id("hbpb.ride_day");
     By userProfileName = By.id("drawer.user_name");
-
+    By backButton = By.className("android.widget.ImageButton");
 
 
     public String getHeaderText() {
@@ -98,15 +100,6 @@ public class HomePage extends BasePage {
         }
     }
 
-    public boolean checkUserProfileName() {
-        if (checkIfElementPresent(userProfileName, 10) == true) {
-            System.out.println("Menu page is opened");
-            return true;
-        } else {
-            System.out.println("Menu page is not opened");
-            return false;
-        }
-    }
 
     public void clickWallet() {
         waitForClickabilityOf(wallet_button);
@@ -265,8 +258,8 @@ public class HomePage extends BasePage {
 
 
     public void clickBackButton() {
-        waitForVisibilityOf(buddyButtonClickable);
-        driver.findElements(buddyButtonClickable).get(0).click();
+        waitForVisibilityOf(backButton);
+        driver.findElement(backButton).click();
     }
 
     public boolean isReserveSeatButtonDisplayed() {
@@ -294,14 +287,26 @@ public class HomePage extends BasePage {
 
 
     public String getMorningRebookCardTitle() {
-        waitForVisibilityOf(rebookCardTitle);
-        String text = driver.findElements(rebookCardTitle).get(0).getText();
+            String text = "";
+        if (checkIfElementPresent(rebookCardTitleMorning, 10) == true) {
+            System.out.println("Morning Ride Rebook Card is displayed");
+            text = driver.findElement(rebookCardTitleMorning).getText();
+            } else {
+            System.out.println("Morning Ride Rebook Card is not displayed");
+            text = "no morning ride rebook card available";
+        }
         return text;
     }
 
     public String getEveningRebookCardTitle() {
-        waitForVisibilityOf(rebookCardTitle);
-        String text = driver.findElements(rebookCardTitle).get(1).getText();
+        String text = "";
+        if (checkIfElementPresent(rebookCardTitleEvening, 10) == true) {
+            System.out.println("Evening Ride Rebook Card is displayed");
+            text = driver.findElement(rebookCardTitleEvening).getText();
+        } else {
+            System.out.println("Evening Ride Rebook Card is not displayed");
+            text = "no evening ride rebook card available";
+        }
         return text;
     }
 

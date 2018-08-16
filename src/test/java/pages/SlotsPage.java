@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SlotsPage extends BasePage {
 
-    By selectSlot = By.id("parent_view");
+    By selectSlot = By.xpath("//android.widget.LinearLayout[@clickable='true']");
     By selectSlotsBoardingTime = By.id(app_package_name + "time_tv");
     By selectRoute_button = By.id(app_package_name + "next_shuttl_container");
     //By clickBook_button = By.id(app_package_name + "booking_btn_book");
