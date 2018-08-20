@@ -61,7 +61,7 @@ public class NotificationTest extends Setup{
         Assert.assertEquals(landing_Page_Text,"Notifications");
     }
     @Test(priority = 3)
-    public void verifyBookingNotification()throws Exception{
+    public void verifyCreateBookingNotification()throws Exception{
         //Buy a subscription through API
         commons.subscriptionBuyViaApiEngine(getValueFromPPFile("BuyPassUserIDNewuser"));
         //Booked a ride first through API
@@ -112,15 +112,6 @@ public class NotificationTest extends Setup{
         getbookingIdValue = notificationPage.getBookingId();
         Assert.assertEquals(getbookingIdValue, Integer.toString(bookingIdFromAPIForCreate));
     }
-
-//    @Test(priority = 5)
-//    public void verifyYourShuttlIsArrivingNotification(){
-//
-//    }
-//    @Test(priority = 6)
-//    public void verifyNonOperationalNotification(){
-//
-//    }
 
 
 }
