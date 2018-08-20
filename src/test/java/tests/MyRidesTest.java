@@ -85,7 +85,7 @@ public class MyRidesTest extends Setup {
 
     @Test(priority = 4)
     public void verifyCurrentRideTabOnBooking() throws Exception {
-
+        driver.navigate().back();
         //Buy a subscription through API
         commons.subscriptionBuyViaApiEngine(getValueFromPPFile("BuyPassUserIDNewuser"));
         //Booked a ride first through API

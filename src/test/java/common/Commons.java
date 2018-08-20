@@ -236,12 +236,12 @@ public class Commons extends BasePage {
         homePage.clickFindMyShuttl();
     }
 
-    public void bookingViaCoupon(String homeAddress, String OfficeAddress) throws Exception {
+    public void bookingViaCoupon() throws Exception {
         couponsPage.clickCouponsDisplayText();
         couponsPage.addCouponIntegrated();
         couponsPage.clickPopUp();
         driver.navigate().back();
-        openSearchBarAndFindRoute(homeAddress,OfficeAddress);
+        openSearchBarAndFindRoute("homeAddress","officeAddress");
         slotsPage.clickSlot(0);
         slotsPage.clickCtaOnSlotsPage();
     }
@@ -358,6 +358,33 @@ public class Commons extends BasePage {
         Assert.assertEquals(value1, true);
     }
 
+//    public boolean createTrip(String host, String port, String slotTime, String vehicleId, String routeId) throws Exception {
+//
+//        OkHttpClient client = new OkHttpClient();
+//        Request request = new Request.Builder()
+//                .url(host + ":" + port + "/addTrip?" +
+//                        "tripId=0&" +
+//                        "slot=" + slotTime + "&" +
+//                        "type=Extra%20Trip&" +
+//                        "vehicleId=" + vehicleId + "&" +
+//                        "routeId=" + routeId)
+//                .get()
+//                .addHeader("Cookie", "authToken=" + getValueFromPPFile("authToken"))
+//                .build();
+//
+//        okhttp3.Response response = client.newCall(request).execute();
+//
+//        if (response.message().equalsIgnoreCase("OK"))
+//        {
+//            System.out.println("trip Has been created on route " + routeId + " on time " + slotTime );
+//            return true;
+//
+//        }
+//
+//        else
+//            return false;
+//
+//    }
 
     public void getActiveUserSubscriptionViaApiEngine(String UserID) {
         ApiHelper.getUserActiveSubs(UserID);
@@ -371,12 +398,14 @@ public class Commons extends BasePage {
         return value2;
     }
 
-    public void cancelBookingViaApiEngine(String UserID) {
+    public int cancelBookingViaApiEngine(String UserID) {
         Response response = ApiHelper.cancelBooking(UserID);
         boolean value1 = getBooleanValueFromApiResponse(response, "success");
         String value2 = getStringValueFromApiResponse(response, "data.bookingStatus");
+        int value3 = getIntegerValueFromApiResponse(response, "data.bookingId");
         Assert.assertEquals(value1, true);
         Assert.assertEquals(value2, "CANCELLED");
+        return value3;
     }
 
     public void refundSubscriptionViaApiEngine(String UserID) {

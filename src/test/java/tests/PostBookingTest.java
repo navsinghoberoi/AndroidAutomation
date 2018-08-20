@@ -44,7 +44,7 @@ public class PostBookingTest extends Setup {
 
     @Test()
     public void verifyPickUpStop() throws Exception {
-        commons.bookingViaCoupon("homePage", "OfficeAddress");
+        commons.bookingViaCoupon();
         bookingCompletePage.clickBookingConfirmPopupCTA();
         boolean cardVisible = homePage.isTrackShuttlDisplayed();
         Assert.assertEquals(cardVisible,true,"Booking Card is Visible");
@@ -66,7 +66,8 @@ public class PostBookingTest extends Setup {
         homePage.clickMenu();
         myRidesPage.clickMyRidesDisplayText();
         String currentRidePickupText = myRidesPage.currentRideText();
-        Assert.assertEquals(currentRidePickupText, getValueFromPPFile("homeAddress"));
+        boolean isCurrentRidePickupText = currentRidePickupText.contains(getValueFromPPFile("homeAddress"));
+        Assert.assertEquals(currentRidePickupText, true);
         driver.navigate().back();
     }
 

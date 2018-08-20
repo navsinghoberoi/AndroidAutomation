@@ -42,6 +42,7 @@ public class SlotsPage extends BasePage {
     By minuteSelection = By.xpath("//android.widget.RadialTimePickerView$RadialPickerTouchHelper[@index=6]");
     By thankYouPage = By.xpath("//android.widget.TextView[@text='Thank You!']");
     By thankYouPageOkButton = By.id("dsf.button");
+    By couponTextInList = By.id("item_coupon.content");
 
 
 
@@ -264,11 +265,36 @@ public class SlotsPage extends BasePage {
     }
 
     public String getCouponCodeTextOnSlotScreen() {
-        waitForVisibilityOf(couponText);
-        String getCouponText = driver.findElement(couponText).getText();
-        return getCouponText;
-    }
+        try {
+            waitForVisibilityOf(couponText);
+            String getCouponText = driver.findElement(couponText).getText();
+            return getCouponText;
+        }
+        catch (Exception e ){
+            return null;
+        }
 
+    }
+    public boolean getCouponTextOnSLot()throws Exception {
+        waitForVisibilityOf(couponText);
+        driver.findElement(couponText).click();
+        try {
+            boolean result = false;
+            List<WebElement> couponList = driver.findElements(couponTextInList);
+            int couponListSize = couponList.size();
+            for (int i = 0; i < couponListSize; i++) {
+                String couponCodeText = couponList.get(i).getText();
+                System.out.println("Coupon Text Match" + couponCodeText);
+                if (couponCodeText.equalsIgnoreCase(getValueFromPPFile("couponcode"))) {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     public String getCTAOnSlotsPage() {
         waitForVisibilityOf(clickCTA_button);

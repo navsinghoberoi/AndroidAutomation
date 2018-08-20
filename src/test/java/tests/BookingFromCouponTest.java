@@ -72,36 +72,42 @@ public class BookingFromCouponTest extends Setup {
         couponsPage.clickSavedCouponsArea();
         couponsPage.clickOnSavedCoupon();
         String couponCode = couponsPage.getSavedCouponCodeText();
-        Assert.assertEquals(couponCode, getValueFromPPFile("couponcode"));
         couponsPage.clickDismissButton();
-        couponsPage.clickBackButton();
-
+        Assert.assertEquals(couponCode, getValueFromPPFile("couponcode"));
     }
 
     @Test(priority = 3)
     public void verifyCreateBookingViaCoupon() throws Exception {
+        driver.navigate().back();
+        boolean result = false;
         homePage.checkSearchBar();
         commons.openSearchBarAndFindRoute("homeAddress", "officeAddress");
         slotsPage.clickSlot(0);
         String couponDetails = slotsPage.getCouponCodeTextOnSlotScreen();
-        Assert.assertEquals(couponDetails, getValueFromPPFile("couponcode"));
+        if (couponDetails.contains(getValueFromPPFile("couponcode")))
+        {
+            result = true;
+        }
+        else
+        {
+        result = slotsPage.getCouponTextOnSLot();
+        }
         slotsPage.clickCtaOnSlotsPage();
-
+        Assert.assertTrue(result,"Test Case failed");
     }
 
     @Test(priority = 4)
     public void verifyRideConfirmed() {
 
         String getRideConfirmationText = bookingCompletePage.getBookingConfirmPopupTitle();
-        Assert.assertEquals(getRideConfirmationText, "Ride Confirmed");
         bookingCompletePage.clickBookingConfirmPopupCTA();
-
+        Assert.assertEquals(getRideConfirmationText, "Ride Confirmed");
     }
     @Test(priority = 5)
     public void verifyCurrentRideVisibility() {
+        System.out.println("I am inside test");
         boolean homepageCurrentRideCard = homePage.isTrackShuttlDisplayed();
-        Assert.assertEquals(homepageCurrentRideCard, true);
-
+        Assert.assertTrue(homepageCurrentRideCard);
     }
 
     @Test(priority = 6)
@@ -109,8 +115,8 @@ public class BookingFromCouponTest extends Setup {
         homePage.clickMenu();
         myRidesPage.clickMyRidesDisplayText();
         String currentRidePickupText = myRidesPage.currentRideText();
-        Assert.assertEquals(currentRidePickupText, getValueFromPPFile("homeAddress"));
         driver.navigate().back();
+        Assert.assertTrue(getValueFromPPFile("homeAddress").contains(currentRidePickupText));
     }
 
     @Test(priority = 7)
