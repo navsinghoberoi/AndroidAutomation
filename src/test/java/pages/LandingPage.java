@@ -39,8 +39,6 @@ public class LandingPage extends BasePage {
 
 
     public boolean clickSkipToLogin() {
-
-
         try{
             if (checkIfElementPresent(skip_to_login_button, 10) == true)
                 driver.findElement(skip_to_login_button).click();

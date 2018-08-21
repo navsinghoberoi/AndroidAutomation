@@ -46,6 +46,7 @@ public class HomePage extends BasePage {
     By ongoingHomecard = By.id("hbpb.ride_day");
     By userProfileName = By.id("drawer.user_name");
 
+    private MyRidesPage myRidesPage;
 
 
     public String getHeaderText() {
@@ -95,16 +96,6 @@ public class HomePage extends BasePage {
             }
         } else {
             System.out.println("Menu button is not displayed");
-        }
-    }
-
-    public boolean checkUserProfileName() {
-        if (checkIfElementPresent(userProfileName, 10) == true) {
-            System.out.println("Menu page is opened");
-            return true;
-        } else {
-            System.out.println("Menu page is not opened");
-            return false;
         }
     }
 
@@ -383,6 +374,19 @@ public class HomePage extends BasePage {
         waitForVisibilityOf(rideStatus);
         String RideST = driver.findElement(rideStatus).getText();
         return RideST;
+    }
+    public boolean getRideDetailsVisible() {
+        boolean rideDetailsVisibilty = false;
+        if (checkIfElementPresent(rideStatus, 10)) {
+            rideDetailsVisibilty = driver.findElement(rideStatus).isDisplayed();
+            rideDetailsVisibilty = true;
+        } else {
+            clickMenu();
+            myRidesPage.clickMyRidesDisplayText();
+            driver.navigate().back();
+            System.out.println("Track Shuttl is not displayed");
+        }
+        return rideDetailsVisibilty;
     }
     public String getCurrentRideTitle() {
         waitForVisibilityOf(currentRideStatus);

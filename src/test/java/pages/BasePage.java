@@ -37,6 +37,7 @@ public class BasePage extends Setup {
         }
     }
 
+
     protected boolean waitForClickabilityOf(By locator) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, 30);

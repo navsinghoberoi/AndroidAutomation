@@ -65,11 +65,11 @@ public class ReferAndEarnPage extends BasePage {
         try{
            waitForVisibilityOf(referAndEarnTitle);
            FindReferAndEarnTitleText= driver.findElement(referAndEarnTitle).getText();
+           return FindReferAndEarnTitleText ;
        }catch (Exception e)
        {
            return FindReferAndEarnTitleText;
        }
-        return FindReferAndEarnTitleText ;
     }
     public boolean getActionInfoClick()
     {
