@@ -376,20 +376,13 @@ public class HomePage extends BasePage {
         return RideST;
     }
     public boolean getRideDetailsVisible() {
-        System.out.println("I am inside func_");
         boolean rideDetailsVisibilty = false;
         if (checkIfElementPresent(rideStatus, 10)) {
-            System.out.println("I am inside func_1");
             rideDetailsVisibilty = driver.findElement(rideStatus).isDisplayed();
-            System.out.println("I am inside func_2");
             rideDetailsVisibilty = true;
-            System.out.println("I am inside func_3");
         } else {
-            System.out.println("I am inside func_4");
             clickMenu();
-            System.out.println("I am inside func_5");
             myRidesPage.clickMyRidesDisplayText();
-            System.out.println("I am inside func_6");
             driver.navigate().back();
             System.out.println("Track Shuttl is not displayed");
         }

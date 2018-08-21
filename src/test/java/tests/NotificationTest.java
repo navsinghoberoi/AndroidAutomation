@@ -113,5 +113,4 @@ public class NotificationTest extends Setup{
         Assert.assertEquals(getbookingIdValue, Integer.toString(bookingIdFromAPIForCreate));
     }
 
-
 }
