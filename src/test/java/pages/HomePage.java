@@ -49,6 +49,8 @@ public class HomePage extends BasePage {
     By userProfileName = By.id("drawer.user_name");
     By backButton = By.className("android.widget.ImageButton");
 
+    private MyRidesPage myRidesPage;
+
 
     public String getHeaderText() {
         waitForVisibilityOf(searchBar);
@@ -388,6 +390,19 @@ public class HomePage extends BasePage {
         waitForVisibilityOf(rideStatus);
         String RideST = driver.findElement(rideStatus).getText();
         return RideST;
+    }
+    public boolean getRideDetailsVisible() {
+        boolean rideDetailsVisibilty = false;
+        if (checkIfElementPresent(rideStatus, 10)) {
+            rideDetailsVisibilty = driver.findElement(rideStatus).isDisplayed();
+            rideDetailsVisibilty = true;
+        } else {
+            clickMenu();
+            myRidesPage.clickMyRidesDisplayText();
+            driver.navigate().back();
+            System.out.println("Track Shuttl is not displayed");
+        }
+        return rideDetailsVisibilty;
     }
     public String getCurrentRideTitle() {
         waitForVisibilityOf(currentRideStatus);
