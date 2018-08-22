@@ -30,10 +30,6 @@ import java.util.List;
 
 public class Commons extends BasePage {
 
-    public Commons(WebDriver driver) throws MalformedURLException {
-        super(driver);
-    }
-
     private LandingPage landingPage = new LandingPage(driver);
     private LoginPage loginPage = new LoginPage(driver);
     private HomePage homePage = new HomePage(driver);
@@ -51,6 +47,9 @@ public class Commons extends BasePage {
     private RefundPassPage refundPassPage = new RefundPassPage(driver);
     private TrackShuttlPage trackShuttlPage = new TrackShuttlPage(driver);
     private CouponsPage couponsPage = new CouponsPage(driver);
+    public Commons(WebDriver driver) throws MalformedURLException {
+        super(driver);
+    }
 
     public void login(String phoneNumber, String OTP) throws Exception {
         enterUserPhoneNumberOTP(phoneNumber, OTP);
@@ -65,8 +64,15 @@ public class Commons extends BasePage {
     }
     /* This method lets user login by specifying phonenumber and OTP*/
     public void enterUserPhoneNumberOTP(String phoneNumberKey, String otpKey) throws Exception {
+
+
+        String userOTP;
+        if (otpKey.equalsIgnoreCase("OTP"))
+            userOTP = getValueFromPPFile(otpKey);
+        else
+            userOTP = otpKey ;
+
         String userPhoneNumber = getValueFromPPFile(phoneNumberKey);
-        String userOTP = getValueFromPPFile(otpKey);
         landingPage.clickSkipToLogin();
         loginPage.enterMobileNumber(userPhoneNumber);
         loginPage.clickVerifyCheckBox();

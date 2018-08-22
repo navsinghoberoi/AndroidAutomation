@@ -1,6 +1,5 @@
 package tests;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import common.Commons;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -21,18 +20,24 @@ public class NotificationTest extends Setup{
     private MyRidesPage myRidesPage;
     private int bookingIdFromAPIForCancel;
     private int bookingIdFromAPIForCreate;
+    private String otpForUser;
 
     @BeforeClass
     public void Setup() throws Exception {
         createAndroidSession(false);
         commons = new Commons(driver);
-        commons.goToHomepage("old1UserPhoneNumber","OTP");
+
+        String mainQuery = getValueFromPPFile("") +
+                getValueFromPPFile("old1UserPhoneNumber") + " Order by USER_SMS_ID desc limit 1" ;
+        otpForUser = commons.connectSQLDbAndFetchValue(getValueFromPPFile("umsQaDbIP"), getValueFromPPFile("umsQaDbUserName"), getValueFromPPFile("umsQaDbPassword"), getValueFromPPFile("umsQaDbName"), mainQuery , getValueFromPPFile("umsQaDbFetchUserOtp"));
+        commons.goToHomepage("old1UserPhoneNumber",otpForUser);
         homePage = new HomePage(driver);
         homePage.clickMenu();
         className = getClass().getSimpleName() + commons.getCurrentTime();
         notificationPage = new NotificationPage(driver);
       //  basePage = new BasePage(driver);
         myRidesPage = new MyRidesPage(driver);
+
     }
 
     @AfterClass
