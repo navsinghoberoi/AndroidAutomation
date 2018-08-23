@@ -29,14 +29,14 @@ public class BookingFromSubscriptionTest extends Setup {
         slotsPage = new SlotsPage(driver);
         passDetailsPage = new PassDetailsPage(driver);
         bookingCompletePage = new BookingCompletePage(driver);
-        commons.goToHomepage("oldUserPhoneNumber", "oldUserOTP");
+        commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
         className = getClass().getSimpleName() + commons.getCurrentTime();
     }
 
     @AfterMethod
     public void tearDown(ITestResult iTestResult){
         if (ITestResult.FAILURE == iTestResult.getStatus()){
-            commons.captureScreenshot(driver,className);
+            commons.captureScreenshot(driver, className + " " + iTestResult.getMethod().getMethodName());
             System.out.println("Screenshot taken for failed testcase");
         }
         driver.quit();

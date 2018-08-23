@@ -14,6 +14,11 @@ import pages.*;
 import apiEngine.ApiHelper;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /*
 Intent of this class is to check new implementations or amend existing implementation
 */
@@ -42,7 +47,7 @@ public class TestClass extends BasePage {
 
     @BeforeClass
     public void setUp() throws Exception {
-        createAndroidSession(true);
+    //    createAndroidSession(true);
         landingPage = new LandingPage(driver);
         loginPage = new LoginPage(driver);
         personalDetails = new PersonalDetailsPage(driver);
@@ -153,6 +158,21 @@ public class TestClass extends BasePage {
         commons.cancelBookingViaApiEngine("652245");
         commons.refundSubscriptionViaApiEngine("652245");*/
 
+
+    //       createTrip();
+        Calendar rightNow = Calendar.getInstance();
+        int hour = rightNow.get(Calendar.HOUR_OF_DAY);
+        System.out.println(hour);
+        String pp="";
+        String dp="";
+        // pick only hour
+        if(hour>=10 && hour<=18){
+            pp = "Enter office location";
+            dp = "Enter home location";
+        }else {
+            pp = "Enter home location";
+            dp = "Enter office location";
+        }
         //       createTrip();
 
 

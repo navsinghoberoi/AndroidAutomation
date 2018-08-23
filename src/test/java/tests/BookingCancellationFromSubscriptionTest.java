@@ -31,7 +31,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
     @AfterMethod
     public void tearDown(ITestResult iTestResult){
         if (ITestResult.FAILURE == iTestResult.getStatus()){
-            commons.captureScreenshot(driver,className);
+            commons.captureScreenshot(driver, className + " " + iTestResult.getMethod().getMethodName());
             System.out.println("Screenshot taken for failed testcase");
         }
         driver.quit();
@@ -54,7 +54,7 @@ public class BookingCancellationFromSubscriptionTest extends Setup {
     @Test
     public void verifyActiveRideHomecardDisplayed() throws Exception  {
         //adding this temporarily to login if user gets logged out due to bug in getSession api
-        commons.goToHomepage("oldUserPhoneNumber", "oldUserOTP");
+        commons.goToHomepage("userWithoutSubsPhoneNumber","userWithoutSubsOTP");
         boolean result = homepage.isTrackShuttlDisplayed();
         Assert.assertEquals(result, true, "test case failed");
     }

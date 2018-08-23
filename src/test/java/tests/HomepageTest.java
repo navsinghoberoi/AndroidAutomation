@@ -32,7 +32,7 @@ public class HomepageTest extends Setup {
     @AfterMethod
     public void tearDown(ITestResult iTestResult){
         if (ITestResult.FAILURE == iTestResult.getStatus()){
-            commons.captureScreenshot(driver,className);
+            commons.captureScreenshot(driver, className + " " + iTestResult.getMethod().getMethodName());
             System.out.println("Screenshot taken for failed testcase");
         }
         driver.quit();
@@ -150,21 +150,23 @@ public class HomepageTest extends Setup {
         Assert.assertEquals(actualResult, true, "test case failed");
     }
 
-    @Test(priority = 12,enabled = false)
+    @Test(priority = 12)
     public void verifyFromLocationHeading() throws Exception {
         commons.clickSearchBar();
         String text = homePage.getFromLocationText();
         System.out.println("Heading of from location field = " + text);
-        Assert.assertEquals(text, "Enter home location", "test case failed"); // Might fail coz of app config, need to handle via time
+        String expectedPlaceholder = commons.   getFromLocationPlaceholder();
+        Assert.assertEquals(text, expectedPlaceholder, "test case failed");
     }
 
 
-    @Test(priority = 13,enabled = false)
+    @Test(priority = 13)
     public void verifyToLocationHeading() throws Exception {
         commons.clickSearchBar();
         String text = homePage.getToLocationText();
         System.out.println("Heading of to location field = " + text);
-        Assert.assertEquals(text, "Enter office location", "test case failed"); // Might fail coz of app config, need to handle via time
+        String expectedPlaceholder = commons.getToLocationPlaceholder();
+        Assert.assertEquals(text, expectedPlaceholder, "test case failed");
     }
 
 
