@@ -53,7 +53,7 @@ public class BookingRescheduleTest extends Setup {
         commons.createBookingViaApiEngine(getValueFromPPFile("CreateBookingUserId")); // createBooking via api
     }
 
-    @Test(enabled = false)
+    @Test
     public void verifyActiveRideHomecardDisplayed() throws Exception {
         //adding this temporarily to login if user gets logged out due to bug in getSession api
         commons.goToHomepage("userWithoutSubsPhoneNumber", "userWithoutSubsOTP");
@@ -61,7 +61,7 @@ public class BookingRescheduleTest extends Setup {
         Assert.assertEquals(result, true, "test case failed");
     }
 
-    @Test(priority = 1,enabled = false)
+    @Test(priority = 1)
     public void verifyPPNameOnActiveRide() {
         String ppName = homepage.getBookingHomecardData();
         boolean isPickupPointSame = ppName.contains("Rithala");     // Because booking will be made from this point in createBooking scenario
@@ -69,7 +69,7 @@ public class BookingRescheduleTest extends Setup {
     }
 
 
-    @Test(priority = 2,enabled = false)
+    @Test(priority = 2)
     public void verifyTrackShuttlClick() {
         homepage.clickBookingHomeCard();
         trackShuttlPage.dismissProtip();
@@ -78,7 +78,7 @@ public class BookingRescheduleTest extends Setup {
     }
 
 
-    @Test(priority = 3,enabled = false)
+    @Test(priority = 3)
     public void verifyBackButtonClickOnTrackShuttlPage() {
         homepage.clickBookingHomeCard();
         trackShuttlPage.clickBackIcon();
@@ -87,7 +87,7 @@ public class BookingRescheduleTest extends Setup {
     }
 
 
-    @Test(priority = 4,enabled = false)
+    @Test(priority = 4)
     public void verifyOptionsCountOnTrackShuttlPage() {
         boolean result;
         homepage.clickBookingHomeCard();
@@ -103,7 +103,7 @@ public class BookingRescheduleTest extends Setup {
     }
 
 
-    @Test(priority = 5,enabled = false)
+    @Test(priority = 5)
     public void verifyShowTrafficOptionDisplayed() {
         commons.openRideOptionsFromBookingHomecards();
         boolean result = commons.verifyIsLocatorPresent("Show Traffic", trackShuttlPage.getOptionsNameLocator());
@@ -111,7 +111,7 @@ public class BookingRescheduleTest extends Setup {
     }
 
 
-    @Test(priority = 6,enabled = false)
+    @Test(priority = 6)
     public void verifyProtipTextOnTrackShuttl() {
         homepage.clickBookingHomeCard();
         String result = trackShuttlPage.getProtipText();
@@ -119,7 +119,7 @@ public class BookingRescheduleTest extends Setup {
     }
 
 
-    @Test(priority = 7,enabled = false)
+    @Test(priority = 7)
     public void verifyRideReschedulePageTitle() {
         commons.openRideOptionsFromBookingHomecards();
         trackShuttlPage.selectRideOption(0);
